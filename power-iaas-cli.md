@@ -1,3 +1,20 @@
+---
+
+copyright:
+  years: 2019
+lastupdated: "2019-03-12"
+
+---
+
+{:shortdesc: .shortdesc}
+{:new_window: target="_blank"}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
+
+#IBM Power Systems Virtual Servers CLI Reference
+{: #power-iaas-cli-reference}
 
 ### `ibmcloud pi image`
 {: #ibmcloud-pi-image}
