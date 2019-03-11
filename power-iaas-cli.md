@@ -14,37 +14,36 @@ lastupdated: "2019-03-12"
 {:tip: .tip}
 {:download: .download}
 
-#IBM Power Systems Virtual Servers CLI Reference
+# IBM Power Systems Virtual Servers CLI Reference
 {: #power-iaas-cli-reference}
-This document provides a reference of the command line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see [API references](/apidocs/power-cloud/){:new_window}.
+
+This document provides a reference of the command line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see [API references](/api/power-cloud/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 {:shortdesc}
 
 ## Before you begin
 {: #power-iaas-cli-before}
-1. Install the [IBM Cloud CLI ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/docs/cli/index.html#getting-started){: new_window}.
 
-1. Install or update the power-iaas plugin.
+1. Install the [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#getting-started).
 
+2. Install or update the `power-iaas` plug-in.
   ```
   ibmcloud plugin install infrastructure-service
   ```
   {: codeblock}
 
   To update:
-
   ```
   ibmcloud plugin update
   ```
   {: codeblock}
 
-  To view installed plugins and versions:
-
+  To view installed plug-ins and versions:
   ```
   ibmcloud plugin list
   ```
   {: codeblock}
 
-1. Log in to IBM Cloud.
+2. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ### `ibmcloud pi image`
 {: #ibmcloud-pi-image}
