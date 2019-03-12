@@ -25,9 +25,9 @@ This document provides a reference of the command line interface (CLI) that are 
 
 1. Install the [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#getting-started).
 
-2. Install or update the `power-iaas` plug-in.
+1. Install or update the `power-iaas` plug-in.
   ```
-  ibmcloud plugin install infrastructure-service
+  ibmcloud plugin install power-iaas
   ```
   {: codeblock}
 
@@ -43,7 +43,24 @@ This document provides a reference of the command line interface (CLI) that are 
   ```
   {: codeblock}
 
-2. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+1. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+
+To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, plugins for `power-iaas` use the region that `ibmcloud login` targets. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `us-south.iaas.cloud.ibm.com`, you must use the command `ibmcloud login -a api.ng.bluemix.net` to target the `us-south` region.
+
+  If you have a federated account:
+  ```
+  ibmcloud login -a api.ng.bluemix.net -sso
+  ```
+  {: codeblock}
+
+  otherwise
+  ```
+  ibmcloud login -a api.ng.bluemix.net
+  ```
+  {: codeblock}
+
+## Commands
+{: #power-iaas-cli-commands}
 
 ### `ibmcloud pi image`
 {: #ibmcloud-pi-image}
