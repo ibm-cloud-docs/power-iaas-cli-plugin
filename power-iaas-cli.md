@@ -59,6 +59,8 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, plug
   ```
   {: codeblock}
 
+---
+
 ## Commands
 {: #power-iaas-cli-commands}
 
