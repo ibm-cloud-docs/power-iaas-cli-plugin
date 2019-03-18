@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-12"
+lastupdated: "2019-03-25"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2019-03-12"
 # IBM Power Systems Virtual Servers CLI Reference
 {: #power-iaas-cli-reference}
 
-This document provides a reference of the command line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see [API references](/api/power-cloud/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+This document provides a reference of the command-line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see the [API references](/apidocs/power-cloud/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") documentation.
 {:shortdesc}
 
 ## Before you begin
@@ -45,17 +45,11 @@ This document provides a reference of the command line interface (CLI) that are 
 
 1. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
-To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, plugins for `power-iaas` use the region that `ibmcloud login` targets. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `us-south.iaas.cloud.ibm.com`, you must use the command `ibmcloud login -a api.ng.bluemix.net` to target the `us-south` region.
+To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the power-iaas command-line plug-in uses the region that `ibmcloud login` targets. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `us-east.power-iaas.cloud.ibm.com`, you must use the `ibmcloud login -a api.us-east.bluemix.net` command to target the `us-east` region.
 
-  If you have a federated account:
+  If you have a federated account, use the following command:
   ```
   ibmcloud login -a api.ng.bluemix.net -sso
-  ```
-  {: codeblock}
-
-  otherwise
-  ```
-  ibmcloud login -a api.ng.bluemix.net
   ```
   {: codeblock}
 
