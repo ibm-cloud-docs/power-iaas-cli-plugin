@@ -73,19 +73,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 ---
 
-### `ibmcloud pi images`
-{: #ibmcloud-pi-images}
-
-#### List all images for this account
-
-`ibmcloud pi images [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
 ### `ibmcloud pi image-create`
 {: #ibmcloud-pi-image-create}
 
@@ -113,12 +100,44 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 ---
 
+### `ibmcloud pi image-import`
+{: #ibmcloud-pi-image-import}
+
+#### Import an image from IBM Cloud Object Storage
+
+`ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
+
+- `IMAGE_NAME`:  The desired name of the image
+
+**Options**
+
+- `--image-path`: Path to image starting with service endpoint and ending with image filename.
+- `--os-type`: Operating system contained in the image (aix, ibmi).
+- `--access-key`: Cloud Object Storage HMAC access key.
+- `--secret-key`: Cloud Object Storage HMAC secret key.
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi image-list-catalog`
 {: #ibmcloud-pi-image-list-catalog}
 
 #### List images available in the regional image catalog
 
 `ibmcloud pi image-list-catalog [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi images`
+{: #ibmcloud-pi-images}
+
+#### List all images for this account
+
+`ibmcloud pi images [--json]`
 
 **Options**
 
@@ -159,7 +178,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
 - `--volume-ids`: Space separated list of IDs of the volume(s) to associate with the instance.
 - `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type.
+- `--sys-type`: Name of System Type ("s922", "e880", "any").
 - `--json`: Format output in JSON.
 
 ---
@@ -200,6 +219,21 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `INSTANCE_ID`:  The unique identifier of the instance
 
+
+---
+
+### `ibmcloud pi instance-list-volumes`
+{: #ibmcloud-pi-instance-list-volumes}
+
+#### Get a list of volumes attached to an instance
+
+`ibmcloud pi volume INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`:  The unique ID of the instance
+
+**Options**
+
+- `--json`: Format output in JSON.
 
 ---
 
@@ -254,21 +288,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--name`: New name of the server instance.
 - `--processors`: New amount of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi instance-volumes`
-{: #ibmcloud-pi-instance-volumes}
-
-#### Get a list of volumes attached to an instance
-
-`ibmcloud pi volume INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`:  The unique ID of the instance
-
-**Options**
-
 - `--json`: Format output in JSON.
 
 ---
@@ -374,25 +393,12 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 ---
 
-### `ibmcloud pi networks`
-{: #ibmcloud-pi-networks}
+### `ibmcloud pi network-create-private`
+{: #ibmcloud-pi-network-create-private}
 
-#### List all networks
+#### Create a private network
 
-`ibmcloud pi networks [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi network-create`
-{: #ibmcloud-pi-network-create}
-
-#### Create a network
-
-`ibmcloud pi network-create NETWORK_NAME --cidr-block CIDR  --ip-range "startIP-endIP[,startIP-endIP]" --network-type TYPE [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
+`ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
 - `NETWORK_NAME`:  The name of the network
 
@@ -402,7 +408,22 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--dns-servers`: Space separated list of DNS Servers to use for this network.
 - `--gateway`: Gateway to use for this network.
 - `--ip-range`: IP Addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
-- `--network-type`: Type of Network [vlan (private), vxlan (public)].
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi network-create-public`
+{: #ibmcloud-pi-network-create-public}
+
+#### Create a public network
+
+`ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--json]`
+
+- `NETWORK_NAME`:  The name of the network
+
+**Options**
+
+- `--dns-servers`: Space separated list of DNS Servers to use for this network.
 - `--json`: Format output in JSON.
 
 ---
@@ -434,6 +455,19 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--dns-servers`: Space separated list of new DNS Servers to use for this network.
 - `--gateway`: New gateway to use for this network.
 - `--ip-range`: New IP Addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi networks`
+{: #ibmcloud-pi-networks}
+
+#### List all networks
+
+`ibmcloud pi networks [--json]`
+
+**Options**
+
 - `--json`: Format output in JSON.
 
 ---
