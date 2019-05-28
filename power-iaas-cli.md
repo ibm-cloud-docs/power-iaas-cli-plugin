@@ -67,7 +67,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image IMAGE_ID [--json]`
 
-- `IMAGE_ID`:  The unique identifier of the image
+- `IMAGE_ID`:  The unique identifier or name of the image
 
 **Options**
 
@@ -82,7 +82,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-create IMAGE_ID [--json]`
 
-- `IMAGE_ID`:  The unique identifier of the image
+- `IMAGE_ID`:  The unique identifier or name of the image
 
 **Options**
 
@@ -97,8 +97,27 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-delete IMAGE_ID`
 
-- `IMAGE_ID`:  The unique identifier of the image
+- `IMAGE_ID`:  The unique identifier or name of the image
 
+
+---
+
+### `ibmcloud pi image-export`
+{: #ibmcloud-pi-image-export}
+
+#### Export an image from IBM Cloud Object Storage
+
+`ibmcloud pi image-export IMAGE_NAME --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [--json]`
+
+- `IMAGE_ID`:  The unique identifier or name of the image
+
+**Options**
+
+- `--bucket`: Cloud Object Storage bucket name.
+- `--region`: Cloud Object Storage region (us-east, us-south).
+- `--access-key`: Cloud Object Storage HMAC access key.
+- `--secret-key`: Cloud Object Storage HMAC secret key.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -126,10 +145,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### List images available in the regional image catalog
 
-`ibmcloud pi image-list-catalog [--json]`
+`ibmcloud pi image-list-catalog [--long] [--json]`
 
 **Options**
 
+- `--long`: Retrieve all image details.
 - `--json`: Format output in JSON.
 
 ---
@@ -139,10 +159,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### List all images for this account
 
-`ibmcloud pi images [--json]`
+`ibmcloud pi images [--long] [--json]`
 
 **Options**
 
+- `--long`: Retrieve all image details.
 - `--json`: Format output in JSON.
 
 ---
@@ -154,11 +175,32 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 **Options**
 
 - `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instance-capture`
+{: #ibmcloud-pi-instance-capture}
+
+#### Capture a server instance
+
+`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volume-ids "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
+
+- `INSTANCE_ID`:  The unique identifier or name of the instance
+
+**Options**
+
+- `--destination`: Destination for the deployable image (image-catalog, cloud-storage, both).
+- `--name`: Name of the deployable image created for the captured instance.
+- `--volumes`: Space separated list of identifiers or names of the volume(s) to capture with the instance.
+- `--access-key`: Cloud Object Storage HMAC access key. Required if destination is cloud-storage.
+- `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
+- `--region`: Cloud Object Storage region (us-east, us-south). Required if destination is cloud-storage.
+- `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
 
 ---
 
@@ -167,20 +209,22 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image-id IMAGE_ID --memory MEMORY --network-ids "NETWORK_ID1 NETWORK_ID2" --processors PROCESSORS --processor-type PROC_TYPE [--volume-ids "VOLUME_ID1 VOLUME_ID2"] [--key-name NAME] [--sys-type TYPE] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE]  [--replicants NUMBER] [--replicant-scheme SCHEME] [--json]`
 
 - `INSTANCE_NAME`:  The name of the instance
 
 **Options**
 
-- `--image-id`: Operating system image ID.
+- `--image`: Operating system image identifier or name.
 - `--memory`: Amount of memory (in GB) to allocate to the instance.
-- `--network-ids`: Space separated list of IDs of the network(s) to associate with the instance.
+- `--networks`: Space separated list of identifiers or names of the network(s) to associate with the instance.
 - `--processors`: Amount of processors to allocate to the instance.
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
-- `--volume-ids`: Space separated list of IDs of the volume(s) to associate with the instance.
+- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type ("s922", "e880", "any").
+- `--replicants`: Number of duplicate instances to create in this request.
+- `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
 - `--json`: Format output in JSON.
 
 ---
@@ -192,7 +236,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-delete INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 
 ---
@@ -204,7 +248,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-get-console INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 **Options**
 
@@ -219,7 +263,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-hard-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 
 ---
@@ -229,12 +273,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Get a list of volumes attached to an instance
 
-`ibmcloud pi volume INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`:  The unique ID of the instance
+`ibmcloud pi volume INSTANCE [--long] [--json]`
 
 **Options**
 
+- `--long`: Retrieve all volume details.
 - `--json`: Format output in JSON.
 
 ---
@@ -246,7 +289,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-soft-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 
 ---
@@ -258,7 +301,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-start INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 
 ---
@@ -270,7 +313,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-stop INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 
 ---
@@ -282,7 +325,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--processors NUMBER] [--processor-type TYPE] [--json]`
 
-- `INSTANCE_ID`:  The unique identifier of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance
 
 **Options**
 
@@ -299,10 +342,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### List all server instances
 
-`ibmcloud pi instances [--json]`
+`ibmcloud pi instances [--long] [--json]`
 
 **Options**
 
+- `--long`: Retrieve all instance details.
 - `--json`: Format output in JSON.
 
 ---
@@ -387,7 +431,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network NETWORK_ID [--json]`
 
-- `NETWORK_ID`:  The unique ID of the network
+- `NETWORK_ID`:  The unique identifier or name of the network
 
 **Options**
 
@@ -437,7 +481,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network-delete NETWORK_ID`
 
-- `NETWORK_ID`:  The unique ID of the network
+- `NETWORK_ID`:  The unique identifier or name of the network
 
 
 ---
@@ -449,7 +493,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network-update NETWORK_ID [--name NETWORK_NAME] [--starting-ip IP] [--ending-ip IP] [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
-- `NETWORK_ID`:  The unique ID of the network
+- `NETWORK_ID`:  The unique identifier or name of the network
 
 **Options**
 
@@ -466,10 +510,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### List all networks
 
-`ibmcloud pi networks [--json]`
+`ibmcloud pi networks [--long] [--json]`
 
 **Options**
 
+- `--long`: Retrieve all network details.
 - `--json`: Format output in JSON.
 
 ---
@@ -481,7 +526,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume VOLUME_ID [--json]`
 
-- `VOLUME_ID`:  The unique ID of the volume
+- `VOLUME_ID`:  The unique identifier or name of the volume
 
 **Options**
 
@@ -494,9 +539,9 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Attach a volume to an instance
 
-`ibmcloud pi volume VOLUME_ID --instance INSTANCE_ID [--json]`
+`ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
 
-- `VOLUME_ID`:  The unique ID of the volume, INSTANCE_ID
+- `VOLUME_ID`:  The unique identifier or name of the volume, INSTANCE
 
 **Options**
 
@@ -530,7 +575,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume-delete VOLUME_ID`
 
-- `VOLUME_ID`:  The unique ID of the volume
+- `VOLUME_ID`:  The unique identifier or name of the volume
 
 
 ---
@@ -540,9 +585,9 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Detach a volume from an instance
 
-`ibmcloud pi volume VOLUME_ID --instance INSTANCE_ID [--json]`
+`ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
 
-- `VOLUME_ID`:  The unique ID of the volume, INSTANCE_ID
+- `VOLUME_ID`:  The unique identifier or name of the volume, INSTANCE
 
 **Options**
 
@@ -556,12 +601,13 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Update a volume
 
-`ibmcloud pi volume-update VOLUME_ID [--name NEW_NAME] [--size NEW_SIZE] [--shareable] [--json]`
+`ibmcloud pi volume-update VOLUME_ID [--bootable] [--name NEW_NAME] [--size NEW_SIZE] [--shareable] [--json]`
 
-- `VOLUME_ID`:  The unique ID of the volume
+- `VOLUME_ID`:  The unique identifier or name of the volume
 
 **Options**
 
+- `--bootable`: New volume bootable.
 - `--name`: New name of the volume.
 - `--size`: New size of the volume.
 - `--shareable`: New  for whether volume can be attached to multiple VMs.
@@ -574,10 +620,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### List all volumes
 
-`ibmcloud pi volumes [--json]`
+`ibmcloud pi volumes [--long] [--json]`
 
 **Options**
 
+- `--long`: Retrieve all volume details.
 - `--json`: Format output in JSON.
 
 ---
