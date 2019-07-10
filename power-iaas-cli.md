@@ -23,11 +23,11 @@ This document provides a reference of the command-line interface (CLI) that are 
 ## Before you begin
 {: #power-iaas-cli-before}
 
-1. Install the [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#getting-started).
+1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 1. Install or update the `power-iaas` plug-in.
-  
-  To install: 
+
+  To install:
   ```
   ibmcloud plugin install power-iaas
   ```
