@@ -28,19 +28,19 @@ This document provides a reference of the command-line interface (CLI) that are 
 1. Install or update the `power-iaas` plug-in.
 
   To install:
-  ```
+  ```shell
   ibmcloud plugin install power-iaas
   ```
   {: codeblock}
 
   To update:
-  ```
+  ```shell
   ibmcloud plugin update
   ```
   {: codeblock}
 
   To view installed plug-ins and versions:
-  ```
+  ```shell
   ibmcloud plugin list
   ```
   {: codeblock}
@@ -50,7 +50,7 @@ This document provides a reference of the command-line interface (CLI) that are 
 To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the power-iaas command-line plug-in uses the region that `ibmcloud login` targets. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region.
 
   If you have a federated account, use the following command:
-  ```
+  ```shell
   ibmcloud login -a https://cloud.ibm.com -sso
   ```
   {: codeblock}
