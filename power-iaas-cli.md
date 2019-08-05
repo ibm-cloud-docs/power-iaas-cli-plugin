@@ -17,7 +17,7 @@ lastupdated: "2019-08-02"
 # IBM Power Systems Virtual Servers CLI Reference
 {: #power-iaas-cli-reference}
 
-This document provides a reference of the command-line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see the [API references](/apidocs/power-cloud/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") documentation.
+This document provides a reference of the command-line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see the [API references](https://console.{DomainName}/apidocs/power-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") documentation.
 {:shortdesc}
 
 ## Before you begin
