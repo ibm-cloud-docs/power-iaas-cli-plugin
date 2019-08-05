@@ -99,7 +99,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `IMAGE_ID`:  The unique identifier or name of the image
 
-
 ---
 
 ### `ibmcloud pi image-export`
@@ -132,7 +131,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 **Options**
 
-- `--image-path`: Path to image starting with service endpoint and ending with image filename.
+- `--image-path`: Path to image that starts with the service endpoint and ends with the image file name.
 - `--os-type`: Operating system contained in the image (aix, ibmi).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
@@ -195,7 +194,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 **Options**
 
 - `--destination`: Destination for the deployable image (image-catalog, cloud-storage, both).
-- `--name`: Name of the deployable image created for the captured instance.
+- `--name`: Name of the deployable image that is created for the captured instance.
 - `--volumes`: Space separated list of identifiers or names of the volume(s) to capture with the instance.
 - `--access-key`: Cloud Object Storage HMAC access key. Required if destination is cloud-storage.
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
@@ -218,7 +217,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--image`: Operating system image identifier or name.
 - `--memory`: Amount of memory (in GB) to allocate to the instance.
 - `--networks`: Space separated list of identifiers or names of the network(s) to associate with the instance.
-- `--processors`: Amount of processors to allocate to the instance.
+- `--processors`: Number of processors to allocate to the instance.
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
 - `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--key-name`: Name of SSH key.
@@ -237,7 +236,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 `ibmcloud pi instance-delete INSTANCE_ID`
 
 - `INSTANCE_ID`:  The unique identifier or name of the instance
-
 
 ---
 
@@ -259,12 +257,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 ### `ibmcloud pi instance-hard-reboot`
 {: #ibmcloud-pi-instance-hard-reboot}
 
-#### Hard Restart the operating system of an instance
+#### Hard restart the operating system of an instance
 
 `ibmcloud pi instance-hard-reboot INSTANCE_ID`
 
 - `INSTANCE_ID`:  The unique identifier or name of the instance
-
 
 ---
 
@@ -285,12 +282,11 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 ### `ibmcloud pi instance-soft-reboot`
 {: #ibmcloud-pi-instance-soft-reboot}
 
-#### Soft Restart the operating system of an instance
+#### Soft restart the operating system of an instance
 
 `ibmcloud pi instance-soft-reboot INSTANCE_ID`
 
 - `INSTANCE_ID`:  The unique identifier or name of the instance
-
 
 ---
 
@@ -303,7 +299,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `INSTANCE_ID`:  The unique identifier or name of the instance
 
-
 ---
 
 ### `ibmcloud pi instance-stop`
@@ -314,7 +309,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 `ibmcloud pi instance-stop INSTANCE_ID`
 
 - `INSTANCE_ID`:  The unique identifier or name of the instance
-
 
 ---
 
@@ -331,7 +325,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `--memory`: New amount of memory for the server instance.
 - `--name`: New name of the server instance.
-- `--processors`: New amount of processors for the server instance.
+- `--processors`: New number of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
 - `--json`: Format output in JSON.
 
@@ -408,7 +402,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `KEY_NAME`:  The name of the key
 
-
 ---
 
 ### `ibmcloud pi keys`
@@ -453,7 +446,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--cidr-block`: Network in CIDR notation (192.168.0.0/24).
 - `--dns-servers`: Space separated list of DNS Servers to use for this network.
 - `--gateway`: Gateway to use for this network.
-- `--ip-range`: IP Addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
+- `--ip-range`: IP addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
 - `--json`: Format output in JSON.
 
 ---
@@ -483,7 +476,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `NETWORK_ID`:  The unique identifier or name of the network
 
-
 ---
 
 ### `ibmcloud pi network-update`
@@ -500,7 +492,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--name`: New name of the network.
 - `--dns-servers`: Space separated list of new DNS Servers to use for this network.
 - `--gateway`: New gateway to use for this network.
-- `--ip-range`: New IP Addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
+- `--ip-range`: New IP addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
 - `--json`: Format output in JSON.
 
 ---
@@ -610,7 +602,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--bootable`: New volume bootable.
 - `--name`: New name of the volume.
 - `--size`: New size of the volume.
-- `--shareable`: New  for whether volume can be attached to multiple VMs.
+- `--shareable`: New for whether volume can be attached to multiple VMs.
 - `--json`: Format output in JSON.
 
 ---
