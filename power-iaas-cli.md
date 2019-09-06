@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-09-06"
 
 ---
 
@@ -18,7 +18,7 @@ lastupdated: "2019-08-02"
 {: #power-iaas-cli-reference}
 
 This document provides a reference of the command-line interface (CLI) that are available for {{site.data.keyword.powerSysFull}}. There are also APIs that are available for {{site.data.keyword.powerSys_notm}}. For more information, see the [API references](https://console.{DomainName}/apidocs/power-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") documentation.
-{:shortdesc}
+{: shortdesc}
 
 ## Before you begin
 {: #power-iaas-cli-before}
@@ -127,7 +127,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
 
-- `IMAGE_NAME`:  The desired name of the image
+- `IMAGE_NAME`:  The wanted name of the image
 
 **Options**
 
@@ -195,7 +195,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `--destination`: Destination for the deployable image (image-catalog, cloud-storage, both).
 - `--name`: Name of the deployable image that is created for the captured instance.
-- `--volumes`: Space separated list of identifiers or names of the volume(s) to capture with the instance.
+- `--volumes`: Space separated list of identifiers or names of the volumes to capture with the instance.
 - `--access-key`: Cloud Object Storage HMAC access key. Required if destination is cloud-storage.
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
 - `--region`: Cloud Object Storage region (us-east, us-south). Required if destination is cloud-storage.
@@ -216,10 +216,10 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `--image`: Operating system image identifier or name.
 - `--memory`: Amount of memory (in GB) to allocate to the instance.
-- `--networks`: Space separated list of identifiers or names of the network(s) to associate with the instance.
+- `--networks`: Space separated list of identifiers or names of the networks to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance.
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
-- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
+- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type ("s922", "e880", "any").
 - `--replicants`: Number of duplicate instances to create in this request.
@@ -446,7 +446,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--cidr-block`: Network in CIDR notation (192.168.0.0/24).
 - `--dns-servers`: Space separated list of DNS Servers to use for this network.
 - `--gateway`: Gateway to use for this network.
-- `--ip-range`: IP addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
+- `--ip-range`: IP addresses range or ranges for this network, format: startIP-endIP[,startIP-endIP].
 - `--json`: Format output in JSON.
 
 ---
@@ -492,7 +492,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--name`: New name of the network.
 - `--dns-servers`: Space separated list of new DNS Servers to use for this network.
 - `--gateway`: New gateway to use for this network.
-- `--ip-range`: New IP addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
+- `--ip-range`: New IP addresses range or ranges for this network, format: startIP-endIP[,startIP-endIP].
 - `--json`: Format output in JSON.
 
 ---
