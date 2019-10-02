@@ -352,7 +352,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi key KEY_NAME [--json]`
 
-- `KEY_NAME`:  The name of the key
+- `KEY_NAMEThe name of the key
 
 **Options**
 
@@ -367,7 +367,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi key-create KEY_NAME --key KEY [--json]`
 
-- `KEY_NAME`:  The name of the key
+- `KEY_NAME`: The name of the SSH key.
 
 **Options**
 
@@ -383,12 +383,12 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi key-update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY [--json]`
 
-- `KEY_NAME`:  The name of the key
+- `KEY_NAME`: The name of the SSH key.
 
 **Options**
 
-- `--new-name`: SSH RSA key string.
-- `--new-key`: SSH RSA key string.
+- `--new-name`: New SSH key name.
+- `--new-key`: New SSH RSA key string.
 - `--json`: Format output in JSON.
 
 ---
@@ -400,7 +400,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi key-delete KEY_NAME`
 
-- `KEY_NAME`:  The name of the key
+- `KEY_NAME`: The name of the SSH key
 
 ---
 
