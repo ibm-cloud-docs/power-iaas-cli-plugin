@@ -518,7 +518,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume VOLUME_ID [--json]`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume
+- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
@@ -533,7 +533,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume, INSTANCE
+- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
