@@ -222,7 +222,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type ("s922", "e880", "any").
-- `--replicants`: Number of duplicate instances to create in this request.
+- `--replicants`: Number of replicants. You muset set the value to "2" to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
 - `--json`: Format output in JSON.
 
