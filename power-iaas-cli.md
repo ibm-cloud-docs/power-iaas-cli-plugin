@@ -187,7 +187,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Capture a server instance
 
-`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volume-ids "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
+`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
 
 - `INSTANCE_ID`:  The unique identifier or name of the instance
 
