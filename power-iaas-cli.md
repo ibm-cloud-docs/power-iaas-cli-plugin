@@ -208,7 +208,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE]  [--replicants NUMBER] [--replicant-scheme SCHEME] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE]  [--replicants NUMBER] [--replicant-affinity-policy AFFINITY_POLICY] [--replicant-scheme SCHEME] [--json]`
 
 - `INSTANCE_NAME`:  The name of the instance
 
@@ -224,6 +224,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 - `--sys-type`: Name of System Type ("s922", "e880", "any").
 - `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
+- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
 - `--json`: Format output in JSON.
 
 ---
