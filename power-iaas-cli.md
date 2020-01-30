@@ -557,7 +557,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 **Options**
 
-- `--type`: Type of the volume (ssd, standard, tier1, or tier2).
+- `--type`: Type of the volume (ssd, standard, tier1, or tier3).
 - `--size`: Size of the volume (in GB).
 - `--shareable`: Whether volume can be attached to multiple VMs.
 - `--json`: Format output in JSON.
