@@ -2,28 +2,31 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-10-06"
+lastupdated: "2019-1-10"
 
 ---
 
-{:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
-{:screen: .screen}
 {:tip: .tip}
-{:download: .download}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:external: target="_blank" .external}
 
 # IBM Power Systems Virtual Servers CLI Reference
 {: #power-iaas-cli-reference}
 
-This document provides a reference of the command-line interface (CLI) that are available for the {{site.data.keyword.powerSysFull}}. There are also application programming interfaces (APIs) that are available for the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://console.{DomainName}/apidocs/power-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+This document provides a reference of the command-line interface (CLI) that are available for the {{site.data.keyword.powerSysFull}}. There are also application programming interfaces (APIs) that are available for the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://console.{DomainName}/apidocs/power-cloud){: new_window}{: external}.
 {: shortdesc}
 
 ## Before you begin
 {: #power-iaas-cli-before}
 
-1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window}{: external}.
 
 1. Install or update the `power-iaas` plug-in.
 
@@ -45,7 +48,7 @@ This document provides a reference of the command-line interface (CLI) that are 
   ```
   {: codeblock}
 
-1. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+1. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
 
 To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the power-iaas command-line plug-in uses the region that `ibmcloud login` targets. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region.
 
@@ -554,7 +557,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 **Options**
 
-- `--type`: Type of the volume (ssd, standard).
+- `--type`: Type of the volume (ssd, standard, tier1, or tier2).
 - `--size`: Size of the volume (in GB).
 - `--shareable`: Whether volume can be attached to multiple VMs.
 - `--json`: Format output in JSON.
