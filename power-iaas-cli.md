@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-1-10"
+  years: 2019, 2020
+lastupdated: "2020-02-06"
 
 ---
 
@@ -20,7 +20,7 @@ lastupdated: "2019-1-10"
 # IBM Power Systems Virtual Servers CLI Reference
 {: #power-iaas-cli-reference}
 
-This document provides a reference of the command-line interface (CLI) that are available for the {{site.data.keyword.powerSysFull}}. There are also application programming interfaces (APIs) that are available for the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://console.{DomainName}/apidocs/power-cloud){: new_window}{: external}.
+This document provides a reference of the command line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://console.{DomainName}/apidocs/power-cloud){: new_window}{: external}.
 {: shortdesc}
 
 ## Before you begin
@@ -28,32 +28,34 @@ This document provides a reference of the command-line interface (CLI) that are 
 
 1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window}{: external}.
 
-1. Install or update the `power-iaas` plug-in.
+2. Install or update the `power-iaas` plug-in.
 
-  To install:
-  ```shell
-  ibmcloud plugin install power-iaas
+    **To install:**
+
+    ```
+    ibmcloud plugin install power-iaas
+    ```
+    {: codeblock}
+
+    **To update:**
+
+    ```
+    ibmcloud plugin update
+    ```
+    {: codeblock}
+
+    **To view your installed plug-ins and versions:**
+
+    ```
+    ibmcloud plugin list
+    ```
+    {: codeblock}
+
+3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
+
+The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
+
   ```
-  {: codeblock}
-
-  To update:
-  ```shell
-  ibmcloud plugin update
-  ```
-  {: codeblock}
-
-  To view installed plug-ins and versions:
-  ```shell
-  ibmcloud plugin list
-  ```
-  {: codeblock}
-
-1. Log in to [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
-
-To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the power-iaas command-line plug-in uses the region that `ibmcloud login` targets. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region.
-
-  If you have a federated account, use the following command:
-  ```shell
   ibmcloud login -a https://cloud.ibm.com -sso
   ```
   {: codeblock}
@@ -70,7 +72,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image IMAGE_ID [--json]`
 
-- `IMAGE_ID`:  The unique identifier or name of the image
+- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
@@ -85,7 +87,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-create IMAGE_ID [--json]`
 
-- `IMAGE_ID`:  The unique identifier or name of the image
+- `IMAGE_ID`:  The unique identifier or name of the image.
 
 **Options**
 
@@ -100,7 +102,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-delete IMAGE_ID`
 
-- `IMAGE_ID`:  The unique identifier or name of the image
+- `IMAGE_ID`:  The unique identifier or name of the image.
 
 ---
 
@@ -111,7 +113,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-export IMAGE_NAME --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [--json]`
 
-- `IMAGE_ID`:  The unique identifier or name of the image
+- `IMAGE_ID`:  The unique identifier or name of the image.
 
 **Options**
 
@@ -130,7 +132,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
 
-- `IMAGE_NAME`:  The wanted name of the image
+- `IMAGE_NAME`:  The image name.
 
 **Options**
 
@@ -159,7 +161,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 ### `ibmcloud pi images`
 {: #ibmcloud-pi-images}
 
-#### List all images for this account
+#### List all of the images for this account
 
 `ibmcloud pi images [--long] [--json]`
 
@@ -177,7 +179,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 **Options**
 
@@ -192,7 +194,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 **Options**
 
@@ -239,7 +241,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-delete INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 ---
 
@@ -250,7 +252,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-get-console INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 **Options**
 
@@ -265,7 +267,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-hard-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 ---
 
@@ -290,7 +292,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-soft-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 ---
 
@@ -301,7 +303,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-start INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 ---
 
@@ -312,7 +314,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-stop INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 ---
 
@@ -323,7 +325,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--processors NUMBER] [--processor-type TYPE] [--json]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance
+- `INSTANCE_ID`:  The unique identifier or name of the instance.
 
 **Options**
 
@@ -404,7 +406,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi key-delete KEY_NAME`
 
-- `KEY_NAME`: The name of the SSH key
+- `KEY_NAME`: The name of the SSH key.
 
 ---
 
@@ -428,7 +430,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network NETWORK_ID [--json]`
 
-- `NETWORK_ID`:  The unique identifier or name of the network
+- `NETWORK_ID`:  The unique identifier or name of the network.
 
 **Options**
 
@@ -443,7 +445,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
-- `NETWORK_NAME`:  The name of the network
+- `NETWORK_NAME`:  The name of the network.
 
 **Options**
 
@@ -462,7 +464,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--json]`
 
-- `NETWORK_NAME`:  The name of the network
+- `NETWORK_NAME`:  The name of the network.
 
 **Options**
 
@@ -478,7 +480,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network-delete NETWORK_ID`
 
-- `NETWORK_ID`:  The unique identifier or name of the network
+- `NETWORK_ID`:  The unique identifier or name of the network.
 
 ---
 
@@ -489,7 +491,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi network-update NETWORK_ID [--name NETWORK_NAME] [--starting-ip IP] [--ending-ip IP] [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
-- `NETWORK_ID`:  The unique identifier or name of the network
+- `NETWORK_ID`:  The unique identifier or name of the network.
 
 **Options**
 
@@ -553,7 +555,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--json]`
 
-- `VOLUME_NAME`:  The name of the volume
+- `VOLUME_NAME`:  The name of the volume.
 
 **Options**
 
@@ -573,7 +575,6 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `VOLUME_ID`:  The unique identifier or name of the volume
 
-
 ---
 
 ### `ibmcloud pi volume-detach`
@@ -583,7 +584,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume, INSTANCE
+- `VOLUME_ID`:  The unique identifier or name of the volume.
 
 **Options**
 
@@ -599,7 +600,7 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 `ibmcloud pi volume-update VOLUME_ID [--bootable] [--name NEW_NAME] [--size NEW_SIZE] [--shareable] [--json]`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume
+- `VOLUME_ID`:  The unique identifier or name of the volume.
 
 **Options**
 
@@ -622,5 +623,3 @@ To determine what {{site.data.keyword.powerSys_notm}} endpoint can be used, the 
 
 - `--long`: Retrieve all volume details.
 - `--json`: Format output in JSON.
-
----
