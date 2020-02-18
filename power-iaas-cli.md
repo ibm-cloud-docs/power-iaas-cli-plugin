@@ -387,7 +387,7 @@ The power-iaas command-line plug-in uses the region that `ibmcloud login` target
 {: #ibmcloud-pi-key-delete}
 
 #### Delete a key
-
+git st
 `ibmcloud pi key-delete KEY_NAME`
 
 - `KEY_NAME`: The name of the SSH key.
