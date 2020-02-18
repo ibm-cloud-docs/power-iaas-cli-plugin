@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-02-06"
+lastupdated: "2020-02-18"
 
 ---
 
@@ -213,7 +213,7 @@ The power-iaas command-line plug-in uses the region that `ibmcloud login` target
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE]  [--replicants NUMBER] [--replicant-affinity-policy AFFINITY_POLICY] [--replicant-scheme SCHEME] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--storage-type] [--replicants NUMBER] [--replicant-affinity-policy AFFINITY_POLICY] [--replicant-scheme SCHEME] [--json]`
 
 - `INSTANCE_NAME`:  The name of the instance
 
@@ -227,9 +227,10 @@ The power-iaas command-line plug-in uses the region that `ibmcloud login` target
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type ("s922", "e880", "any").
+- `--storage-type`: Storage type for server deployment when deploying a stock image
 - `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
-- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
+- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
 - `--json`: Format output in JSON.
 
 ---
@@ -382,6 +383,17 @@ The power-iaas command-line plug-in uses the region that `ibmcloud login` target
 
 ---
 
+### `ibmcloud pi key-delete`
+{: #ibmcloud-pi-key-delete}
+
+#### Delete a key
+
+`ibmcloud pi key-delete KEY_NAME`
+
+- `KEY_NAME`: The name of the SSH key.
+
+---
+
 ### `ibmcloud pi key-update`
 {: #ibmcloud-pi-key-update}
 
@@ -396,17 +408,6 @@ The power-iaas command-line plug-in uses the region that `ibmcloud login` target
 - `--new-name`: New SSH key name.
 - `--new-key`: New SSH RSA key string.
 - `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi key-delete`
-{: #ibmcloud-pi-key-delete}
-
-#### Delete a key
-
-`ibmcloud pi key-delete KEY_NAME`
-
-- `KEY_NAME`: The name of the SSH key.
 
 ---
 
@@ -513,6 +514,45 @@ The power-iaas command-line plug-in uses the region that `ibmcloud login` target
 **Options**
 
 - `--long`: Retrieve all network details.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi service-list`
+{: #ibmcloud-pi-service-list}
+
+#### List all services for this account and region
+
+`ibmcloud pi service-list [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi service-target`
+{: #ibmcloud-pi-service-target}
+
+#### Target a service
+
+`ibmcloud pi service-target [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi storage-types`
+{: #ibmcloud-pi-storage-types}
+
+#### List all storage types
+
+`ibmcloud pi storage-types [--json]`
+
+**Options**
+
 - `--json`: Format output in JSON.
 
 ---
