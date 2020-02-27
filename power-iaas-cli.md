@@ -67,7 +67,12 @@ This document provides a reference of the command line interface (CLI) commands 
     ```
     {: screen}
 
-5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`.
+5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`. For example:
+
+```
+ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
+```
+{: codeblock}
 
 ---
 
