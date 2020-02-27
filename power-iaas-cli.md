@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-02-18"
+lastupdated: "2020-02-27"
 
 ---
 
@@ -53,12 +53,21 @@ This document provides a reference of the command line interface (CLI) commands 
 
 3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
 
-The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
+    The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
 
-  ```
-  ibmcloud login -a https://cloud.ibm.com -sso
-  ```
-  {: codeblock}
+    ```
+    ibmcloud login -a https://cloud.ibm.com -sso
+    ```
+    {: codeblock}
+
+4. Run the `ibmcloud pi service-list` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following is an example of a typical CRN:
+
+    ```
+    crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
+    ```
+    {: screen}
+
+5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`.
 
 ---
 
