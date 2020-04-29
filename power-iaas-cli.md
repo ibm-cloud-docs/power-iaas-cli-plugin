@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-02-27"
+lastupdated: "2020-04-29"
 
 ---
 
@@ -13,6 +13,7 @@ lastupdated: "2020-02-27"
 {:pre: .pre}
 {:tip: .tip}
 {:note: .note}
+{:preview: .preview}
 {:important: .important}
 {:deprecated: .deprecated}
 {:external: target="_blank" .external}
@@ -20,7 +21,7 @@ lastupdated: "2020-02-27"
 # IBM Power Systems Virtual Servers CLI Reference
 {: #power-iaas-cli-reference}
 
-This document provides a reference of the command line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
+This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
 {: shortdesc}
 
 ## Before you begin
@@ -60,14 +61,14 @@ This document provides a reference of the command line interface (CLI) commands 
     ```
     {: codeblock}
 
-4. Run the `ibmcloud pi service-list` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following is an example of a typical CRN:
+4. Run the `ibmcloud pi service-list` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
 
     ```
     crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
     {: screen}
 
-5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`. For example:
+5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`.
 
 ```
 ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
@@ -101,7 +102,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi image-create IMAGE_ID [--json]`
 
-- `IMAGE_ID`:  The unique identifier or name of the image.
+- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
@@ -116,7 +117,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi image-delete IMAGE_ID`
 
-- `IMAGE_ID`:  The unique identifier or name of the image.
+- `IMAGE_ID`: The unique identifier or name of the image.
 
 ---
 
@@ -127,7 +128,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi image-export IMAGE_NAME --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [--json]`
 
-- `IMAGE_ID`:  The unique identifier or name of the image.
+- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
@@ -146,12 +147,12 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
 
-- `IMAGE_NAME`:  The image name.
+- `IMAGE_NAME`: The image name.
 
 **Options**
 
 - `--image-path`: Path to image that starts with the service endpoint and ends with the image file name.
-- `--os-type`: Operating system contained in the image (aix, ibmi).
+- `--os-type`: Operating system contained in the image (`aix`, `ibmi`).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--json`: Format output in JSON.
@@ -193,7 +194,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -208,7 +209,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -229,19 +230,19 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--storage-type] [--replicants NUMBER] [--replicant-affinity-policy AFFINITY_POLICY] [--replicant-scheme SCHEME] [--json]`
 
-- `INSTANCE_NAME`:  The name of the instance
+- `INSTANCE_NAME`: The name of the instance
 
 **Options**
 
 - `--image`: Operating system image identifier or name.
-- `--memory`: Amount of memory (in GB) to allocate to the instance.
+- `--memory`: Amount of memory (GB) to allocate to the instance.
 - `--networks`: Space separated list of identifiers or names of the networks to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance.
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type ("s922", "e880", "any").
-- `--storage-type`: Storage type for server deployment when deploying a stock image
+- `--storage-type`: Storage type for server deployment when deploying a stock image.
 - `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
@@ -256,7 +257,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-delete INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -267,7 +268,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-get-console INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -282,7 +283,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-hard-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -307,7 +308,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-soft-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -318,7 +319,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-start INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -329,7 +330,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-stop INSTANCE_ID`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -340,7 +341,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--processors NUMBER] [--processor-type TYPE] [--json]`
 
-- `INSTANCE_ID`:  The unique identifier or name of the instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -373,7 +374,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi key KEY_NAME [--json]`
 
-- `KEY_NAMEThe name of the key
+- `KEY_NAME`: The name of the key
 
 **Options**
 
@@ -445,7 +446,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi network NETWORK_ID [--json]`
 
-- `NETWORK_ID`:  The unique identifier or name of the network.
+- `NETWORK_ID`: The unique identifier or name of the network.
 
 **Options**
 
@@ -460,14 +461,14 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
-- `NETWORK_NAME`:  The name of the network.
+- `NETWORK_NAME`: The name of the network.
 
 **Options**
 
 - `--cidr-block`: Network in CIDR notation (192.168.0.0/24).
 - `--dns-servers`: Space separated list of DNS Servers to use for this network.
 - `--gateway`: Gateway to use for this network.
-- `--ip-range`: IP addresses range or ranges for this network, format: startIP-endIP[,startIP-endIP].
+- `--ip-range`: IP addresses range or ranges for this network.
 - `--json`: Format output in JSON.
 
 ---
@@ -479,7 +480,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--json]`
 
-- `NETWORK_NAME`:  The name of the network.
+- `NETWORK_NAME`: The name of the network.
 
 **Options**
 
@@ -495,7 +496,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi network-delete NETWORK_ID`
 
-- `NETWORK_ID`:  The unique identifier or name of the network.
+- `NETWORK_ID`: The unique identifier or name of the network.
 
 ---
 
@@ -506,14 +507,14 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi network-update NETWORK_ID [--name NETWORK_NAME] [--starting-ip IP] [--ending-ip IP] [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
-- `NETWORK_ID`:  The unique identifier or name of the network.
+- `NETWORK_ID`: The unique identifier or name of the network.
 
 **Options**
 
 - `--name`: New name of the network.
 - `--dns-servers`: Space separated list of new DNS Servers to use for this network.
 - `--gateway`: New gateway to use for this network.
-- `--ip-range`: New IP addresses range or ranges for this network, format: startIP-endIP[,startIP-endIP].
+- `--ip-range`: New IP addresses range or ranges for this network.
 - `--json`: Format output in JSON.
 
 ---
@@ -609,12 +610,12 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--json]`
 
-- `VOLUME_NAME`:  The name of the volume.
+- `VOLUME_NAME`: The name of the volume.
 
 **Options**
 
-- `--type`: Type of the volume (ssd, standard, tier1, or tier3).
-- `--size`: Size of the volume (in GB).
+- `--type`: Type of the volume (`ssd`, `standard`, `tier1`, or `tier3`).
+- `--size`: Size of the volume (GB).
 - `--shareable`: Whether volume can be attached to multiple VMs.
 - `--json`: Format output in JSON.
 
@@ -627,7 +628,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi volume-delete VOLUME_ID`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume
+- `VOLUME_ID`: The unique identifier or name of the volume
 
 ---
 
@@ -638,7 +639,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume.
+- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
