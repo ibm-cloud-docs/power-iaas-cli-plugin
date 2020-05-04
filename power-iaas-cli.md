@@ -133,7 +133,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 **Options**
 
 - `--bucket`: Cloud Object Storage bucket name.
-- `--region`: Cloud Object Storage region (us-east, us-south).
+- `--region`: Cloud Object Storage region (us-east, us-south, eu-de).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--json`: Format output in JSON.
@@ -218,7 +218,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--volumes`: Space separated list of identifiers or names of the volumes to capture with the instance.
 - `--access-key`: Cloud Object Storage HMAC access key. Required if destination is cloud-storage.
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
-- `--region`: Cloud Object Storage region (us-east, us-south). Required if destination is cloud-storage.
+- `--region`: Cloud Object Storage region (us-east, us-south, eu-de). Required if destination is cloud-storage.
 - `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
 
 ---
