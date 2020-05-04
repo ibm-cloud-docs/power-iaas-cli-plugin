@@ -241,7 +241,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type ("s922", "e880", "any").
+- `--sys-type`: Name of System Type ("s922", "e880", "e980").
 - `--storage-type`: Storage type for server deployment when deploying a stock image.
 - `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
