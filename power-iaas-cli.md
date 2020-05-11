@@ -292,7 +292,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Get a list of volumes attached to an instance
 
-`ibmcloud pi volume INSTANCE [--long] [--json]`
+`ibmcloud pi volume INSTANCE_ID [--long] [--json]`
 
 **Options**
 
