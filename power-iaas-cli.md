@@ -360,6 +360,8 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instances INSTANCE_ID [--json]`
 
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
 **Options**
 
 - `--json`: Format output in JSON.
