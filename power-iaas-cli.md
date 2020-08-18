@@ -152,7 +152,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 **Options**
 
 - `--image-path`: Path to image that starts with the service endpoint and ends with the image file name.
-- `--os-type`: Operating system contained in the image (`redhat`, `sles`, `aix`, `ibmi`).
+- `--os-type`: Operating system contained in the image (`aix`, `ibmi`).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--json`: Format output in JSON.
