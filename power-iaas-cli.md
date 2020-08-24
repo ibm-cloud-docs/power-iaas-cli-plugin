@@ -248,15 +248,17 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--storage-type] [--replicants NUMBER] [--replicant-affinity-policy AFFINITY_POLICY] [--replicant-scheme SCHEME] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance
+- `Instance-create`: Create a server instance
+- `inc`: Create a server instance 
 
 **Options**
 
 - `--image`: Operating system image identifier or name.
 - `--memory`: Amount of memory (GB) to allocate to the instance.
-- `--networks`: Space separated list of identifiers or names of the networks to associate with the instance.
+- `--network`: Space separated list of identifiers or names of the networks to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance.
 - `--processor-type`: Type of processors: 'shared' or 'dedicated'.
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
@@ -266,6 +268,10 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
+- `--IBMicss-license`: IBMi CSS software license associated with the instance
+- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance
+- `--IBMiPHA-license`: IBMi PHA software license associated with the instance
+- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license)
 - `--json`: Format output in JSON.`--json`: Format output in JSON.
 
 ---
