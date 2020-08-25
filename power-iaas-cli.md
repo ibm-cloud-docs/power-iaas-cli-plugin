@@ -260,21 +260,22 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 **Options**
 
 - `--image`: Operating system image identifier or name.
-- `--memory`: Amount of memory (GB) to allocate to the instance.
-- `--network`: Space separated list of identifiers or names of the networks to associate with the instance.
-- `--processors`: Number of processors to allocate to the instance.
-- `--processor-type`: Type of processors: 'shared' or 'dedicated'.
+- `--memory`: Amount of memory (GB) to allocate to the instance. Default is 2GB.
+- `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
+- `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
+- `--processors`: Number of processors to allocate to the instance. Default is 1 core.
+- `--processor-type`: Type of processors shared, dedicated, or capped.
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type ("s922", "e880", "e980").
+- `--sys-type`: Name of System Type (s922, e880, e980). Default is s922.
 - `--storage-type`: Storage type for server deployment when deploying a stock image.
-- `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
-- `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
-- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
-- `--IBMicss-license`: IBMi CSS software license associated with the instance
-- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance
-- `--IBMiPHA-license`: IBMi PHA software license associated with the instance
-- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license)
+- `--replicants`: Number of duplicate instances to create in this request.
+- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
+- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--IBMicss-license`: IBMi CSS software license associated with the instance.
+- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
+- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
+- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--json`: Format output in JSON.`--json`: Format output in JSON.
 
 ---
@@ -294,14 +295,14 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--memory`: Amount of memory (GB) to allocate to the instance.
 - `--networks`: Space separated list of identifiers or names of the networks to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance.
-- `--processor-type`: Type of processors: 'shared' or 'dedicated'.
+- `--processor-type`: Type of processors shared or dedicated.
 - `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
 - `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type ("s922", "e880", "e980").
+- `--sys-type`: Name of System Type (s922, e880, e980).
 - `--storage-type`: Storage type for server deployment when deploying a stock image.
 - `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
-- `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
-- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity").
+- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
+- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
 - `--IBMiCSS-license`: IBMi CSS software license associated with the instance.
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
