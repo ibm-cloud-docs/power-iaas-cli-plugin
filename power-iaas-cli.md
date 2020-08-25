@@ -253,6 +253,10 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `INSTANCE_NAME`: The name of the instance
 - `Instance-create`: Create a server instance
 
+**Example**
+
+`ibmcloud pi inc instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
+
 **Options**
 
 - `--image`: Operating system image identifier or name.
