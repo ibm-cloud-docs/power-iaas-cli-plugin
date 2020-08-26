@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-04-29"
+lastupdated: "2020-08-26"
 
 ---
 
@@ -717,7 +717,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi volume-update VOLUME_ID [--bootable] [--name NEW_NAME] [--size NEW_SIZE] [--shareable] [--json]`
 
-- `VOLUME_ID`:  The unique identifier or name of the volume.
+- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
