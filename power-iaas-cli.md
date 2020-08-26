@@ -224,7 +224,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 ---
 
 ### `ibmcloud pi instance-create`
-{: #ibmcloud-pi-instance-create}
+{: ibmcloud-pi-instance-create}
 
 #### Create a server instance
 
