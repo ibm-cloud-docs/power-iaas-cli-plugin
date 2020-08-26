@@ -159,6 +159,26 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 ---
 
+### `ibmcloud pi image-import--help`
+{: #ibmcloud-pi-image-import-help}
+
+#### Import an image from IBM Cloud Object Storage
+
+`ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
+
+- `image-import`: Import an image.
+- `imgi`: Import an image.
+
+**Options**
+
+- `--image-path`: Path to image starting with service endpoint and ending with image filename
+- `--os-type`: Operating system contained in the image (`redhat`, `sles`, `aix`, `ibmi`).
+- `--access-key`: Cloud Object Storage HMAC access key.
+- `--secret-key`: Cloud Object Storage HMAC secret key.
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi image-list-catalog`
 {: #ibmcloud-pi-image-list-catalog}
 
@@ -220,6 +240,74 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
 - `--region`: Cloud Object Storage region (us-east, us-south, eu-de). Required if destination is cloud-storage.
 - `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
+
+---
+
+### `ibmcloud pi instance-create`
+{: ibmcloud-pi-instance-create}
+
+#### Create a server instance
+
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
+
+- `INSTANCE_NAME`: The name of the instance
+- `Instance-create`: Create a server instance
+
+**Example**
+
+`ibmcloud pi inc instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
+
+**Options**
+
+- `--image`: Operating system image identifier or name.
+- `--memory`: Amount of memory (GB) to allocate to the instance. Default is 2GB.
+- `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
+- `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
+- `--processors`: Number of processors to allocate to the instance. Default is 1 core.
+- `--processor-type`: Type of processors shared, dedicated, or capped.
+- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
+- `--key-name`: Name of SSH key.
+- `--sys-type`: Name of System Type (s922, e880, e980). Default is s922.
+- `--storage-type`: Storage type for server deployment when deploying a stock image.
+- `--replicants`: Number of duplicate instances to create in this request.
+- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
+- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--IBMicss-license`: IBMi CSS software license associated with the instance.
+- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
+- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
+- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+- `--json`: Format output in JSON.`--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi inc --help`
+{: ibmcloud-pi-inc-help}
+
+#### Create a server instance
+
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
+
+- `INSTANCE_NAME`: The name of the instance
+
+**Options**
+
+- `--image`: Operating system image identifier or name.
+- `--memory`: Amount of memory (GB) to allocate to the instance.
+- `--networks`: Space separated list of identifiers or names of the networks to associate with the instance.
+- `--processors`: Number of processors to allocate to the instance.
+- `--processor-type`: Type of processors shared or dedicated.
+- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
+- `--key-name`: Name of SSH key.
+- `--sys-type`: Name of System Type (s922, e880, e980).
+- `--storage-type`: Storage type for server deployment when deploying a stock image.
+- `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
+- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
+- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--IBMiCSS-license`: IBMi CSS software license associated with the instance.
+- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
+- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
+- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+- `--json`: Format output in JSON.
 
 ---
 
@@ -322,6 +410,21 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--name`: New name of the server instance.
 - `--processors`: New number of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instances`
+{: #ibmcloud-pi-instances}
+
+#### List all server instances
+
+`ibmcloud pi instances INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
 - `--json`: Format output in JSON.
 
 ---
@@ -542,6 +645,22 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 **Options**
 
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-attach`
+{: #ibmcloud-pi-volume-attach}
+
+#### Attach a volume to an instance
+
+`ibmcloud pi volume-attach VOLUME_ID --instance INSTANCE [--json]`
+
+- `VOLUME_ID`: The unique identifier or name of the volume.
+
+**Options**
+
+- `--instance`: Instance to attach the volume to.
 - `--json`: Format output in JSON.
 
 ---
