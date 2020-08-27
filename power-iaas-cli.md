@@ -171,7 +171,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 **Options**
 
-- `--image-path`: Path to image starting with service endpoint and ending with image filename
+- `--image-path`: Path to image starting with service endpoint and ending with image filename.
 - `--os-type`: Operating system contained in the image (`redhat`, `sles`, `aix`, `ibmi`).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
@@ -250,8 +250,8 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
-- `INSTANCE_NAME`: The name of the instance
-- `Instance-create`: Create a server instance
+- `INSTANCE_NAME`: The name of the instance.
+- `Instance-create`: Create a server instance.
 
 **Example**
 
@@ -260,7 +260,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 **Options**
 
 - `--image`: Operating system image identifier or name.
-- `--memory`: Amount of memory (GB) to allocate to the instance. Default is 2GB.
+- `--memory`: Amount of memory (GB) to allocate to the instance. Default value is 2GB.
 - `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
 - `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance. Default is 1 core.
@@ -276,7 +276,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
 - `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
-- `--json`: Format output in JSON.`--json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -287,7 +287,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 `ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
-- `INSTANCE_NAME`: The name of the instance
+- `INSTANCE_NAME`: The name of the instance.
 
 **Options**
 
@@ -300,13 +300,13 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type (s922, e880, e980).
 - `--storage-type`: Storage type for server deployment when deploying a stock image.
-- `--replicants`: Number of replicants (default 1). You must set the value to "2" to create two instances.
+- `--replicants`: Number of replicants (default 1). You must set the value to 2 to create two instances.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
 - `--IBMiCSS-license`: IBMi CSS software license associated with the instance.
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
-- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+- `--IBMiRDS-users`: Number of IBM i RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--json`: Format output in JSON.
 
 ---
