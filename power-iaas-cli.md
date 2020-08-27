@@ -419,7 +419,9 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### List all server instances
 
-`ibmcloud pi instances [--long] [--json]`
+`ibmcloud pi instances INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of instance.
 
 **Options**
 
@@ -653,9 +655,9 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Attach a volume to an instance
 
-`ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
+`ibmcloud pi volume-attach VOLUME_ID --instance INSTANCE [--json]`
 
-- `VOLUME_ID`: The unique identifier or name of the volume.
+- `VOLUME_ID`: The unique identifier or name of volume.
 
 **Options**
 
@@ -737,5 +739,4 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 **Options**
 
-- `--long`: Retrieve all volume details.
 - `--json`: Format output in JSON.
