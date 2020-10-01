@@ -373,6 +373,28 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 ---
 
+### `ibmcloud pi instance-immediate-shutdown`
+{: #ibmcloud-pi-instance-shutdown}
+
+#### Immediately shut down a server instance
+
+`ibmcloud pi instance-immediate-shutdown INSTANCE_ID`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance
+
+---
+
+### `ibmcloud pi instance-reset-state`
+{: #ibmcloud-pi-instance-reset}
+
+#### Reset a server instance in error state - use with caution
+
+`ibmcloud pi instance-reset-state INSTANCE_ID`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance
+
+---
+
 ### `ibmcloud pi instance-start`
 {: #ibmcloud-pi-instance-start}
 
