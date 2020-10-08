@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-26"
+lastupdated: "2020-09-29"
 
 ---
 
@@ -373,6 +373,28 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 ---
 
+### `ibmcloud pi instance-immediate-shutdown`
+{: #ibmcloud-pi-instance-shutdown}
+
+#### Immediately shut down a server instance
+
+`ibmcloud pi instance-immediate-shutdown INSTANCE_ID`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance
+
+---
+
+### `ibmcloud pi instance-reset-state`
+{: #ibmcloud-pi-instance-reset}
+
+#### Reset a server instance in error state - use with caution
+
+`ibmcloud pi instance-reset-state INSTANCE_ID`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance
+
+---
+
 ### `ibmcloud pi instance-start`
 {: #ibmcloud-pi-instance-start}
 
@@ -426,6 +448,35 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 **Options**
 
 - `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instance-operation`
+{: #ibmcloud-pi-instances-operation}
+
+#### Perform an operation on an IBMi server instance
+
+`ibmcloud pi instance-operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [] [--boot-operating-mode MODE] [--job-task TASK]`
+
+- `INSTANCE_ID`: The unique identifier or name of instance.
+
+**Examples**
+
+`ibmcloud pi instance-operation IBMi-TEST_VM --operation-type job --job-task dston`
+
+or
+
+`ibmcloud pi instance-operation IBMi-TEST_VM --operation-type boot --boot-mode a --boot-operating-mode normal`
+
+**Options**
+
+- `--operation`: Operating system image identifier or name.
+
+- `--boot-mode`: Name of the server boot mode. Allowed values are **a**, **b**, **c**, and **d**.
+
+- `--boot-operating-mode`: Name of the server operating mode. Allowed values are **normal** and **manual**.
+
+- `--job-task`: Name of the job task to execute. Allowed values are **dston**, **retrydump**, **consoleservic**, **iopreset**, **remotedstof**, **remotedston**, **iopdump**, and **dumprestart**.
 
 ---
 
