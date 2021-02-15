@@ -847,6 +847,17 @@ or
 
 ---
 
+### ibmcloud pi connection-delete
+{: delete-connection}
+
+#### Delete a Cloud Connection
+
+`ibmcloud pi connection-delete CONNECTION_ID`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+---
+
 ### ibmcloud pi connection-detach-network
 {: #connection-detach-network}
 
