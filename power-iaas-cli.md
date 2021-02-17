@@ -248,7 +248,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
 - `Instance-create`: Create a server instance.
@@ -272,6 +272,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--replicants`: Number of duplicate instances to create in this request.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
 - `--IBMicss-license`: IBMi CSS software license associated with the instance.
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
@@ -422,7 +423,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Update a server instance
 
-`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--processors NUMBER] [--processor-type TYPE] [--json]`
+`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--json]`
 
 - `INSTANCE_ID`: The unique identifier or name of the instance.
 
@@ -430,6 +431,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 - `--memory`: New amount of memory for the server instance.
 - `--name`: New name of the server instance.
+- `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
 - `--processors`: New number of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
 - `--json`: Format output in JSON.
@@ -922,4 +924,51 @@ or
 **Options**
 
 - `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-attach-network
+{: #attach-network}
+
+#### Attach a network to the server instance
+
+`ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" --ip-address "IP_ADDRESS" [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+--`network`: The network ID.
+--'ip-address`: The requested IP address of this network interface.
+--`json`: Format output in JSON.
+
+### ibmcloud pi instance-detach-network
+{: #detach-network}
+
+#### Detach all or a specific network from the server instance
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME -network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+--`network`: The network ID.
+--`mac-address`: The mac address of the network interface to be removed. The defualt is all mac addresses.
+
+### ibmcloud pi instance-networks
+{: #list-networks}
+
+####  List all the attached networks
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+### 
+
 
