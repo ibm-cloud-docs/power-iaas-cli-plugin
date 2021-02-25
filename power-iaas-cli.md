@@ -942,6 +942,8 @@ or
 --'ip-address`: The requested IP address of this network interface.
 --`json`: Format output in JSON.
 
+---
+
 ### ibmcloud pi instance-detach-network
 {: #detach-network}
 
@@ -956,10 +958,12 @@ or
 --`network`: The network ID.
 --`mac-address`: The mac address of the network interface to be removed. The defualt is all mac addresses.
 
+---
+
 ### ibmcloud pi instance-networks
 {: #list-networks}
 
-####  List all the attached networks
+#### List all the attached networks
 
 `ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
 
@@ -969,6 +973,151 @@ or
 
 --`json`: Format output in JSON.
 
-### 
+---
 
+### ibmcloud pi instance-system-pool
+{: #system-pools-support}
 
+#### List of available system pools within a particular data center
+{: #list-system-pools}
+
+`ibmcloud pi system-pool [--json]`
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-create-instance
+{: #create-sap-instance}
+
+#### Create an SAP instance
+{: #create-new-sappvm}
+
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--key-name KEY-NAME] [--json]`
+
+- `SAP_INSTANCE_NAME`: The name of the SAP instance
+
+**Options**
+
+--`image`: Operating system image identifier or name.
+--`profile-id`: The unique identifier of the SAP profile.
+--`networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
+--`pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
+--`volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+--`key-name`: Name of SSH key.
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-list
+{: #instance-list}
+
+#### List all SAP profiles
+{: #sapprofile-list}
+
+`ibmcloud pi sap-list [--json]`
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-profile
+{: #sapprofile-info}
+
+#### Get information on an SAP profile
+{: #get-sapprofile-info}
+
+`ibmcloud pi sap-profile SAP_PROFILE_ID [--json]`
+
+- `SAP_INSTANCE_ID`: The unique identifier of the SAP profile.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot
+{: #snapshot-id}
+
+### Get the detail of a snapshot
+{: #snapshot-details}
+
+`ibmcloud pi snapshot SNAPSHOT_ID`
+
+- `SNAPSHOT_ID`: The unique identifier of the snapshot.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-create
+{: #create-snapshot}
+
+#### Create a snapshot
+{: #create-snapshot}
+
+`ibmcloud pi snapshot-create INSTANCE_ID [--volumes] [--name] [--description] [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+--`volumes`: Space separated list of volumes to include in the PVM instance snapshot. This parameter is optional. If you do not specify this parameter or if the volumes list is empty, all the volumes that are attached to the PVM instance are included in the snapshot.
+--`name`: Name of the snapshot.
+--`description`: Snapshot description.
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-delete
+{: #delete-snapshot}
+
+#### Delete a snapshot
+{: #delete-snapshot}
+
+`ibmcloud pi snapshot-delete SNAPSHOT_ID`
+
+- `SNAPSHOT_ID`: The unique identifier of the snapshot.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-restore
+{: #restore-snapshot}
+
+#### Restore a PVM instance snapshot
+{: #restore-pvminstance-snapshot}
+
+`ibmcloud pi snapshot-restore INSTANCE_ID --snapshot [--force] [--restore]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+--`snapshot`: The unique identifier of the snapshot.
+--`force`: By default the VM must be shut off during a snapshot restore, if force set to true, relaxes the VM shutoff pre-condition.
+--`restore`: Action to take on a failed snapshot restore. Allowed values are **retry** or **rollback**.
+
+---
+
+### ibmcloud pi instance-snapshot
+{: #snapshot-list}
+
+#### List all snapshots
+{: #snapshot-list}
+
+`ibmcloud pi snapshots [--long] [--json]`
+
+**Option**
+
+--`json`: Format output in JSON
