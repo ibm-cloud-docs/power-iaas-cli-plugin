@@ -1120,4 +1120,31 @@ or
 
 **Option**
 
---`json`: Format output in JSON
+--`json`: Format output in JSON.
+
+---
+
+### Get the status of a clone request for the specified clone task ID
+{: #volume-clone-status}
+
+`ibmcloud pi volume-clone CLONE_TASK_ID [--json]`
+
+- `CLONE_TASK_ID`: The unique identifier of a clone task.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### Create a volume clone for specific volumes
+{: #create-volume-clone}
+
+`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
+
+- `CLONE_NAME`: The name of a clone.
+
+**Options**
+
+--`volumes value Space`: separated list of the volume(s) to be cloned.
+--`json`: Format output in JSON.
