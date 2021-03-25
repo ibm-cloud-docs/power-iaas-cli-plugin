@@ -248,7 +248,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
 - `Instance-create`: Create a server instance.
@@ -272,6 +272,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--replicants`: Number of duplicate instances to create in this request.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
 - `--IBMicss-license`: IBMi CSS software license associated with the instance.
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
@@ -422,7 +423,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Update a server instance
 
-`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--processors NUMBER] [--processor-type TYPE] [--json]`
+`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--json]`
 
 - `INSTANCE_ID`: The unique identifier or name of the instance.
 
@@ -430,6 +431,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 - `--memory`: New amount of memory for the server instance.
 - `--name`: New name of the server instance.
+- `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
 - `--processors`: New number of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
 - `--json`: Format output in JSON.
@@ -925,3 +927,226 @@ or
 
 
 
+---
+
+### ibmcloud pi instance-attach-network
+{: #attach-network}
+
+#### Attach a network to the server instance
+
+`ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" --ip-address "IP_ADDRESS" [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+--`network`: The network ID.
+--'ip-address`: The requested IP address of this network interface.
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-detach-network
+{: #detach-network}
+
+#### Detach all or a specific network from the server instance
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME -network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+--`network`: The network ID.
+--`mac-address`: The mac address of the network interface to be removed. The defualt is all mac addresses.
+
+---
+
+### ibmcloud pi instance-networks
+{: #list-networks}
+
+#### List all the attached networks
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-system-pool
+{: #system-pools-support}
+
+#### List of available system pools within a particular data center
+{: #list-system-pools}
+
+`ibmcloud pi system-pool [--json]`
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-create-instance
+{: #create-sap-instance}
+
+#### Create an SAP instance
+{: #create-new-sappvm}
+
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--key-name KEY-NAME] [--json]`
+
+- `SAP_INSTANCE_NAME`: The name of the SAP instance
+
+**Options**
+
+--`image`: Operating system image identifier or name.
+--`profile-id`: The unique identifier of the SAP profile.
+--`networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
+--`pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
+--`volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+--`key-name`: Name of SSH key.
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-list
+{: #instance-list}
+
+#### List all SAP profiles
+{: #sapprofile-list}
+
+`ibmcloud pi sap-list [--json]`
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-profile
+{: #sapprofile-info}
+
+#### Get information on an SAP profile
+{: #get-sapprofile-info}
+
+`ibmcloud pi sap-profile SAP_PROFILE_ID [--json]`
+
+- `SAP_INSTANCE_ID`: The unique identifier of the SAP profile.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot
+{: #snapshot-id}
+
+### Get the detail of a snapshot
+{: #snapshot-details}
+
+`ibmcloud pi snapshot SNAPSHOT_ID`
+
+- `SNAPSHOT_ID`: The unique identifier of the snapshot.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-create
+{: #create-snapshot}
+
+#### Create a snapshot
+{: #create-snapshot}
+
+`ibmcloud pi snapshot-create INSTANCE_ID [--volumes] [--name] [--description] [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+--`volumes`: Space separated list of volumes to include in the PVM instance snapshot. This parameter is optional. If you do not specify this parameter or if the volumes list is empty, all the volumes that are attached to the PVM instance are included in the snapshot.
+--`name`: Name of the snapshot.
+--`description`: Snapshot description.
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-delete
+{: #delete-snapshot}
+
+#### Delete a snapshot
+{: #delete-snapshot}
+
+`ibmcloud pi snapshot-delete SNAPSHOT_ID`
+
+- `SNAPSHOT_ID`: The unique identifier of the snapshot.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-restore
+{: #restore-snapshot}
+
+#### Restore a PVM instance snapshot
+{: #restore-pvminstance-snapshot}
+
+`ibmcloud pi snapshot-restore INSTANCE_ID --snapshot [--force] [--restore]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+--`snapshot`: The unique identifier of the snapshot.
+--`force`: By default the VM must be shut off during a snapshot restore, if force set to true, relaxes the VM shutoff pre-condition.
+--`restore`: Action to take on a failed snapshot restore. Allowed values are **retry** or **rollback**.
+
+---
+
+### ibmcloud pi instance-snapshot
+{: #snapshot-list}
+
+#### List all snapshots
+{: #snapshot-list}
+
+`ibmcloud pi snapshots [--long] [--json]`
+
+**Option**
+
+--`json`: Format output in JSON.
+
+---
+
+### Get the status of a clone request for the specified clone task ID
+{: #volume-clone-status}
+
+`ibmcloud pi volume-clone CLONE_TASK_ID [--json]`
+
+- `CLONE_TASK_ID`: The unique identifier of a clone task.
+
+**Options**
+
+--`json`: Format output in JSON.
+
+---
+
+### Create a volume clone for specific volumes
+{: #create-volume-clone}
+
+`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
+
+- `CLONE_NAME`: The name of a clone.
+
+**Options**
+
+--`volumes value Space`: separated list of the volume(s) to be cloned.
+--`json`: Format output in JSON.
