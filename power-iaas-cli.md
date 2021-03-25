@@ -938,9 +938,9 @@ or
 
 **Options**
 
---`network`: The network ID.
---'ip-address`: The requested IP address of this network interface.
---`json`: Format output in JSON.
+- `--network`: The network ID.
+- `--ip-address`: The requested IP address of this network interface.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -955,8 +955,8 @@ or
 
 **Options**
 
---`network`: The network ID.
---`mac-address`: The mac address of the network interface to be removed. The defualt is all mac addresses.
+- `--network`: The network ID.
+- `--mac-address`: The mac address of the network interface to be removed. The defualt value is all mac addresses.
 
 ---
 
@@ -971,7 +971,7 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -985,7 +985,7 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1001,13 +1001,13 @@ or
 
 **Options**
 
---`image`: Operating system image identifier or name.
---`profile-id`: The unique identifier of the SAP profile.
---`networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
---`pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
---`volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
---`key-name`: Name of SSH key.
---`json`: Format output in JSON.
+- `--image`: Operating system image identifier or name.
+- `--profile-id`: The unique identifier of the SAP profile.
+- `--networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
+- `--pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
+- `--volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+- `--key-name`: Name of SSH key.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1021,7 +1021,7 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1037,7 +1037,7 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1053,7 +1053,7 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1069,10 +1069,10 @@ or
 
 **Options**
 
---`volumes`: Space separated list of volumes to include in the PVM instance snapshot. This parameter is optional. If you do not specify this parameter or if the volumes list is empty, all the volumes that are attached to the PVM instance are included in the snapshot.
---`name`: Name of the snapshot.
---`description`: Snapshot description.
---`json`: Format output in JSON.
+- `--volumes`: Space separated list of volumes to include in the PVM instance snapshot. This parameter is optional. If you do not specify this parameter or if the volumes list is empty, all the volumes that are attached to the PVM instance are included in the snapshot.
+- `--name`: Name of the snapshot.
+- `--description`: Snapshot description.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1088,7 +1088,7 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1104,9 +1104,9 @@ or
 
 **Options**
 
---`snapshot`: The unique identifier of the snapshot.
---`force`: By default the VM must be shut off during a snapshot restore, if force set to true, relaxes the VM shutoff pre-condition.
---`restore`: Action to take on a failed snapshot restore. Allowed values are **retry** or **rollback**.
+- `--snapshot`: The unique identifier of the snapshot.
+- `--force`: By default the VM must be shut off during a snapshot restore, if force set to true, relaxes the VM shutoff pre-condition.
+- `--restore`: Action to take on a failed snapshot restore. Allowed values are **retry** or **rollback**.
 
 ---
 
@@ -1120,7 +1120,7 @@ or
 
 **Option**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -1136,13 +1136,13 @@ or
 
 **Options**
 
---`json`: Format output in JSON.
+- `--json`: Format output in JSON.
 
 ---
 
 ### ibmcloud pi volume-create-clone
 {: #create-volume-clone}
-### Create a volume clone for specific volumes
+#### Create a volume clone for specific volumes
 
 `ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
 
@@ -1150,5 +1150,5 @@ or
 
 **Options**
 
---`volumes value Space`: separated list of the volume(s) to be cloned.
---`json`: Format output in JSON.
+- `--volumes value Space`: separated list of the volume(s) to be cloned.
+- `--json`: Format output in JSON.
