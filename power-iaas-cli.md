@@ -925,8 +925,6 @@ or
 
 - `--json`: Format output in JSON.-->
 
-
-
 ---
 
 ### ibmcloud pi instance-attach-network
@@ -1126,7 +1124,10 @@ or
 
 ---
 
-### Get the status of a clone request for the specified clone task ID
+### ibmcloud pi volume-clone
+{: #volume-clone}
+
+#### Get the status of a clone request for the specified clone task ID
 {: #volume-clone-status}
 
 `ibmcloud pi volume-clone CLONE_TASK_ID [--json]`
@@ -1139,8 +1140,9 @@ or
 
 ---
 
-### Create a volume clone for specific volumes
+### ibmcloud pi volume-create-clone
 {: #create-volume-clone}
+### Create a volume clone for specific volumes
 
 `ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
 
