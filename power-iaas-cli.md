@@ -794,7 +794,7 @@ or
 
 ---
 
-### `ibmcloud pi connections`
+<!--### `ibmcloud pi connections`
 {: #connections}
 
 #### List all cloud Connections
@@ -921,5 +921,7 @@ or
 
 **Options**
 
-- `--json`: Format output in JSON.
+- `--json`: Format output in JSON.-->
+
+
 
