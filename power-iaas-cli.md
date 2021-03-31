@@ -248,14 +248,13 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\"> ... [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEN\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
-- `Instance-create`: Create a server instance.
 
 **Example**
 
-`ibmcloud pi inc instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
+`ibmcloud pi instance-create instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
 
 **Options**
 
@@ -264,15 +263,15 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
 - `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance. Default is 1 core.
-- `--processor-type`: Type of processors shared, dedicated, or capped.
-- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
+- `--processor-type`: Type of processors: 'shared' or 'dedicated' or 'capped'.
+- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type (s922, e880, e980). Default is s922.
+- `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
 - `--storage-type`: Storage type for server deployment when deploying a stock image.
 - `--replicants`: Number of duplicate instances to create in this request.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
-- `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
+- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default  is "none".
 - `--IBMicss-license`: IBMi CSS software license associated with the instance.
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
@@ -934,7 +933,7 @@ or
 
 `ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" --ip-address "IP_ADDRESS" [--json]`
 
-- `INSTANCE_NAME`: The name of the cloud connection.
+- `INSTANCE_NAME`: The name of the instance.
 
 **Options**
 
