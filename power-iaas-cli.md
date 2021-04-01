@@ -248,14 +248,13 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Create a server instance
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">   [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUME2\"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\"> ... [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEN\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
-- `Instance-create`: Create a server instance.
 
 **Example**
 
-`ibmcloud pi inc instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
+`ibmcloud pi instance-create instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
 
 **Options**
 
@@ -264,14 +263,15 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
 - `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
 - `--processors`: Number of processors to allocate to the instance. Default is 1 core.
-- `--processor-type`: Type of processors shared, dedicated, or capped.
-- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
+- `--processor-type`: Type of processors: 'shared' or 'dedicated' or 'capped'.
+- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type (s922, e880, e980). Default is s922.
+- `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
 - `--storage-type`: Storage type for server deployment when deploying a stock image.
 - `--replicants`: Number of duplicate instances to create in this request.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default  is "none".
 - `--IBMicss-license`: IBMi CSS software license associated with the instance.
 - `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
@@ -422,7 +422,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Update a server instance
 
-`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--processors NUMBER] [--processor-type TYPE] [--json]`
+`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--profile-id SAP_PROFILE_ID] [--json]`
 
 - `INSTANCE_ID`: The unique identifier or name of the instance.
 
@@ -430,8 +430,10 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 - `--memory`: New amount of memory for the server instance.
 - `--name`: New name of the server instance.
+- `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
 - `--processors`: New number of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
+- `--profile-id`: SAP profile ID.
 - `--json`: Format output in JSON.
 
 ---
@@ -789,4 +791,363 @@ or
 
 **Options**
 
+- `--json`: Format output in JSON.
+
+---
+
+<!--### `ibmcloud pi connections`
+{: #connections}
+
+#### List all cloud Connections
+
+`ibmcloud pi connections [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve all cloud connections.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-attach-network
+{: #attach-network}
+
+#### Attach a network to the cloud connection
+
+`ibmcloud pi connection-attach-network CONNECTION_ID --network NETWORK_ID[--json]`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+**Options**
+
+- `--network`: The unique identifier (network ID) of the network.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-create
+{: #create-connection}
+
+#### Create a cloud connection
+
+`ibmcloud pi connection-create CONNECTION_NAME -speed SPEED [--vps ] 
+[--classic] [<--gre-tunnel "CIDR DEST-IP SOURCE-IP">] ...[--global-routing GLOBAL-ROUTING] [<--vpcID "ID">] [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+- `--speed`: Speed of the cloud connection.
+- `--vps`: Enable VPC cloud connection endpoint.
+- `--classic`: Enable Classic cloud connection endpoint.
+- `--metered`: Metered cloud connection flag.
+- `--gre-tunnel`: Repeatable for **classic** connection type - Space separated **cidr**, **destination IPaddress**, and **source IPaddress**.
+- `--global-routing`: Global routing flag.
+- `--vpcID`: Repeatable for **vpc** connection type.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-delete
+{: delete-connection}
+
+#### Delete a Cloud Connection
+
+`ibmcloud pi connection-delete CONNECTION_ID`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+---
+
+### ibmcloud pi connection-detach-network
+{: #connection-detach-network}
+
+#### Detach a network from the cloud connection
+
+`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+**Options**
+
+- `-network`: The unique identifier (network ID) of the network.
+
+---
+
+### ibmcloud pi connection-network
+{: #network-connection}
+
+#### Get information about a cloud connection's attached network
+
+`ibmcloud pi connection-network CONNECTION_ID --network NETWORK_ID [--json]`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+**Options**
+
+- `network`: The unique identifier (network ID) of the network.
+- `json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-update
+{: #connection-update}
+
+#### Update a cloud connection
+
+`ibmcloud pi conu CONNECTION_NAME [--speed SPEED] [--type TYPE] [<--gre-tunnel "CIDR DEST-IP SOURCE-IP">] ...[--global-routing GLOBAL-ROUTING] [<--vpc "NAME, VPC-ID">] [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+- `--speed`: Speed of the cloud connection.
+- `--vpc`: Enable or Disable VPC cloud connection endpoint.
+- `classic`: Enable or Disable Classic cloud connection endpoint.
+- `--global-routing`: Global routing flags.
+- `--metered`: Metered cloud connection flag.
+- `--gre-tunnel`: Repeatable for **classic** connection type - Space separated **cidr**, **destination IPaddress**, and **source IPaddress**.
+- `--vpcID`: Repeatable for **vpc** connection type.
+- `--name`: Name of cloud connection.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-vpcs
+{: #connection-vpcs}
+
+#### List all virtual private clouds
+
+`ibmcloud pi connection-vpcs [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.-->
+
+---
+
+### ibmcloud pi instance-attach-network
+{: #attach-network}
+
+#### Attach a network to the server instance
+
+`ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" --ip-address "IP_ADDRESS" [--json]`
+
+- `INSTANCE_NAME`: The name of the instance.
+
+**Options**
+
+- `--network`: The network ID.
+- `--ip-address`: The requested IP address of this network interface.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-detach-network
+{: #detach-network}
+
+#### Detach all or a specific network from the server instance
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME -network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+- `--network`: The network ID.
+- `--mac-address`: The mac address of the network interface to be removed. The defualt value is all mac addresses.
+
+---
+
+### ibmcloud pi instance-networks
+{: #list-networks}
+
+#### List all the attached networks
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
+
+- `INSTANCE_NAME`: The name of the cloud connection.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-system-pool
+{: #system-pools-support}
+
+#### List of available system pools within a particular data center
+{: #list-system-pools}
+
+`ibmcloud pi system-pool [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-create-instance
+{: #create-sap-instance}
+
+#### Create an SAP instance
+{: #create-new-sappvm}
+
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--key-name KEY-NAME] [--json]`
+
+- `SAP_INSTANCE_NAME`: The name of the SAP instance
+
+**Options**
+
+- `--image`: Operating system image identifier or name.
+- `--profile-id`: The unique identifier of the SAP profile.
+- `--networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
+- `--pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
+- `--volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+- `--key-name`: Name of SSH key.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-list
+{: #instance-list}
+
+#### List all SAP profiles
+{: #sapprofile-list}
+
+`ibmcloud pi sap-list [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-sap-profile
+{: #sapprofile-info}
+
+#### Get information on an SAP profile
+{: #get-sapprofile-info}
+
+`ibmcloud pi sap-profile SAP_PROFILE_ID [--json]`
+
+- `SAP_INSTANCE_ID`: The unique identifier of the SAP profile.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot
+{: #snapshot-id}
+
+### Get the detail of a snapshot
+{: #snapshot-details}
+
+`ibmcloud pi snapshot SNAPSHOT_ID`
+
+- `SNAPSHOT_ID`: The unique identifier of the snapshot.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-create
+{: #create-snapshot}
+
+#### Create a snapshot
+{: #create-snapshot}
+
+`ibmcloud pi snapshot-create INSTANCE_ID [--volumes] [--name] [--description] [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+- `--volumes`: Space separated list of volumes to include in the PVM instance snapshot. This parameter is optional. If you do not specify this parameter or if the volumes list is empty, all the volumes that are attached to the PVM instance are included in the snapshot.
+- `--name`: Name of the snapshot.
+- `--description`: Snapshot description.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-delete
+{: #delete-snapshot}
+
+#### Delete a snapshot
+{: #delete-snapshot}
+
+`ibmcloud pi snapshot-delete SNAPSHOT_ID`
+
+- `SNAPSHOT_ID`: The unique identifier of the snapshot.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi instance-snapshot-restore
+{: #restore-snapshot}
+
+#### Restore a PVM instance snapshot
+{: #restore-pvminstance-snapshot}
+
+`ibmcloud pi snapshot-restore INSTANCE_ID --snapshot [--force] [--restore]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+- `--snapshot`: The unique identifier of the snapshot.
+- `--force`: By default the VM must be shut off during a snapshot restore, if force set to true, relaxes the VM shutoff pre-condition.
+- `--restore`: Action to take on a failed snapshot restore. Allowed values are **retry** or **rollback**.
+
+---
+
+### ibmcloud pi instance-snapshot
+{: #snapshot-list}
+
+#### List all snapshots
+{: #snapshot-list}
+
+`ibmcloud pi snapshots [--long] [--json]`
+
+**Option**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi volume-clone
+{: #volume-clone}
+
+#### Get the status of a clone request for the specified clone task ID
+{: #volume-clone-status}
+
+`ibmcloud pi volume-clone CLONE_TASK_ID [--json]`
+
+- `CLONE_TASK_ID`: The unique identifier of a clone task.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi volume-create-clone
+{: #create-volume-clone}
+#### Create a volume clone for specific volumes
+
+`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
+
+- `CLONE_NAME`: The name of a clone.
+
+**Options**
+
+- `--volumes value Space`: separated list of the volume(s) to be cloned.
 - `--json`: Format output in JSON.
