@@ -422,7 +422,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 
 #### Update a server instance
 
-`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--json]`
+`ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--profile-id SAP_PROFILE_ID] [--json]`
 
 - `INSTANCE_ID`: The unique identifier or name of the instance.
 
@@ -433,6 +433,7 @@ ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghij
 - `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
 - `--processors`: New number of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
+- `--profile-id`: SAP profile ID.
 - `--json`: Format output in JSON.
 
 ---
