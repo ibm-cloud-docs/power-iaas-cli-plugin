@@ -796,137 +796,6 @@ or
 
 ---
 
-<!--### `ibmcloud pi connections`
-{: #connections}
-
-#### List all cloud Connections
-
-`ibmcloud pi connections [--long] [--json]`
-
-**Options**
-
-- `--long`: Retrieve all cloud connections.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi connection-attach-network
-{: #attach-network}
-
-#### Attach a network to the cloud connection
-
-`ibmcloud pi connection-attach-network CONNECTION_ID --network NETWORK_ID[--json]`
-
-- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
-
-**Options**
-
-- `--network`: The unique identifier (network ID) of the network.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi connection-create
-{: #create-connection}
-
-#### Create a cloud connection
-
-`ibmcloud pi connection-create CONNECTION_NAME -speed SPEED [--vps ] 
-[--classic] [<--gre-tunnel "CIDR DEST-IP SOURCE-IP">] ...[--global-routing GLOBAL-ROUTING] [<--vpcID "ID">] [--json]`
-
-- `INSTANCE_NAME`: The name of the cloud connection.
-
-**Options**
-
-- `--speed`: Speed of the cloud connection.
-- `--vps`: Enable VPC cloud connection endpoint.
-- `--classic`: Enable Classic cloud connection endpoint.
-- `--metered`: Metered cloud connection flag.
-- `--gre-tunnel`: Repeatable for **classic** connection type - Space separated **cidr**, **destination IPaddress**, and **source IPaddress**.
-- `--global-routing`: Global routing flag.
-- `--vpcID`: Repeatable for **vpc** connection type.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi connection-delete
-{: delete-connection}
-
-#### Delete a Cloud Connection
-
-`ibmcloud pi connection-delete CONNECTION_ID`
-
-- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
-
----
-
-### ibmcloud pi connection-detach-network
-{: #connection-detach-network}
-
-#### Detach a network from the cloud connection
-
-`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID`
-
-- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
-
-**Options**
-
-- `-network`: The unique identifier (network ID) of the network.
-
----
-
-### ibmcloud pi connection-network
-{: #network-connection}
-
-#### Get information about a cloud connection's attached network
-
-`ibmcloud pi connection-network CONNECTION_ID --network NETWORK_ID [--json]`
-
-- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
-
-**Options**
-
-- `network`: The unique identifier (network ID) of the network.
-- `json`: Format output in JSON.
-
----
-
-### ibmcloud pi connection-update
-{: #connection-update}
-
-#### Update a cloud connection
-
-`ibmcloud pi conu CONNECTION_NAME [--speed SPEED] [--type TYPE] [<--gre-tunnel "CIDR DEST-IP SOURCE-IP">] ...[--global-routing GLOBAL-ROUTING] [<--vpc "NAME, VPC-ID">] [--json]`
-
-- `INSTANCE_NAME`: The name of the cloud connection.
-
-**Options**
-
-- `--speed`: Speed of the cloud connection.
-- `--vpc`: Enable or Disable VPC cloud connection endpoint.
-- `classic`: Enable or Disable Classic cloud connection endpoint.
-- `--global-routing`: Global routing flags.
-- `--metered`: Metered cloud connection flag.
-- `--gre-tunnel`: Repeatable for **classic** connection type - Space separated **cidr**, **destination IPaddress**, and **source IPaddress**.
-- `--vpcID`: Repeatable for **vpc** connection type.
-- `--name`: Name of cloud connection.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi connection-vpcs
-{: #connection-vpcs}
-
-#### List all virtual private clouds
-
-`ibmcloud pi connection-vpcs [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.-->
-
----
-
 ### ibmcloud pi instance-attach-network
 {: #attach-network}
 
@@ -1152,3 +1021,130 @@ or
 
 - `--volumes value Space`: separated list of the volume(s) to be cloned.
 - `--json`: Format output in JSON.
+
+---
+### `ibmcloud pi connections`
+{: #connections}
+
+#### List all cloud Connections
+
+`ibmcloud pi connections [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve all cloud connections.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-attach-network
+{: #attach-network}
+
+#### Attach a network to the cloud connection
+
+`ibmcloud pi connection-attach-network CONNECTION_ID --network NETWORK_ID[--json]`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+**Options**
+
+- `--network`: The unique identifier (network ID) of the network.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-create
+{: #create-connection}
+
+#### Create a cloud connection
+
+`ibmcloud pi connection-create CONNECTION_NAME -speed SPEED [--global-routing GLOBAL-ROUTING] [--metered METERED] [--json]`
+
+- `CONNECTION_NAME`: The name of the cloud connection.
+
+**Options**
+
+- `--speed`: Speed of the cloud connection.
+- `--metered`: Metered cloud connection flag.
+- `--global-routing`: Global routing flag.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-delete
+{: delete-connection}
+
+#### Delete a Cloud Connection
+
+`ibmcloud pi connection-delete CONNECTION_ID`
+
+- `CONNECTION_ID`: The unique identifier of the cloud connection.
+
+---
+
+### ibmcloud pi connection-detach-network
+{: #connection-detach-network}
+
+#### Detach a network from the cloud connection
+
+`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID`
+
+- `CONNECTION_ID`: The unique identifier of the cloud connection.
+
+**Options**
+
+- `-network`: The unique identifier (network ID) of the network.
+
+---
+
+### ibmcloud pi connection-update
+{: #connection-update}
+
+#### Update a cloud connection
+
+`ibmcloud pi connection-update CONNECTION_ID [--speed SPEED] [--vpc=True|False [<--vpcID "VPC-ID">]] [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] ...[--global-routing=True|False] [--metered=True|False] [--name NAME] [--json]`
+
+- `CONNECTION_ID`: The unique identifier of the cloud connection.
+
+**Options**
+
+- `--speed`: Speed of the cloud connection.
+- `--vpc`: Enable or Disable VPC cloud connection endpoint.
+- `--vpcID`: VPC ID to add to cloud connection. Use with "--vpc" option.
+- `classic`: Enable or Disable Classic cloud connection endpoint.
+- `--gre-tunnel`: Space separated **cidr**, **destination IPaddress**. Use with "--classic" option.
+- `--global-routing`: Enable or disable global routing.
+- `--metered`: Enable or disable metering.
+- `--name`: Name of cloud connection.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi connection-vpcs
+{: #connection-vpcs}
+
+#### List all virtual private clouds
+
+`ibmcloud pi connection-vpcs [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+<!--### ibmcloud pi connection-network
+{: #network-connection}
+
+#### Get information about a cloud connection's attached network
+
+`ibmcloud pi connection-network CONNECTION_ID --network NETWORK_ID [--json]`
+
+- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
+
+**Options**
+
+- `network`: The unique identifier (network ID) of the network.
+- `json`: Format output in JSON.-->
+
+
