@@ -32,8 +32,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 - You can now perform [snapshot management](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#snapshot-id) of a cloud instance by using the CLI.
 
-1. SAP  - SAP Profile support and instance update modification for SAP
-2. Tasks
-3. System pool - List of available system pools within a particular data center
-4. Attach, detach, list networks to an instance
-5. image-import progress (task) monitoring
+- Added [SAP profile support](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#sapprofile-info) and [instance update modification](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-sap-instance) for SAP.
+
+- Added [List of available system pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#system-pools-support) within a particular data center.
+
+- You can [Attach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#attach-network), [detach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#detach-network), or [list all the attached networks](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#list-networks) to an instance.
+- Added image-import progress (task) monitoring.
