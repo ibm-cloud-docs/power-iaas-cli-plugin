@@ -1102,14 +1102,14 @@ or
 
 #### Detach a network from the cloud connection
 
-`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID`
+`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID [--json]`
 
 - `CONNECTION_ID`: The unique identifier of the cloud connection
 
 **Options**
 
-- `-network`: The unique identifier (network ID) of the network
-- `json`: Format output in JSON
+- `--network`: The unique identifier (network ID) of the network
+- `--json`: Format output in JSON
 
 ---
 
