@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2020-09-29"
+lastupdated: "2021-04-29"
 
 ---
 
@@ -74,6 +74,9 @@ This document provides a reference of the command-line interface (CLI) commands 
 ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
 ```
 {: codeblock}
+
+Power Systems Virtual Server CLI requires a valid IAM token authorization before each use. Use the ibmcloud login command to renew authorization if your token expires.
+{: note}
 
 ---
 
