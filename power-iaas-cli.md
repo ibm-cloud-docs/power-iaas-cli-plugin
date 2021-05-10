@@ -89,7 +89,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### May 2021
 {: #mar-2021}
 
-- You can now use [Cloud connection](docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to automate the way you connect your Power Systems Virtual Server instances to the IBM Cloud resources by using CLI.
+- You can now use [Cloud connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to automate the way you connect your Power Systems Virtual Server instances to the IBM Cloud resources by using CLI.
 
 ### March 2021
 
