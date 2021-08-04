@@ -1170,4 +1170,350 @@ or
 - `network`: The unique identifier (network ID) of the network.
 - `json`: Format output in JSON.-->
 
+---
 
+### ibmcloud pi vpn-connections
+{: #vpn-connections}
+
+#### List all VPN connections
+
+`ibmcloud pi vpn-connections [--json]`
+
+
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection
+{: #vpn-connection}
+
+#### View details of a VPN connection
+
+`ibmcloud pi vpn-connection VPN_CONNECTION_ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-create
+{: #vpn-connection-create}
+
+#### Create a VPN connection
+
+`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode Policy|Route --peer-gateway-address PEER_GATEWAY  --peer-subnet-cidrs "CIDR1 [CIDRn]" --connection-state=True|False --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --local-subnet-ids "ID1 [IDn]" [--json]`
+
+- `VPN_CONNECTION_NAME`: The name of the VPN connection
+  
+**Options**
+
+- `--mode value`: Policy-base or route-based mode to be used by the connection and cannot be updated later
+- `--peer-gateway-address value`: IP address of the peer gateway attached to this VPN connection
+- `--peer-subnet-cidrs value`: Space separated list of peer subnet CIDRs
+- `--connection-state`: Desired connection state for the VPN connection on creation
+- `--ike-policy-id value`: Unique ID of IKE policy selected for this VPN connection
+- `--ipsec-policy-id value`: Unique ID of IPSec policy selected for this VPN connection
+- `--local-subnet-ids value`: Space separated list of local subnet IDs attached to this VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-update
+{: #vpn-connection-update}
+
+#### Update a VPN connection
+
+`ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--connection-state=True|False] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--name value`: New name of this VPN connection
+- `--peer-gateway-address value`: New IP address of the peer gateway attached to this VPN connection
+- `--connection-state`: Desired connection state for the VPN connection on creation
+- `--ike-policy-id value`: New ID of IKE policy selected for this VPN connection
+- `--ipsec-policy-id value`: New ID of IPSec policy selected for this VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-delete
+{: #vpn-connection-delete}
+
+#### Delete a VPN connection
+
+`ibmcloud pi vpn-connection-delete VPN_CONNECTION_ID`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+
+---
+
+### ibmcloud pi vpn-connection-options
+{: #vpn-connection-options}
+
+#### Get allowable and default values for attributes dhgroup, encryption, authentication, and keyLifetime when creating or updating an IKE and IPSec policies
+
+`ibmcloud pi vpn-connection-options [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-local-subnets --help
+{: #vpn-connection-local-subnets}
+
+#### Get allowable and default values for attributes dhgroup, encryption, authentication, and keyLifetime when creating or updating an IKE and IPSec policies
+
+`ibmcloud pi vpn-connection-local-subnets VPN_CONNECTION_ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-local-subnet-attach
+{: #vpn-connection-local-subnet-attach}
+
+#### Attach a local subnet to a specific VPN connection
+
+`ibmcloud pi vpn-connection-local-subnet-attach VPN_CONNECTION_ID --local-subnet-id ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--local-subnet-id value`: Local subnet ID to attach to the VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-local-subnet-detach
+{: #vpn-connection-local-subnet-detach}
+
+#### Detach a local subnet from a specific VPN connection
+
+`ibmcloud pi vpn-connection-local-subnet-detach VPN_CONNECTION_ID --local-subnet-id ID`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--local-subnet-id value`: Local subnet ID to attach to the VPN connection
+  
+---
+
+### ibmcloud pi vpn-connection-peer-subnets
+{: #vpn-connection-peer-subnets}
+
+#### Get a list of peer subnets attached to a specific VPN connection
+
+`ibmcloud pi vpn-connection-peer-subnets VPN_CONNECTION_ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-peer-subnet-attach
+{: #vpn-connection-peer-subnet-attach}
+
+#### Attach a peer subnet to a specific VPN connection
+
+`ibmcloud pi vpn-connection-peer-subnet-attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--peer-subnet-cidr value`: Peer subnet CIDR to attach to the VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-peer-subnet-detach --help
+{: #vpn-connection-peer-subnet-detach}
+
+#### Detach a peer subnet from a specific VPN connection
+
+`ibmcloud pi vpn-connection-peer-subnet-detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--peer-subnet-cidr value`: Peer subnet CIDR to attach to the VPN connection
+ 
+---
+
+### ibmcloud pi vpn-ike-policies
+{: #vpn-ike-policies}
+
+#### List all VPN IKE policies
+
+`ibmcloud pi vpn-ike-policies [--json]`
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy
+{: #vpn-ike-policy}
+
+#### View details of a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy IKE_POLICY_ID [--json]`
+
+- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy-add
+{: #vpn-ike-policy-add}
+
+#### Add a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy-add IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dhgroup DH_GROUP --presharedkey KEY [--json]`
+
+- `IKE_POLICY_NAME`: The name of the VPN IKE policy
+  
+**Options**
+
+- `--version value`: Version number of the IKE Policy. Valid values are 1, 2
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are sha1, md5, sha-256, sha-384
+- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are aes128, aes256, 3des-cbc
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--presharedkey value`: Preshared key used in this VPN connection
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy-update
+{: #vpn-ike-policy-update}
+
+#### Update a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dhgroup DH_GROUP] [--presharedkey KEY] [--json]`
+
+- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
+  
+**Options**
+
+- `--name value`: New name of the IKE Policy
+- `--version value`: Version number of the IKE Policy
+- `--authentication value`: Authentication algorithm of the IKE Policy
+- `--encryption value`: Encryption algorithm of the IKE Policy
+- `--dhgroup value`: DH group number of the IKE Policy
+- `--presharedkey value`: Preshared key used in this VPN connection
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy-delete
+{: #vpn-ike-policy-delete}
+
+#### Delete a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy-delete IKE_POLICY_ID`
+
+- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
+ 
+---
+
+### ibmcloud pi vpn-ipsec-policies
+{: #vpn-ipsec-policies}
+
+#### List all IPSec policies
+
+`ibmcloud pi vpn-ipsec-policies [--json]`
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy
+{: #vpn-ipsec-policy}
+
+#### View details of a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy IPSEC_POLICY_ID [--json]`
+
+- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSEC policy
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy-add
+{: #vpn-ipsec-policy-add}
+
+#### Add a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy-add IPSEC_POLICY_NAME --authentication AUTHENTICATION --encryption ENCRYPTION --dhgroup DH_GROUP --pfs [--json]`
+
+- `IPSEC_POLICY_NAME`: The name of the VPN IPSEC policy
+  
+**Options**
+
+- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc
+- `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--pfs`: Enable perfect forward secrecy
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy-update
+{: #vpn-ipsec-policy-update}
+
+#### Update a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy-update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dhgroup DH_GROUP] [--presharedkey KEY] [--pfs=True|False] [--json]`
+
+- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
+  
+**Options**
+
+- `--name value`: New name of the IKE Policy
+- `--authentication value`: Authentication algorithm of the IKE Policy
+- `--dhgroup value`: DH group number of the IKE Policy
+- `--pfs`: Enable or disable perfect forward secrecy
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy-delete
+{: #vpn-ipsec-policy-delete}
+
+#### Delete a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy-delete IPSEC_POLICY_ID`
+
+- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
+  
+---
