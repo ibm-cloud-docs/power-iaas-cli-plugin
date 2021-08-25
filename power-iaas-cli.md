@@ -1080,13 +1080,18 @@ or
 
 #### Create a cloud connection
 
-`ibmcloud pi connection-create CONNECTION_NAME -speed SPEED [--global-routing GLOBAL-ROUTING] [--metered METERED] [--json]`
+`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
 
 - `CONNECTION_NAME`: The unique name of the cloud connection
 
 **Options**
 
-- `--speed`: Speed of the cloud connection
+- `--speed value`: Speed of the cloud connection (speed in megabits per second). Allowed values are 50, 100, 200, 500, 1000, 2000, 5000
+- `--networks value`: Space separated network identifiers
+- `--vpc`: Enable VPC cloud connection endpoint
+- `--vpcID value`: VPC ID (i.e. crn:v1:..) to add to cloud connection. Use with "--vpc" option
+- `--classic`: Enable Classic cloud connection endpoint
+- `--gre-tunnel value`: Space separated "cidr" and "destinationIPAddress". Use with "--classic" option
 - `--metered`: Metered cloud connection flag
 - `--global-routing`: Global routing flag
 - `--json`: Format output in JSON
