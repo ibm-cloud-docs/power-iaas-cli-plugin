@@ -149,7 +149,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Export an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-export IMAGE_NAME --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [--json]`
+`ibmcloud pi image-export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [(--job | --task)] [--json]`
 
 - `IMAGE_ID`: The unique identifier or name of the image.
 
@@ -160,6 +160,23 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--json`: Format output in JSON.
+- `--job`: The operation will be processed as a job.
+- `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
+
+---
+
+### `ibmcloud pi image-export-show`
+{: #ibmcloud-pi-image-export-show}
+
+#### View details of an image export job
+
+`ibmcloud pi image-export-show IMAGE_ID [--json]`
+
+- `IMAGE_ID`: The unique identifier or name of the image.
+
+**Options**
+
+- `--json`: Format output in JSON.
 
 ---
 
@@ -168,16 +185,35 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Import an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--image-path PATH] [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--image-file-name IMAGE_FILE_NAME] [--bucket BUCKET_NAME] [--region REGION_NAME] [(--job | --task)] [--json]`
 
 - `IMAGE_NAME`: The image name.
 
 **Options**
 
-- `--image-path`: Path to image that starts with the service endpoint and ends with the image file name.
-- `--os-type`: Operating system contained in the image (`aix`, `ibmi`).
+- `--image-path`: [DEPRECATED] Replaced by image-file-name, region and bucket. Path to image starting with service endpoint and ending with image file name.
+- `--os-type`: Operating system contained in the image (`rhel`, `sles`, `aix`, `ibmi`). Required when importing a raw image.
+- `--disk-type`: Type of disk storage (i.e. tier1, tier3). Is required when not using a storage affinity policy.
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
+- `--image-file-name`: The image file name.
+- `--bucket value`: Cloud Object Storage bucket name
+- `--region value`: Cloud Object Storage region (us-east, us-south, eu-de)
+- `--job`: The operation will be processed as a job. image-file-name, region, and bucket is required.
+- `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi image-import-show`
+{: #ibmcloud-pi-image-import-show}
+
+#### View details of an image import job
+
+`ibmcloud pi image-import-show [--json]`
+
+**Options**
+
 - `--json`: Format output in JSON.
 
 ---
@@ -250,7 +286,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Capture a server instance
 
-`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
+`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME-ID1 .. VOLUME-IDn"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path PATH] [(--job | --task)]`
 
 - `INSTANCE_ID`: The unique identifier or name of the instance.
 
@@ -263,6 +299,23 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
 - `--region`: Cloud Object Storage region (us-east, us-south, eu-de). Required if destination is cloud-storage.
 - `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
+- `--job`: The operation will be processed as a job.
+- `--task `: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
+
+---
+
+### `ibmcloud pi instance-capture-show`
+{: #ibmcloud-pi-instance-capture-show}
+
+#### View the job details of the last server instance capture
+
+`ibmcloud pi instance-capture-show INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+- `--jason`: Format output in JSON
 
 ---
 
@@ -502,6 +555,50 @@ or
 - `--boot-operating-mode`: Name of the server operating mode. Allowed values are **normal** and **manual**.
 
 - `--job-task`: Name of the job task to execute. Allowed values are **dston**, **retrydump**, **consoleservic**, **iopreset**, **remotedstof**, **remotedston**, **iopdump**, and **dumprestart**.
+
+---
+
+### `ibmcloud pi job`
+{: #ibmcloud-pi-job}
+
+#### View details of a job
+
+`ibmcloud pi job JOB_ID [--json]`
+
+- `JOB_ID`: The unique identifier of the job.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi jobs`
+{: #ibmcloud-pi-jobs}
+
+#### List all jobs
+
+`ibmcloud pi jobs [--operation-action ACTION] [--operation-id ID] [--operation-target TARGET] [--json]`
+
+**Options**
+
+- `--operation-action`: Operation action to filter returned jobs. Valid values are vmCapture, imageExport, imageImport, storage.
+- `--operation-id`: Operation ID to filter returned jobs.
+- `--operation-target`: Operation target to filter returned jobs. Valid values are cloudConnection, pvmInstance, image.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi job-delete`
+{: #ibmcloud-pi-job-delete}
+
+#### Delete a job
+
+`ibmcloud pi job-delete JOB_ID`
+
+**Options**
+
+- `--JOB_ID`: The unique identifier of the job.
 
 ---
 
