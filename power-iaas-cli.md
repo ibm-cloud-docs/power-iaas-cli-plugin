@@ -185,7 +185,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Import an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-import IMAGE_NAME [--image-path PATH] [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--image-file-name IMAGE_FILE_NAME] [--bucket BUCKET_NAME] [--region REGION_NAME] [(--job | --task)] [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE [--bucket-access private] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE --bucket-access public --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+`DEPRECATED: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]`
 
 - `IMAGE_NAME`: The image name.
 
@@ -197,7 +199,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--image-file-name`: The image file name.
-- `--bucket value`: Cloud Object Storage bucket name
+- `--bucket-access value`: Indicates the bucket access type (private or public). Private access requires access and secret keys. Default is private.
 - `--region value`: Cloud Object Storage region (us-east, us-south, eu-de)
 - `--job`: The operation will be processed as a job. image-file-name, region, and bucket is required.
 - `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
@@ -315,7 +317,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 **Options**
 
-- `--jason`: Format output in JSON
+- `--json`: Format output in JSON
 
 ---
 
@@ -1308,19 +1310,19 @@ or
 
 #### Create a VPN connection
 
-`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode Policy|Route --peer-gateway-address PEER_GATEWAY  --peer-subnet-cidrs "CIDR1 [CIDRn]" --connection-state=True|False --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --local-subnet-ids "ID1 [IDn]" [--json]`
+`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode (policy|route) --peer-gateway-address PEER_GATEWAY  --peer-subnet-cidrs "CIDR1 [CIDRn]" --connection-state=(True|False) --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
 
-- `VPN_CONNECTION_NAME`: The name of the VPN connection
+- `VPN_CONNECTION_NAME`: A unique name of the VPN connection.
   
 **Options**
 
-- `--mode value`: Policy-base or route-based mode to be used by the connection and cannot be updated later
+- `--mode value`: Policy-based or route-based mode to be used by the connection and cannot be updated later
 - `--peer-gateway-address value`: IP address of the peer gateway attached to this VPN connection
 - `--peer-subnet-cidrs value`: Space separated list of peer subnet CIDRs
-- `--connection-state`: Desired connection state for the VPN connection on creation
+- `--connection-state`: Desired connection state for the VPN connection on creation. The default is False.
 - `--ike-policy-id value`: Unique ID of IKE policy selected for this VPN connection
 - `--ipsec-policy-id value`: Unique ID of IPSec policy selected for this VPN connection
-- `--local-subnet-ids value`: Space separated list of local subnet IDs attached to this VPN connection
+- `--network-ids value`: Space separated list of network IDs attached to this VPN connection
 - `--json`: Format output in JSON
   
 ---
@@ -1356,12 +1358,12 @@ or
 
 ---
 
-### ibmcloud pi vpn-connection-options
-{: #vpn-connection-options}
+### ibmcloud pi vpn-connection-networks --help
+{: #vpn-connection-netowkrs}
 
 #### Get allowable and default values for attributes dhgroup, encryption, authentication, and keyLifetime when creating or updating an IKE and IPSec policies
 
-`ibmcloud pi vpn-connection-options [--json]`
+` ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
 
 - `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
   
@@ -1371,49 +1373,34 @@ or
   
 ---
 
-### ibmcloud pi vpn-connection-local-subnets --help
-{: #vpn-connection-local-subnets}
+### ibmcloud pi vpn-connection-network-attach
+{: #vpn-connection-network-attach}
 
-#### Get allowable and default values for attributes dhgroup, encryption, authentication, and keyLifetime when creating or updating an IKE and IPSec policies
+#### Attach a network to a specific VPN connection
 
-`ibmcloud pi vpn-connection-local-subnets VPN_CONNECTION_ID [--json]`
+`ibmcloud pi vpn-connection-network-attach VPN_CONNECTION_ID --network-id ID [--json]`
 
 - `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
   
 **Options**
 
+- `--network-id value`: Network ID to attach to the VPN connection
 - `--json`: Format output in JSON
   
 ---
 
-### ibmcloud pi vpn-connection-local-subnet-attach
-{: #vpn-connection-local-subnet-attach}
+### ibmcloud pi vpn-connection-network-detach
+{: #vpn-connection-network-detach}
 
-#### Attach a local subnet to a specific VPN connection
+#### Detach a network from a specific VPN connection
 
-`ibmcloud pi vpn-connection-local-subnet-attach VPN_CONNECTION_ID --local-subnet-id ID [--json]`
-
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
-**Options**
-
-- `--local-subnet-id value`: Local subnet ID to attach to the VPN connection
-- `--json`: Format output in JSON
-  
----
-
-### ibmcloud pi vpn-connection-local-subnet-detach
-{: #vpn-connection-local-subnet-detach}
-
-#### Detach a local subnet from a specific VPN connection
-
-`ibmcloud pi vpn-connection-local-subnet-detach VPN_CONNECTION_ID --local-subnet-id ID`
+`ibmcloud pi vpn-connection-network-detach VPN_CONNECTION_ID --network-id ID`
 
 - `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
   
 **Options**
 
-- `--local-subnet-id value`: Local subnet ID to attach to the VPN connection
+- `--network-id value`: Network ID to detach from the VPN connection
   
 ---
 
@@ -1496,17 +1483,18 @@ or
 
 #### Add a VPN IKE policy
 
-`ibmcloud pi vpn-ike-policy-add IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dhgroup DH_GROUP --presharedkey KEY [--json]`
+`ibmcloud pi vpn-ike-policy-add IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --preshared-key KEY --key-lifetime SECONDS [--json]`
 
-- `IKE_POLICY_NAME`: The name of the VPN IKE policy
-  
+- `IKE_POLICY_NAME`: The name of the VPN IKE policy. The maximum name length is 47 characters.
+
 **Options**
 
 - `--version value`: Version number of the IKE Policy. Valid values are 1, 2
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are sha1, md5, sha-256, sha-384
-- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are aes128, aes256, 3des-cbc
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, md5, sha-256, sha-384
+- `--encryption value`: Encryption algorithm of the IKE policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'
 - `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
-- `--presharedkey value`: Preshared key used in this VPN connection
+- `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
 
 ---
@@ -1516,18 +1504,19 @@ or
 
 #### Update a VPN IKE policy
 
-`ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dhgroup DH_GROUP] [--presharedkey KEY] [--json]`
+`ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--preshared-key KEY] [--key-lifetime SECONDS] [--json]`
 
 - `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
   
 **Options**
 
-- `--name value`: New name of the IKE Policy
-- `--version value`: Version number of the IKE Policy
-- `--authentication value`: Authentication algorithm of the IKE Policy
-- `--encryption value`: Encryption algorithm of the IKE Policy
-- `--dhgroup value`: DH group number of the IKE Policy
-- `--presharedkey value`: Preshared key used in this VPN connection
+- `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
+- `--version value`: Version number of the IKE Policy. Valid values are 1, 2.
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, md5, sha-256, sha-384.
+- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24.
+- `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
 
 ---
@@ -1576,16 +1565,17 @@ or
 
 #### Add a VPN IPSec policy
 
-`ibmcloud pi vpn-ipsec-policy-add IPSEC_POLICY_NAME --authentication AUTHENTICATION --encryption ENCRYPTION --dhgroup DH_GROUP --pfs [--json]`
+`ibmcloud pi vpn-ipsec-policy-add IPSEC_POLICY_NAME --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --key-lifetime SECONDS [--pfs] [--json]`
 
-- `IPSEC_POLICY_NAME`: The name of the VPN IPSEC policy
+- `IPSEC_POLICY_NAME`: The name of the VPN IPSEC policy. The maximum name length is 47 characters
   
 **Options**
 
-- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
-- `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc
+- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'
 - `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
 - `--pfs`: Enable perfect forward secrecy
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
 
 ---
@@ -1595,15 +1585,16 @@ or
 
 #### Update a VPN IPSec policy
 
-`ibmcloud pi vpn-ipsec-policy-update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dhgroup DH_GROUP] [--presharedkey KEY] [--pfs=True|False] [--json]`
+`ibmcloud pi vpn-ipsec-policy-update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--key-lifetime SECONDS] [--pfs=True|False] [--json]`
 
 - `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
   
 **Options**
 
-- `--name value`: New name of the IKE Policy
-- `--authentication value`: Authentication algorithm of the IKE Policy
-- `--dhgroup value`: DH group number of the IKE Policy
+- `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--pfs`: Enable or disable perfect forward secrecy
 - `--json`: Format output in JSON
 
