@@ -86,6 +86,12 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
 {: shortdesc}
 
+### September 2021
+{: #sep-2021}
+
+- You can now use [Import Image](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-import) to Import an image from IBM Cloud Object Storage by using CLI.
+- You can now use [Jobs](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-job) to View details of a job by using CLI.
+
 ### May 2021
 {: #mar-2021}
 
@@ -440,6 +446,26 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ---
 
+### `ibmcloud pi volc`
+{: #ibmcloud-pi-volc}
+
+#### Create a volume
+
+`ibmcloud pi volume-create VOLUME_NAME [--type TYPE] --size SIZE [--shareable] [--affinity-policy POLICY] [--affinity-volume VOLUME] [--json]`
+
+- `VOLUME_NAME`: The name of the volume.
+
+**Options**
+
+- `--type value`: Type of the volume (use 'ibmcloud pi storage-types' to see available storage types in the targeted region); required if affinity-policy is not provided otherwise it is ignored
+- `--size value`: Size of the volume (in GB)
+- `--shareable`: Whether volume can be attached to multiple VMs
+- `--affinity-policy value`: Affinity policy for data volume being created; requires affinity-volume to be specified. Allowable values: [affinity,anti-affinity]
+- `--affinity-volume value`: Format output in JSON.Volume (ID or Name)to base volume affinity policy against; required if affinity-policy provided
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi instance-soft-reboot`
 {: #ibmcloud-pi-instance-soft-reboot}
 
@@ -521,13 +547,12 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### List all server instances
 
-`ibmcloud pi instances INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of instance.
+`ibmcloud pi instances [--long] [--json]`
 
 **Options**
 
 - `--json`: Format output in JSON.
+- `--long`: Retrieve all instance details.
 
 ---
 
@@ -557,6 +582,36 @@ or
 - `--boot-operating-mode`: Name of the server operating mode. Allowed values are **normal** and **manual**.
 
 - `--job-task`: Name of the job task to execute. Allowed values are **dston**, **retrydump**, **consoleservic**, **iopreset**, **remotedstof**, **remotedston**, **iopdump**, and **dumprestart**.
+
+---
+
+### `ibmcloud pi instance-list-console-languages`
+{: #ibmcloud-pi-instance-list-console-languages}
+
+#### List the avaialble console languages of an instance
+
+`ibmcloud pi instance-list-console-languages INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of instance.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instance-update-console-language`
+{: #ibmcloud-pi-instance-update-console-language}
+
+#### Update the console language of an instance. This update may take some time to take affect.
+
+`ibmcloud pi instance-update-console-language INSTANCE_ID --code CODE`
+
+- `INSTANCE_ID`: The unique identifier or name of instance.
+
+**Options**
+
+- `--code value`: Language code to set.
 
 ---
 
@@ -933,6 +988,21 @@ or
 - `--ip-address`: The requested IP address of this network interface.
 - `--json`: Format output in JSON.
 
+---
+
+### ibmcloud pi instance-attach-volumes --help
+{: #attach-instance-attach-volumes}
+
+#### Attach volumes to an instance.
+
+`ibmcloud pi instance-attach-volumes INSTANCE_ID --volume-ids "VOLUME_ID1 [VOLUME_IDn]"`
+
+- `INSTANCE_ID`: TThe unique identifier or name of the instance.
+
+**Options**
+
+- `--volume-ids value`: Space separated list of volume IDs to the volumes to attach to the instance.
+  
 ---
 
 ### ibmcloud pi instance-detach-network
