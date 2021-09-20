@@ -195,17 +195,18 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 `ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE --bucket-access public --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
 `DEPRECATED: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]`
 
-- `IMAGE_NAME`: The image name.
+- `IMAGE_NAME`: The desired name of the image
 
 **Options**
 
 - `--image-path`: [DEPRECATED] Replaced by image-file-name, region and bucket. Path to image starting with service endpoint and ending with image file name.
 - `--os-type`: Operating system contained in the image (`rhel`, `sles`, `aix`, `ibmi`). Required when importing a raw image.
-- `--disk-type`: Type of disk storage (i.e. tier1, tier3). Is required when not using a storage affinity policy.
+- `--disk-type`: Type of disk storage (i.e. tier1, tier3).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--image-file-name`: The image file name.
 - `--bucket-access value`: Indicates the bucket access type (private or public). Private access requires access and secret keys. Default is private.
+- `--bucket value`: Cloud Object Storage bucket name
 - `--region value`: Cloud Object Storage region (us-east, us-south, eu-de)
 - `--job`: The operation will be processed as a job. image-file-name, region, and bucket is required.
 - `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
@@ -222,40 +223,6 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 **Options**
 
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi image-import--help`
-{: #ibmcloud-pi-image-import-help}
-
-#### Import an image from IBM Cloud Object Storage
-
-`ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
-
-- `image-import`: Import an image.
-- `imgi`: Import an image.
-
-**Options**
-
-- `--image-path`: Path to image starting with service endpoint and ending with image filename.
-- `--os-type`: Operating system contained in the image (`redhat`, `sles`, `aix`, `ibmi`).
-- `--access-key`: Cloud Object Storage HMAC access key.
-- `--secret-key`: Cloud Object Storage HMAC secret key.
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi image-list-catalog`
-{: #ibmcloud-pi-image-list-catalog}
-
-#### List images available in the regional image catalog
-
-`ibmcloud pi image-list-catalog [--long] [--json]`
-
-**Options**
-
-- `--long`: Retrieve all image details.
 - `--json`: Format output in JSON.
 
 ---
@@ -1428,10 +1395,10 @@ or
 
 ---
 
-### ibmcloud pi vpn-connection-networks --help
+### ibmcloud pi vpn-connection-networks
 {: #vpn-connection-netowkrs}
 
-#### Get allowable and default values for attributes dhgroup, encryption, authentication, and keyLifetime when creating or updating an IKE and IPSec policies
+#### Get a list of networks attached to a specific VPN connection
 
 ` ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
 
@@ -1505,7 +1472,7 @@ or
   
 ---
 
-### ibmcloud pi vpn-connection-peer-subnet-detach --help
+### ibmcloud pi vpn-connection-peer-subnet-detach
 {: #vpn-connection-peer-subnet-detach}
 
 #### Detach a peer subnet from a specific VPN connection
