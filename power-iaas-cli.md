@@ -578,7 +578,7 @@ or
 
 **Options**
 
-- `--code value`: Language code to set.
+- `--code value`: Language code to set. Use 'ibmcloud pi instance-list-console-languages' to see available codes.
 
 ---
 
@@ -957,7 +957,7 @@ or
 
 ---
 
-### ibmcloud pi instance-attach-volumes --help
+### ibmcloud pi instance-attach-volumes
 {: #attach-instance-attach-volumes}
 
 #### Attach volumes to an instance.
@@ -1313,7 +1313,7 @@ or
 
 ---
 
-### ibmcloud pi vpn-connections
+<!--### ibmcloud pi vpn-connections
 {: #vpn-connections}
 
 #### List all VPN connections
@@ -1647,3 +1647,4 @@ or
 - `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
   
 ---
+-->
