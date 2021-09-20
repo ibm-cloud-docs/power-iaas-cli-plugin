@@ -555,11 +555,11 @@ or
 ### `ibmcloud pi instance-list-console-languages`
 {: #ibmcloud-pi-instance-list-console-languages}
 
-#### List the avaialble console languages of an instance
+#### List the available console languages for an instance.
 
 `ibmcloud pi instance-list-console-languages INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`: The unique identifier or name of instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -574,7 +574,7 @@ or
 
 `ibmcloud pi instance-update-console-language INSTANCE_ID --code CODE`
 
-- `INSTANCE_ID`: The unique identifier or name of instance.
+- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
