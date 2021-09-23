@@ -86,6 +86,13 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
 {: shortdesc}
 
+### September 2021
+{: #sep-2021}
+
+- You can now use [Import Image](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-import) to Import an image from IBM Cloud Object Storage by using CLI.
+- You can now use [Jobs](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-job) to View details of a job by using CLI.
+- You can now use [Console language](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update-console-language) to update Language to Japanese.
+
 ### May 2021
 {: #mar-2021}
 
@@ -149,7 +156,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Export an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-export IMAGE_NAME --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [--json]`
+`ibmcloud pi image-export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [(--job | --task)] [--json]`
 
 - `IMAGE_ID`: The unique identifier or name of the image.
 
@@ -160,6 +167,23 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--json`: Format output in JSON.
+- `--job`: The operation will be processed as a job.
+- `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
+
+---
+
+### `ibmcloud pi image-export-show`
+{: #ibmcloud-pi-image-export-show}
+
+#### View details of an image export job
+
+`ibmcloud pi image-export-show IMAGE_ID [--json]`
+
+- `IMAGE_ID`: The unique identifier or name of the image.
+
+**Options**
+
+- `--json`: Format output in JSON.
 
 ---
 
@@ -168,50 +192,38 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Import an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE [--bucket-access private] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE --bucket-access public --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+`DEPRECATED: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]`
 
-- `IMAGE_NAME`: The image name.
+- `IMAGE_NAME`: The desired name of the image
 
 **Options**
 
-- `--image-path`: Path to image that starts with the service endpoint and ends with the image file name.
-- `--os-type`: Operating system contained in the image (`aix`, `ibmi`).
+- `--image-path`: [DEPRECATED] Replaced by image-file-name, region and bucket. Path to image starting with service endpoint and ending with image file name.
+- `--os-type`: Operating system contained in the image (`rhel`, `sles`, `aix`, `ibmi`). Required when importing a raw image.
+- `--disk-type`: Type of disk storage (i.e. tier1, tier3).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
+- `--image-file-name`: The image file name.
+- `--bucket-access value`: Indicates the bucket access type (private or public). Private access requires access and secret keys. Default is private.
+- `--bucket value`: Cloud Object Storage bucket name
+- `--region value`: Cloud Object Storage region (us-east, us-south, eu-de)
+- `--job`: The operation will be processed as a job. image-file-name, region, and bucket is required.
+- `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
 - `--json`: Format output in JSON.
 
 ---
 
-### `ibmcloud pi image-import--help`
-{: #ibmcloud-pi-image-import-help}
+### `ibmcloud pi image-import-show`
+{: #ibmcloud-pi-image-import-show}
 
-#### Import an image from IBM Cloud Object Storage
+#### View details of an image import job
 
-`ibmcloud pi image-import IMAGE_NAME --image-path PATH --os-type OSTYPE --access-key KEY --secret-key KEY [--json]`
-
-- `image-import`: Import an image.
-- `imgi`: Import an image.
+`ibmcloud pi image-import-show [--json]`
 
 **Options**
 
-- `--image-path`: Path to image starting with service endpoint and ending with image filename.
-- `--os-type`: Operating system contained in the image (`redhat`, `sles`, `aix`, `ibmi`).
-- `--access-key`: Cloud Object Storage HMAC access key.
-- `--secret-key`: Cloud Object Storage HMAC secret key.
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi image-list-catalog`
-{: #ibmcloud-pi-image-list-catalog}
-
-#### List images available in the regional image catalog
-
-`ibmcloud pi image-list-catalog [--long] [--json]`
-
-**Options**
-
-- `--long`: Retrieve all image details.
 - `--json`: Format output in JSON.
 
 ---
@@ -250,7 +262,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### Capture a server instance
 
-`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME1 VOLUME2"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path TYPE]`
+`ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME-ID1 .. VOLUME-IDn"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path PATH] [(--job | --task)]`
 
 - `INSTANCE_ID`: The unique identifier or name of the instance.
 
@@ -263,6 +275,23 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
 - `--region`: Cloud Object Storage region (us-east, us-south, eu-de). Required if destination is cloud-storage.
 - `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
+- `--job`: The operation will be processed as a job.
+- `--task `: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
+
+---
+
+### `ibmcloud pi instance-capture-show`
+{: #ibmcloud-pi-instance-capture-show}
+
+#### View the job details of the last server instance capture
+
+`ibmcloud pi instance-capture-show INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+- `--json`: Format output in JSON
 
 ---
 
@@ -385,6 +414,26 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ---
 
+### `ibmcloud pi volc`
+{: #ibmcloud-pi-volc}
+
+#### Create a volume
+
+`ibmcloud pi volume-create VOLUME_NAME [--type TYPE] --size SIZE [--shareable] [--affinity-policy POLICY] [--affinity-volume VOLUME] [--json]`
+
+- `VOLUME_NAME`: The name of the volume.
+
+**Options**
+
+- `--type value`: Type of the volume (use 'ibmcloud pi storage-types' to see available storage types in the targeted region); required if affinity-policy is not provided otherwise it is ignored
+- `--size value`: Size of the volume (in GB)
+- `--shareable`: Whether volume can be attached to multiple VMs
+- `--affinity-policy value`: Affinity policy for data volume being created; requires affinity-volume to be specified. Allowable values: [affinity,anti-affinity]
+- `--affinity-volume value`: Format output in JSON.Volume (ID or Name)to base volume affinity policy against; required if affinity-policy provided
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi instance-soft-reboot`
 {: #ibmcloud-pi-instance-soft-reboot}
 
@@ -466,13 +515,12 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 #### List all server instances
 
-`ibmcloud pi instances INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
+`ibmcloud pi instances [--long] [--json]`
 
 **Options**
 
 - `--json`: Format output in JSON.
+- `--long`: Retrieve all instance details.
 
 ---
 
@@ -502,6 +550,80 @@ or
 - `--boot-operating-mode`: Name of the server operating mode. Allowed values are **normal** and **manual**.
 
 - `--job-task`: Name of the job task to execute. Allowed values are **dston**, **retrydump**, **consoleservic**, **iopreset**, **remotedstof**, **remotedston**, **iopdump**, and **dumprestart**.
+
+---
+
+### `ibmcloud pi instance-list-console-languages`
+{: #ibmcloud-pi-instance-list-console-languages}
+
+#### List the available console languages for an instance.
+
+`ibmcloud pi instance-list-console-languages INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instance-update-console-language`
+{: #ibmcloud-pi-instance-update-console-language}
+
+#### Update the console language of an instance. This update may take some time to take affect.
+
+`ibmcloud pi instance-update-console-language INSTANCE_ID --code CODE`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Options**
+
+- `--code value`: Language code to set. Use 'ibmcloud pi instance-list-console-languages' to see available codes.
+
+---
+
+### `ibmcloud pi job`
+{: #ibmcloud-pi-job}
+
+#### View details of a job
+
+`ibmcloud pi job JOB_ID [--json]`
+
+- `JOB_ID`: The unique identifier of the job.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi jobs`
+{: #ibmcloud-pi-jobs}
+
+#### List all jobs
+
+`ibmcloud pi jobs [--operation-action ACTION] [--operation-id ID] [--operation-target TARGET] [--json]`
+
+**Options**
+
+- `--operation-action`: Operation action to filter returned jobs. Valid values are vmCapture, imageExport, imageImport, storage.
+- `--operation-id`: Operation ID to filter returned jobs.
+- `--operation-target`: Operation target to filter returned jobs. Valid values are cloudConnection, pvmInstance, image.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi job-delete`
+{: #ibmcloud-pi-job-delete}
+
+#### Delete a job
+
+`ibmcloud pi job-delete JOB_ID`
+
+**Options**
+
+- `--JOB_ID`: The unique identifier of the job.
 
 ---
 
@@ -835,6 +957,21 @@ or
 
 ---
 
+### ibmcloud pi instance-attach-volumes
+{: #attach-instance-attach-volumes}
+
+#### Attach volumes to an instance.
+
+`ibmcloud pi instance-attach-volumes INSTANCE_ID --volume-ids "VOLUME_ID1 [VOLUME_IDn]"`
+
+- `INSTANCE_ID`: TThe unique identifier or name of the instance.
+
+**Options**
+
+- `--volume-ids value`: Space separated list of volume IDs to the volumes to attach to the instance.
+  
+---
+
 ### ibmcloud pi instance-detach-network
 {: #detach-network}
 
@@ -1079,13 +1216,18 @@ or
 
 #### Create a cloud connection
 
-`ibmcloud pi connection-create CONNECTION_NAME -speed SPEED [--global-routing GLOBAL-ROUTING] [--metered METERED] [--json]`
+`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
 
 - `CONNECTION_NAME`: The unique name of the cloud connection
 
 **Options**
 
-- `--speed`: Speed of the cloud connection
+- `--speed value`: Speed of the cloud connection (speed in megabits per second). Allowed values are 50, 100, 200, 500, 1000, 2000, 5000
+- `--networks value`: Space separated network identifiers
+- `--vpc`: Enable VPC cloud connection endpoint
+- `--vpcID value`: VPC ID (i.e. crn:v1:..) to add to cloud connection. Use with "--vpc" option
+- `--classic`: Enable Classic cloud connection endpoint
+- `--gre-tunnel value`: Space separated "cidr" and "destinationIPAddress". Use with "--classic" option
 - `--metered`: Metered cloud connection flag
 - `--global-routing`: Global routing flag
 - `--json`: Format output in JSON
@@ -1169,4 +1311,340 @@ or
 - `network`: The unique identifier (network ID) of the network.
 - `json`: Format output in JSON.-->
 
+---
 
+<!--### ibmcloud pi vpn-connections
+{: #vpn-connections}
+
+#### List all VPN connections
+
+`ibmcloud pi vpn-connections [--json]`
+
+
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection
+{: #vpn-connection}
+
+#### View details of a VPN connection
+
+`ibmcloud pi vpn-connection VPN_CONNECTION_ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-create
+{: #vpn-connection-create}
+
+#### Create a VPN connection
+
+`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode (policy|route) --peer-gateway-address PEER_GATEWAY  --peer-subnet-cidrs "CIDR1 [CIDRn]" --connection-state=(True|False) --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
+
+- `VPN_CONNECTION_NAME`: A unique name of the VPN connection.
+  
+**Options**
+
+- `--mode value`: Policy-based or route-based mode to be used by the connection and cannot be updated later
+- `--peer-gateway-address value`: IP address of the peer gateway attached to this VPN connection
+- `--peer-subnet-cidrs value`: Space separated list of peer subnet CIDRs
+- `--connection-state`: Desired connection state for the VPN connection on creation. The default is False.
+- `--ike-policy-id value`: Unique ID of IKE policy selected for this VPN connection
+- `--ipsec-policy-id value`: Unique ID of IPSec policy selected for this VPN connection
+- `--network-ids value`: Space separated list of network IDs attached to this VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-update
+{: #vpn-connection-update}
+
+#### Update a VPN connection
+
+`ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--connection-state=True|False] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--name value`: New name of this VPN connection
+- `--peer-gateway-address value`: New IP address of the peer gateway attached to this VPN connection
+- `--connection-state`: Desired connection state for the VPN connection on creation
+- `--ike-policy-id value`: New ID of IKE policy selected for this VPN connection
+- `--ipsec-policy-id value`: New ID of IPSec policy selected for this VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-delete
+{: #vpn-connection-delete}
+
+#### Delete a VPN connection
+
+`ibmcloud pi vpn-connection-delete VPN_CONNECTION_ID`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+
+---
+
+### ibmcloud pi vpn-connection-networks
+{: #vpn-connection-netowkrs}
+
+#### Get a list of networks attached to a specific VPN connection
+
+` ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-network-attach
+{: #vpn-connection-network-attach}
+
+#### Attach a network to a specific VPN connection
+
+`ibmcloud pi vpn-connection-network-attach VPN_CONNECTION_ID --network-id ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--network-id value`: Network ID to attach to the VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-network-detach
+{: #vpn-connection-network-detach}
+
+#### Detach a network from a specific VPN connection
+
+`ibmcloud pi vpn-connection-network-detach VPN_CONNECTION_ID --network-id ID`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--network-id value`: Network ID to detach from the VPN connection
+  
+---
+
+### ibmcloud pi vpn-connection-peer-subnets
+{: #vpn-connection-peer-subnets}
+
+#### Get a list of peer subnets attached to a specific VPN connection
+
+`ibmcloud pi vpn-connection-peer-subnets VPN_CONNECTION_ID [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-peer-subnet-attach
+{: #vpn-connection-peer-subnet-attach}
+
+#### Attach a peer subnet to a specific VPN connection
+
+`ibmcloud pi vpn-connection-peer-subnet-attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR [--json]`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--peer-subnet-cidr value`: Peer subnet CIDR to attach to the VPN connection
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi vpn-connection-peer-subnet-detach
+{: #vpn-connection-peer-subnet-detach}
+
+#### Detach a peer subnet from a specific VPN connection
+
+`ibmcloud pi vpn-connection-peer-subnet-detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR`
+
+- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
+  
+**Options**
+
+- `--peer-subnet-cidr value`: Peer subnet CIDR to attach to the VPN connection
+ 
+---
+
+### ibmcloud pi vpn-ike-policies
+{: #vpn-ike-policies}
+
+#### List all VPN IKE policies
+
+`ibmcloud pi vpn-ike-policies [--json]`
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy
+{: #vpn-ike-policy}
+
+#### View details of a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy IKE_POLICY_ID [--json]`
+
+- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy-add
+{: #vpn-ike-policy-add}
+
+#### Add a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy-add IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --preshared-key KEY --key-lifetime SECONDS [--json]`
+
+- `IKE_POLICY_NAME`: The name of the VPN IKE policy. The maximum name length is 47 characters.
+
+**Options**
+
+- `--version value`: Version number of the IKE Policy. Valid values are 1, 2
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, md5, sha-256, sha-384
+- `--encryption value`: Encryption algorithm of the IKE policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy-update
+{: #vpn-ike-policy-update}
+
+#### Update a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--preshared-key KEY] [--key-lifetime SECONDS] [--json]`
+
+- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
+  
+**Options**
+
+- `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
+- `--version value`: Version number of the IKE Policy. Valid values are 1, 2.
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, md5, sha-256, sha-384.
+- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24.
+- `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ike-policy-delete
+{: #vpn-ike-policy-delete}
+
+#### Delete a VPN IKE policy
+
+`ibmcloud pi vpn-ike-policy-delete IKE_POLICY_ID`
+
+- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
+ 
+---
+
+### ibmcloud pi vpn-ipsec-policies
+{: #vpn-ipsec-policies}
+
+#### List all IPSec policies
+
+`ibmcloud pi vpn-ipsec-policies [--json]`
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy
+{: #vpn-ipsec-policy}
+
+#### View details of a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy IPSEC_POLICY_ID [--json]`
+
+- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSEC policy
+  
+**Options**
+
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy-add
+{: #vpn-ipsec-policy-add}
+
+#### Add a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy-add IPSEC_POLICY_NAME --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --key-lifetime SECONDS [--pfs] [--json]`
+
+- `IPSEC_POLICY_NAME`: The name of the VPN IPSEC policy. The maximum name length is 47 characters
+  
+**Options**
+
+- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'
+- `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--pfs`: Enable perfect forward secrecy
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy-update
+{: #vpn-ipsec-policy-update}
+
+#### Update a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy-update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--key-lifetime SECONDS] [--pfs=True|False] [--json]`
+
+- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
+  
+**Options**
+
+- `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--pfs`: Enable or disable perfect forward secrecy
+- `--json`: Format output in JSON
+
+---
+
+### ibmcloud pi vpn-ipsec-policy-delete
+{: #vpn-ipsec-policy-delete}
+
+#### Delete a VPN IPSec policy
+
+`ibmcloud pi vpn-ipsec-policy-delete IPSEC_POLICY_ID`
+
+- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
+  
+---
+-->
