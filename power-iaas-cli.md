@@ -1314,7 +1314,7 @@ or
 
 ---
 
-<!--### ibmcloud pi vpn-connections
+### ibmcloud pi vpn-connections
 {: #vpn-connections}
 
 #### List all VPN connections
@@ -1648,4 +1648,3 @@ or
 - `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
   
 ---
--->
