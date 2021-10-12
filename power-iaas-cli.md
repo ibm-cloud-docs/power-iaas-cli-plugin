@@ -1296,9 +1296,9 @@ or
 
 - `--json`: Format output in JSON
 
----
+<!-- ---
 
-<!--### ibmcloud pi connection-network
+### ibmcloud pi connection-network
 {: #network-connection}
 
 #### Get information about a cloud connection's attached network
@@ -1348,16 +1348,15 @@ or
 
 #### Create a VPN connection
 
-`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode (policy|route) --peer-gateway-address PEER_GATEWAY  --peer-subnet-cidrs "CIDR1 [CIDRn]" --connection-state=(True|False) --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
+`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode MODE --peer-gateway-address PEER_GATEWAY --peer-subnet-cidrs "CIDR1 [CIDRn]" --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
 
 - `VPN_CONNECTION_NAME`: A unique name of the VPN connection.
   
 **Options**
 
-- `--mode value`: Policy-based or route-based mode to be used by the connection and cannot be updated later
+- `--mode value`: Mode to be used by the VPN connection and cannot be updated later. Valid values are 'policy' and 'route'.
 - `--peer-gateway-address value`: IP address of the peer gateway attached to this VPN connection
 - `--peer-subnet-cidrs value`: Space separated list of peer subnet CIDRs
-- `--connection-state`: Desired connection state for the VPN connection on creation. The default is False.
 - `--ike-policy-id value`: Unique ID of IKE policy selected for this VPN connection
 - `--ipsec-policy-id value`: Unique ID of IPSec policy selected for this VPN connection
 - `--network-ids value`: Space separated list of network IDs attached to this VPN connection
@@ -1370,15 +1369,14 @@ or
 
 #### Update a VPN connection
 
-`ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--connection-state=True|False] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
+`ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
 
 - `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
   
 **Options**
 
-- `--name value`: New name of this VPN connection
+- `--name value`: New unique name of this VPN connection
 - `--peer-gateway-address value`: New IP address of the peer gateway attached to this VPN connection
-- `--connection-state`: Desired connection state for the VPN connection on creation
 - `--ike-policy-id value`: New ID of IKE policy selected for this VPN connection
 - `--ipsec-policy-id value`: New ID of IPSec policy selected for this VPN connection
 - `--json`: Format output in JSON
@@ -1612,7 +1610,7 @@ or
 - `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
 - `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'
 - `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
-- `--pfs`: Enable perfect forward secrecy
+- `--pfs`: Enable perfect forward secrecy. Disabled if not specified.
 - `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
 
@@ -1629,10 +1627,11 @@ or
   
 **Options**
 
-- `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
-- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
-- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--name value`: New name of the IPSec Policy. The maximum name length is 47 characters
+- `--authentication value`: Authentication algorithm of the IPSec Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--encryptio value`: Encryption algorithm of the IPSec policy. Valid values are '3des-cbc', 'aes-128-cbc', 'aes-128-gcm, 'aes-192-cbc', 'aes-192-gcm', 'aes-256-cbc', 'aes-256-gcm', 'des-cbc'. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--key-lifetime value`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
 - `--pfs`: Enable or disable perfect forward secrecy
 - `--json`: Format output in JSON
 
