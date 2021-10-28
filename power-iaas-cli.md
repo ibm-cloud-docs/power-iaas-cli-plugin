@@ -1526,7 +1526,7 @@ or
 **Options**
 
 - `--version value`: Version number of the IKE Policy. Valid values are 1, 2
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, md5, sha-256, sha-384
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, sha-256, sha-384
 - `--encryption value`: Encryption algorithm of the IKE policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'
 - `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
 - `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
@@ -1548,7 +1548,7 @@ or
 
 - `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
 - `--version value`: Version number of the IKE Policy. Valid values are 1, 2.
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, md5, sha-256, sha-384.
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, sha-256, sha-384.
 - `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'.
 - `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24.
 - `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
