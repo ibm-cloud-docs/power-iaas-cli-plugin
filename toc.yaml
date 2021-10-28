@@ -1,0 +1,18 @@
+---
+toc:
+  properties:
+    subcollection: power-iaas-cli-plugin
+    category: virtualservers
+    audience: service
+    href: /docs/services/power-iaas-cli-plugin
+    console-page: /catalog/services/power-systems-virtual-server
+    product-page: https://www.ibm.com/cloud/power-virtual-server
+    path: power-iaas-cli-plugin
+    label: IBM Power Systems Virtual Servers CLI plug-in
+
+  entries: 
+  - navgroup: 
+      id: learn
+      topics:
+      - release-notes.md
+      - power-iaas-cli.md
