@@ -6,7 +6,6 @@ lastupdated: "2021-05-20"
 
 ---
 
-{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -102,11 +101,12 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - You can now use [Console language](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update-console-language) to update Language to Japanese.
 
 ### May 2021
-{: #mar-2021}
+{: #may-2021}
 
 - You can now use [Cloud connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to automate the way you connect your Power Systems Virtual Server instances to the IBM Cloud resources by using CLI.
 
 ### March 2021
+{: #mar-2021}
 
 - You can now manage [snapshots](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#snapshot-id) of a cloud instance by using the CLI.
 - You can create and list [SAP profiles](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#sapprofile-info) by using CLI.
@@ -122,6 +122,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image}
 
 #### View details of an image
+{: #view-details-image}
 
 `ibmcloud pi image IMAGE_ID [--json]`
 
@@ -137,6 +138,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-create}
 
 #### Create a copy of an image from the image catalog in this account
+{: #create-copy-image}
 
 `ibmcloud pi image-create IMAGE_ID [--json]`
 
@@ -152,6 +154,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-delete}
 
 #### Delete an image from this account
+{: #delete-image}
 
 `ibmcloud pi image-delete IMAGE_ID`
 
@@ -163,6 +166,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-export}
 
 #### Export an image from IBM Cloud Object Storage
+{: #export-image}
 
 `ibmcloud pi image-export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [(--job | --task)] [--json]`
 
@@ -184,6 +188,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-export-show}
 
 #### View details of an image export job
+{: #view-details-image-export}
 
 `ibmcloud pi image-export-show IMAGE_ID [--json]`
 
@@ -199,6 +204,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-import}
 
 #### Import an image from IBM Cloud Object Storage
+{: #import-image-cos}
 
 `ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE [--bucket-access private] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
 `ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE --bucket-access public --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
@@ -227,6 +233,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-import-show}
 
 #### View details of an image import job
+{: #view-details-image-import}
 
 `ibmcloud pi image-import-show [--json]`
 
@@ -240,6 +247,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-images}
 
 #### List all of the images for this account
+{: #list-all-images}
 
 `ibmcloud pi images [--long] [--json]`
 
@@ -254,6 +262,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance}
 
 #### View details of a server instance
+{: #view-details-server-ins}
 
 `ibmcloud pi instance INSTANCE_ID [--json]`
 
@@ -269,6 +278,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-capture}
 
 #### Capture a server instance
+{: #capture-server-ins}
 
 `ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME-ID1 .. VOLUME-IDn"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path PATH] [(--job | --task)]`
 
@@ -284,7 +294,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--region`: Cloud Object Storage region (us-east, us-south, eu-de). Required if destination is cloud-storage.
 - `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
 - `--job`: The operation will be processed as a job.
-- `--task `: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
+- `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
 
 ---
 
@@ -292,6 +302,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-capture-show}
 
 #### View the job details of the last server instance capture
+{: #view-job-details-last-serverins}
 
 `ibmcloud pi instance-capture-show INSTANCE_ID [--json]`
 
@@ -304,9 +315,10 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ---
 
 ### `ibmcloud pi instance-create`
-{: ibmcloud-pi-instance-create}
+{: #ibmcloud-pi-instance-create}
 
 #### Create a server instance
+{: #create-server-ins}
 
 `ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\"> ... [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEN\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
@@ -341,9 +353,10 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ---
 
 ### `ibmcloud pi inc --help`
-{: ibmcloud-pi-inc-help}
+{: #ibmcloud-pi-inc-help}
 
 #### Create a server instance
+{: #create-server-instance}
 
 `ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
 
@@ -375,6 +388,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-delete}
 
 #### Delete a server instance
+{: #delete-server-instance}
 
 `ibmcloud pi instance-delete INSTANCE_ID`
 
@@ -386,6 +400,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-get-console}
 
 #### Get the console of an instance
+{: #get-console-ins}
 
 `ibmcloud pi instance-get-console INSTANCE_ID [--json]`
 
@@ -401,6 +416,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-hard-reboot}
 
 #### Hard restart the operating system of an instance
+{: #hard-restart-os}
 
 `ibmcloud pi instance-hard-reboot INSTANCE_ID`
 
@@ -412,6 +428,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-list-volumes}
 
 #### Get a list of volumes attached to an instance
+{: #get-list-vol}
 
 `ibmcloud pi volume INSTANCE_ID [--long] [--json]`
 
@@ -426,6 +443,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-volc}
 
 #### Create a volume
+{: #create-vol}
 
 `ibmcloud pi volume-create VOLUME_NAME [--type TYPE] --size SIZE [--shareable] [--affinity-policy POLICY] [--affinity-volume VOLUME] [--json]`
 
@@ -446,6 +464,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-soft-reboot}
 
 #### Soft restart the operating system of an instance
+{: #soft-restart-os}
 
 `ibmcloud pi instance-soft-reboot INSTANCE_ID`
 
@@ -457,6 +476,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-shutdown}
 
 #### Immediately shut down a server instance
+{: #imm-shutdown-server}
 
 `ibmcloud pi instance-immediate-shutdown INSTANCE_ID`
 
@@ -468,6 +488,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-reset}
 
 #### Reset a server instance in error state - use with caution
+{: #reset-server-ins}
 
 `ibmcloud pi instance-reset-state INSTANCE_ID`
 
@@ -479,6 +500,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-start}
 
 #### Start a server instance
+{: #start-server-ins}
 
 `ibmcloud pi instance-start INSTANCE_ID`
 
@@ -490,6 +512,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-stop}
 
 #### Stop a server instance
+{: #stop-server-ins}
 
 `ibmcloud pi instance-stop INSTANCE_ID`
 
@@ -501,6 +524,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-update}
 
 #### Update a server instance
+{: #update-server-ins}
 
 `ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--profile-id SAP_PROFILE_ID] [--json]`
 
@@ -522,6 +546,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instances}
 
 #### List all server instances
+{: #list-server-instances}
 
 `ibmcloud pi instances [--long] [--json]`
 
@@ -536,6 +561,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instances-operation}
 
 #### Perform an operation on an IBMi server instance
+{: #perform-operation-ibmi}
 
 `ibmcloud pi instance-operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [] [--boot-operating-mode MODE] [--job-task TASK]`
 
@@ -564,7 +590,8 @@ or
 ### `ibmcloud pi instance-list-console-languages`
 {: #ibmcloud-pi-instance-list-console-languages}
 
-#### List the available console languages for an instance.
+#### List the available console languages for an instance
+{: #list-avlb-console-lang}
 
 `ibmcloud pi instance-list-console-languages INSTANCE_ID [--json]`
 
@@ -580,6 +607,7 @@ or
 {: #ibmcloud-pi-instance-update-console-language}
 
 #### Update the console language of an instance. This update may take some time to take affect.
+{: #update-console-lang}
 
 `ibmcloud pi instance-update-console-language INSTANCE_ID --code CODE`
 
@@ -595,6 +623,7 @@ or
 {: #ibmcloud-pi-job}
 
 #### View details of a job
+{: #view-details-job}
 
 `ibmcloud pi job JOB_ID [--json]`
 
@@ -610,6 +639,7 @@ or
 {: #ibmcloud-pi-jobs}
 
 #### List all jobs
+{: #list-all-jobs}
 
 `ibmcloud pi jobs [--operation-action ACTION] [--operation-id ID] [--operation-target TARGET] [--json]`
 
@@ -626,6 +656,7 @@ or
 {: #ibmcloud-pi-job-delete}
 
 #### Delete a job
+{: #delete-job}
 
 `ibmcloud pi job-delete JOB_ID`
 
@@ -639,6 +670,7 @@ or
 {: #ibmcloud-pi-key}
 
 #### View details of a key
+{: #view-details-key}
 
 `ibmcloud pi key KEY_NAME [--json]`
 
@@ -654,6 +686,7 @@ or
 {: #ibmcloud-pi-key-create}
 
 #### Import an RSA public key
+{: #import-rsa-pubkey}
 
 `ibmcloud pi key-create KEY_NAME --key KEY [--json]`
 
@@ -670,6 +703,7 @@ or
 {: #ibmcloud-pi-key-delete}
 
 #### Delete a key
+{: #del-key}
 
 `ibmcloud pi key-delete KEY_NAME`
 
@@ -681,6 +715,7 @@ or
 {: #ibmcloud-pi-key-update}
 
 #### Update the name of a key
+{: #update-keyname}
 
 `ibmcloud pi key-update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY [--json]`
 
@@ -698,6 +733,7 @@ or
 {: #ibmcloud-pi-keys}
 
 #### List all keys
+{: #list-all-keys}
 
 `ibmcloud pi keys [--json]`
 
@@ -711,6 +747,7 @@ or
 {: #ibmcloud-pi-network}
 
 #### View details of a network
+{: #view-details-network}
 
 `ibmcloud pi network NETWORK_ID [--json]`
 
@@ -726,6 +763,7 @@ or
 {: #ibmcloud-pi-network-create-private}
 
 #### Create a private network
+{: #create-private-network}
 
 `ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
@@ -745,6 +783,7 @@ or
 {: #ibmcloud-pi-network-create-public}
 
 #### Create a public network
+{: #create-pub-net}
 
 `ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--json]`
 
@@ -761,6 +800,7 @@ or
 {: #ibmcloud-pi-network-delete}
 
 #### Delete a network
+{: #del-network}
 
 `ibmcloud pi network-delete NETWORK_ID`
 
@@ -772,6 +812,7 @@ or
 {: #ibmcloud-pi-network-update}
 
 #### Update a network
+{: #update-network}
 
 `ibmcloud pi network-update NETWORK_ID [--name NETWORK_NAME] [--starting-ip IP] [--ending-ip IP] [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
@@ -791,6 +832,7 @@ or
 {: #ibmcloud-pi-networks}
 
 #### List all networks
+{: #list-all-network}
 
 `ibmcloud pi networks [--long] [--json]`
 
@@ -805,6 +847,7 @@ or
 {: #ibmcloud-pi-service-list}
 
 #### List all services for this account and region
+{: #list-service}
 
 `ibmcloud pi service-list [--json]`
 
@@ -818,6 +861,7 @@ or
 {: #ibmcloud-pi-service-target}
 
 #### Target a service
+{: #target-service}
 
 `ibmcloud pi service-target [--json]`
 
@@ -844,6 +888,7 @@ or
 {: #ibmcloud-pi-volume}
 
 #### View details of a volume
+{: #view-details-vol}
 
 `ibmcloud pi volume VOLUME_ID [--json]`
 
@@ -859,6 +904,7 @@ or
 {: #ibmcloud-pi-volume-attach}
 
 #### Attach a volume to an instance
+{: #attach-vol-ins}
 
 `ibmcloud pi volume-attach VOLUME_ID --instance INSTANCE [--json]`
 
@@ -875,6 +921,7 @@ or
 {: #ibmcloud-pi-volume-create}
 
 #### Create a volume
+{: #create-volume}
 
 `ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--json]`
 
@@ -893,6 +940,7 @@ or
 {: #ibmcloud-pi-volume-delete}
 
 #### Delete a volume
+{: #del-volume}
 
 `ibmcloud pi volume-delete VOLUME_ID`
 
@@ -904,6 +952,7 @@ or
 {: #ibmcloud-pi-volume-detach}
 
 #### Detach a volume from an instance
+{: #detach-vol-ins}
 
 `ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
 
@@ -920,6 +969,7 @@ or
 {: #ibmcloud-pi-volume-update}
 
 #### Update a volume
+{: #update-volume}
 
 `ibmcloud pi volume-update VOLUME_ID [--bootable] [--name NEW_NAME] [--size NEW_SIZE] [--shareable] [--json]`
 
@@ -939,6 +989,7 @@ or
 {: #ibmcloud-pi-volumes}
 
 #### List all volumes
+{: #list-all-vol}
 
 `ibmcloud pi volumes [--long] [--json]`
 
@@ -953,6 +1004,7 @@ or
 {: #attach-network}
 
 #### Attach a network to the server instance
+{: #attach-network-server}
 
 `ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" --ip-address "IP_ADDRESS" [--json]`
 
@@ -969,7 +1021,8 @@ or
 ### ibmcloud pi instance-attach-volumes
 {: #attach-instance-attach-volumes}
 
-#### Attach volumes to an instance.
+#### Attach volumes to an instance
+{: #attach-vol-instance}
 
 `ibmcloud pi instance-attach-volumes INSTANCE_ID --volume-ids "VOLUME_ID1 [VOLUME_IDn]"`
 
@@ -985,6 +1038,7 @@ or
 {: #detach-network}
 
 #### Detach all or a specific network from the server instance
+{: #detach-network-server}
 
 `ibmcloud pi instance-detach-network INSTANCE_NAME -network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
 
@@ -1001,6 +1055,7 @@ or
 {: #list-networks}
 
 #### List all the attached networks
+{: #list-all-attached-network}
 
 `ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
 
@@ -1179,7 +1234,9 @@ or
 
 ### ibmcloud pi volume-create-clone
 {: #create-volume-clone}
+
 #### Create a volume clone for specific volumes
+{: #create-volume-clonev-vo}
 
 `ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
 
@@ -1191,10 +1248,12 @@ or
 - `--json`: Format output in JSON.
 
 ---
+
 ### `ibmcloud pi connections`
 {: #connections}
 
 #### List all cloud Connections
+{: #list-all-cloud-conn}
 
 `ibmcloud pi connections [--long] [--json]`
 
@@ -1209,6 +1268,7 @@ or
 {: #attach-network}
 
 #### Attach a network to the cloud connection
+{: #attach-network-cloud-connection}
 
 `ibmcloud pi connection-attach-network CONNECTION_ID --network NETWORK_ID[--json]`
 
@@ -1224,6 +1284,7 @@ or
 {: #create-connection}
 
 #### Create a cloud connection
+{: #create-cloud-connection}
 
 `ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
 
@@ -1247,6 +1308,7 @@ or
 {: delete-connection}
 
 #### Delete a Cloud Connection
+{: #del-cloud-connection}
 
 `ibmcloud pi connection-delete CONNECTION_ID`
 
@@ -1258,6 +1320,7 @@ or
 {: #connection-detach-network}
 
 #### Detach a network from the cloud connection
+{: #detach-network-cloud-conn}
 
 `ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID [--json]`
 
@@ -1274,6 +1337,7 @@ or
 {: #connection-update}
 
 #### Update a cloud connection
+{: #update-cloud-conn}
 
 `ibmcloud pi connection-update CONNECTION_ID [--speed SPEED] [--vpc=True|False [<--vpcID "VPC-ID">]] [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] ...[--global-routing=True|False] [--metered=True|False] [--name NAME] [--json]`
 
@@ -1297,6 +1361,7 @@ or
 {: #connection-vpcs}
 
 #### List all virtual private clouds
+{: #list-vpc}
 
 `ibmcloud pi connection-vpcs [--json]`
 
@@ -1326,6 +1391,7 @@ or
 {: #vpn-connections}
 
 #### List all VPN connections
+{: #list-vpn}
 
 `ibmcloud pi vpn-connections [--json]`
 
@@ -1340,6 +1406,7 @@ or
 {: #vpn-connection}
 
 #### View details of a VPN connection
+{: #view-details-vpn-conn}
 
 `ibmcloud pi vpn-connection VPN_CONNECTION_ID [--json]`
 
@@ -1355,11 +1422,12 @@ or
 {: #vpn-connection-create}
 
 #### Create a VPN connection
+{: #create-vpn-conn}
 
 `ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode MODE --peer-gateway-address PEER_GATEWAY --peer-subnet-cidrs "CIDR1 [CIDRn]" --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
 
 - `VPN_CONNECTION_NAME`: A unique name of the VPN connection.
-  
+
 **Options**
 
 - `--mode value`: Mode to be used by the VPN connection and cannot be updated later. Valid values are 'policy' and 'route'.
@@ -1369,13 +1437,14 @@ or
 - `--ipsec-policy-id value`: Unique ID of IPSec policy selected for this VPN connection
 - `--network-ids value`: Space separated list of network IDs attached to this VPN connection
 - `--json`: Format output in JSON
-  
+
 ---
 
 ### ibmcloud pi vpn-connection-update
 {: #vpn-connection-update}
 
 #### Update a VPN connection
+{: #update-vpn-conn}
 
 `ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
 
@@ -1395,6 +1464,7 @@ or
 {: #vpn-connection-delete}
 
 #### Delete a VPN connection
+{: #del-vpn-conn}
 
 `ibmcloud pi vpn-connection-delete VPN_CONNECTION_ID`
 
@@ -1406,6 +1476,7 @@ or
 {: #vpn-connection-netowkrs}
 
 #### Get a list of networks attached to a specific VPN connection
+{: #get-list-net-vpn}
 
 ` ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
 
@@ -1421,6 +1492,7 @@ or
 {: #vpn-connection-network-attach}
 
 #### Attach a network to a specific VPN connection
+{: #attach-net-vpn}
 
 `ibmcloud pi vpn-connection-network-attach VPN_CONNECTION_ID --network-id ID [--json]`
 
@@ -1437,6 +1509,7 @@ or
 {: #vpn-connection-network-detach}
 
 #### Detach a network from a specific VPN connection
+{: #detach-network-vpn}
 
 `ibmcloud pi vpn-connection-network-detach VPN_CONNECTION_ID --network-id ID`
 
@@ -1452,6 +1525,7 @@ or
 {: #vpn-connection-peer-subnets}
 
 #### Get a list of peer subnets attached to a specific VPN connection
+{: #get-list-peer-subnet-vpn}
 
 `ibmcloud pi vpn-connection-peer-subnets VPN_CONNECTION_ID [--json]`
 
@@ -1467,6 +1541,7 @@ or
 {: #vpn-connection-peer-subnet-attach}
 
 #### Attach a peer subnet to a specific VPN connection
+{: #attach-peer-subnet-vpn}
 
 `ibmcloud pi vpn-connection-peer-subnet-attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR [--json]`
 
@@ -1483,6 +1558,7 @@ or
 {: #vpn-connection-peer-subnet-detach}
 
 #### Detach a peer subnet from a specific VPN connection
+{: #detach-peer-subnet-vpn}
 
 `ibmcloud pi vpn-connection-peer-subnet-detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR`
 
@@ -1498,6 +1574,7 @@ or
 {: #vpn-ike-policies}
 
 #### List all VPN IKE policies
+{: #list-vpn-ike}
 
 `ibmcloud pi vpn-ike-policies [--json]`
   
@@ -1511,11 +1588,12 @@ or
 {: #vpn-ike-policy}
 
 #### View details of a VPN IKE policy
+{: #view-detail-vpn-ike}
 
 `ibmcloud pi vpn-ike-policy IKE_POLICY_ID [--json]`
 
 - `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
-  
+
 **Options**
 
 - `--json`: Format output in JSON
@@ -1526,6 +1604,7 @@ or
 {: #vpn-ike-policy-add}
 
 #### Add a VPN IKE policy
+{: #vpn-ike-policy}
 
 `ibmcloud pi vpn-ike-policy-add IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --preshared-key KEY --key-lifetime SECONDS [--json]`
 
@@ -1547,6 +1626,7 @@ or
 {: #vpn-ike-policy-update}
 
 #### Update a VPN IKE policy
+{: #update-vpn-ike}
 
 `ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--preshared-key KEY] [--key-lifetime SECONDS] [--json]`
 
@@ -1569,6 +1649,7 @@ or
 {: #vpn-ike-policy-delete}
 
 #### Delete a VPN IKE policy
+{: #delete-vpn-ike}
 
 `ibmcloud pi vpn-ike-policy-delete IKE_POLICY_ID`
 
@@ -1580,6 +1661,7 @@ or
 {: #vpn-ipsec-policies}
 
 #### List all IPSec policies
+{: #list-ipsec}
 
 `ibmcloud pi vpn-ipsec-policies [--json]`
   
@@ -1593,6 +1675,7 @@ or
 {: #vpn-ipsec-policy}
 
 #### View details of a VPN IPSec policy
+{: #view-detail-vpn-ipsec}
 
 `ibmcloud pi vpn-ipsec-policy IPSEC_POLICY_ID [--json]`
 
@@ -1608,6 +1691,7 @@ or
 {: #vpn-ipsec-policy-add}
 
 #### Add a VPN IPSec policy
+{: #add-vpn-ipsec}
 
 `ibmcloud pi vpn-ipsec-policy-add IPSEC_POLICY_NAME --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --key-lifetime SECONDS [--pfs] [--json]`
 
@@ -1628,6 +1712,7 @@ or
 {: #vpn-ipsec-policy-update}
 
 #### Update a VPN IPSec policy
+{: #update-vpn-ipsec}
 
 `ibmcloud pi vpn-ipsec-policy-update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--key-lifetime SECONDS] [--pfs=True|False] [--json]`
 
@@ -1649,6 +1734,7 @@ or
 {: #vpn-ipsec-policy-delete}
 
 #### Delete a VPN IPSec policy
+{: #delete-vpn-ipsec}
 
 `ibmcloud pi vpn-ipsec-policy-delete IPSEC_POLICY_ID`
 
