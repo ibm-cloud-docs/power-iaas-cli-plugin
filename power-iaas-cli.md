@@ -206,9 +206,23 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 #### Import an image from IBM Cloud Object Storage
 {: #import-image-cos}
 
-`ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE [--bucket-access private] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
-`ibmcloud pi image-import IMAGE_NAME [--os-type OSTYPE] --disk-type DISKTYPE --bucket-access public --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
-`DEPRECATED: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --disk-type DISKTYPE [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --storage-pool POOL [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] -affinity-policy affinity (-affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] -affinity-policy anti-affinity (-anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --disk-type DISKTYPE [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --storage-pool POOL [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME -bucket-access public --affinity-policy affinity (-affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME -bucket-access public --affinity-policy anti-affinity (-anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+[DEPRECATED]: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]
 
 - `IMAGE_NAME`: The desired name of the image
 
@@ -217,6 +231,11 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--image-path`: [DEPRECATED] Replaced by image-file-name, region and bucket. Path to image starting with service endpoint and ending with image file name.
 - `--os-type`: Operating system contained in the image (`rhel`, `sles`, `aix`, `ibmi`). Required when importing a raw image.
 - `--disk-type`: Type of disk storage (i.e. tier1, tier3).
+- `--storage-pool value`: Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If --storage-pool is provided then --disk-type and --affinity-policy values cannot be specified.
+- `--affinity-policy value`: Affinity policy for image. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
+- `--affinity-instance value`: PVM instance identifier or name to base image affinity policy against; required if "-affinity-policy affinity" is specified and --affinity-volume is not provided.
+- `--affinity-volume value`: Volume identifier or name to base image affinity policy against; required if "-affinity-policy affinity" is specified and --affinity-instance is not provided.
+- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base image anit-affinity policy against; required if "-affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provide-anti-affinity-volumes value    Space separated list of volume identifiers or names to base image anti-affinity policy against; required if "-affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--image-file-name`: The image file name.
@@ -321,7 +340,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #create-server-ins}
 
 `ibmcloud pi instance-create INSTANCE_NAME -image IMAGE [--memory MEMORY] <-network \"NETWORK1 [IP1]\">
-[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE]  [--storage-type STORAGE_TYPE] [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [-storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [-storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]
+[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE]  [--storage-type STORAGE_TYPE] [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]
 [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
@@ -345,10 +364,10 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--storage-connection`: The storage connection type. Valid value is "vSCSI".
 - `--storage-pool`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
 - `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "-storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `--storage-affinity-volume`:  Volume identifier or name to base storage affinity policy against; required if "-storage-affinity affinity" is specified and --storage-affinity-instance is not provided
--storage-anti-affinity-instances value Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "-storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "-storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume`:  Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
+- `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
 - `--replicants`: Number of duplicate instances to create in this request.
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
@@ -358,38 +377,6 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
 - `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--placement-group`: The placement group ID of the group that the server will be added to.
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi inc --help`
-{: #ibmcloud-pi-inc-help}
-
-#### Create a server instance
-{: #create-server-instance}
-
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE --memory MEMORY --networks "NETWORK1 NETWORK2" --processors PROCESSORS --processor-type PROC_TYPE [--volumes "VOLUME1 VOLUME2"] [--key-name NAME] [--sys-type TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--json]`
-
-- `INSTANCE_NAME`: The name of the instance.
-
-**Options**
-
-- `--image`: Operating system image identifier or name.
-- `--memory`: Amount of memory (GB) to allocate to the instance.
-- `--networks`: Space separated list of identifiers or names of the networks to associate with the instance.
-- `--processors`: Number of processors to allocate to the instance.
-- `--processor-type`: Type of processors shared or dedicated.
-- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the instance.
-- `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type (s922, e880, e980).
-- `--storage-type`: Storage type for server deployment when deploying a stock image.
-- `--replicants`: Number of replicants (default 1). You must set the value to 2 to create two instances.
-- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
-- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
-- `--IBMiCSS-license`: IBMi CSS software license associated with the instance.
-- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
-- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
-- `--IBMiRDS-users`: Number of IBM i RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--json`: Format output in JSON.
 
 ---
@@ -459,9 +446,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 `ibmcloud pi volume-create VOLUME_NAME --storage-pool POOL --size SIZE [--shareable] [--json]`
 
-`ibmcloud pi volume-create VOLUME_NAME -affinity-policy affinity --size SIZE [--shareable] (-affinity-instance INSTANCE | --affinity-volume VOLUME) [--json]`
+`ibmcloud pi volume-create VOLUME_NAME --affinity-policy affinity --size SIZE [--shareable] (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--json]`
 
-`ibmcloud pi volume-create VOLUME_NAME -affinity-policy anti-affinity --size SIZE [--shareable] (-anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--json]`
+`ibmcloud pi volume-create VOLUME_NAME --affinity-policy anti-affinity --size SIZE [--shareable] (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--json]`
 
 - `VOLUME_NAME`: The name of the volume.
 
@@ -471,10 +458,10 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--size value`: Size of the volume (in GB)
 - `--shareable`: Whether volume can be attached to multiple VMs
 - `--affinity-policy value`:  Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified
-- `--affinity-instance value`:  PVM instance identifier or name to base volume affinity policy against; required if "-affinity-policy affinity" is specified and --affinity-volume is not provided
-- `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "-affinity-policy affinity" is specified and --affinity-instance is not provided
-- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "-affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
-- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "-affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
+- `--affinity-instance value`:  PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided
+- `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
+- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
+- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
 - `--json`: Format output in JSON.
 
 ---
@@ -949,7 +936,7 @@ or
 
 **Options**
 
-- `--server value`: The server instacne ID of the server to remove from the placement group.
+- `--server value`: The server instance ID of the server to remove from the placement group.
 - `--json`: Format output in JSON.
 
 ---
@@ -1198,7 +1185,7 @@ or
 #### Create an SAP instance
 {: #create-new-sappvm}
 
-`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--key-name KEY-NAME] [--json]`
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [{}storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [{-}-storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--json]`
 
 - `SAP_INSTANCE_NAME`: The name of the SAP instance
 
@@ -1209,6 +1196,13 @@ or
 - `--networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
 - `--pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
 - `--volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+- `--storage-type value`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
+- `--storage-pool value`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
+- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `{}storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "{-}-storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `{}storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "{-}-storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+- `{}storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "{-}-storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `{}storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "{-}-storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
 - `--key-name`: Name of SSH key.
 - `--json`: Format output in JSON.
 
@@ -1810,7 +1804,7 @@ or
   
 **Options**
 
-- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are none, hmac-sha-256-128, hmac-sha1-96
 - `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'
 - `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
 - `--pfs`: Enable perfect forward secrecy. Disabled if not specified.
@@ -1832,7 +1826,7 @@ or
 **Options**
 
 - `--name value`: New name of the IPSec Policy. The maximum name length is 47 characters
-- `--authentication value`: Authentication algorithm of the IPSec Policy. Valid values are none, hmac-md5-96, hmac-sha-256-128, hmac-sha1-96
+- `--authentication value`: Authentication algorithm of the IPSec Policy. Valid values are none, hmac-sha-256-128, hmac-sha1-96
 - `--encryptio value`: Encryption algorithm of the IPSec policy. Valid values are '3des-cbc', 'aes-128-cbc', 'aes-128-gcm, 'aes-192-cbc', 'aes-192-gcm', 'aes-256-cbc', 'aes-256-gcm', 'des-cbc'. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'.
 - `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
 - `--key-lifetime value`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
