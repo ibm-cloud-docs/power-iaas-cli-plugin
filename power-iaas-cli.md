@@ -210,17 +210,17 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 `ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --storage-pool POOL [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
 
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] -affinity-policy affinity (-affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
 
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] -affinity-policy anti-affinity (-anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
 
 `ibmcloud pi image-import IMAGE_NAME --bucket-access public --disk-type DISKTYPE [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
 
 `ibmcloud pi image-import IMAGE_NAME --bucket-access public --storage-pool POOL [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
 
-`ibmcloud pi image-import IMAGE_NAME -bucket-access public --affinity-policy affinity (-affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
 
-`ibmcloud pi image-import IMAGE_NAME -bucket-access public --affinity-policy anti-affinity (-anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
 
 [DEPRECATED]: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]
 
@@ -233,9 +233,10 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--disk-type`: Type of disk storage (i.e. tier1, tier3).
 - `--storage-pool value`: Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If --storage-pool is provided then --disk-type and --affinity-policy values cannot be specified.
 - `--affinity-policy value`: Affinity policy for image. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
-- `--affinity-instance value`: PVM instance identifier or name to base image affinity policy against; required if "-affinity-policy affinity" is specified and --affinity-volume is not provided.
-- `--affinity-volume value`: Volume identifier or name to base image affinity policy against; required if "-affinity-policy affinity" is specified and --affinity-instance is not provided.
-- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base image anit-affinity policy against; required if "-affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provide-anti-affinity-volumes value    Space separated list of volume identifiers or names to base image anti-affinity policy against; required if "-affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
+- `--affinity-instance value`: PVM instance identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
+- `--affinity-volume value`: Volume identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
+- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base image anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
+- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base image anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--image-file-name`: The image file name.
@@ -919,7 +920,7 @@ or
 
 **Options**
 
-- `--server value`: The server instacne ID of the server to add to the placement group.
+- `--server value`: The server instance ID of the server to add to the placement group.
 - `--json`: Format output in JSON.
 
 ---
