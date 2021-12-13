@@ -85,6 +85,13 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
 {: shortdesc}
 
+### December 2021
+{: #dec-2021}
+
+- You can now use [VPN](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-connections) to create VPN connection by using CLI.
+- You can now use [VPN IKE policies](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ike-policies) to create an IKE policy for the VPN connection by using CLI.
+- You can now use [VPN IKE policies](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ipsec-policies) to create an IPsec policy for the VPN connection by using CLI.
+
 ### October 2021
 {: #oct-2021}
 
@@ -340,9 +347,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 #### Create a server instance
 {: #create-server-ins}
 
-`ibmcloud pi instance-create INSTANCE_NAME -image IMAGE [--memory MEMORY] <-network \"NETWORK1 [IP1]\">
-[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE]  [--storage-type STORAGE_TYPE] [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]
-[--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network "NETWORK1 [IP1]">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes "VOLUME1 [VOLUMEn]"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY][--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"][--replicants NUMBER] [--replicant-scheme SCHEME][--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
 
@@ -458,6 +463,38 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--type value`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region); required if --affinity-policy and --storage-pool are not provided
 - `--size value`: Size of the volume (in GB)
 - `--shareable`: Whether volume can be attached to multiple VMs
+- `--affinity-policy value`:  Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified
+- `--affinity-instance value`:  PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided
+- `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
+- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
+- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-multi-create`
+{: #ibmcloud pi volume-multi-create}
+
+#### Create multiple volume
+{: #create-mul-vol}
+
+`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --type TYPE --volume-count COUNT --size SIZE [--shareable] [--json]`
+
+`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --storage-pool POOL --volume-count COUNT  --size SIZE [--shareable] [--json]`
+
+`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --affinity-policy affinity --volume-count COUNT --size SIZE [--shareable] (--affinity-volume VOLUME | --affinity-instance INSTANCE) [--json]`
+
+`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --affinity-policy anti-affinity --volume-count COUNT --size SIZE [--shareable] (--anti-affinity-volumes "VOLUME1 [VOLUMEn]" | --anti-affinity-instances "INSTANCE1 [INSTANCEn]") [--json]`
+
+- `VOLUME_NAME`: The base name of the volumes.
+
+**Options**
+
+- `--type value`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region); required if --affinity-policy and --storage-pool are not provided
+- `--volume-count value`: Number of volumes to create.
+- `--size value`: Size of the volume (in GB)
+- `--shareable`: Whether the volume can be attached to multiple VMs
+- `--storage-pool value`: Volume pool where the volume will be created. If --storage-pool is provided then --type and --affinity-policy values cannot be specified
 - `--affinity-policy value`:  Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified
 - `--affinity-instance value`:  PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided
 - `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
@@ -1186,7 +1223,7 @@ or
 #### Create an SAP instance
 {: #create-new-sappvm}
 
-`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [{}storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [{-}-storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--json]`
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--json]`
 
 - `SAP_INSTANCE_NAME`: The name of the SAP instance
 
@@ -1200,10 +1237,10 @@ or
 - `--storage-type value`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
 - `--storage-pool value`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
 - `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `{}storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "{-}-storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `{}storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "{-}-storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
-- `{}storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "{-}-storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `{}storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "{-}-storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+- `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
 - `--key-name`: Name of SSH key.
 - `--json`: Format output in JSON.
 
@@ -1320,6 +1357,22 @@ or
 
 - `--json`: Format output in JSON.
 
+---
+
+### ibmcloud pi instance-list-snapshots
+{: #snapshot-list}
+
+#### List all snapshots for an instance
+{: #instance-snapshot-list}
+
+`ibmcloud pi instance-list-snapshots INSTANCE_ID [--json]`
+
+- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+**Option**
+
+- `--json`: Format output in JSON.
+- 
 ---
 
 ### ibmcloud pi volume-clone
