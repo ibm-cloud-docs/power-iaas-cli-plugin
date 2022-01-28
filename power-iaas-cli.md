@@ -1772,10 +1772,10 @@ or
 
 **Options**
 
-- `--version value`: Version number of the IKE Policy. Valid values are 1, 2
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, sha-256, sha-384
-- `--encryption value`: Encryption algorithm of the IKE policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'
-- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--version value`: Version number of the IKE policy. Valid values are '2', '1'.
+- `--authentication value`: Authentication algorithm of the IKE policy. Valid values are 'sha-256', 'sha-384', 'sha1', 'none'.
+- `--encryption value`: Encryption algorithm of the IKE policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IKE policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
 - `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
 - `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
@@ -1794,11 +1794,11 @@ or
   
 **Options**
 
-- `--name value`: New name of the IKE Policy. The maximum name length is 47 characters
-- `--version value`: Version number of the IKE Policy. Valid values are 1, 2.
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are none, sha1, sha-256, sha-384.
-- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm or aes-256-gcm authentication should be set to 'none'.
-- `--dhgroup value`: DH group number of the IKE Policy. Valid values are 1, 2, 5, 14, 19, 20, 24.
+- `--name value`: New unique name of the IKE Policy. The maximum name length is 47 characters.
+- `--version value`: Version number of the IKE Policy. Valid values are '2', '1'.
+- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are 'sha-256', 'sha-384', 'sha1', 'none'.
+- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IKE Policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
 - `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
 - `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
@@ -1859,11 +1859,11 @@ or
   
 **Options**
 
-- `--authentication value`: Authentication encryption type of the IPSec Policy. Valid values are none, hmac-sha-256-128, hmac-sha1-96
-- `--encryption value`: Connection encryption policy of the IPSec Policy. Valid values are 3des-cbc, aes-128-cbc, aes-128-gcm, aes-192-cbc, aes-192-gcm, aes-256-cbc, aes-256-gcm, des-cbc. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'
-- `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--authentication value`: Authentication encryption type of the IPSec policy. Valid values are 'hmac-sha-256-128', 'hmac-sha1-96', 'none'.
+- `--encryption value`: Connection encryption policy of the IPSec policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-192-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm', 'aes-192-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IPSec policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
+- `--key-lifetime value`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
 - `--pfs`: Enable perfect forward secrecy. Disabled if not specified.
-- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
 - `--json`: Format output in JSON
 
 ---
@@ -1880,13 +1880,13 @@ or
   
 **Options**
 
-- `--name value`: New name of the IPSec Policy. The maximum name length is 47 characters
-- `--authentication value`: Authentication algorithm of the IPSec Policy. Valid values are none, hmac-sha-256-128, hmac-sha1-96
-- `--encryptio value`: Encryption algorithm of the IPSec policy. Valid values are '3des-cbc', 'aes-128-cbc', 'aes-128-gcm, 'aes-192-cbc', 'aes-192-gcm', 'aes-256-cbc', 'aes-256-gcm', 'des-cbc'. When using aes-128-gcm, aes-192-gcm or aes-256-gcm authentication should be set to 'none'.
-- `--dhgroup value`: DH group number of the IPSec Policy. Valid values are 1, 2, 5, 14, 19, 20, 24
+- `--name value`: New unique name of the IPSec policy. The maximum name length is 47 characters.
+- `--authentication value`: Authentication algorithm of the IPSec policy. Valid values are 'hmac-sha-256-128', 'hmac-sha1-96', 'none'.
+- `--encryption value`: Encryption algorithm of the IPSec policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-192-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm', 'aes-192-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dhgroup value`: DH group number of the IPSec policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
 - `--key-lifetime value`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
-- `--pfs`: Enable or disable perfect forward secrecy
-- `--json`: Format output in JSON
+- `--pfs`: Enable or disable perfect forward secrecy.
+- `--json`: Format output in JSON.
 
 ---
 
