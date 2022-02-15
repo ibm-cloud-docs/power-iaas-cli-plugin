@@ -1601,7 +1601,7 @@ or
 - `--storage-type value`: Storage type for virtual tape library deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
 - `--storage-pool value`: Storage pool for virtual tape library deployment. Only valid when you deploy one of the IBM supplied stock images.
 - `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified
--`--storage-affinity-instance value`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided
+- `--storage-affinity-instance value`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided
 - `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
 - `--storage-anti-affinity-instances value`: Space separated list of PVM instance or VTL identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided
 - `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided
@@ -1620,9 +1620,9 @@ or
 #### Delete a virtual tape library
 {: #delete-a-vtl}
 
-`ibmcloud pi virtual-tape-library-create TAPE_LIBRARY_NAME --image IMAGE --capacity LICENSED_CAPACITY [--memory MEMORY] <--network \"NETWORK1 [IP1]\"> [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE] [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--json]`
+`ibmcloud pi virtual-tape-library-delete TAPE_LIBRARY_ID [--delete-data-volumes]`
 
-- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
 
 **Options**
 
