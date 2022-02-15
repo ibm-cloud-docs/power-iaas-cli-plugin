@@ -1883,7 +1883,7 @@ or
 #### Get a list of networks attached to a specific VPN connection
 {: #get-list-net-vpn}
 
-` ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
+`ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
 
 - `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
   
