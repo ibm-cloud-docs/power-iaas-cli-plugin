@@ -1546,6 +1546,251 @@ or
 
 ---
 
+### ibmcloud pi virtual-tape-library
+{: #virtual-tape-library}
+
+#### View details of a virtual tape library
+{: #view-details-vtl}
+
+`ibmcloud pi virtual-tape-library TAPE_LIBRARY_ID [--json]`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+**Options**
+
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi virtual-tape-libraries
+{: #virtual-tape-libraries}
+
+#### List all virtual tape libraries
+{: #list-all-vtl}
+
+`ibmcloud pi virtual-tape-libraries [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve all virtual tape library details.
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi virtual-tape-create
+{: #virtual-tape-library-create}
+
+#### Create a virtual tape library
+{: #create-a-vtl}
+
+`ibmcloud pi virtual-tape-library-create TAPE_LIBRARY_NAME --image IMAGE --capacity LICENSED_CAPACITY [--memory MEMORY] <--network \"NETWORK1 [IP1]\">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"[--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--placement-group GROUP_ID] [--json]`
+
+- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
+
+**Options**
+
+- `--image value`: Operating system image identifier or name.
+- `--capacity value`: Amount of licensed repository capacity (in TB).
+- `--memory value`: Amount of memory (in GB) to allocate to the virtual tape library. Memory needs to be at least 16 GB + (2 GB x the licensed repository capacity value)
+- `--network value`: Space separated identifier/name of the network and optional IP address to associate with the virtual tape library.
+- `--processors value`: Amount of processors to allocate to the virtual tape library. 1-12 TB of licensed repository capacity needs at least 2 processors. 13 - 72 TB of licensed repository capacity needs at least 4 processors. Greater than 72 TB of licensed repository capacity needs at least 8 processors.
+- `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
+- `--volumes value`: Space separated list of identifiers or names of the volumes to associate with the virtual tape library. A minimum of 3 volumes is required.
+- `--key-name value`: Name of SSH key
+- `--storage-type value`: Storage type for virtual tape library deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
+- `--storage-pool value`: Storage pool for virtual tape library deployment. Only valid when you deploy one of the IBM supplied stock images.
+- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified
+- `--storage-affinity-instance value`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided
+- `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
+- `--storage-anti-affinity-instances value`: Space separated list of PVM instance or VTL identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided
+- `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided
+- `--pin-policy value`: Pin policy ("none", "soft", "hard"). Default is "none".
+- `--replicants value`: Number of duplicate virtual tape libraries to create in this request.
+- `--replicant-scheme value`: Naming scheme to use for duplicate virtual tape libraries ("suffix", "prefix").
+- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity").
+- `--placement-group value`: The placement group ID of the group that the virtual tape library will be added to.
+- `--json`: Format output in JSON
+  
+---
+
+### ibmcloud pi virtual-tape-library-delete
+{: #virtual-tape-library-delete}
+
+#### Delete a virtual tape library
+{: #delete-a-vtl}
+
+`ibmcloud pi virtual-tape-library-delete TAPE_LIBRARY_ID [--delete-data-volumes]`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+**Options**
+
+- `--delete-data-volumes`: Indicates whether all data volumes attached to the virtual tape library must be deleted. Shared data volumes will be deleted if no other virtual tape libraries are attached.
+
+---
+
+### ibmcloud pi virtual-tape-library-update
+{: #virtual-tape-library-update}
+
+#### Update a virtual tape library.
+{: #update-a-vtl}
+
+`ibmcloud pi virtual-tape-library-update TAPE_LIBRARY_ID [--capacity LICENSED_CAPACITY] [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--storage-pool-affinity=True|False] [--json]`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+**Options**
+
+- `--capacity value`: New amount of licensed repository capacity (in TB). This value can only be increased.
+- `--memory value`: New amount of memory for the virtual tape library. Memory needs to be at least 16 GB + (2 GB x the licensed repository capacity value).
+- `--name value`: New name of the virtual tape library.
+- `--pin-policy value`: New pin policy for the virtual tape library ("none", "soft", "hard").
+- `--processors value`: New amount of processors for the virtual tape library. 1-12 TB of licensed repository capacity needs at least 2 processor. 13 - 72 TB of licensed repository capacity needs at least 4 processors. Greater than 72 TB of licensed repository capacity needs at least 8 processors.
+- `--processor-type value`: New processor type for the virtual tape library.
+- `--storage-pool-affinity`:  Indicates if all volumes attached to the virtual tape library must reside in the same storage pool. If set to false then volumes from any storage type and pool can be attached to the virtual tape library. Once set to false, cannot be set back to true unless all volumes attached reside in the same storage type and pool.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi virtual-tape-library-attach-network
+{: #virtual-tape-library-attach}
+
+#### Attach a network to the virtual tape library.
+{: #attac-nw-vtl}
+
+`ibmcloud pi virtual-tape-library-attach-network TAPE_LIBRARY_NAME --network "NETWORK_ID" [--ip-address "IP_ADDRESS"] [--json]`
+
+- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
+
+**Options**
+
+- `--network value`: The network ID.
+- `--ip-address value`: The requested ip address of this network interface.
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi virtual-tape-library-detach-network
+{: #virtual-tape-library-detach}
+
+#### Detach all or a specific network from the virtual tape library.
+{: #detach-nw-vtl}
+
+`ibmcloud pi virtual-tape-library-detach-network TAPE_LIBRARY_NAME --network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
+
+- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
+
+**Options**
+
+- `--network value`: The network ID.
+- `--mac-address value`: The mac address of the network interface to be removed. The default is all mac addresses.
+
+---
+
+### ibmcloud pi virtual-tape-library-get-console
+{: #virtual-tape-library-get-console}
+
+#### Get the console of a virtual tape library.
+{: #get-console-vtl}
+
+`ibmcloud pi virtual-tape-library-get-console TAPE_LIBRARY_ID [--json]`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi virtual-tape-library-networks
+{: #virtual-tape-library-networks}
+
+#### List all the attached networks.
+{: #get-console-vtl}
+
+`ibmcloud pi virtual-tape-library-networks TAPE_LIBRARY_NAME [--json]`
+
+- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### ibmcloud pi virtual-tape-library-hard-reboot
+{: #virtual-tape-library-reboot}
+
+#### Hard restart the operating system of a virtual tape library.
+{: #hard-reboot-vtl}
+
+`ibmcloud pi virtual-tape-library-hard-reboot TAPE_LIBRARY_ID`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+---
+
+### ibmcloud pi virtual-tape-library-immediate-shutdown
+{: #virtual-tape-library-shutdown}
+
+#### Immediately shutdown a virtual tape library
+{: #immediate-shutdown-vtl}
+
+`ibmcloud pi virtual-tape-library-immediate-shutdown TAPE_LIBRARY_ID`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+---
+
+### ibmcloud pi virtual-tape-library-reset-state
+{: #virtual-tape-library-reset}
+
+#### Immediately shutdown a virtual tape library
+{: #reset-vtl}
+
+`ibmcloud pi virtual-tape-library-reset-state TAPE_LIBRARY_ID`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+---
+
+### ibmcloud pi virtual-tape-library-soft-reboot
+{: #virtual-tape-library-softreboot}
+
+#### Soft restart the operating system of a virtual tape library.
+{: #soft-reboot-vtl}
+
+`ibmcloud pi virtual-tape-library-soft-reboot TAPE_LIBRARY_ID`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+---
+
+### ibmcloud pi virtual-tape-library-start
+{: #virtual-tape-library-start}
+
+#### Start a virtual tape library
+{: #start-vtl}
+
+`ibmcloud pi virtual-tape-library-start TAPE_LIBRARY_ID`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+---
+
+### ibmcloud pi virtual-tape-library-stop
+{: #virtual-tape-library-stop}
+
+#### Stop a virtual tape library.
+{: #stop-vtl}
+
+`ibmcloud pi virtual-tape-library-stop TAPE_LIBRARY_ID`
+
+- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
+
+---
+
 ### ibmcloud pi vpn-connections
 {: #vpn-connections}
 
@@ -1637,7 +1882,7 @@ or
 #### Get a list of networks attached to a specific VPN connection
 {: #get-list-net-vpn}
 
-` ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
+`ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
 
 - `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
   
