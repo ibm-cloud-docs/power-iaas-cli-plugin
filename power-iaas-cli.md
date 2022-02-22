@@ -1223,7 +1223,7 @@ or
 #### Create an SAP instance
 {: #create-new-sappvm}
 
-`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--json]`
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--placement-group PLACEMENT_GROUP_ID] [--json]`
 
 - `SAP_INSTANCE_NAME`: The name of the SAP instance
 
@@ -1242,6 +1242,7 @@ or
 - `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
 - `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
 - `--key-name`: Name of SSH key.
+- `--placement-group value`: The placement group ID of the group that the server will be added to.
 - `--json`: Format output in JSON.
 
 ---
