@@ -1311,6 +1311,8 @@ or
 - `--description`: Snapshot description.
 - `--json`: Format output in JSON.
 
+Each snapshot that you create is monitored hourly and charged depending on the disk space that is requested for the snapshot. For more information on pricing for the snapshot, see [Pricing for IBM Cloud Direct Link](/docs/power-iaas?topic=power-iaas-volume-snapshot-clone#metering-snapshot)
+
 ---
 
 ### ibmcloud pi instance-snapshot-delete
