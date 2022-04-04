@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-05-20"
+  years: 2019, 2022
+lastupdated: "2022-04-01"
 
 ---
 
@@ -84,6 +84,11 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
 {: shortdesc}
+
+### April 2022
+{: apr-2022}
+
+- Provisioning VTL instances is temporarily disabled.
 
 ### December 2021
 {: #dec-2021}
@@ -1310,6 +1315,8 @@ or
 - `--description`: Snapshot description.
 - `--json`: Format output in JSON.
 
+Each snapshot that you create is monitored hourly and charged depending on the disk space that is requested for the snapshot. For more information on pricing for the snapshot, see [Metering of snapshot and pricing](/docs/power-iaas?topic=power-iaas-volume-snapshot-clone#metering-snapshot)
+
 ---
 
 ### ibmcloud pi instance-snapshot-delete
@@ -1577,7 +1584,7 @@ or
 - `--json`: Format output in JSON
   
 ---
-
+<!--
 ### ibmcloud pi virtual-tape-create
 {: #virtual-tape-library-create}
 
@@ -1610,7 +1617,7 @@ or
 - `--replicant-scheme value`: Naming scheme to use for duplicate virtual tape libraries ("suffix", "prefix").
 - `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity").
 - `--placement-group value`: The placement group ID of the group that the virtual tape library will be added to.
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON -->
   
 ---
 
