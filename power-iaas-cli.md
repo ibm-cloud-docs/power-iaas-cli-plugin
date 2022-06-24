@@ -1454,6 +1454,7 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 {: #create-cloud-connection}
 
 `ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
+`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED --transit-enabled [--networks "NETWORK_ID1..NETWORK_IDn"] [--global-routing] [--metered] [--json]`
 
 - `CONNECTION_NAME`: The unique name of the cloud connection
 
@@ -1467,6 +1468,7 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 - `--gre-tunnel value`: Space separated "cidr" and "destinationIPAddress". Use with "--classic" option. GRE tunnel cannot be configured with speeds above 5000.
 - `--metered`: Metered cloud connection flag
 - `--global-routing`: Global routing flag
+- `--transit-enabled`: Enable transit gateway
 - `--json`: Format output in JSON
 
 ---
