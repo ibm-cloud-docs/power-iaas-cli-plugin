@@ -85,6 +85,11 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
 {: shortdesc}
 
+### July 2022
+{: Jul-2022}
+
+- You can now use [Transit Gateway](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to interconnect your {{site.data.keyword.powerSys_notm}} to the {{site.data.keyword.cloud_notm}} classic and Virtual Private Cloud (VPC).
+
 ### April 2022
 {: apr-2022}
 
@@ -1468,7 +1473,7 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 - `--gre-tunnel value`: Space separated "cidr" and "destinationIPAddress". Use with "--classic" option. GRE tunnel cannot be configured with speeds above 5000.
 - `--metered`: Metered cloud connection flag
 - `--global-routing`: Global routing flag
-- `--transit-enabled`: Enable transit gateway
+- `--transit-enabled`: Enable transit gateway. This option is currently available on DAL12 and us-east zones.
 - `--json`: Format output in JSON
 
 ---
