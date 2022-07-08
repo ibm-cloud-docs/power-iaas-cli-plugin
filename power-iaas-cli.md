@@ -85,7 +85,7 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
 {: shortdesc}
 
-### Juyly 2022
+### July 2022
 {: Jul-2022}
 
 - You can now use [Transit Gateway](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to interconnect your {{site.data.keyword.powerSys_notm}} to the {{site.data.keyword.cloud_notm}} classic and Virtual Private Cloud (VPC).
