@@ -94,14 +94,14 @@ Use these release notes to learn about the latest changes to the {{site.data.key
     - [Delete a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-delete)
     - [Update a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-update)
     - [List all shared processor pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pools)
-    - [View details of a shared processor pool placement group](https://test.cloud.ibm.com/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
+    - [View details of a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group)
     - [Create a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-create)
     - [Delete a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-delete)
     - [Add a shared processor pool to the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-member-add)
     - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
     - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
 
-- The command Create a server instance is updated to include a new option for shared processor pool.
+- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include a new option for shared processor pool.
 
 ### July 2022
 {: Jul-2022}
@@ -1117,7 +1117,7 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group`
-{: #ibmcloud-pi-shared-processor-pool}
+{: #ibmcloud-pi-shared-processor-pool-placement-group}
 
 #### View details of a shared processor pool placement group
 {: #view-details-shared-processor-pool-placement-group}
