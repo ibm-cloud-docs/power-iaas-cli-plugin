@@ -89,17 +89,17 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: sept-2022}
 
 - You can now use shared processor pool using CLI. The following commands are added new for shared processor pool:
-    - [View details of a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool)
-    - [Create a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-create)
-    - [Delete a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-delete)
-    - [Update a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-update)
-    - [List all shared processor pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pools)
-    - [View details of a shared processor pool placement group](https://test.cloud.ibm.com/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool)
-    - [Create a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-placement-group-create)
-    - [Delete a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-placement-group-delete)
-    - [Add a shared processor pool to the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-placement-group-member-add)
+    - [View details of a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
+    - [Create a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-create)
+    - [Delete a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-delete)
+    - [Update a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-update)
+    - [List all shared processor pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pools)
+    - [View details of a shared processor pool placement group](https://test.cloud.ibm.com/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
+    - [Create a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-create)
+    - [Delete a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-delete)
+    - [Add a shared processor pool to the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-member-add)
     - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
-    - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-procesor-pool-placement-groups)
+    - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
 
 - The command Create a server instance is updated to include a new option for shared processor pool.
 
@@ -1038,9 +1038,9 @@ or
 ---
 
 ### `ibmcloud pi shared-processor-pool`
-{: #ibmcloud-pi-shared-procesor-pool}
+{: #ibmcloud-pi-shared-processor-pool}
 
-#### View details of a shared processor pool.
+#### View details of a shared processor pool
 {: #shared-processor-pool-details}
 
 `ibmcloud pi shared-processor-pool SHARED_PROCESSOR_POOL_ID [--json]`
@@ -1054,9 +1054,9 @@ or
 ---
 
 ### `ibmcloud pi shared-processor-pool-create`
-{: #ibmcloud-pi-shared-procesor-pool-create}
+{: #ibmcloud-pi-shared-processor-pool-create}
 
-#### Create a shared processor pool.
+#### Create a shared processor pool
 {: #create-shared-processor-pool}
 
 `ibmcloud pi shared-processor-pool-create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--placement-group-id PLACEMENT_GROUP_ID] [--json]`
@@ -1073,9 +1073,9 @@ or
 ---
 
 ### `ibmcloud pi shared-processor-pool-delete`
-{: #ibmcloud-pi-shared-procesor-pool-delete}
+{: #ibmcloud-pi-shared-processor-pool-delete}
 
-#### Delete a shared processor pool.
+#### Delete a shared processor pool
 {: #delete-shared-processor-pool}
 
 `ibmcloud pi shared-processor-pool-delete SHARED_PROCESSOR_POOL_ID`
@@ -1085,9 +1085,9 @@ or
 ---
 
 ### `ibmcloud pi shared-processor-pool-update`
-{: #ibmcloud-pi-shared-procesor-pool-update}
+{: #ibmcloud-pi-shared-processor-pool-update}
 
-#### Update a shared processor pool.
+#### Update a shared processor pool
 {: #update-shared-processor-pool}
 
 `ibmcloud pi shared-processor-pool-update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] [--json]`
@@ -1103,9 +1103,9 @@ or
 ---
 
 ### `ibmcloud pi shared-processor-pools`
-{: #ibmcloud-pi-shared-procesor-pools}
+{: #ibmcloud-pi-shared-processor-pools}
 
-#### List all shared processor pools.
+#### List all shared processor pools
 {: #list-shared-processor-pools}
 
 `ibmcloud pi shared-processor-pools [--json]`
@@ -1117,9 +1117,9 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group`
-{: #ibmcloud-pi-shared-procesor-pool}
+{: #ibmcloud-pi-shared-processor-pool}
 
-#### View details of a shared processor pool placement group.
+#### View details of a shared processor pool placement group
 {: #view-details-shared-processor-pool-placement-group}
 
 `ibmcloud pi spp-placement-group PLACEMENT_GROUP_ID [--json]`
@@ -1133,9 +1133,9 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group-create`
-{: #ibmcloud-pi-shared-procesor-pool-placement-group-create}
+{: #ibmcloud-pi-shared-processor-pool-placement-group-create}
 
-#### Create a shared processor pool placement group.
+#### Create a shared processor pool placement group
 {: #create-shared-processor-pool-placement-group}
 
 `ibmcloud pi spp-placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
@@ -1150,9 +1150,9 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group-delete`
-{: #ibmcloud-pi-shared-procesor-pool-placement-group-delete}
+{: #ibmcloud-pi-shared-processor-pool-placement-group-delete}
 
-#### Delete a shared processor pool placement group.
+#### Delete a shared processor pool placement group
 {: #delete-shared-processor-pool-placement-group}
 
 `ibmcloud pi spp-placement-group-delete PLACEMENT_GROUP_ID`
@@ -1162,9 +1162,9 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group-member-add`
-{: #ibmcloud-pi-shared-procesor-pool-placement-group-member-add}
+{: #ibmcloud-pi-shared-processor-pool-placement-group-member-add}
 
-#### Add a shared processor pool to the placement group.
+#### Add a shared processor pool to the placement group
 {: #add-to-shared-processor-pool-placement-group}
 
 `ibmcloud pi spp-placement-group-member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
@@ -1179,9 +1179,9 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group-member-remove`
-{: #ibmcloud-pi-shared-procesor-pool-placement-group-member-remove}
+{: #ibmcloud-pi-shared-processor-pool-placement-group-member-remove}
 
-#### Remove a shared processor pool from the placement group.
+#### Remove a shared processor pool from the placement group
 {: #remove-from-shared-processor-pool-placement-group}
 
 `ibmcloud pi spp-placement-group-member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
@@ -1196,9 +1196,9 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-groups`
-{: #ibmcloud-pi-shared-procesor-pool-placement-groups}
+{: #ibmcloud-pi-shared-processor-pool-placement-groups}
 
-#### List all shared processor pool placement groups.
+#### List all shared processor pool placement groups
 {: #list-shared-processor-pool-placement-groups}
 
 `ibmcloud pi spp-placement-groups [--json]`
