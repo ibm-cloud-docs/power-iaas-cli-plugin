@@ -394,6 +394,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
 - `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--placement-group`: The placement group ID of the group that the server will be added to.
+- `--shared-processor-pool value`: The shared processor pool ID of the pool that the server will be in.
 - `--json`: Format output in JSON.
 
 ---
@@ -1011,6 +1012,178 @@ or
 {: #target-service}
 
 `ibmcloud pi service-target [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pool`
+{: #ibmcloud-pi-shared-procesor-pool}
+
+#### View details of a shared processor pool.
+{: #shared-processor-pool-details}
+
+`ibmcloud pi shared-processor-pool SHARED_PROCESSOR_POOL_ID [--json]`
+
+- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pool-create`
+{: #ibmcloud-pi-shared-procesor-pool-create}
+
+#### Create a shared processor pool.
+{: #create-shared-processor-pool}
+
+`ibmcloud pi shared-processor-pool-create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--placement-group-id PLACEMENT_GROUP_ID] [--json]`
+
+- `SHARED_PROCESSOR_POOL_NAME`: A unique name of the shared processor pool. A minumum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'
+
+**Options**
+
+- `--host-group value`: The host group where the host will be chosen if not provided. Valid values are 's922' and 'e980'
+- `--reserved-cores value`: The integer amount of reserved processor cores for the shared processor pool.
+- `--placement-group-id value`: The identifier of the shared processor pool placement group the pool will be added to.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pool-delete`
+{: #ibmcloud-pi-shared-procesor-pool-delete}
+
+#### Delete a shared processor pool.
+{: #delete-shared-processor-pool}
+
+`ibmcloud pi shared-processor-pool-delete SHARED_PROCESSOR_POOL_ID`
+
+- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
+
+---
+
+### `ibmcloud pi shared-processor-pool-update`
+{: #ibmcloud-pi-shared-procesor-pool-update}
+
+#### Update a shared processor pool.
+{: #update-shared-processor-pool}
+
+`ibmcloud pi shared-processor-pool-update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] [--json]`
+
+- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
+
+**Options**
+
+-  `--name value`: New name of the shared processor pool. A minumum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'
+-  `--reserved-cores value`: The integer amount of reserved processor cores for the shared processor pool.
+-  `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pools`
+{: #ibmcloud-pi-shared-procesor-pools}
+
+#### List all shared processor pools.
+{: #list-shared-processor-pools}
+
+`ibmcloud pi shared-processor-pools [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group`
+{: #ibmcloud-pi-shared-procesor-pool}
+
+#### View details of a shared processor pool placement group.
+{: #view-details-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group PLACEMENT_GROUP_ID [--json]`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group-create`
+{: #ibmcloud-pi-shared-procesor-pool-placement-group-create}
+
+#### Create a shared processor pool placement group.
+{: #create-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
+
+- `PLACEMENT_GROUP_NAME`: A unique name of the placement group.
+
+**Options**
+
+- `--policy value`: Affinity policy for placement group being created. Valid values are affinity and anti-affinity.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group-delete`
+{: #ibmcloud-pi-shared-procesor-pool-placement-group-delete}
+
+#### Delete a shared processor pool placement group.
+{: #delete-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-delete PLACEMENT_GROUP_ID`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+---
+
+### `ibmcloud pi spp-placement-group-member-add`
+{: #ibmcloud-pi-shared-procesor-pool-placement-group-member-add}
+
+#### Add a shared processor pool to the placement group.
+{: #add-to-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+**Options**
+
+- `--shared-processor-pool value`: The shared processor pool ID of the pool to add to the placement group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group-member-remove`
+{: #ibmcloud-pi-shared-procesor-pool-placement-group-member-remove}
+
+#### Remove a shared processor pool from the placement group.
+{: #remove-from-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+**Options**
+
+- `--shared-processor-pool value`: The shared processor pool ID of the pool to add to the placement group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-groups`
+{: #ibmcloud-pi-shared-procesor-pool-placement-groups}
+
+#### List all shared processor pool placement groups.
+{: #list-shared-processor-pool-placement-groups}
+
+`ibmcloud pi spp-placement-groups [--json]`
 
 **Options**
 
