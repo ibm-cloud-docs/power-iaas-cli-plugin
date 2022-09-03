@@ -103,6 +103,28 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 - The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include a new option for shared processor pool.
 
+- You can now use global replication service using CLI. The following commands are added new for global replication service:
+    - [List disaster recovery locations for the current region or all regions](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-disaster-recovery-loc)
+    - [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#i#ibmcloud-pi-volume-action)
+    - [Get a list of flash copy mappings of a volume directly from primary storage host.](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-flash-copy-map)
+    - [View details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-details)
+    - [Create a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#i#ibmcloud-pi-volume-group-create)
+    - [Delete a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-delete)
+    - [Get all remote copy relationships for each volume in a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-remote-copy-rel)
+    - [Reset a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-reset)
+    - [List all volume groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-groups)
+    - [Start a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-start)
+    - [Stop a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-stop)
+    - [View storage details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-storage-details)
+    - [Update a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-update)
+    - [Get the information of volume onboarding operation](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-info)
+    - [Create a volume onboarding operation](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-create)
+    - [List all volume onboarding operations](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-list)
+    - [Get the remote copy relationship information of a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-remote-copy-rel)
+
+- The command [Create a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud pi volumes-create) is updated to include a new option *replication-enabled*.
+    
+
 ### July 2022
 {: Jul-2022}
 
@@ -153,6 +175,24 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ## Commands
 {: #power-iaas-cli-commands}
+
+
+### `ibmcloud pi disaster-recovery-locations`
+{: #ibmcloud-pi-disaster-recovery-loc}
+
+#### List disaster recovery locations for the current region or all regions
+{: #list-disaster-recovery-sites}
+
+`ibmcloud pi disaster-recovery-locations [--all-regions] [--json]`
+
+- `VOLUME_ID`: The unique identifier or name of the volume.
+
+**Options**
+
+- `--all-regions`: List disaster recovery locations for all regions.
+- `--json`: Format output in JSON.
+
+---
 
 ### `ibmcloud pi image`
 {: #ibmcloud-pi-image}
@@ -473,7 +513,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ---
 
 ### `ibmcloud pi volume-create`
-{: #ibmcloud pi volume-create}
+{: #ibmcloud pi volumes-create}
 
 #### Create a volume
 {: #create-vol}
@@ -498,6 +538,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
 - `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
 - `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
+- `--replication-enabled`: Enables storage replication on the volume. False by default. Cannot set to true if shareable is true.
 - `--json`: Format output in JSON.
 
 ---
@@ -1238,6 +1279,22 @@ or
 
 ---
 
+### `ibmcloud pi volume-action`
+{: #ibmcloud-pi-volume-action}
+
+#### Perform an action on a volume
+{: #perform-action-vol}
+
+`ibmcloud pi volume-action VOLUME_ID --replication-enabled`
+
+- `VOLUME_ID`: The unique identifier or name of volume.
+
+**Options**
+
+- `--replication-enabled`: Enables storage replication on the volume.
+
+---
+
 ### `ibmcloud pi volume-attach`
 {: #ibmcloud-pi-volume-attach}
 
@@ -1303,6 +1360,241 @@ or
 
 ---
 
+### `ibmcloud pi volume-flash-copy-mapping`
+{: #ibmcloud-pi-volume-flash-copy-map}
+
+#### Get a list of flash copy mappings of a volume directly from primary storage host
+{: #get-list-flash-copy-map}
+
+`ibmcloud pi volume-flash-copy-mapping VOLUME_ID [--json]`
+
+- `VOLUME_ID`: The unique identifier or name of the volume.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group`
+{: #ibmcloud-pi-volume-group-details}
+
+#### View details of a volume group
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-group VOLUME_GROUP_ID [--long] [--json]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--long`: Retrieve additional details for the volume group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-create`
+{: #ibmcloud-pi-volume-group-create}
+
+#### Create a volume group
+{: #create-vol-group}
+
+`ibmcloud pi volume-group-create (--volume-group-name VOLUME_GROUP_NAME | --consistency-group-name CONSISTENCY_GROUP_NAME) --member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]" [--json]`
+
+**Options**
+
+- `--volume-group-name value`: Storage volume group name. This is required for the creation of new volume group.
+- `--consistency-group-name value`: Storage volume group name. This is required to onboard existing volume group on the target site for DR set up.
+- `--member-volume-ids value`: Space separated member volume identifiers.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-delete`
+{: #ibmcloud-pi-volume-group-delete}
+
+#### Delete a volume group
+{: #delete-vol-group}
+
+`ibmcloud pi volume-group-delete VOLUME_GROUP_ID`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+---
+
+### `ibmcloud pi volume-group-remote-copy-relationships`
+{: #ibmcloud-pi-volume-group-remote-copy-rel}
+
+#### Get all remote copy relationships for each volume in a volume group
+{: #remote-copy-rel-vol-group}
+
+`ibmcloud pi volume-group-remote-copy-relationships VOLUME_GROUP_ID [--json]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-reset`
+{: #ibmcloud-pi-volume-group-reset}
+
+#### Reset a volume group
+{: #reset-vol-group}
+
+`ibmcloud pi volume-group-reset VOLUME_GROUP_ID`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+---
+
+### `ibmcloud pi volume-groups`
+{: #ibmcloud-pi-volume-groups}
+
+#### List all volume groups
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-groups [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve additional details for all volume groups.
+- `--json`: Format output in JSON
+
+---
+
+### `ibmcloud pi volume-group-start`
+{: #ibmcloud-pi-volume-group-start}
+
+#### Start a volume group
+{: #start-vol-group}
+
+`ibmcloud pi volume-group-start VOLUME_GROUP_ID [--source SOURCE]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--source value`: The copying volume source. Allowed values are master or auxiliary. Default is master.
+
+---
+
+### `ibmcloud pi volume-group-stop`
+{: #ibmcloud-pi-volume-group-stop}
+
+#### Stop a volume group
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-group-stop VOLUME_GROUP_ID [--allow-read-access]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--allow-read-access`: Allow the auxiliary volume to be accessible after stopping the volume group. Default is false.
+
+---
+
+### `ibmcloud pi volume-group-storage-details`
+{: #ibmcloud-pi-volume-group-storage-details}
+
+#### View storage details of a volume group
+{: #view-storage-details-vol-group}
+
+`ibmcloud pi volume-group-storage-details VOLUME_GROUP_ID [--json]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-update`
+{: #ibmcloud-pi-volume-group-update}
+
+#### Update a volume group
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-group-update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]"] [--remove-member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]"]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--add-member-volume-ids value`: Space separated volume identifiers to add as members of the volume group.
+- `--remove-member-volume-ids value`: Space separated volume identifiers to remove as members of the volume group.
+
+---
+
+### `ibmcloud pi volume-onboarding`
+{: #ibmcloud-pi-volume-onboarding-info}
+
+#### Get the information of volume onboarding operation
+{: #info-volume-onboarding}
+
+`ibmcloud pi volume-onboarding VOLUME_ONBOARDING_ID [--json]`
+
+- `VOLUME_ONBOARDING_ID`: The unique identifier of the onboarding operation.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-onboarding-create`
+{: #ibmcloud-pi-volume-onboarding-create}
+
+#### Create a volume onboarding operation
+{: #create-volume-onboarding}
+
+`ibmcloud pi volume-onboarding-create --sourceCRN SERVICE_ID <--auxiliary-volume "AUXVOLUMENAME1 [NAME1]"> [--description] [--json]`
+
+- `SERVICE_ID`: The unique identifier of the service, VOLUME: The unique identifier or name of the volume.
+
+**Options**
+
+- `--source-crn value`: CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
+- `--auxiliary-volume value`: Space separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
+- `--description value`: Volume onboarding description.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-onboardings`
+{: #ibmcloud-pi-volume-onboarding-list}
+
+#### List all volume onboarding operations
+{: #list-volume-onboarding}
+
+`ibmcloud pi volume-onboardings [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-remote-copy-relationship`
+{: #ibmcloud-pi-volume-remote-copy-rel}
+
+#### Get the remote copy relationship information of a volume
+{: #remote-copy-rel-vol}
+
+`ibmcloud pi volume-remote-copy-relationship VOLUME_ID [--json]`
+
+- `VOLUME_ID`: The unique identifier or name of the volume.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi volume-update`
 {: #ibmcloud-pi-volume-update}
 
@@ -1322,6 +1614,7 @@ or
 - `--json`: Format output in JSON.
 
 ---
+
 
 ### `ibmcloud pi volumes`
 {: #ibmcloud-pi-volumes}
