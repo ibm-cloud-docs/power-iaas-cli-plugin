@@ -101,7 +101,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
     - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
     - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
 
-- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include a new option for shared processor pool.
+- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following two new options for shared processor pool and epic respectively:
+    - *shared-processor-pool value*
+    - *deployment-type value*
 
 - You can now use global replication service using CLI. The following commands are added new for global replication service:
     - [List disaster recovery locations for the current region or all regions](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-disaster-recovery-loc)
@@ -453,6 +455,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--placement-group`: The placement group ID of the group that the server will be added to.
 - `--shared-processor-pool value`: The shared processor pool ID of the pool that the server will be in.
+- `--deployment-type value`: The custom deployment type.
 - `--json`: Format output in JSON.
 
 ---
