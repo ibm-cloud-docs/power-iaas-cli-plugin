@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-09-02"
+lastupdated: "2022-09-13"
 
 ---
 
@@ -88,7 +88,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### September 2022
 {: sept-2022}
 
-- You can now use shared processor pool using CLI. The following commands are added new for shared processor pool:
+- You can now use shared processor pool using CLI. The following are new commands for shared processor pools:
     - [View details of a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
     - [Create a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-create)
     - [Delete a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-delete)
@@ -101,16 +101,16 @@ Use these release notes to learn about the latest changes to the {{site.data.key
     - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
     - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
 
-- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following two new options for shared processor pool and epic respectively:
+- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following new options:
     - *shared-processor-pool value*
-    - *deployment-type value*
+    - *deployment-type value* (For internal use only)
 
 - You can now use global replication service using CLI. The following commands are added new for global replication service:
     - [List disaster recovery locations for the current region or all regions](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-disaster-recovery-loc)
-    - [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#i#ibmcloud-pi-volume-action)
+    - [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-action)
     - [Get a list of flash copy mappings of a volume directly from primary storage host.](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-flash-copy-map)
     - [View details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-details)
-    - [Create a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#i#ibmcloud-pi-volume-group-create)
+    - [Create a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-create)
     - [Delete a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-delete)
     - [Get all remote copy relationships for each volume in a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-remote-copy-rel)
     - [Reset a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-reset)
@@ -125,6 +125,8 @@ Use these release notes to learn about the latest changes to the {{site.data.key
     - [Get the remote copy relationship information of a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-remote-copy-rel)
 
 - The command [Create a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud) is updated to include a new option *replication-enabled*.
+
+- The description of [Create a new SAP PVM Instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-sap-instance) is changed for HANA images. 
     
 
 ### July 2022
@@ -186,8 +188,6 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #list-disaster-recovery-sites}
 
 `ibmcloud pi disaster-recovery-locations [--all-regions] [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
@@ -1555,9 +1555,7 @@ or
 #### Create a volume onboarding operation
 {: #create-volume-onboarding}
 
-`ibmcloud pi volume-onboarding-create --sourceCRN SERVICE_ID <--auxiliary-volume "AUXVOLUMENAME1 [NAME1]"> [--description] [--json]`
-
-- `SERVICE_ID`: The unique identifier of the service, VOLUME: The unique identifier or name of the volume.
+`ibmcloud pi volume-onboarding-create --source-crn SOURCE_CRN <--auxiliary-volume "AUXVOLUMENAME1 [NAME1]"--> [--description] [--json]`
 
 **Options**
 
@@ -1718,20 +1716,23 @@ or
 ### ibmcloud pi instance-sap-create-instance
 {: #create-sap-instance}
 
-#### Create an SAP instance
+#### Create a new SAP PVM Instance. This command is for use with Linux for SAP (HANA) images. 
 {: #create-new-sappvm}
 
-`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--placement-group PLACEMENT_GROUP_ID] [--json]`
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"]
+    [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
+    [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"]
+    [--key-name KEY-NAME] [--sys-type TYPE] [--placement-group PLACEMENT_GROUP_ID] [--json]`
 
 - `SAP_INSTANCE_NAME`: The name of the SAP instance
 
 **Options**
 
-- `--image`: Operating system image identifier or name.
-- `--profile-id`: The unique identifier of the SAP profile.
-- `--networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
-- `--pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
-- `--volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+- `--image value`: Linux for SAP (HANA) operating system image identifier or name.
+- `--profile-id value`: The unique identifier of the SAP profile.
+- `--networks value`: Space separated identifier/name of the network and optional IP address to associate with the instance.
+- `--pin-policy vlaue`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
+- `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--storage-type value`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
 - `--storage-pool value`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
 - `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
@@ -1739,8 +1740,9 @@ or
 - `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
 - `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
 - `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-- `--key-name`: Name of SSH key.
-- `--placement-group value`: The placement group ID of the group that the server will be added to.
+- `--key-name vale`: Name of SSH key.
+- `--sys-type value`: Name of system type (**e880**, **e980**). Default is **e980**.
+`--placement-group value` : The placement group ID of the group that the server will be added to.
 - `--json`: Format output in JSON.
 
 ---
