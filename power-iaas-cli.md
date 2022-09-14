@@ -101,9 +101,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
     - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
     - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
 
-- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following new options:
+- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following new options for SPP and Epic:
     - *shared-processor-pool value*
-    - *deployment-type value* (For internal use only)
+    - *deployment-type value*
 
 - You can now use global replication service using CLI. The following commands are added new for global replication service:
     - [List disaster recovery locations for the current region or all regions](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-disaster-recovery-loc)
@@ -418,44 +418,47 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 #### Create a server instance
 {: #create-server-ins}
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network "NETWORK1 [IP1]">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes "VOLUME1 [VOLUMEn]"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY][--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"][--replicants NUMBER] [--replicant-scheme SCHEME][--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">
+    [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE]
+    [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY]
+    [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
+    [--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]
+    [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY]
+    [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID]
+    [--shared-processor-pool SHARED_PROCESSOR_POOL] [--deployment-type TYPE] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
 
-**Example**
-
-`ibmcloud pi instance-create instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
-
 **Options**
 
-- `--image`: Operating system image identifier or name.
-- `--memory`: Amount of memory (GB) to allocate to the instance. Default value is 2GB.
-- `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
-- `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
-- `--processors`: Number of processors to allocate to the instance. Default is 1 core.
-- `--processor-type`: Type of processors: 'shared' or 'dedicated' or 'capped'.
-- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
-- `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
-- `--storage-type`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region). If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
-- `--storage-connection`: The storage connection type. Valid value is "vSCSI".
-- `--storage-pool`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
-- `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `--storage-affinity-volume`:  Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
-- `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-- `--replicants`: Number of duplicate instances to create in this request.
-- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
-- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
-- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default  is "none".
-- `--IBMicss-license`: IBMi CSS software license associated with the instance.
-- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
-- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
-- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
-- `--placement-group`: The placement group ID of the group that the server will be added to.
+- `--image value`: Operating system image identifier or name.
+- `--memory value`: Amount of memory (GB) to allocate to the instance. Default value is 2GB.
+- `networks value`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
+- `--network value`: Space-separated list of identifier or name and optional IP address to associate with the instance.
+- `--processors value`: Number of processors to allocate to the instance. Default is 1 core.
+- `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
+- `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
+- `--key-name value`: Name of SSH key.
+- `--sys-type value`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
+- `--storage-type value`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region). If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
+- `--storage-connection value`: The storage connection type. Valid value is "vSCSI".
+- `--storage-pool value`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
+- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `--storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume value`:  Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
+- `--storage-anti-affinity-instance value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volume value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--pin-policy value`: Pin policy ("none", "soft", "hard"). Default is "none".
+- `--replicants value`: Number of duplicate instances to create in this request.
+- `--replicant-scheme value`: Naming scheme to use for duplicate VMs (suffix, prefix).
+- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--IBMicss-license value`: IBMi CSS software license associated with the instance.
+- `--IBMiDBQ-license value`: IBMi DBQ software license associated with the instance.
+- `--IBMiPHA-license value`: IBMi PHA software license associated with the instance.
+- `--IBMiRDS-users value`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+- `--placement-group value`: The placement group ID of the group that the server will be added to.
 - `--shared-processor-pool value`: The shared processor pool ID of the pool that the server will be in.
-- `--deployment-type value`: The custom deployment type.
+- `--deployment-type value`: The custom deployment type ("EPIC").
 - `--json`: Format output in JSON.
 
 ---
