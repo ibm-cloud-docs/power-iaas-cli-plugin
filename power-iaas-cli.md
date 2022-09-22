@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-08-07"
+lastupdated: "2022-09-13"
 
 ---
 
@@ -82,8 +82,52 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 ## Release notes
 {: #release-notes}
 
-Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}} service.
+Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
+
+### September 2022
+{: sept-2022}
+
+- You can now use shared processor pool using CLI. The following are new commands for shared processor pools:
+    - [View details of a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
+    - [Create a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-create)
+    - [Delete a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-delete)
+    - [Update a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-update)
+    - [List all shared processor pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pools)
+    - [View details of a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group)
+    - [Create a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-create)
+    - [Delete a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-delete)
+    - [Add a shared processor pool to the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-member-add)
+    - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
+    - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
+
+- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following new options for SPP and Epic:
+    - *shared-processor-pool value*
+    - *deployment-type value*
+
+- You can now use global replication service using CLI. The following commands are added new for global replication service:
+    - [List disaster recovery locations for the current region or all regions](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-disaster-recovery-loc)
+    - [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-action)
+    - [Get a list of flash copy mappings of a volume directly from primary storage host.](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-flash-copy-map)
+    - [View details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-details)
+    - [Create a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-create)
+    - [Delete a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-delete)
+    - [Get all remote copy relationships for each volume in a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-remote-copy-rel)
+    - [Reset a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-reset)
+    - [List all volume groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-groups)
+    - [Start a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-start)
+    - [Stop a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-stop)
+    - [View storage details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-storage-details)
+    - [Update a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-update)
+    - [Get the information of volume onboarding operation](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-info)
+    - [Create a volume onboarding operation](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-create)
+    - [List all volume onboarding operations](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-list)
+    - [Get the remote copy relationship information of a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-remote-copy-rel)
+
+- The command [Create a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud) is updated to include a new option *replication-enabled*.
+
+- The description of [Create a new SAP PVM Instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-sap-instance) is changed for HANA images. 
+    
 
 ### July 2022
 {: Jul-2022}
@@ -135,6 +179,22 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ## Commands
 {: #power-iaas-cli-commands}
+
+
+### `ibmcloud pi disaster-recovery-locations`
+{: #ibmcloud-pi-disaster-recovery-loc}
+
+#### List disaster recovery locations for the current region or all regions
+{: #list-disaster-recovery-sites}
+
+`ibmcloud pi disaster-recovery-locations [--all-regions] [--json]`
+
+**Options**
+
+- `--all-regions`: List disaster recovery locations for all regions.
+- `--json`: Format output in JSON.
+
+---
 
 ### `ibmcloud pi image`
 {: #ibmcloud-pi-image}
@@ -358,42 +418,47 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 #### Create a server instance
 {: #create-server-ins}
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network "NETWORK1 [IP1]">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes "VOLUME1 [VOLUMEn]"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY][--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"][--replicants NUMBER] [--replicant-scheme SCHEME][--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY][--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID] [--json]`
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">
+    [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE]
+    [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY]
+    [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
+    [--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]
+    [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY]
+    [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID]
+    [--shared-processor-pool SHARED_PROCESSOR_POOL] [--deployment-type TYPE] [--json]`
 
 - `INSTANCE_NAME`: The name of the instance.
 
-**Example**
-
-`ibmcloud pi instance-create instance-name1 --network "private-network1 192.168.0.120" --network "private-network2" --image AIX-7100-05-05**`
-
 **Options**
 
-- `--image`: Operating system image identifier or name.
-- `--memory`: Amount of memory (GB) to allocate to the instance. Default value is 2GB.
-- `networks`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
-- `--network`: Space separated list of identifier or name and optional IP address to associate with the instance.
-- `--processors`: Number of processors to allocate to the instance. Default is 1 core.
-- `--processor-type`: Type of processors: 'shared' or 'dedicated' or 'capped'.
-- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
-- `--key-name`: Name of SSH key.
-- `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
-- `--storage-type`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region). If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
-- `--storage-connection`: The storage connection type. Valid value is "vSCSI".
-- `--storage-pool`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
-- `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `--storage-affinity-volume`:  Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
-- `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-- `--replicants`: Number of duplicate instances to create in this request.
-- `--replicant-scheme`: Naming scheme to use for duplicate VMs (suffix, prefix).
-- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
-- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default  is "none".
-- `--IBMicss-license`: IBMi CSS software license associated with the instance.
-- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
-- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
-- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
-- `--placement-group`: The placement group ID of the group that the server will be added to.
+- `--image value`: Operating system image identifier or name.
+- `--memory value`: Amount of memory (GB) to allocate to the instance. Default value is 2GB.
+- `networks value`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
+- `--network value`: Space-separated list of identifier or name and optional IP address to associate with the instance.
+- `--processors value`: Number of processors to allocate to the instance. Default is 1 core.
+- `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
+- `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
+- `--key-name value`: Name of SSH key.
+- `--sys-type value`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
+- `--storage-type value`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region). If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
+- `--storage-connection value`: The storage connection type. Valid value is "vSCSI".
+- `--storage-pool value`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
+- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `--storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume value`:  Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
+- `--storage-anti-affinity-instance value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volume value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--pin-policy value`: Pin policy ("none", "soft", "hard"). Default is "none".
+- `--replicants value`: Number of duplicate instances to create in this request.
+- `--replicant-scheme value`: Naming scheme to use for duplicate VMs (suffix, prefix).
+- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
+- `--IBMicss-license value`: IBMi CSS software license associated with the instance.
+- `--IBMiDBQ-license value`: IBMi DBQ software license associated with the instance.
+- `--IBMiPHA-license value`: IBMi PHA software license associated with the instance.
+- `--IBMiRDS-users value`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+- `--placement-group value`: The placement group ID of the group that the server will be added to.
+- `--shared-processor-pool value`: The shared processor pool ID of the pool that the server will be in.
+- `--deployment-type value`: The custom deployment type ("EPIC").
 - `--json`: Format output in JSON.
 
 ---
@@ -454,7 +519,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ---
 
 ### `ibmcloud pi volume-create`
-{: #ibmcloud pi volume-create}
+{: #ibmcloud pi volumes-create}
 
 #### Create a volume
 {: #create-vol}
@@ -479,6 +544,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
 - `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
 - `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
+- `--replication-enabled`: Enables storage replication on the volume. False by default. Cannot set to true if shareable is true.
 - `--json`: Format output in JSON.
 
 ---
@@ -1018,6 +1084,178 @@ or
 
 ---
 
+### `ibmcloud pi shared-processor-pool`
+{: #ibmcloud-pi-shared-processor-pool}
+
+#### View details of a shared processor pool
+{: #shared-processor-pool-details}
+
+`ibmcloud pi shared-processor-pool SHARED_PROCESSOR_POOL_ID [--json]`
+
+- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pool-create`
+{: #ibmcloud-pi-shared-processor-pool-create}
+
+#### Create a shared processor pool
+{: #create-shared-processor-pool}
+
+`ibmcloud pi shared-processor-pool-create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--placement-group-id PLACEMENT_GROUP_ID] [--json]`
+
+- `SHARED_PROCESSOR_POOL_NAME`: A unique name of the shared processor pool. A minumum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'
+
+**Options**
+
+- `--host-group value`: The host group where the host will be chosen if not provided. Valid values are 's922' and 'e980'
+- `--reserved-cores value`: The integer amount of reserved processor cores for the shared processor pool.
+- `--placement-group-id value`: The identifier of the shared processor pool placement group the pool will be added to.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pool-delete`
+{: #ibmcloud-pi-shared-processor-pool-delete}
+
+#### Delete a shared processor pool
+{: #delete-shared-processor-pool}
+
+`ibmcloud pi shared-processor-pool-delete SHARED_PROCESSOR_POOL_ID`
+
+- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
+
+---
+
+### `ibmcloud pi shared-processor-pool-update`
+{: #ibmcloud-pi-shared-processor-pool-update}
+
+#### Update a shared processor pool
+{: #update-shared-processor-pool}
+
+`ibmcloud pi shared-processor-pool-update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] [--json]`
+
+- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
+
+**Options**
+
+-  `--name value`: New name of the shared processor pool. A minumum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'
+-  `--reserved-cores value`: The integer amount of reserved processor cores for the shared processor pool.
+-  `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi shared-processor-pools`
+{: #ibmcloud-pi-shared-processor-pools}
+
+#### List all shared processor pools
+{: #list-shared-processor-pools}
+
+`ibmcloud pi shared-processor-pools [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group`
+{: #ibmcloud-pi-shared-processor-pool-placement-group}
+
+#### View details of a shared processor pool placement group
+{: #view-details-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group PLACEMENT_GROUP_ID [--json]`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group-create`
+{: #ibmcloud-pi-shared-processor-pool-placement-group-create}
+
+#### Create a shared processor pool placement group
+{: #create-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
+
+- `PLACEMENT_GROUP_NAME`: A unique name of the placement group.
+
+**Options**
+
+- `--policy value`: Affinity policy for placement group being created. Valid values are affinity and anti-affinity.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group-delete`
+{: #ibmcloud-pi-shared-processor-pool-placement-group-delete}
+
+#### Delete a shared processor pool placement group
+{: #delete-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-delete PLACEMENT_GROUP_ID`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+---
+
+### `ibmcloud pi spp-placement-group-member-add`
+{: #ibmcloud-pi-shared-processor-pool-placement-group-member-add}
+
+#### Add a shared processor pool to the placement group
+{: #add-to-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+**Options**
+
+- `--shared-processor-pool value`: The shared processor pool ID of the pool to add to the placement group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group-member-remove`
+{: #ibmcloud-pi-shared-processor-pool-placement-group-member-remove}
+
+#### Remove a shared processor pool from the placement group
+{: #remove-from-shared-processor-pool-placement-group}
+
+`ibmcloud pi spp-placement-group-member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
+
+- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+
+**Options**
+
+- `--shared-processor-pool value`: The shared processor pool ID of the pool to add to the placement group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-groups`
+{: #ibmcloud-pi-shared-processor-pool-placement-groups}
+
+#### List all shared processor pool placement groups
+{: #list-shared-processor-pool-placement-groups}
+
+`ibmcloud pi spp-placement-groups [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi storage-types`
 {: #ibmcloud-pi-storage-types}
 
@@ -1044,6 +1282,22 @@ or
 **Options**
 
 - `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-action`
+{: #ibmcloud-pi-volume-action}
+
+#### Perform an action on a volume
+{: #perform-action-vol}
+
+`ibmcloud pi volume-action VOLUME_ID --replication-enabled`
+
+- `VOLUME_ID`: The unique identifier or name of volume.
+
+**Options**
+
+- `--replication-enabled`: Enables storage replication on the volume.
 
 ---
 
@@ -1112,6 +1366,239 @@ or
 
 ---
 
+### `ibmcloud pi volume-flash-copy-mapping`
+{: #ibmcloud-pi-volume-flash-copy-map}
+
+#### Get a list of flash copy mappings of a volume directly from primary storage host
+{: #get-list-flash-copy-map}
+
+`ibmcloud pi volume-flash-copy-mapping VOLUME_ID [--json]`
+
+- `VOLUME_ID`: The unique identifier or name of the volume.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group`
+{: #ibmcloud-pi-volume-group-details}
+
+#### View details of a volume group
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-group VOLUME_GROUP_ID [--long] [--json]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--long`: Retrieve additional details for the volume group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-create`
+{: #ibmcloud-pi-volume-group-create}
+
+#### Create a volume group
+{: #create-vol-group}
+
+`ibmcloud pi volume-group-create (--volume-group-name VOLUME_GROUP_NAME | --consistency-group-name CONSISTENCY_GROUP_NAME) --member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]" [--json]`
+
+**Options**
+
+- `--volume-group-name value`: Storage volume group name. This is required for the creation of new volume group.
+- `--consistency-group-name value`: Storage volume group name. This is required to onboard existing volume group on the target site for DR set up.
+- `--member-volume-ids value`: Space separated member volume identifiers.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-delete`
+{: #ibmcloud-pi-volume-group-delete}
+
+#### Delete a volume group
+{: #delete-vol-group}
+
+`ibmcloud pi volume-group-delete VOLUME_GROUP_ID`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+---
+
+### `ibmcloud pi volume-group-remote-copy-relationships`
+{: #ibmcloud-pi-volume-group-remote-copy-rel}
+
+#### Get all remote copy relationships for each volume in a volume group
+{: #remote-copy-rel-vol-group}
+
+`ibmcloud pi volume-group-remote-copy-relationships VOLUME_GROUP_ID [--json]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-reset`
+{: #ibmcloud-pi-volume-group-reset}
+
+#### Reset a volume group
+{: #reset-vol-group}
+
+`ibmcloud pi volume-group-reset VOLUME_GROUP_ID`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+---
+
+### `ibmcloud pi volume-groups`
+{: #ibmcloud-pi-volume-groups}
+
+#### List all volume groups
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-groups [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve additional details for all volume groups.
+- `--json`: Format output in JSON
+
+---
+
+### `ibmcloud pi volume-group-start`
+{: #ibmcloud-pi-volume-group-start}
+
+#### Start a volume group
+{: #start-vol-group}
+
+`ibmcloud pi volume-group-start VOLUME_GROUP_ID [--source SOURCE]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--source value`: The copying volume source. Allowed values are master or auxiliary. Default is master.
+
+---
+
+### `ibmcloud pi volume-group-stop`
+{: #ibmcloud-pi-volume-group-stop}
+
+#### Stop a volume group
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-group-stop VOLUME_GROUP_ID [--allow-read-access]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--allow-read-access`: Allow the auxiliary volume to be accessible after stopping the volume group. Default is false.
+
+---
+
+### `ibmcloud pi volume-group-storage-details`
+{: #ibmcloud-pi-volume-group-storage-details}
+
+#### View storage details of a volume group
+{: #view-storage-details-vol-group}
+
+`ibmcloud pi volume-group-storage-details VOLUME_GROUP_ID [--json]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-group-update`
+{: #ibmcloud-pi-volume-group-update}
+
+#### Update a volume group
+{: #view-details-vol-group}
+
+`ibmcloud pi volume-group-update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]"] [--remove-member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]"]`
+
+- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+
+**Options**
+
+- `--add-member-volume-ids value`: Space separated volume identifiers to add as members of the volume group.
+- `--remove-member-volume-ids value`: Space separated volume identifiers to remove as members of the volume group.
+
+---
+
+### `ibmcloud pi volume-onboarding`
+{: #ibmcloud-pi-volume-onboarding-info}
+
+#### Get the information of volume onboarding operation
+{: #info-volume-onboarding}
+
+`ibmcloud pi volume-onboarding VOLUME_ONBOARDING_ID [--json]`
+
+- `VOLUME_ONBOARDING_ID`: The unique identifier of the onboarding operation.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-onboarding-create`
+{: #ibmcloud-pi-volume-onboarding-create}
+
+#### Create a volume onboarding operation
+{: #create-volume-onboarding}
+
+`ibmcloud pi volume-onboarding-create --source-crn SOURCE_CRN <--auxiliary-volume "AUXVOLUMENAME1 [NAME1]"--> [--description] [--json]`
+
+**Options**
+
+- `--source-crn value`: CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
+- `--auxiliary-volume value`: Space separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
+- `--description value`: Volume onboarding description.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-onboardings`
+{: #ibmcloud-pi-volume-onboarding-list}
+
+#### List all volume onboarding operations
+{: #list-volume-onboarding}
+
+`ibmcloud pi volume-onboardings [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-remote-copy-relationship`
+{: #ibmcloud-pi-volume-remote-copy-rel}
+
+#### Get the remote copy relationship information of a volume
+{: #remote-copy-rel-vol}
+
+`ibmcloud pi volume-remote-copy-relationship VOLUME_ID [--json]`
+
+- `VOLUME_ID`: The unique identifier or name of the volume.
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi volume-update`
 {: #ibmcloud-pi-volume-update}
 
@@ -1131,6 +1618,7 @@ or
 - `--json`: Format output in JSON.
 
 ---
+
 
 ### `ibmcloud pi volumes`
 {: #ibmcloud-pi-volumes}
@@ -1230,20 +1718,23 @@ or
 ### ibmcloud pi instance-sap-create-instance
 {: #create-sap-instance}
 
-#### Create an SAP instance
+#### Create a new SAP PVM Instance. This command is for use with Linux for SAP (HANA) images. 
 {: #create-new-sappvm}
 
-`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"] [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"] [--key-name KEY-NAME] [--placement-group PLACEMENT_GROUP_ID] [--json]`
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"]
+    [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
+    [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"]
+    [--key-name KEY-NAME] [--sys-type TYPE] [--placement-group PLACEMENT_GROUP_ID] [--json]`
 
 - `SAP_INSTANCE_NAME`: The name of the SAP instance
 
 **Options**
 
-- `--image`: Operating system image identifier or name.
-- `--profile-id`: The unique identifier of the SAP profile.
-- `--networks`: Space separated identifier or name of the network and optional IP address to associate with the instance.
-- `--pin-policy`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
-- `--volumes value Space`: Separated list of identifiers or names of the volumes that are associated with the instance.
+- `--image value`: Linux for SAP (HANA) operating system image identifier or name.
+- `--profile-id value`: The unique identifier of the SAP profile.
+- `--networks value`: Space separated identifier/name of the network and optional IP address to associate with the instance.
+- `--pin-policy vlaue`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
+- `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--storage-type value`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
 - `--storage-pool value`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
 - `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
@@ -1251,8 +1742,9 @@ or
 - `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
 - `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
 - `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-- `--key-name`: Name of SSH key.
-- `--placement-group value`: The placement group ID of the group that the server will be added to.
+- `--key-name vale`: Name of SSH key.
+- `--sys-type value`: Name of system type (**e880**, **e980**). Default is **e980**.
+`--placement-group value` : The placement group ID of the group that the server will be added to.
 - `--json`: Format output in JSON.
 
 ---
