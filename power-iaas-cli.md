@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-09-13"
+lastupdated: "2022-12-19"
 
 ---
 
@@ -84,6 +84,11 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
+
+### December 2022
+{: dec-2022}
+
+- You can now get new errors about undefined response codes through new service endpoint response codes that are added for the latest security checks.
 
 ### September 2022
 {: sept-2022}
