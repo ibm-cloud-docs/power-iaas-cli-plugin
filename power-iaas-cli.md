@@ -88,7 +88,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### December 2022
 {: dec-2022}
 
-- You can now get new errors about undefined response codes through new service endpoint response codes that are added for the latest security checks.
+- You can now get new error messages for undefined response codes for new service endpoint response codes.
 
 ### September 2022
 {: sept-2022}
