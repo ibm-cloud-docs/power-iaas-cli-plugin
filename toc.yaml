@@ -2,7 +2,6 @@
 toc:
   properties:
     subcollection: power-iaas-cli-plugin
-    category: virtualservers
     audience: service
     href: /docs/services/power-iaas-cli-plugin
     console-page: /catalog/services/power-systems-virtual-server
