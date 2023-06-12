@@ -1681,7 +1681,7 @@ or
 
 `ibmcloud pi instance-detach-network INSTANCE_NAME -network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
 
-- `INSTANCE_NAME`: The name of the cloud connection.
+- `INSTANCE_NAME`: The name of the instance.
 
 **Options**
 
@@ -1696,9 +1696,9 @@ or
 #### List all the attached networks
 {: #list-all-attached-network}
 
-`ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
+`ibmcloud pi instance-networks INSTANCE_NAME [--json]`
 
-- `INSTANCE_NAME`: The name of the cloud connection.
+- `INSTANCE_NAME`: The name of the instance.
 
 **Options**
 
