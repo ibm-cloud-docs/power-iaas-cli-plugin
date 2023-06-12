@@ -514,7 +514,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 #### Get a list of volumes attached to an instance
 {: #get-list-vol}
 
-`ibmcloud pi volume INSTANCE [--long] [--json]`
+`ibmcloud pi volume INSTANCE_ID [--long] [--json]`
 
 **Options**
 
