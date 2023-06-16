@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2022-12-19"
+  years: 2019, 20223
+lastupdated: "2023-06-16"
 
 ---
 
@@ -1960,6 +1960,9 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 `ibmcloud pi connection-create CONNECTION_NAME --speed SPEED --transit-enabled [--networks "NETWORK_ID1..NETWORK_IDn"] [--global-routing] [--metered] [--json]`
 
 - `CONNECTION_NAME`: The unique name of the cloud connection
+
+Cloud connections are not supported with new workspaces in DAL10 data center. See, [Getting Started with Power Edge Router](https://test.cloud.ibm.com/docs/power-iaas?topic=power-iaas-per){: external} for more information.
+{: note}
 
 **Options**
 
