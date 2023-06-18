@@ -913,7 +913,7 @@ or
 **Options**
 
 - `--cidr-block`: Network in CIDR notation (192.168.0.0/24).
-- `--dns-servers`: Space separated list of DNS Servers to use for this network.
+- `--dns-servers`: Space separated list of DNS Servers to use for this network. A maximum of one DNS server can be specified in Power Edge Router workspaces
 - `--gateway`: Gateway to use for this network.
 - `--ip-range`: IP addresses range or ranges for this network.
 - `--json`: Format output in JSON.
