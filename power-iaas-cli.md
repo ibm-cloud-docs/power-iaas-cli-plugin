@@ -86,14 +86,14 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: shortdesc}
 
 ### September 2023
-{: dec-2022}
-
-- You can 
-### December 2022
-{: dec-2022}
+{: sep-2023}
 
 - Added s1022 in `sys-type value` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) and [Create a virtual tape library](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-a-vtl) commands.
 
+### December 2022
+{: dec-2022}
+
+- You can now get new error messages for undefined response codes for new service endpoint response codes.
 ### September 2022
 {: sept-2022}
 
