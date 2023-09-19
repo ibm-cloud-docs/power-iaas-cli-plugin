@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2022-12-19"
+  years: 2019, 20223
+lastupdated: "2023-09-19"
 
 ---
 
@@ -85,11 +85,15 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
 
+### September 2023
+{: sep-2023}
+
+- Added s1022 in `sys-type value` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) and [Create a virtual tape library](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-a-vtl) commands.
+
 ### December 2022
 {: dec-2022}
 
 - You can now get new error messages for undefined response codes for new service endpoint response codes.
-
 ### September 2022
 {: sept-2022}
 
@@ -444,7 +448,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 - `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
 - `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--key-name value`: Name of SSH key.
-- `--sys-type value`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
+- `--sys-type value`: Name of System Type ("s922", "s1022", "e880", "e980"). Default is "s922".
 - `--storage-type value`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region). If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
 - `--storage-connection value`: The storage connection type. Valid value is "vSCSI".
 - `--storage-pool value`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
@@ -913,7 +917,7 @@ or
 **Options**
 
 - `--cidr-block`: Network in CIDR notation (192.168.0.0/24).
-- `--dns-servers`: Space separated list of DNS Servers to use for this network.
+- `--dns-servers`: Space separated list of DNS Servers to use for this network. A maximum of one DNS server can be specified in Power Edge Router workspaces
 - `--gateway`: Gateway to use for this network.
 - `--ip-range`: IP addresses range or ranges for this network.
 - `--json`: Format output in JSON.
@@ -1960,6 +1964,9 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 
 - `CONNECTION_NAME`: The unique name of the cloud connection
 
+Cloud connections are not supported with new workspaces in DAL10 data center. See, [Getting Started with Power Edge Router](https://test.cloud.ibm.com/docs/power-iaas?topic=power-iaas-per){: external} for more information.
+{: note}
+
 **Options**
 
 - `--speed value`: Speed of the cloud connection (speed in megabits per second). Allowed values are 50, 100, 200, 500, 1000, 2000, 5000, 10000
@@ -2088,14 +2095,13 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 - `--json`: Format output in JSON
   
 ---
-<!--
 ### ibmcloud pi virtual-tape-create
 {: #virtual-tape-library-create}
 
 #### Create a virtual tape library
 {: #create-a-vtl}
 
-`ibmcloud pi virtual-tape-library-create TAPE_LIBRARY_NAME --image IMAGE --capacity LICENSED_CAPACITY [--memory MEMORY] <--network \"NETWORK1 [IP1]\">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"[--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY] [--placement-group GROUP_ID] [--json]`
+`ibmcloud pi virtual-tape-library-create TAPE_LIBRARY_NAME --image IMAGE --capacity LICENSED_CAPACITY [--memory MEMORY] <--network \"NETWORK1 [IP1]\">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]<!-- [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] --> [--pin-policy POLICY] [--placement-group GROUP_ID] [--shared-processor-pool SHARED_PROCESSOR_POOL] [--json]`
 
 - `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
 
@@ -2109,19 +2115,18 @@ Each snapshot that you create is monitored hourly and charged depending on the d
 - `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
 - `--volumes value`: Space separated list of identifiers or names of the volumes to associate with the virtual tape library. A minimum of 3 volumes is required.
 - `--key-name value`: Name of SSH key
+- `--sys-type value`: Name of System Type ("s922", "s1022", "e880", "e980"). Default is "s922".
 - `--storage-type value`: Storage type for virtual tape library deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
 - `--storage-pool value`: Storage pool for virtual tape library deployment. Only valid when you deploy one of the IBM supplied stock images.
-- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified
-- `--storage-affinity-instance value`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided
-- `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
-- `--storage-anti-affinity-instances value`: Space separated list of PVM instance or VTL identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided
+- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `--storage-affinity-instance value`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+- `--storage-anti-affinity-instances value`: Space separated list of PVM instance or VTL identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
 - `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided
 - `--pin-policy value`: Pin policy ("none", "soft", "hard"). Default is "none".
-- `--replicants value`: Number of duplicate virtual tape libraries to create in this request.
-- `--replicant-scheme value`: Naming scheme to use for duplicate virtual tape libraries ("suffix", "prefix").
-- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity").
 - `--placement-group value`: The placement group ID of the group that the virtual tape library will be added to.
-- `--json`: Format output in JSON -->
+- `--shared-processor-pool value`: The shared processor pool ID of the pool that the virtual tape library will be in.
+- `--json`: Format output in JSON.
   
 ---
 
