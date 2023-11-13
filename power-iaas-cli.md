@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 20223
-lastupdated: "2023-11-09"
+lastupdated: "2023-11-13"
 
 ---
 
@@ -94,7 +94,7 @@ Here are the new changes for the new CLI version:
    <!-- * New `--mtu` flag added in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
    * Deprecate `--jumbo` flag in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands. -->
    * New command [datacenter](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenter) and [datacenters](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenters) added.
-   * Deprecated `service-list` and `service-target` commands in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
+   * Deprecated `service-list` command in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
 
 ### September 2023
 {: sep-2023}
