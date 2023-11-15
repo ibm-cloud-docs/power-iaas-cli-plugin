@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 20223
-lastupdated: "2023-09-19"
+lastupdated: "2023-11-13"
 
 ---
 
@@ -84,6 +84,17 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
+
+### November 2023
+{: nov-2023}
+
+New CLI version `0.5.0` available. 
+Here are the new changes for the new CLI version:
+   * New `--user-data` flag added in [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
+   <!-- * New `--mtu` flag added in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
+   * Deprecate `--jumbo` flag in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands. -->
+   * New command [datacenter](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenter) and [datacenters](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenters) added.
+   * Deprecated `service-list` command in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
 
 ### September 2023
 {: sep-2023}
@@ -190,11 +201,161 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #power-iaas-cli-commands}
 
 
-### `ibmcloud pi disaster-recovery-locations`
-{: #ibmcloud-pi-disaster-recovery-loc}
+### `ibmcloud pi connection`
+{: #ibmcloud-pi-connection}
 
-#### List disaster recovery locations for the current region or all regions
-{: #list-disaster-recovery-sites}
+#### View details of a cloud Connection.
+
+`ibmcloud pi connection CONNECTION_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connection-attach-network`
+{: #ibmcloud-pi-connection-attach-network}
+
+#### Attach a network to the cloud connection.
+
+`ibmcloud pi connection-attach-network CONNECTION_ID --network NETWORK_ID`
+
+**Options**
+
+- `--network`: The unique identifier (network ID) of the network.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connection-create`
+{: #ibmcloud-pi-connection-create}
+
+#### Create a cloud connection.
+
+`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
+
+**Options**
+
+- `--speed`: Speed of the cloud connection (speed in megabits per second). Allowed values are 50, 100, 200, 500, 1000, 2000, 5000, 10000.
+- `--networks`: Space separated network identifiers.
+- `--vpc`: Enable "VPC" cloud connection endpoint.
+- `--vpcID`: VPC ID (i.e. crn:v1:..) to add to cloud connection. Use with "--vpc" option.
+- `--classic`: Enable "Classic" cloud connection endpoint.
+- `--gre-tunnel`: Space separated "cidr" and "destinationIPAddress". Use with "--classic" option. GRE tunnel cannot be configured with speeds above 5000.
+- `--metered`: Metered cloud connection flag.
+- `--global-routing`: Global routing flag.
+- `--transit-enabled`: Enable transit gateway.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connection-delete`
+{: #ibmcloud-pi-connection-delete}
+
+#### Delete a cloud Connection.
+
+`ibmcloud pi connection-delete CONNECTION_ID`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connection-detach-network`
+{: #ibmcloud-pi-connection-detach-network}
+
+#### Detach a network from the cloud connection.
+
+`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID [--json]`
+
+**Options**
+
+- `--network`: The unique identifier (network ID) of the network.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connection-update`
+{: #ibmcloud-pi-connection-update}
+
+#### Update the cloud connection.
+
+`ibmcloud pi connection-update CONNECTION_ID [--speed SPEED] [--vpc=True|False [<--vpcID "VPC-ID">]] [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] ...`
+
+**Options**
+
+- `--speed`: New speed value for the cloud connection. Allowed values are 50, 100, 200, 500, 1000, 2000, 5000. Speeds currently at 10000 cannot be downgraded lower and speeds cannot be increased to 10000.
+- `--vpc`: Enable or disable VPC cloud connection endpoint.
+- `--vpcID`: VPC ID to add to the cloud connection for use with "--vpc" option.
+- `--classic`: Enable or disable classic cloud connection endpoint.
+- `--gre-tunnel`: Space separated "cidr" and "destinationIPAddress" for use with "--classic" option. GRE tunnel cannot be configured with speeds above 5000.
+- `--global-routing`: Enable or disable global routing.
+- `--metered`: Enable or disable metering.
+- `--name`: Name of the cloud connection.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connection-vpcs`
+{: #ibmcloud-pi-connection-vpcs}
+
+#### List all virtual private clouds.
+
+`ibmcloud pi connection-vpcs [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi connections`
+{: #ibmcloud-pi-connections}
+
+#### List all cloud Connections
+
+`ibmcloud pi connections [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve all cloud connections in detail.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi datacenter`
+{: #ibmcloud-pi-datacenter}
+
+#### View details of a datacenter
+
+`ibmcloud pi datacenter DATACENTER`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi datacenters`
+{: #ibmcloud-pi-datacenters}
+
+#### List all datacenter details
+
+`ibmcloud pi dats`
+
+**Options**
+
+- `--long`: Retrieve additional details for datacenters.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi disaster-recovery-locations`
+{: #ibmcloud-pi-disaster-recovery-locations}
+
+#### List disaster recovery locations for the current region or all regions.
 
 `ibmcloud pi disaster-recovery-locations [--all-regions] [--json]`
 
@@ -209,11 +370,8 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image}
 
 #### View details of an image
-{: #view-details-image}
 
 `ibmcloud pi image IMAGE_ID [--json]`
-
-- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
@@ -224,12 +382,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### `ibmcloud pi image-create`
 {: #ibmcloud-pi-image-create}
 
-#### Create a copy of an image from the image catalog in this account
-{: #create-copy-image}
+#### Create a copy of an available stock image into this account; stock image names cannot be changed
 
 `ibmcloud pi image-create IMAGE_ID [--json]`
-
-- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
@@ -241,28 +396,23 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-delete}
 
 #### Delete an image from this account
-{: #delete-image}
 
 `ibmcloud pi image-delete IMAGE_ID`
 
-- `IMAGE_ID`: The unique identifier or name of the image.
 
 ---
 
 ### `ibmcloud pi image-export`
 {: #ibmcloud-pi-image-export}
 
-#### Export an image from IBM Cloud Object Storage
-{: #export-image}
+#### Export an image to IBM Cloud Object Storage
 
 `ibmcloud pi image-export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY [(--job | --task)] [--json]`
-
-- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
 - `--bucket`: Cloud Object Storage bucket name.
-- `--region`: Cloud Object Storage region (us-east, us-south, eu-de).
+- `--region`: Cloud Object Storage region (us-south, us-east, eu-gb, eu-de, au-syd, jp-tok, jp-osa, ca-tor, br-sao).
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--json`: Format output in JSON.
@@ -275,11 +425,8 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-export-show}
 
 #### View details of an image export job
-{: #view-details-image-export}
 
 `ibmcloud pi image-export-show IMAGE_ID [--json]`
-
-- `IMAGE_ID`: The unique identifier or name of the image.
 
 **Options**
 
@@ -291,46 +438,27 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-image-import}
 
 #### Import an image from IBM Cloud Object Storage
-{: #import-image-cos}
 
 `ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --disk-type DISKTYPE [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --storage-pool POOL [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME --bucket-access public --disk-type DISKTYPE [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME --bucket-access public --storage-pool POOL [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME --bucket-access public --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
-
-`ibmcloud pi image-import IMAGE_NAME --bucket-access public --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
-
-[DEPRECATED]: ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]
-
-- `IMAGE_NAME`: The desired name of the image
 
 **Options**
 
 - `--image-path`: [DEPRECATED] Replaced by image-file-name, region and bucket. Path to image starting with service endpoint and ending with image file name.
-- `--os-type`: Operating system contained in the image (`rhel`, `sles`, `aix`, `ibmi`). Required when importing a raw image.
-- `--disk-type`: Type of disk storage (i.e. tier1, tier3).
-- `--storage-pool value`: Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If --storage-pool is provided then --disk-type and --affinity-policy values cannot be specified.
-- `--affinity-policy value`: Affinity policy for image. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
-- `--affinity-instance value`: PVM instance identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
-- `--affinity-volume value`: Volume identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
-- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base image anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
-- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base image anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
+- `--os-type`: Operating system contained in the image (rhel, sles, aix, ibmi). Required when importing a raw image.
+- `--bucket-access`: Indicates the bucket access type (private or public). Private access requires access and secret keys. Public access requires the --job option. Default is private.
+- `--disk-type`: Type of the disk storage (use "ibmcloud pi storage-types" to see available types in the targeted region); required if --affinity-policy and --storage-pool are not provided.
+- `--storage-pool`: Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If  is provided then --disk-type and --affinity-policy values cannot be specified.
+- `--affinity-policy`: Affinity policy for image. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
+- `--affinity-instance`: PVM instance identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
+- `--affinity-volume`: Volume identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
+- `--anti-affinity-instances`: Space separated list of instance identifiers or names to base image anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
+- `--anti-affinity-volumes`: Space separated list of volume identifiers or names to base image anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
 - `--access-key`: Cloud Object Storage HMAC access key.
 - `--secret-key`: Cloud Object Storage HMAC secret key.
 - `--image-file-name`: The image file name.
-- `--bucket-access value`: Indicates the bucket access type (private or public). Private access requires access and secret keys. Default is private.
-- `--bucket value`: Cloud Object Storage bucket name
-- `--region value`: Cloud Object Storage region (us-east, us-south, eu-de)
-- `--job`: The operation will be processed as a job. image-file-name, region, and bucket is required.
+- `--bucket`: Cloud Object Storage bucket name.
+- `--region`: Cloud Object Storage region (us-south, us-east, eu-gb, eu-de, au-syd, jp-tok, jp-osa, ca-tor, br-sao).
+- `--job`: The operation will be processed as a job. image-file-name,region,and bucket is required.
 - `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
 - `--json`: Format output in JSON.
 
@@ -339,8 +467,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### `ibmcloud pi image-import-show`
 {: #ibmcloud-pi-image-import-show}
 
-#### View details of an image import job
-{: #view-details-image-import}
+#### View details of the last image import job.
 
 `ibmcloud pi image-import-show [--json]`
 
@@ -350,11 +477,24 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ---
 
+### `ibmcloud pi image-list-catalog`
+{: #ibmcloud-pi-image-list-catalog}
+
+#### List images available in the regional image catalog
+
+`ibmcloud pi image-list-catalog [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve all image details.
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi images`
 {: #ibmcloud-pi-images}
 
-#### List all of the images for this account
-{: #list-all-images}
+#### List all images for this account
 
 `ibmcloud pi images [--long] [--json]`
 
@@ -369,11 +509,8 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance}
 
 #### View details of a server instance
-{: #view-details-server-ins}
 
 `ibmcloud pi instance INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -381,25 +518,50 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ---
 
+### `ibmcloud pi instance-attach-network`
+{: #ibmcloud-pi-instance-attach-network}
+
+#### Attach a network to the server instance
+
+`ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" [--ip-address "IP_ADDRESS"] [--json]`
+
+**Options**
+
+- `--network`: The network ID.
+- `--ip-address`: The requested ip address of this network interface.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instance-attach-volumes`
+{: #ibmcloud-pi-instance-attach-volumes}
+
+#### Attach volumes to an instance.
+
+`ibmcloud pi instance-attach-volumes INSTANCE_ID --volume-ids "VOLUME_ID1 [VOLUME_IDn]"`
+
+**Options**
+
+- `--volume-ids`: Space separated list of volume IDs to the volumes to attach to the instance.
+
+---
+
 ### `ibmcloud pi instance-capture`
 {: #ibmcloud-pi-instance-capture}
 
 #### Capture a server instance
-{: #capture-server-ins}
 
 `ibmcloud pi instance-capture INSTANCE_ID --destination DEST --name NAME [--volumes "VOLUME-ID1 .. VOLUME-IDn"] [--access-key KEY] [--secret-key KEY] [--region REGION] [--image-path PATH] [(--job | --task)]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
 - `--destination`: Destination for the deployable image (image-catalog, cloud-storage, both).
-- `--name`: Name of the deployable image that is created for the captured instance.
-- `--volumes`: Space separated list of identifiers or names of the volumes to capture with the instance.
+- `--name`: Name of the deployable image created for the captured instance.
+- `--volumes`: Space separated list of identifiers of the volume(s) to capture with the instance. By default, instance capture include all volumes marked as bootable.
 - `--access-key`: Cloud Object Storage HMAC access key. Required if destination is cloud-storage.
 - `--secret-key`: Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
 - `--region`: Cloud Object Storage region (us-east, us-south, eu-de). Required if destination is cloud-storage.
-- `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage.
+- `--image-path`: Cloud Object Storage image path. Required if destination is cloud-storage. E.g. bucket-name[/optional/folder].
 - `--job`: The operation will be processed as a job.
 - `--task`: [DEPRECATED] The operation will be processed as a task. Task processing is deprecated in favor of job processing. Default.
 
@@ -409,15 +571,12 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-capture-show}
 
 #### View the job details of the last server instance capture
-{: #view-job-details-last-serverins}
 
 `ibmcloud pi instance-capture-show INSTANCE_ID [--json]`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
-
 **Options**
 
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON.
 
 ---
 
@@ -425,49 +584,40 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-create}
 
 #### Create a server instance
-{: #create-server-ins}
 
-`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">
-    [--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE]
-    [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY]
-    [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
-    [--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]
-    [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY]
-    [--IBMiCSS-license] [--IBMiDBQ-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID]
-    [--shared-processor-pool SHARED_PROCESSOR_POOL] [--deployment-type TYPE] [--json]`
-
-- `INSTANCE_NAME`: The name of the instance.
+`ibmcloud pi instance-create INSTANCE_NAME --image IMAGE [--memory MEMORY] <--network \"NETWORK1 [IP1]\">`
 
 **Options**
 
-- `--image value`: Operating system image identifier or name.
-- `--memory value`: Amount of memory (GB) to allocate to the instance. Default value is 2GB.
-- `networks value`: (deprecated - replaced by network) Space-separated list of identifiers or names of the networks to associate with the instance.
-- `--network value`: Space-separated list of identifier or name and optional IP address to associate with the instance.
-- `--processors value`: Number of processors to allocate to the instance. Default is 1 core.
-- `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
-- `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
-- `--key-name value`: Name of SSH key.
-- `--sys-type value`: Name of System Type ("s922", "s1022", "e880", "e980"). Default is "s922".
-- `--storage-type value`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region). If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
-- `--storage-connection value`: The storage connection type. Valid value is "vSCSI".
-- `--storage-pool value`: Storage pool for server deployment. Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
-- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `--storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `--storage-affinity-volume value`:  Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided
-- `--storage-anti-affinity-instance value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `--storage-anti-affinity-volume value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-- `--pin-policy value`: Pin policy ("none", "soft", "hard"). Default is "none".
-- `--replicants value`: Number of duplicate instances to create in this request.
-- `--replicant-scheme value`: Naming scheme to use for duplicate VMs (suffix, prefix).
-- `--replicant-affinity-policy value`: Affinity policy to use when multicreate is used (affinity, anti-affinity).
-- `--IBMicss-license value`: IBMi CSS software license associated with the instance.
-- `--IBMiDBQ-license value`: IBMi DBQ software license associated with the instance.
-- `--IBMiPHA-license value`: IBMi PHA software license associated with the instance.
-- `--IBMiRDS-users value`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
-- `--placement-group value`: The placement group ID of the group that the server will be added to.
-- `--shared-processor-pool value`: The shared processor pool ID of the pool that the server will be in.
-- `--deployment-type value`: The custom deployment type ("EPIC").
+- `--image`: Operating system image identifier or name.
+- `--memory`: Amount of memory (in GB) to allocate to the instance. Default is 2GB.
+- `--networks`: (deprecated - replaced by "network") Space separated list of identifiers or names of the networks to associate with the instance.
+- `--network`: Space separated identifier/name of the network and optional IP address to associate with the instance.
+- `--processors`: Amount of processors to allocate to the instance. Default is 1 core.
+- `--processor-type`: Type of processors: "shared" or "dedicated" or "capped".
+- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
+- `--key-name`: Name of SSH key.
+- `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
+- `--storage-type`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. When IBM supplied stock images are deployed either  or --storage-pool or --storage-affinity must be specfied. This is not valid when using a custom image (an imported image or an image that is created from a PVMInstance capture) since storage type and pool defaults to the storage type and pool the image was created in.
+- `--storage-connection`: The storage connection type. Valid value is "vSCSI".
+- `--storage-pool`: Storage pool for server deployment (use "ibmcloud pi storage-pools" to see available storage pools). Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
+- `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+- `--storage-anti-affinity-instances`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default is "none".
+- `--replicants`: Number of duplicate instances to create in this request.
+- `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
+- `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity").
+- `--IBMiCSS-license`: IBMi CSS software license associated with the instance.
+- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
+- `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
+- `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+- `--placement-group`: The placement group ID of the group that the server will be added to.
+- `--shared-processor-pool`: The shared processor pool ID of the pool that the server will be in.
+- `--deployment-type`: The custom deployment type ("EPIC").
+- `--user-data`: The user data passed into the instance.
 - `--json`: Format output in JSON.
 
 ---
@@ -476,11 +626,26 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-delete}
 
 #### Delete a server instance
-{: #delete-server-instance}
 
-`ibmcloud pi instance-delete INSTANCE_ID`
+`ibmcloud pi instance-delete INSTANCE_ID [--delete-data-volumes]`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
+**Options**
+
+- `--delete-data-volumes`: Indicates whether all data volumes attached to the instance must be deleted. Shared data volumes will be deleted if no other instances are attached.
+
+---
+
+### `ibmcloud pi instance-detach-network`
+{: #ibmcloud-pi-instance-detach-network}
+
+#### Detach a specific network or mac address from the server instance.
+
+`ibmcloud pi instance-detach-network INSTANCE_NAME --network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
+
+**Options**
+
+- `--network`: The network ID.
+- `--mac-address`: The mac address of the network interface to be removed. The default is all mac addresses.
 
 ---
 
@@ -488,11 +653,8 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-get-console}
 
 #### Get the console of an instance
-{: #get-console-ins}
 
 `ibmcloud pi instance-get-console INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
@@ -503,12 +665,46 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### `ibmcloud pi instance-hard-reboot`
 {: #ibmcloud-pi-instance-hard-reboot}
 
-#### Hard restart the operating system of an instance
-{: #hard-restart-os}
+#### Hard Restart the operating system of an instance
 
 `ibmcloud pi instance-hard-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
+
+---
+
+### `ibmcloud pi instance-immediate-shutdown`
+{: #ibmcloud-pi-instance-immediate-shutdown}
+
+#### Immediately Shutdown a server instance
+
+`ibmcloud pi instance-immediate-shutdown INSTANCE_ID`
+
+
+---
+
+### `ibmcloud pi instance-list-console-languages`
+{: #ibmcloud-pi-instance-list-console-languages}
+
+#### List the available console languages for an instance.
+
+`ibmcloud pi instance-list-console-languages INSTANCE_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi instance-list-snapshots`
+{: #ibmcloud-pi-instance-list-snapshots}
+
+#### List all snapshots for an instance.
+
+`ibmcloud pi instance-list-snapshots INSTANCE_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
 
 ---
 
@@ -516,9 +712,8 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-list-volumes}
 
 #### Get a list of volumes attached to an instance
-{: #get-list-vol}
 
-`ibmcloud pi volume INSTANCE [--long] [--json]`
+`ibmcloud pi instance-list-volumes INSTANCE [--long] [--json]`
 
 **Options**
 
@@ -527,116 +722,52 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
 ---
 
-### `ibmcloud pi volume-create`
-{: #ibmcloud pi volumes-create}
+### `ibmcloud pi instance-networks`
+{: #ibmcloud-pi-instance-networks}
 
-#### Create a volume
-{: #create-vol}
+#### List all the attached networks.
 
-`ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--json]`
-
-`ibmcloud pi volume-create VOLUME_NAME --storage-pool POOL --size SIZE [--shareable] [--json]`
-
-`ibmcloud pi volume-create VOLUME_NAME --affinity-policy affinity --size SIZE [--shareable] (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--json]`
-
-`ibmcloud pi volume-create VOLUME_NAME --affinity-policy anti-affinity --size SIZE [--shareable] (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--json]`
-
-- `VOLUME_NAME`: The name of the volume.
+`ibmcloud pi instance-networks INSTANCE_NAME [--json]`
 
 **Options**
 
-- `--type value`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region); required if --affinity-policy and --storage-pool are not provided
-- `--size value`: Size of the volume (in GB)
-- `--shareable`: Whether volume can be attached to multiple VMs
-- `--affinity-policy value`:  Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified
-- `--affinity-instance value`:  PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided
-- `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
-- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
-- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
-- `--replication-enabled`: Enables storage replication on the volume. False by default. Cannot set to true if shareable is true.
 - `--json`: Format output in JSON.
 
 ---
 
-### `ibmcloud pi volume-multi-create`
-{: #ibmcloud pi volume-multi-create}
+### `ibmcloud pi instance-operation`
+{: #ibmcloud-pi-instance-operation}
 
-#### Create multiple volume
-{: #create-mul-vol}
+#### Perform an operation on an IBMi server instance.
 
-`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --type TYPE --volume-count COUNT --size SIZE [--shareable] [--json]`
-
-`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --storage-pool POOL --volume-count COUNT  --size SIZE [--shareable] [--json]`
-
-`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --affinity-policy affinity --volume-count COUNT --size SIZE [--shareable] (--affinity-volume VOLUME | --affinity-instance INSTANCE) [--json]`
-
-`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --affinity-policy anti-affinity --volume-count COUNT --size SIZE [--shareable] (--anti-affinity-volumes "VOLUME1 [VOLUMEn]" | --anti-affinity-instances "INSTANCE1 [INSTANCEn]") [--json]`
-
-- `VOLUME_NAME`: The base name of the volumes.
+`ibmcloud pi instance-operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [] [--boot-operating-mode MODE] [--job-task TASK]`
 
 **Options**
 
-- `--type value`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region); required if --affinity-policy and --storage-pool are not provided
-- `--volume-count value`: Number of volumes to create.
-- `--size value`: Size of the volume (in GB)
-- `--shareable`: Whether the volume can be attached to multiple VMs
-- `--storage-pool value`: Volume pool where the volume will be created. If --storage-pool is provided then --type and --affinity-policy values cannot be specified
-- `--affinity-policy value`:  Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified
-- `--affinity-instance value`:  PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided
-- `--affinity-volume value`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided
-- `--anti-affinity-instances value`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided
-- `--anti-affinity-volumes value`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided
-- `--json`: Format output in JSON.
+- `--operation-type`: Name of the operation to execute; allowable values are "job" and "boot".
+- `--boot-mode`: Name of the server boot mode; allowable values are "a", "b", "c", and "d".
+- `--boot-operating-mode`: Name of the server operating mode; allowable values are "normal" and "manual".
+- `--job-task`: Name of the job task to execute; allowable values are "dston", "retrydump", "consoleservice", "iopreset", "remotedstoff", "remotedston", "iopdump", and "dumprestart".
 
 ---
 
-### `ibmcloud pi storage-pools`
-{: #ibmcloud pi storage-pools}
+### `ibmcloud pi instance-reset-state`
+{: #ibmcloud-pi-instance-reset-state}
 
-#### List all storage pools for the targeted region
-{: #list-storage-pools}
+#### Reset a server instance
 
-`ibmcloud pi storage-pools [--json]`
+`ibmcloud pi instance-reset-state INSTANCE_ID`
 
-**Options**
-
-- `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi instance-soft-reboot`
 {: #ibmcloud-pi-instance-soft-reboot}
 
-#### Soft restart the operating system of an instance
-{: #soft-restart-os}
+#### Soft Restart the operating system of an instance
 
 `ibmcloud pi instance-soft-reboot INSTANCE_ID`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
-
----
-
-### `ibmcloud pi instance-immediate-shutdown`
-{: #ibmcloud-pi-instance-shutdown}
-
-#### Immediately shut down a server instance
-{: #imm-shutdown-server}
-
-`ibmcloud pi instance-immediate-shutdown INSTANCE_ID`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance
-
----
-
-### `ibmcloud pi instance-reset-state`
-{: #ibmcloud-pi-instance-reset}
-
-#### Reset a server instance in error state - use with caution
-{: #reset-server-ins}
-
-`ibmcloud pi instance-reset-state INSTANCE_ID`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance
 
 ---
 
@@ -644,11 +775,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-start}
 
 #### Start a server instance
-{: #start-server-ins}
 
 `ibmcloud pi instance-start INSTANCE_ID`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -656,11 +785,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-stop}
 
 #### Stop a server instance
-{: #stop-server-ins}
 
 `ibmcloud pi instance-stop INSTANCE_ID`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 ---
 
@@ -668,82 +795,18 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #ibmcloud-pi-instance-update}
 
 #### Update a server instance
-{: #update-server-ins}
 
 `ibmcloud pi instance-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--profile-id SAP_PROFILE_ID] [--storage-pool-affinity=True|False] [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
 
 **Options**
 
 - `--memory`: New amount of memory for the server instance.
 - `--name`: New name of the server instance.
 - `--pin-policy`: New pin policy for the server instance ("none", "soft", "hard").
-- `--processors`: New number of processors for the server instance.
+- `--processors`: New amount of processors for the server instance.
 - `--processor-type`: New processor type for the server instance.
 - `--profile-id`: SAP profile ID.
-- `--storage-pool-affinity`: Indicates if all volumes attached to the server must reside in the same storage pool. If set to false then volumes from any storage type and pool can be attached to the PVM instance; This impacts PVM instance snapshot, capture, and clone. For capture and clone only data volumes that are of the same storage type and in the same storage pool of the PVM instance's boot volume can be included. For snapshot all data volumes to be included in the snapshot must reside in the same storage type and pool. Once set to false, cannot be set back to true unless all volumes attached reside in the same storage type and pool.
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi instances`
-{: #ibmcloud-pi-instances}
-
-#### List all server instances
-{: #list-server-instances}
-
-`ibmcloud pi instances [--long] [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.
-- `--long`: Retrieve all instance details.
-
----
-
-### `ibmcloud pi instance-operation`
-{: #ibmcloud-pi-instances-operation}
-
-#### Perform an operation on an IBMi server instance
-{: #perform-operation-ibmi}
-
-`ibmcloud pi instance-operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [] [--boot-operating-mode MODE] [--job-task TASK]`
-
-- `INSTANCE_ID`: The unique identifier or name of instance.
-
-**Examples**
-
-`ibmcloud pi instance-operation IBMi-TEST_VM --operation-type job --job-task dston`
-
-or
-
-`ibmcloud pi instance-operation IBMi-TEST_VM --operation-type boot --boot-mode a --boot-operating-mode normal`
-
-**Options**
-
-- `--operation`: Operating system image identifier or name.
-
-- `--boot-mode`: Name of the server boot mode. Allowed values are **a**, **b**, **c**, and **d**.
-
-- `--boot-operating-mode`: Name of the server operating mode. Allowed values are **normal** and **manual**.
-
-- `--job-task`: Name of the job task to execute. Allowed values are **dston**, **retrydump**, **consoleservic**, **iopreset**, **remotedstof**, **remotedston**, **iopdump**, and **dumprestart**.
-
----
-
-### `ibmcloud pi instance-list-console-languages`
-{: #ibmcloud-pi-instance-list-console-languages}
-
-#### List the available console languages for an instance
-{: #list-avlb-console-lang}
-
-`ibmcloud pi instance-list-console-languages INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
-
-**Options**
-
+- `--storage-pool-affinity`: Indicates if all volumes attached to the server must reside in the same storage pool. If set to false then volumes from any storage type and pool can be attached to the PVM instance; This impacts PVM instance snapshot,capture,and clone. For capture and clone only data volumes that are of the same storage type and in the same storage pool of the PVM instance's boot volume can be included. For snapshot all data volumes to be included in the snapshot must reside in the same storage type and pool. Once set to false,cannot be set back to true unless all volumes attached reside in the same storage type and pool.
 - `--json`: Format output in JSON.
 
 ---
@@ -752,15 +815,26 @@ or
 {: #ibmcloud-pi-instance-update-console-language}
 
 #### Update the console language of an instance. This update may take some time to take affect.
-{: #update-console-lang}
 
 `ibmcloud pi instance-update-console-language INSTANCE_ID --code CODE`
 
-- `INSTANCE_ID`: The unique identifier or name of the instance.
+**Options**
+
+- `--code`: Language code to set. Use 'ibmcloud pi instance-list-console-languages' to see available codes.
+
+---
+
+### `ibmcloud pi instances`
+{: #ibmcloud-pi-instances}
+
+#### List all server instances
+
+`ibmcloud pi instances [--long] [--json]`
 
 **Options**
 
-- `--code value`: Language code to set. Use 'ibmcloud pi instance-list-console-languages' to see available codes.
+- `--long`: Retrieve all instance details.
+- `--json`: Format output in JSON.
 
 ---
 
@@ -768,11 +842,8 @@ or
 {: #ibmcloud-pi-job}
 
 #### View details of a job
-{: #view-details-job}
 
 `ibmcloud pi job JOB_ID [--json]`
-
-- `JOB_ID`: The unique identifier of the job.
 
 **Options**
 
@@ -780,11 +851,20 @@ or
 
 ---
 
+### `ibmcloud pi job-delete`
+{: #ibmcloud-pi-job-delete}
+
+#### Delete a job
+
+`ibmcloud pi job-delete JOB_ID`
+
+
+---
+
 ### `ibmcloud pi jobs`
 {: #ibmcloud-pi-jobs}
 
 #### List all jobs
-{: #list-all-jobs}
 
 `ibmcloud pi jobs [--operation-action ACTION] [--operation-id ID] [--operation-target TARGET] [--json]`
 
@@ -797,29 +877,12 @@ or
 
 ---
 
-### `ibmcloud pi job-delete`
-{: #ibmcloud-pi-job-delete}
-
-#### Delete a job
-{: #delete-job}
-
-`ibmcloud pi job-delete JOB_ID`
-
-**Options**
-
-- `--JOB_ID`: The unique identifier of the job.
-
----
-
 ### `ibmcloud pi key`
 {: #ibmcloud-pi-key}
 
 #### View details of a key
-{: #view-details-key}
 
 `ibmcloud pi key KEY_NAME [--json]`
-
-- `KEY_NAME`: The name of the key
 
 **Options**
 
@@ -830,16 +893,13 @@ or
 ### `ibmcloud pi key-create`
 {: #ibmcloud-pi-key-create}
 
-#### Import an RSA public key
-{: #import-rsa-pubkey}
+#### Create a key with imported RSA public key
 
 `ibmcloud pi key-create KEY_NAME --key KEY [--json]`
 
-- `KEY_NAME`: The name of the SSH key.
-
 **Options**
 
-- `--key`: SSH RSA key string.
+- `--key`: SSH RSA key string within a double quotation marks. For example, "ssh-rsa AAA... ".
 - `--json`: Format output in JSON.
 
 ---
@@ -848,28 +908,23 @@ or
 {: #ibmcloud-pi-key-delete}
 
 #### Delete a key
-{: #del-key}
 
 `ibmcloud pi key-delete KEY_NAME`
 
-- `KEY_NAME`: The name of the SSH key.
 
 ---
 
 ### `ibmcloud pi key-update`
 {: #ibmcloud-pi-key-update}
 
-#### Update the name of a key
-{: #update-keyname}
+#### Update the name and the value of a SSH key
 
 `ibmcloud pi key-update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY [--json]`
 
-- `KEY_NAME`: The name of the SSH key.
-
 **Options**
 
-- `--new-name`: New SSH key name.
-- `--new-key`: New SSH RSA key string.
+- `--new-name`: SSH key name.
+- `--new-key`: SSH RSA key string.
 - `--json`: Format output in JSON.
 
 ---
@@ -878,7 +933,6 @@ or
 {: #ibmcloud-pi-keys}
 
 #### List all keys
-{: #list-all-keys}
 
 `ibmcloud pi keys [--json]`
 
@@ -892,11 +946,8 @@ or
 {: #ibmcloud-pi-network}
 
 #### View details of a network
-{: #view-details-network}
 
 `ibmcloud pi network NETWORK_ID [--json]`
-
-- `NETWORK_ID`: The unique identifier or name of the network.
 
 **Options**
 
@@ -908,19 +959,17 @@ or
 {: #ibmcloud-pi-network-create-private}
 
 #### Create a private network
-{: #create-private-network}
 
-`ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
-
-- `NETWORK_NAME`: The name of the network.
+`ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--jumbo] [--json]`
 
 **Options**
 
 - `--cidr-block`: Network in CIDR notation (192.168.0.0/24).
-- `--dns-servers`: Space separated list of DNS Servers to use for this network. A maximum of one DNS server can be specified in Power Edge Router workspaces
+- `--dns-servers`: Space separated list of DNS Servers to use for this network. 127.0.0.1 by default if DNS server is not specified. A maximum of one DNS server can be specified in Power Edge Router workspaces.
 - `--gateway`: Gateway to use for this network.
-- `--ip-range`: IP addresses range or ranges for this network.
+- `--ip-range`: IP Addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
 - `--json`: Format output in JSON.
+- `--jumbo`: Enable MTU Jumbo Network.
 
 ---
 
@@ -928,15 +977,13 @@ or
 {: #ibmcloud-pi-network-create-public}
 
 #### Create a public network
-{: #create-pub-net}
 
-`ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--json]`
-
-- `NETWORK_NAME`: The name of the network.
+`ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--jumbo] [--json]`
 
 **Options**
 
-- `--dns-servers`: Space separated list of DNS Servers to use for this network.
+- `--dns-servers`: Space separated list of DNS Servers to use for this network. 9.9.9.9 by default if DNS server is not specified.
+- `--jumbo`: Enable MTU Jumbo Network.
 - `--json`: Format output in JSON.
 
 ---
@@ -945,11 +992,9 @@ or
 {: #ibmcloud-pi-network-delete}
 
 #### Delete a network
-{: #del-network}
 
 `ibmcloud pi network-delete NETWORK_ID`
 
-- `NETWORK_ID`: The unique identifier or name of the network.
 
 ---
 
@@ -957,18 +1002,15 @@ or
 {: #ibmcloud-pi-network-update}
 
 #### Update a network
-{: #update-network}
 
-`ibmcloud pi network-update NETWORK_ID [--name NETWORK_NAME] [--starting-ip IP] [--ending-ip IP] [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
-
-- `NETWORK_ID`: The unique identifier or name of the network.
+`ibmcloud pi network-update NETWORK_ID [--name NETWORK_NAME] [--ip-range "startIP-endIP[,startIP-endIP]"] [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--json]`
 
 **Options**
 
 - `--name`: New name of the network.
-- `--dns-servers`: Space separated list of new DNS Servers to use for this network.
+- `--dns-servers`: Space separated list of new DNS servers to use for this network.
 - `--gateway`: New gateway to use for this network.
-- `--ip-range`: New IP addresses range or ranges for this network.
+- `--ip-range`: New IP address range(s) for this network.
 - `--json`: Format output in JSON.
 
 ---
@@ -977,7 +1019,6 @@ or
 {: #ibmcloud-pi-networks}
 
 #### List all networks
-{: #list-all-network}
 
 `ibmcloud pi networks [--long] [--json]`
 
@@ -988,11 +1029,75 @@ or
 
 ---
 
+### `ibmcloud pi placement-group`
+{: #ibmcloud-pi-placement-group}
+
+#### View details of a server placement group.
+
+`ibmcloud pi placement-group PLACEMENT_GROUP_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi placement-group-create`
+{: #ibmcloud-pi-placement-group-create}
+
+#### Create a server placement group.
+
+`ibmcloud pi placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
+
+**Options**
+
+- `--policy`: Affinity policy for placement group being created. Valid values are affinity and anti-affinity.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi placement-group-delete`
+{: #ibmcloud-pi-placement-group-delete}
+
+#### Delete a server placement group.
+
+`ibmcloud pi placement-group-delete PLACEMENT_GROUP_ID`
+
+
+---
+
+### `ibmcloud pi placement-group-server-add`
+{: #ibmcloud-pi-placement-group-server-add}
+
+#### Add a server to the server placement group.
+
+`ibmcloud pi placement-group-server-add PLACEMENT_GROUP_ID --server INSTANCE_ID [--json]`
+
+**Options**
+
+- `--server`: The server instance ID of the server to add to the placement group.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi placement-group-server-remove`
+{: #ibmcloud-pi-placement-group-server-remove}
+
+#### Remove a server from a server placement group.
+
+`ibmcloud pi placement-group-server-remove PLACEMENT_GROUP_ID --server INSTANCE_ID [--json]`
+
+**Options**
+
+- `--server`: The server instance ID of the server to remove from the placement group.
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi placement-groups`
 {: #ibmcloud-pi-placement-groups}
 
 #### List all server placement groups.
-{: #server-placement-groups}
 
 `ibmcloud pi placement-groups [--json]`
 
@@ -1002,65 +1107,56 @@ or
 
 ---
 
-### `ibmcloud pi placement-group-create`
-{: #ibmcloud pi placement-group-create}
+### `ibmcloud pi sap-create-instance`
+{: #ibmcloud-pi-sap-create-instance}
 
-#### Create a server placement group.
-{: #create-placement-groups}
+#### Create a new SAP PVM Instance. This command is for use with Linux for SAP (HANA) images.
 
-`ibmcloud pi placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
-
-- `PLACEMENT_GROUP_NAME`: A unique name of the placement group.
+`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"]`
 
 **Options**
 
-- `--policy value`: Affinity policy for placement group being created. Valid values are affinity and anti-affinity.
+- `--image`: Linux for SAP (HANA) operating system image identifier or name.
+- `--profile-id`: The unique identifier of the SAP profile.
+- `--networks`: Space separated identifier/name of the network and optional IP address to associate with the instance.
+- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default is "none".
+- `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
+- `--storage-type`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
+- `--storage-pool`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
+- `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+- `--storage-anti-affinity-instances`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--key-name`: Name of SSH key.
+- `--sys-type`: Name of system type ("e880", "e980"). Default is "e980".
+- `--placement-group`: The placement group ID of the group that the server will be added to.
 - `--json`: Format output in JSON.
 
 ---
 
-### `ibmcloud pi placement-group-delete`
-{: #ibmcloud pi placement-group-delete}
+### `ibmcloud pi sap-list`
+{: #ibmcloud-pi-sap-list}
 
-#### Delete a server placement group.
-{: #delete-placement-groups}
+#### List all SAP profiles for the targeted region
 
-`ibmcloud pi placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
-
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
-
----
-
-### `ibmcloud pi placement-group-server-add`
-{: #ibmcloud pi placement-group-server-add}
-
-#### Add a server to the server placement group.
-{: #add-placement-groups}
-
-`ibmcloud pi placement-group-server-add PLACEMENT_GROUP_ID --server INSTANCE_ID [--json]`
-
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+`ibmcloud pi sap-list [--json]`
 
 **Options**
 
-- `--server value`: The server instance ID of the server to add to the placement group.
 - `--json`: Format output in JSON.
 
 ---
 
-### `ibmcloud pi placement-group-server-remove`
-{: #ibmcloud pi placement-group-server-remove}
+### `ibmcloud pi sap-profile`
+{: #ibmcloud-pi-sap-profile}
 
-#### Remove a server from a server placement group.
-{: #remove-placement-groups}
+#### Get the information on a SAP profile
 
-`ibmcloud pi placement-group-server-remove PLACEMENT_GROUP_ID --server INSTANCE_ID [--json]`
-
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
+`ibmcloud pi sap-profile SAP_PROFILE_ID [--json]`
 
 **Options**
 
-- `--server value`: The server instance ID of the server to remove from the placement group.
 - `--json`: Format output in JSON.
 
 ---
@@ -1068,8 +1164,7 @@ or
 ### `ibmcloud pi service-list`
 {: #ibmcloud-pi-service-list}
 
-#### List all services for this account and region
-{: #list-service}
+#### [DEPRECATED] Replaced by "ibmcloud pi workspaces" command. List all services for this account and region
 
 `ibmcloud pi service-list [--json]`
 
@@ -1083,25 +1178,18 @@ or
 {: #ibmcloud-pi-service-target}
 
 #### Target a service
-{: #target-service}
 
-`ibmcloud pi service-target [--json]`
+`ibmcloud pi service-target SERVICE_ID`
 
-**Options**
-
-- `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi shared-processor-pool`
 {: #ibmcloud-pi-shared-processor-pool}
 
-#### View details of a shared processor pool
-{: #shared-processor-pool-details}
+#### View details of a shared processor pool.
 
 `ibmcloud pi shared-processor-pool SHARED_PROCESSOR_POOL_ID [--json]`
-
-- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
 
 **Options**
 
@@ -1112,18 +1200,15 @@ or
 ### `ibmcloud pi shared-processor-pool-create`
 {: #ibmcloud-pi-shared-processor-pool-create}
 
-#### Create a shared processor pool
-{: #create-shared-processor-pool}
+#### Create a shared processor pool.
 
 `ibmcloud pi shared-processor-pool-create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--placement-group-id PLACEMENT_GROUP_ID] [--json]`
 
-- `SHARED_PROCESSOR_POOL_NAME`: A unique name of the shared processor pool. A minumum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'
-
 **Options**
 
-- `--host-group value`: The host group where the host will be chosen if not provided. Valid values are 's922' and 'e980'
-- `--reserved-cores value`: The integer amount of reserved processor cores for the shared processor pool.
-- `--placement-group-id value`: The identifier of the shared processor pool placement group the pool will be added to.
+- `--host-group`: The host group where the host will be chosen if not provided. Valid values are 's922', or 'e980'.
+- `--reserved-cores`: The integer amount of reserved processor cores for the shared processor pool.
+- `--placement-group-id`: The identifier of the shared processor pool placement group the pool will be added to.
 - `--json`: Format output in JSON.
 
 ---
@@ -1131,38 +1216,32 @@ or
 ### `ibmcloud pi shared-processor-pool-delete`
 {: #ibmcloud-pi-shared-processor-pool-delete}
 
-#### Delete a shared processor pool
-{: #delete-shared-processor-pool}
+#### Delete a shared processor pool.
 
 `ibmcloud pi shared-processor-pool-delete SHARED_PROCESSOR_POOL_ID`
 
-- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
 
 ---
 
 ### `ibmcloud pi shared-processor-pool-update`
 {: #ibmcloud-pi-shared-processor-pool-update}
 
-#### Update a shared processor pool
-{: #update-shared-processor-pool}
+#### Update a shared processor pool.
 
 `ibmcloud pi shared-processor-pool-update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] [--json]`
 
-- `SHARED_PROCESSOR_POOL_ID`: The unique identifier or name of the shared processor pool.
-
 **Options**
 
--  `--name value`: New name of the shared processor pool. A minumum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'
--  `--reserved-cores value`: The integer amount of reserved processor cores for the shared processor pool.
--  `--json`: Format output in JSON.
+- `--name`: New name of the shared processor pool. A minimum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'.
+- `--reserved-cores`: The integer amount of reserved processor cores for the shared processor pool.
+- `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi shared-processor-pools`
 {: #ibmcloud-pi-shared-processor-pools}
 
-#### List all shared processor pools
-{: #list-shared-processor-pools}
+#### List all shared processor pools.
 
 `ibmcloud pi shared-processor-pools [--json]`
 
@@ -1172,15 +1251,81 @@ or
 
 ---
 
-### `ibmcloud pi spp-placement-group`
-{: #ibmcloud-pi-shared-processor-pool-placement-group}
+### `ibmcloud pi snapshot`
+{: #ibmcloud-pi-snapshot}
 
-#### View details of a shared processor pool placement group
-{: #view-details-shared-processor-pool-placement-group}
+#### Get the detail of a snapshot.
+
+`ibmcloud pi snapshot SNAPSHOT_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi snapshot-create`
+{: #ibmcloud-pi-snapshot-create}
+
+#### Create a PVM instance snapshot
+
+`ibmcloud pi snapshot-create INSTANCE_ID --name SNAPSHOT_NAME [--volumes "VOLUME-ID1 .. VOLUME-IDn"] [--description DESCRIPTION] [--json]`
+
+**Options**
+
+- `--name`: Name of the snapshot.
+- `--volumes`: Space separated list of volumes to include in the PVM instance snapshot.
+- `This`: parameter is optional. If you do not specify this parameter or if the volumes list is empty,.
+- `all`: the volumes that are attached to the PVM instance are included in the snapshot.
+- `--description`: Snapshot description.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi snapshot-delete`
+{: #ibmcloud-pi-snapshot-delete}
+
+#### Delete a snapshot.
+
+`ibmcloud pi snapshot-delete SNAPSHOT_ID`
+
+
+---
+
+### `ibmcloud pi snapshot-restore`
+{: #ibmcloud-pi-snapshot-restore}
+
+#### Restore a PVM instance snapshot
+
+`ibmcloud pi snapshot-restore INSTANCE_ID --snapshot SNAPSHOT_ID [--force] [--restore VALUE]`
+
+**Options**
+
+- `--snapshot`: The unique identifier of the snapshot.
+- `--force`: By default the VM must be shutoff during a snapshot restore,force set to true will relax the VM shutoff pre-condition.
+- `--restore`: Action to take on a failed snapshot restore - allowable values: ["retry","rollback"].
+
+---
+
+### `ibmcloud pi snapshots`
+{: #ibmcloud-pi-snapshots}
+
+#### List all snapshots
+
+`ibmcloud pi snapshots [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi spp-placement-group`
+{: #ibmcloud-pi-spp-placement-group}
+
+#### View details of a shared processor pool placement group.
 
 `ibmcloud pi spp-placement-group PLACEMENT_GROUP_ID [--json]`
-
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
 
 **Options**
 
@@ -1189,75 +1334,76 @@ or
 ---
 
 ### `ibmcloud pi spp-placement-group-create`
-{: #ibmcloud-pi-shared-processor-pool-placement-group-create}
+{: #ibmcloud-pi-spp-placement-group-create}
 
-#### Create a shared processor pool placement group
-{: #create-shared-processor-pool-placement-group}
+#### Create a shared processor pool placement group.
 
 `ibmcloud pi spp-placement-group-create PLACEMENT_GROUP_NAME --policy POLICY [--json]`
 
-- `PLACEMENT_GROUP_NAME`: A unique name of the placement group.
-
 **Options**
 
-- `--policy value`: Affinity policy for placement group being created. Valid values are affinity and anti-affinity.
+- `--policy`: Affinity policy for placement group being created. Valid values are affinity and anti-affinity.
 - `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi spp-placement-group-delete`
-{: #ibmcloud-pi-shared-processor-pool-placement-group-delete}
+{: #ibmcloud-pi-spp-placement-group-delete}
 
-#### Delete a shared processor pool placement group
-{: #delete-shared-processor-pool-placement-group}
+#### Delete a shared processor pool placement group.
 
 `ibmcloud pi spp-placement-group-delete PLACEMENT_GROUP_ID`
 
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
 
 ---
 
 ### `ibmcloud pi spp-placement-group-member-add`
-{: #ibmcloud-pi-shared-processor-pool-placement-group-member-add}
+{: #ibmcloud-pi-spp-placement-group-member-add}
 
-#### Add a shared processor pool to the placement group
-{: #add-to-shared-processor-pool-placement-group}
+#### Add a shared processor pool to the placement group.
 
 `ibmcloud pi spp-placement-group-member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
 
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
-
 **Options**
 
-- `--shared-processor-pool value`: The shared processor pool ID of the pool to add to the placement group.
+- `--shared-processor-pool`: The shared processor pool ID of the pool to add to the placement group.
 - `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi spp-placement-group-member-remove`
-{: #ibmcloud-pi-shared-processor-pool-placement-group-member-remove}
+{: #ibmcloud-pi-spp-placement-group-member-remove}
 
-#### Remove a shared processor pool from the placement group
-{: #remove-from-shared-processor-pool-placement-group}
+#### Remove a shared processor pool from the placement group.
 
 `ibmcloud pi spp-placement-group-member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID [--json]`
 
-- `PLACEMENT_GROUP_ID`: The unique identifier of the placement group.
-
 **Options**
 
-- `--shared-processor-pool value`: The shared processor pool ID of the pool to add to the placement group.
+- `--shared-processor-pool`: The shared processor pool ID of the pool to remove from the placement group.
 - `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi spp-placement-groups`
-{: #ibmcloud-pi-shared-processor-pool-placement-groups}
+{: #ibmcloud-pi-spp-placement-groups}
 
-#### List all shared processor pool placement groups
-{: #list-shared-processor-pool-placement-groups}
+#### List all shared processor pool placement groups.
 
 `ibmcloud pi spp-placement-groups [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi storage-pools`
+{: #ibmcloud-pi-storage-pools}
+
+#### List all storage pools for the targeted region
+
+`ibmcloud pi storage-pools [--json]`
 
 **Options**
 
@@ -1268,7 +1414,7 @@ or
 ### `ibmcloud pi storage-types`
 {: #ibmcloud-pi-storage-types}
 
-#### List all storage types
+#### List all storage types for the targeted region
 
 `ibmcloud pi storage-types [--json]`
 
@@ -1278,15 +1424,257 @@ or
 
 ---
 
+### `ibmcloud pi system-pool`
+{: #ibmcloud-pi-system-pool}
+
+#### List of available system pools within a particular data center
+
+`ibmcloud pi system-pool [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi task`
+{: #ibmcloud-pi-task}
+
+#### View details of a task.
+
+`ibmcloud pi task TASK_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi task-delete`
+{: #ibmcloud-pi-task-delete}
+
+#### Delete a task.
+
+`ibmcloud pi task-delete TASK_ID [--json]`
+
+
+---
+
+### `ibmcloud pi virtual-tape-libraries`
+{: #ibmcloud-pi-virtual-tape-libraries}
+
+#### List all virtual tape libraries
+
+`ibmcloud pi virtual-tape-libraries [--long] [--json]`
+
+**Options**
+
+- `--long`: Retrieve all virtual tape library details.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi virtual-tape-library`
+{: #ibmcloud-pi-virtual-tape-library}
+
+#### View details of a virtual tape library
+
+`ibmcloud pi virtual-tape-library TAPE_LIBRARY_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi virtual-tape-library-attach-network`
+{: #ibmcloud-pi-virtual-tape-library-attach-network}
+
+#### Attach a network to the virtual tape library.
+
+`ibmcloud pi virtual-tape-library-attach-network TAPE_LIBRARY_NAME --network "NETWORK_ID" [--ip-address "IP_ADDRESS"] [--json]`
+
+**Options**
+
+- `--network`: The network ID.
+- `--ip-address`: The requested ip address of this network interface.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi virtual-tape-library-create`
+{: #ibmcloud-pi-virtual-tape-library-create}
+
+#### Create a virtual tape library
+
+`ibmcloud pi virtual-tape-library-create TAPE_LIBRARY_NAME --image IMAGE --capacity LICENSED_CAPACITY [--memory MEMORY] <--network \"NETWORK1 [IP1]\">`
+
+**Options**
+
+- `--image`: Operating system image identifier or name.
+- `--capacity`: Amount of licensed repository capacity (in TB).
+- `--memory`: Amount of memory (in GB) to allocate to the virtual tape library. Memory needs to be at least 16 GB + (2 GB x the licensed repository capacity value).
+- `--network`: Space separated identifier/name of the network and optional IP address to associate with the virtual tape library.
+- `--processors`: Amount of processors to allocate to the virtual tape library. 1-12 TB of licensed repository capacity needs at least 2 processors...
+- `13`: - 72 TB of licensed repository capacity needs at least 4 processors. Greater than 72 TB of licensed repository capacity needs at least 8 processors.
+- `--processor-type`: Type of processors: 'shared' or 'dedicated' or 'capped'.
+- `--volumes`: Space separated list of identifiers or names of the volumes to associate with the virtual tape library. A minimum of 3 volumes is required.
+- `--key-name`: Name of SSH key.
+- `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
+- `--storage-type`: Storage type for virtual tape library deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
+- `--storage-pool`: Storage pool for virtual tape library deployment. Only valid when you deploy one of the IBM supplied stock images.
+- `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
+- `--storage-affinity-instance`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+- `--storage-affinity-volume`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+- `--storage-anti-affinity-instances`: Space separated list of PVM instance or VTL identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+- `--storage-anti-affinity-volumes`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+- `--pin-policy`: Pin policy ("none", "soft", "hard"). Default is "none".
+- `--placement-group`: The placement group ID of the group that the virtual tape library will be added to.
+- `--shared-processor-pool`: The shared processor pool ID of the pool that the virtual tape library will be in.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi virtual-tape-library-delete`
+{: #ibmcloud-pi-virtual-tape-library-delete}
+
+#### Delete a virtual tape library
+
+`ibmcloud pi virtual-tape-library-delete TAPE_LIBRARY_ID [--delete-data-volumes]`
+
+**Options**
+
+- `--delete-data-volumes`: Indicates whether all data volumes attached to the virtual tape library must be deleted. Shared data volumes will be deleted if no other virtual tape libraries are attached.
+
+---
+
+### `ibmcloud pi virtual-tape-library-detach-network`
+{: #ibmcloud-pi-virtual-tape-library-detach-network}
+
+#### Detach all or a specific network from the virtual tape library.
+
+`ibmcloud pi virtual-tape-library-detach-network TAPE_LIBRARY_NAME --network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
+
+**Options**
+
+- `--network`: The network ID.
+- `--mac-address`: The mac address of the network interface to be removed. The default is all mac addresses.
+
+---
+
+### `ibmcloud pi virtual-tape-library-get-console`
+{: #ibmcloud-pi-virtual-tape-library-get-console}
+
+#### Get the console of a virtual tape library.
+
+`ibmcloud pi virtual-tape-library-get-console TAPE_LIBRARY_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi virtual-tape-library-hard-reboot`
+{: #ibmcloud-pi-virtual-tape-library-hard-reboot}
+
+#### Hard restart the operating system of a virtual tape library.
+
+`ibmcloud pi virtual-tape-library-hard-reboot TAPE_LIBRARY_ID`
+
+
+---
+
+### `ibmcloud pi virtual-tape-library-immediate-shutdown`
+{: #ibmcloud-pi-virtual-tape-library-immediate-shutdown}
+
+#### Immediately shutdown a virtual tape library
+
+`ibmcloud pi virtual-tape-library-immediate-shutdown TAPE_LIBRARY_ID`
+
+
+---
+
+### `ibmcloud pi virtual-tape-library-networks`
+{: #ibmcloud-pi-virtual-tape-library-networks}
+
+#### List all the attached networks.
+
+`ibmcloud pi virtual-tape-library-networks TAPE_LIBRARY_NAME [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi virtual-tape-library-reset-state`
+{: #ibmcloud-pi-virtual-tape-library-reset-state}
+
+#### Reset a virtual tape library
+
+`ibmcloud pi virtual-tape-library-reset-state TAPE_LIBRARY_ID`
+
+
+---
+
+### `ibmcloud pi virtual-tape-library-soft-reboot`
+{: #ibmcloud-pi-virtual-tape-library-soft-reboot}
+
+#### Soft restart the operating system of a virtual tape library.
+
+`ibmcloud pi virtual-tape-library-soft-reboot TAPE_LIBRARY_ID`
+
+
+---
+
+### `ibmcloud pi virtual-tape-library-start`
+{: #ibmcloud-pi-virtual-tape-library-start}
+
+#### Start a virtual tape library
+
+`ibmcloud pi virtual-tape-library-start TAPE_LIBRARY_ID`
+
+
+---
+
+### `ibmcloud pi virtual-tape-library-stop`
+{: #ibmcloud-pi-virtual-tape-library-stop}
+
+#### Stop a virtual tape library.
+
+`ibmcloud pi virtual-tape-library-stop TAPE_LIBRARY_ID`
+
+
+---
+
+### `ibmcloud pi virtual-tape-library-update`
+{: #ibmcloud-pi-virtual-tape-library-update}
+
+#### Update a virtual tape library.
+
+`ibmcloud pi virtual-tape-library-update TAPE_LIBRARY_ID [--capacity LICENSED_CAPACITY] [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--storage-pool-affinity=True|False] [--json]`
+
+**Options**
+
+- `--capacity`: New amount of licensed repository capacity (in TB). This value can only be increased.
+- `--memory`: New amount of memory for the virtual tape library. Memory needs to be at least 16 GB + (2 GB x the licensed repository capacity value).
+- `--name`: New name of the virtual tape library.
+- `--pin-policy`: New pin policy for the virtual tape library ("none", "soft", "hard").
+- `--processors`: New amount of processors for the virtual tape library. 1-12 TB of licensed repository capacity needs at least 2 processors...
+- `13`: - 72 TB of licensed repository capacity needs at least 4 processors. Greater than 72 TB of licensed repository capacity needs at least 8 processors.
+- `--processor-type`: New processor type for the virtual tape library.
+- `--storage-pool-affinity`: Indicates if all volumes attached to the virtual tape library must reside in the same storage pool. If set to false then volumes from any storage type and pool can be attached to the virtual tape library. Once set to false,cannot be set back to true unless all volumes attached reside in the same storage type and pool.
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi volume`
 {: #ibmcloud-pi-volume}
 
 #### View details of a volume
-{: #view-details-vol}
 
 `ibmcloud pi volume VOLUME_ID [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
@@ -1297,16 +1685,13 @@ or
 ### `ibmcloud pi volume-action`
 {: #ibmcloud-pi-volume-action}
 
-#### Perform an action on a volume
-{: #perform-action-vol}
+#### Perform an action on a volume.
 
-`ibmcloud pi volume-action VOLUME_ID --replication-enabled`
-
-- `VOLUME_ID`: The unique identifier or name of volume.
+`ibmcloud pi volume-action VOLUME_ID [--replication-enabled=True|False]`
 
 **Options**
 
-- `--replication-enabled`: Enables storage replication on the volume.
+- `--replication-enabled`: Enables or disables storage replication on the volume.
 
 ---
 
@@ -1314,11 +1699,8 @@ or
 {: #ibmcloud-pi-volume-attach}
 
 #### Attach a volume to an instance
-{: #attach-vol-ins}
 
 `ibmcloud pi volume-attach VOLUME_ID --instance INSTANCE [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
@@ -1327,21 +1709,52 @@ or
 
 ---
 
+### `ibmcloud pi volume-clone`
+{: #ibmcloud-pi-volume-clone}
+
+#### Get the status of a clone request for the specified clone task ID.
+
+`ibmcloud pi volume-clone CLONE_TASK_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi volume-create`
 {: #ibmcloud-pi-volume-create}
 
 #### Create a volume
-{: #create-volume}
 
-`ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--json]`
-
-- `VOLUME_NAME`: The name of the volume.
+`ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--replication-enabled] [--json]`
 
 **Options**
 
-- `--type`: Type of the volume (`ssd`, `standard`, `tier1`, or `tier3`).
-- `--size`: Size of the volume (GB).
+- `--type`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region).
+- `--size`: Size of the volume (in GB).
 - `--shareable`: Whether volume can be attached to multiple VMs.
+- `--storage-pool`: Volume pool where the volume will be created (use "ibmcloud pi storage-pools" to see available storage pools). If  is provided then --type and --affinity-policy values cannot be specified.
+- `--affinity-policy`: Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
+- `--affinity-instance`: PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
+- `--affinity-volume`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
+- `--anti-affinity-instances`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
+- `--anti-affinity-volumes`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
+- `--replication-enabled`: Enables storage replication on the volume. False by default.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-create-clone`
+{: #ibmcloud-pi-volume-create-clone}
+
+#### Create a volume clone for specific volumes.
+
+`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
+
+**Options**
+
+- `--volumes`: Space separated list of identifiers the volume(s) to be cloned.
 - `--json`: Format output in JSON.
 
 ---
@@ -1350,11 +1763,9 @@ or
 {: #ibmcloud-pi-volume-delete}
 
 #### Delete a volume
-{: #del-volume}
 
 `ibmcloud pi volume-delete VOLUME_ID`
 
-- `VOLUME_ID`: The unique identifier or name of the volume
 
 ---
 
@@ -1362,11 +1773,8 @@ or
 {: #ibmcloud-pi-volume-detach}
 
 #### Detach a volume from an instance
-{: #detach-vol-ins}
 
-`ibmcloud pi volume VOLUME_ID --instance INSTANCE [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
+`ibmcloud pi volume-detach VOLUME_ID --instance INSTANCE [--json]`
 
 **Options**
 
@@ -1376,14 +1784,11 @@ or
 ---
 
 ### `ibmcloud pi volume-flash-copy-mapping`
-{: #ibmcloud-pi-volume-flash-copy-map}
+{: #ibmcloud-pi-volume-flash-copy-mapping}
 
-#### Get a list of flash copy mappings of a volume directly from primary storage host
-{: #get-list-flash-copy-map}
+#### Get a list of flash copy mappings of a volume directly from primary storage host.
 
 `ibmcloud pi volume-flash-copy-mapping VOLUME_ID [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
@@ -1392,14 +1797,11 @@ or
 ---
 
 ### `ibmcloud pi volume-group`
-{: #ibmcloud-pi-volume-group-details}
+{: #ibmcloud-pi-volume-group}
 
-#### View details of a volume group
-{: #view-details-vol-group}
+#### View details of a volume group.
 
 `ibmcloud pi volume-group VOLUME_GROUP_ID [--long] [--json]`
-
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
 
 **Options**
 
@@ -1411,16 +1813,15 @@ or
 ### `ibmcloud pi volume-group-create`
 {: #ibmcloud-pi-volume-group-create}
 
-#### Create a volume group
-{: #create-vol-group}
+#### Create a volume group.
 
 `ibmcloud pi volume-group-create (--volume-group-name VOLUME_GROUP_NAME | --consistency-group-name CONSISTENCY_GROUP_NAME) --member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]" [--json]`
 
 **Options**
 
-- `--volume-group-name value`: Storage volume group name. This is required for the creation of new volume group.
-- `--consistency-group-name value`: Storage volume group name. This is required to onboard existing volume group on the target site for DR set up.
-- `--member-volume-ids value`: Space separated member volume identifiers.
+- `--volume-group-name`: Storage volume group name. This is required for the creation of new volume group.
+- `--consistency-group-name`: Storage volume group name. This is required to onboard existing volume group on the target site for DR set up.
+- `--member-volume-ids`: Space separated member volume identifiers.
 - `--json`: Format output in JSON.
 
 ---
@@ -1428,24 +1829,19 @@ or
 ### `ibmcloud pi volume-group-delete`
 {: #ibmcloud-pi-volume-group-delete}
 
-#### Delete a volume group
-{: #delete-vol-group}
+#### Delete a volume group.
 
 `ibmcloud pi volume-group-delete VOLUME_GROUP_ID`
 
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
 
 ---
 
 ### `ibmcloud pi volume-group-remote-copy-relationships`
-{: #ibmcloud-pi-volume-group-remote-copy-rel}
+{: #ibmcloud-pi-volume-group-remote-copy-relationships}
 
-#### Get all remote copy relationships for each volume in a volume group
-{: #remote-copy-rel-vol-group}
+#### Get all remote copy relationships for each volume in a volume group.
 
 `ibmcloud pi volume-group-remote-copy-relationships VOLUME_GROUP_ID [--json]`
-
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
 
 **Options**
 
@@ -1456,55 +1852,35 @@ or
 ### `ibmcloud pi volume-group-reset`
 {: #ibmcloud-pi-volume-group-reset}
 
-#### Reset a volume group
-{: #reset-vol-group}
+#### Reset a volume group to update its status value.
 
-`ibmcloud pi volume-group-reset VOLUME_GROUP_ID`
-
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
-
----
-
-### `ibmcloud pi volume-groups`
-{: #ibmcloud-pi-volume-groups}
-
-#### List all volume groups
-{: #view-details-vol-group}
-
-`ibmcloud pi volume-groups [--long] [--json]`
+`ibmcloud pi volume-group-reset VOLUME_GROUP_ID [--status STATUS]`
 
 **Options**
 
-- `--long`: Retrieve additional details for all volume groups.
-- `--json`: Format output in JSON
+- `--status`: New status to be set for a volume group. Default is "available".
 
 ---
 
 ### `ibmcloud pi volume-group-start`
 {: #ibmcloud-pi-volume-group-start}
 
-#### Start a volume group
-{: #start-vol-group}
+#### Start a volume group.
 
 `ibmcloud pi volume-group-start VOLUME_GROUP_ID [--source SOURCE]`
 
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
-
 **Options**
 
-- `--source value`: The copying volume source. Allowed values are master or auxiliary. Default is master.
+- `--source`: The copying volume source. Allowed values are master or auxiliary. Default is master.
 
 ---
 
 ### `ibmcloud pi volume-group-stop`
 {: #ibmcloud-pi-volume-group-stop}
 
-#### Stop a volume group
-{: #view-details-vol-group}
+#### Stop a volume group.
 
 `ibmcloud pi volume-group-stop VOLUME_GROUP_ID [--allow-read-access]`
-
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
 
 **Options**
 
@@ -1515,12 +1891,9 @@ or
 ### `ibmcloud pi volume-group-storage-details`
 {: #ibmcloud-pi-volume-group-storage-details}
 
-#### View storage details of a volume group
-{: #view-storage-details-vol-group}
+#### View storage details of a volume group.
 
 `ibmcloud pi volume-group-storage-details VOLUME_GROUP_ID [--json]`
-
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
 
 **Options**
 
@@ -1531,29 +1904,61 @@ or
 ### `ibmcloud pi volume-group-update`
 {: #ibmcloud-pi-volume-group-update}
 
-#### Update a volume group
-{: #view-details-vol-group}
+#### Update a volume group.
 
 `ibmcloud pi volume-group-update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]"] [--remove-member-volume-ids "VOLUME_ID_1 [VOLUME_ID_N]"]`
 
-- `VOLUME_GROUP_ID`: The unique identifier or name of the volume group.
+**Options**
+
+- `--add-member-volume-ids`: Space separated volume identifiers to add as members of the volume group.
+- `--remove-member-volume-ids`: Space separated volume identifiers to remove as members of the volume group.
+
+---
+
+### `ibmcloud pi volume-groups`
+{: #ibmcloud-pi-volume-groups}
+
+#### List all volume groups.
+
+`ibmcloud pi volume-groups [--long] [--json]`
 
 **Options**
 
-- `--add-member-volume-ids value`: Space separated volume identifiers to add as members of the volume group.
-- `--remove-member-volume-ids value`: Space separated volume identifiers to remove as members of the volume group.
+- `--long`: Retrieve additional details for all volume groups.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi volume-multi-create`
+{: #ibmcloud-pi-volume-multi-create}
+
+#### Create multiple volume.
+
+`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --type TYPE --volume-count COUNT --size SIZE [--shareable] [--replication-enabled] [--json]`
+
+**Options**
+
+- `--type`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region); required if --affinity-policy and --storage-pool are not provided.
+- `--volume-count`: Number of volumes to create.
+- `--size`: Size of the volume (in GB).
+- `--shareable`: Whether the volumes can be attached to multiple VMs.
+- `--storage-pool`: Volume pool where the volume will be created. If  is provided then --type and --affinity-policy values cannot be specified.
+- `--affinity-policy`: Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
+- `--affinity-instance`: PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
+- `--affinity-volume`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
+- `--anti-affinity-instances`: Space separated list of instance identifiers or names to base volume anit-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
+- `--anti-affinity-volumes`: Space separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
+- `--replication-enabled`: Enables storage replication on the volume. False by default.
+- `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi volume-onboarding`
-{: #ibmcloud-pi-volume-onboarding-info}
+{: #ibmcloud-pi-volume-onboarding}
 
-#### Get the information of volume onboarding operation
-{: #info-volume-onboarding}
+#### Get the information of volume onboarding operation.
 
 `ibmcloud pi volume-onboarding VOLUME_ONBOARDING_ID [--json]`
-
-- `VOLUME_ONBOARDING_ID`: The unique identifier of the onboarding operation.
 
 **Options**
 
@@ -1564,25 +1969,23 @@ or
 ### `ibmcloud pi volume-onboarding-create`
 {: #ibmcloud-pi-volume-onboarding-create}
 
-#### Create a volume onboarding operation
-{: #create-volume-onboarding}
+#### Create a volume onboarding operation.
 
 `ibmcloud pi volume-onboarding-create --source-crn SOURCE_CRN <--auxiliary-volume "AUXVOLUMENAME1 [NAME1]"--> [--description] [--json]`
 
 **Options**
 
-- `--source-crn value`: CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
-- `--auxiliary-volume value`: Space separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
-- `--description value`: Volume onboarding description.
+- `--source-crn`: CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
+- `--auxiliary-volume`: Space separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
+- `--description`: Volume onboarding description.
 - `--json`: Format output in JSON.
 
 ---
 
 ### `ibmcloud pi volume-onboardings`
-{: #ibmcloud-pi-volume-onboarding-list}
+{: #ibmcloud-pi-volume-onboardings}
 
-#### List all volume onboarding operations
-{: #list-volume-onboarding}
+#### List all volume onboarding operations.
 
 `ibmcloud pi volume-onboardings [--json]`
 
@@ -1593,14 +1996,11 @@ or
 ---
 
 ### `ibmcloud pi volume-remote-copy-relationship`
-{: #ibmcloud-pi-volume-remote-copy-rel}
+{: #ibmcloud-pi-volume-remote-copy-relationship}
 
-#### Get the remote copy relationship information of a volume
-{: #remote-copy-rel-vol}
+#### Get the remote copy relationship information of a volume.
 
 `ibmcloud pi volume-remote-copy-relationship VOLUME_ID [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
 
 **Options**
 
@@ -1612,1053 +2012,360 @@ or
 {: #ibmcloud-pi-volume-update}
 
 #### Update a volume
-{: #update-volume}
 
-`ibmcloud pi volume-update VOLUME_ID [--bootable] [--name NEW_NAME] [--size NEW_SIZE] [--shareable] [--json]`
-
-- `VOLUME_ID`: The unique identifier or name of the volume.
+`ibmcloud pi volume-update VOLUME_ID [--bootable=True|False] [--name NEW_NAME] [--size NEW_SIZE] [--shareable=True|False] [--json]`
 
 **Options**
 
-- `--bootable`: New volume bootable.
+- `--bootable`: New  for whether the volume can be booted.
 - `--name`: New name of the volume.
 - `--size`: New size of the volume.
-- `--shareable`: New for whether volume can be attached to multiple VMs.
+- `--shareable`: New  for whether the volume can be attached to multiple VMs.
 - `--json`: Format output in JSON.
 
 ---
-
 
 ### `ibmcloud pi volumes`
 {: #ibmcloud-pi-volumes}
 
 #### List all volumes
-{: #list-all-vol}
 
-`ibmcloud pi volumes [--long] [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-attach-network
-{: #attach-network}
-
-#### Attach a network to the server instance
-{: #attach-network-server}
-
-`ibmcloud pi instance-attach-network INSTANCE_NAME --network "NETWORK_ID" --ip-address "IP_ADDRESS" [--json]`
-
-- `INSTANCE_NAME`: The name of the instance.
-
-**Options**
-
-- `--network`: The network ID.
-- `--ip-address`: The requested IP address of this network interface.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-attach-volumes
-{: #attach-instance-attach-volumes}
-
-#### Attach volumes to an instance
-{: #attach-vol-instance}
-
-`ibmcloud pi instance-attach-volumes INSTANCE_ID --volume-ids "VOLUME_ID1 [VOLUME_IDn]"`
-
-- `INSTANCE_ID`: TThe unique identifier or name of the instance.
-
-**Options**
-
-- `--volume-ids value`: Space separated list of volume IDs to the volumes to attach to the instance.
-  
----
-
-### ibmcloud pi instance-detach-network
-{: #detach-network}
-
-#### Detach all or a specific network from the server instance
-{: #detach-network-server}
-
-`ibmcloud pi instance-detach-network INSTANCE_NAME -network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
-
-- `INSTANCE_NAME`: The name of the cloud connection.
-
-**Options**
-
-- `--network`: The network ID.
-- `--mac-address`: The mac address of the network interface to be removed. The defualt value is all mac addresses.
-
----
-
-### ibmcloud pi instance-networks
-{: #list-networks}
-
-#### List all the attached networks
-{: #list-all-attached-network}
-
-`ibmcloud pi instance-detach-network INSTANCE_NAME [--json]`
-
-- `INSTANCE_NAME`: The name of the cloud connection.
+`ibmcloud pi volumes [--long] [--json] [--replication-enabled=True|False] [--auxiliary=True|False]`
 
 **Options**
 
 - `--json`: Format output in JSON.
+- `--replication-enabled`: Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default.
+- `--auxiliary`: Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default.
 
 ---
 
-### ibmcloud pi instance-system-pool
-{: #system-pools-support}
+### `ibmcloud pi vpn-connection`
+{: #ibmcloud-pi-vpn-connection}
 
-#### List of available system pools within a particular data center
-{: #list-system-pools}
-
-`ibmcloud pi system-pool [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-sap-create-instance
-{: #create-sap-instance}
-
-#### Create a new SAP PVM Instance. This command is for use with Linux for SAP (HANA) images. 
-{: #create-new-sappvm}
-
-`ibmcloud pi sap-create-instance SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --networks "NETWORK1 [IP1]" [--pin-policy POLICY] [--volumes "VOLUME1 VOLUME2"]
-    [--storage-type STORAGE_TYPE] [--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
-    [--storage-anti-affinity-instances "INSTANCE1 [INSTANCEn]"] [--storage-anti-affinity-volumes "VOLUME1 [VOLUMEn]"]
-    [--key-name KEY-NAME] [--sys-type TYPE] [--placement-group PLACEMENT_GROUP_ID] [--json]`
-
-- `SAP_INSTANCE_NAME`: The name of the SAP instance
-
-**Options**
-
-- `--image value`: Linux for SAP (HANA) operating system image identifier or name.
-- `--profile-id value`: The unique identifier of the SAP profile.
-- `--networks value`: Space separated identifier/name of the network and optional IP address to associate with the instance.
-- `--pin-policy vlaue`: Pin policy state **none**, **soft**, or **hard**. Default Pin policy is **none**.
-- `--volumes value`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
-- `--storage-type value`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
-- `--storage-pool value`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
-- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `--storage-affinity-instance value`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
-- `--storage-anti-affinity-instances value`: Space separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-- `--key-name vale`: Name of SSH key.
-- `--sys-type value`: Name of system type (**e880**, **e980**). Default is **e980**.
-`--placement-group value` : The placement group ID of the group that the server will be added to.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-sap-list
-{: #instance-list}
-
-#### List all SAP profiles
-{: #sapprofile-list}
-
-`ibmcloud pi sap-list [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-sap-profile
-{: #sapprofile-info}
-
-#### Get information on an SAP profile
-{: #get-sapprofile-info}
-
-`ibmcloud pi sap-profile SAP_PROFILE_ID [--json]`
-
-- `SAP_INSTANCE_ID`: The unique identifier of the SAP profile.
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-snapshot
-{: #snapshot-id}
-
-### Get the detail of a snapshot
-{: #snapshot-details}
-
-`ibmcloud pi snapshot SNAPSHOT_ID`
-
-- `SNAPSHOT_ID`: The unique identifier of the snapshot.
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-snapshot-create
-{: #create-snapshot}
-
-#### Create a snapshot
-{: #create-snapshot}
-
-`ibmcloud pi snapshot-create INSTANCE_ID [--volumes] [--name] [--description] [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
-
-**Options**
-
-- `--volumes`: Space separated list of volumes to include in the PVM instance snapshot. This parameter is optional. If you do not specify this parameter or if the volumes list is empty, all the volumes that are attached to the PVM instance are included in the snapshot.
-- `--name`: Name of the snapshot.
-- `--description`: Snapshot description.
-- `--json`: Format output in JSON.
-
-Each snapshot that you create is monitored hourly and charged depending on the disk space that is requested for the snapshot. For more information on pricing for the snapshot, see [Metering of snapshot and pricing](/docs/power-iaas?topic=power-iaas-volume-snapshot-clone#metering-snapshot)
-
----
-
-### ibmcloud pi instance-snapshot-delete
-{: #delete-snapshot}
-
-#### Delete a snapshot
-{: #delete-snapshot}
-
-`ibmcloud pi snapshot-delete SNAPSHOT_ID`
-
-- `SNAPSHOT_ID`: The unique identifier of the snapshot.
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-snapshot-restore
-{: #restore-snapshot}
-
-#### Restore a PVM instance snapshot
-{: #restore-pvminstance-snapshot}
-
-`ibmcloud pi snapshot-restore INSTANCE_ID --snapshot [--force] [--restore]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
-
-**Options**
-
-- `--snapshot`: The unique identifier of the snapshot.
-- `--force`: By default the VM must be shut off during a snapshot restore, if force set to true, relaxes the VM shutoff pre-condition.
-- `--restore`: Action to take on a failed snapshot restore. Allowed values are **retry** or **rollback**.
-
----
-
-### ibmcloud pi instance-snapshot
-{: #snapshot-list}
-
-#### List all snapshots
-{: #snapshot-list}
-
-`ibmcloud pi snapshots [--long] [--json]`
-
-**Option**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi instance-list-snapshots
-{: #snapshot-list}
-
-#### List all snapshots for an instance
-{: #instance-snapshot-list}
-
-`ibmcloud pi instance-list-snapshots INSTANCE_ID [--json]`
-
-- `INSTANCE_ID`: The unique identifier or name of the instance.
-
-**Option**
-
-- `--json`: Format output in JSON.
-- 
----
-
-### ibmcloud pi volume-clone
-{: #volume-clone}
-
-#### Get the status of a clone request for the specified clone task ID
-{: #volume-clone-status}
-
-`ibmcloud pi volume-clone CLONE_TASK_ID [--json]`
-
-- `CLONE_TASK_ID`: The unique identifier of a clone task.
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi volume-create-clone
-{: #create-volume-clone}
-
-#### Create a volume clone for specific volumes
-{: #create-volume-clonev-vo}
-
-`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
-
-- `CLONE_NAME`: The name of a clone.
-
-**Options**
-
-- `--volumes value Space`: separated list of the volume(s) to be cloned.
-- `--json`: Format output in JSON.
-
----
-
-### `ibmcloud pi connections`
-{: #connections}
-
-#### List all cloud Connections
-{: #list-all-cloud-conn}
-
-`ibmcloud pi connections [--long] [--json]`
-
-**Options**
-
-- `--long`: Retrieve all cloud connections in detail
-- `--json`: Format output in JSON
-
----
-
-### ibmcloud pi connection-attach-network
-{: #attach-network}
-
-#### Attach a network to the cloud connection
-{: #attach-network-cloud-connection}
-
-`ibmcloud pi connection-attach-network CONNECTION_ID --network NETWORK_ID[--json]`
-
-- `CONNECTION_ID`: The unique identifier of the cloud connection
-
-**Options**
-
-- `--network`: The unique identifier (network ID) of the network
-
----
-
-### ibmcloud pi connection-create
-{: #create-connection}
-
-#### Create a cloud connection
-{: #create-cloud-connection}
-
-`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
-`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED --transit-enabled [--networks "NETWORK_ID1..NETWORK_IDn"] [--global-routing] [--metered] [--json]`
-
-- `CONNECTION_NAME`: The unique name of the cloud connection
-
-Cloud connections are not supported with new workspaces in DAL10 data center. See, [Getting Started with Power Edge Router](https://test.cloud.ibm.com/docs/power-iaas?topic=power-iaas-per){: external} for more information.
-{: note}
-
-**Options**
-
-- `--speed value`: Speed of the cloud connection (speed in megabits per second). Allowed values are 50, 100, 200, 500, 1000, 2000, 5000, 10000
-- `--networks value`: Space separated network identifiers
-- `--vpc`: Enable VPC cloud connection endpoint
-- `--vpcID value`: VPC ID (i.e. crn:v1:..) to add to cloud connection. Use with "--vpc" option
-- `--classic`: Enable Classic cloud connection endpoint
-- `--gre-tunnel value`: Space separated "cidr" and "destinationIPAddress". Use with "--classic" option. GRE tunnel cannot be configured with speeds above 5000.
-- `--metered`: Metered cloud connection flag
-- `--global-routing`: Global routing flag
-- `--transit-enabled`: Enable transit gateway. This option is currently available on DAL12 and us-east zones.
-- `--json`: Format output in JSON
-
----
-
-### ibmcloud pi connection-delete
-{: delete-connection}
-
-#### Delete a Cloud Connection
-{: #del-cloud-connection}
-
-`ibmcloud pi connection-delete CONNECTION_ID`
-
-- `CONNECTION_ID`: The unique identifier of the cloud connection
-
----
-
-### ibmcloud pi connection-detach-network
-{: #connection-detach-network}
-
-#### Detach a network from the cloud connection
-{: #detach-network-cloud-conn}
-
-`ibmcloud pi connection-detach-network CONNECTION_ID --network NETWORK_ID [--json]`
-
-- `CONNECTION_ID`: The unique identifier of the cloud connection
-
-**Options**
-
-- `--network`: The unique identifier (network ID) of the network
-- `--json`: Format output in JSON
-
----
-
-### ibmcloud pi connection-update
-{: #connection-update}
-
-#### Update a cloud connection
-{: #update-cloud-conn}
-
-`ibmcloud pi connection-update CONNECTION_ID [--speed SPEED] [--vpc=True|False [<--vpcID "VPC-ID">]] [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] ...[--global-routing=True|False] [--metered=True|False] [--name NAME] [--json]`
-
-- `CONNECTION_ID`: The unique identifier of the cloud connection
-
-**Options**
-
-- `--speed`: New speed value for the cloud connection. Allowed values are 50, 100, 200, 500, 1000, 2000, 5000. Speeds currently at 10000 cannot be downgraded lower and speeds cannot be increased to 10000.
-- `--vpc`: Enable or disable VPC cloud connection endpoint
-- `--vpcID`: VPC ID to add to cloud connection for use with "--vpc" option
-- `classic`: Enable or disable classic cloud connection endpoint
-- `--gre-tunnel`: Space separated **cidr**, **destination IPaddress** for use with "--classic" option. GRE tunnel cannot be configured with speeds above 5000.
-- `--global-routing`: Enable or disable global routing
-- `--metered`: Enable or disable metering
-- `--name`: Name of cloud connection
-- `--json`: Format output in JSON
-
----
-
-### ibmcloud pi connection-vpcs
-{: #connection-vpcs}
-
-#### List all virtual private clouds
-{: #list-vpc}
-
-`ibmcloud pi connection-vpcs [--json]`
-
-**Options**
-
-- `--json`: Format output in JSON
-
-<!-- ---
-
-### ibmcloud pi connection-network
-{: #network-connection}
-
-#### Get information about a cloud connection's attached network
-
-`ibmcloud pi connection-network CONNECTION_ID --network NETWORK_ID [--json]`
-
-- `CONNECTION_ID`: The unique identifier or name of the cloud connection.
-
-**Options**
-
-- `network`: The unique identifier (network ID) of the network.
-- `json`: Format output in JSON.-->
-
----
-
-### ibmcloud pi virtual-tape-library
-{: #virtual-tape-library}
-
-#### View details of a virtual tape library
-{: #view-details-vtl}
-
-`ibmcloud pi virtual-tape-library TAPE_LIBRARY_ID [--json]`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
-**Options**
-
-- `--json`: Format output in JSON
-  
----
-
-### ibmcloud pi virtual-tape-libraries
-{: #virtual-tape-libraries}
-
-#### List all virtual tape libraries
-{: #list-all-vtl}
-
-`ibmcloud pi virtual-tape-libraries [--long] [--json]`
-
-**Options**
-
-- `--long`: Retrieve all virtual tape library details.
-- `--json`: Format output in JSON
-  
----
-### ibmcloud pi virtual-tape-create
-{: #virtual-tape-library-create}
-
-#### Create a virtual tape library
-{: #create-a-vtl}
-
-`ibmcloud pi virtual-tape-library-create TAPE_LIBRARY_NAME --image IMAGE --capacity LICENSED_CAPACITY [--memory MEMORY] <--network \"NETWORK1 [IP1]\">[--processors PROCESSORS] [--processor-type PROC_TYPE] [--volumes \"VOLUME1 VOLUMEn\"] [--key-name NAME] [--sys-type TYPE] [--storage-type STORAGE_TYPE][--storage-pool STORAGE_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME][--storage-anti-affinity-instances \"INSTANCE1 [INSTANCEn]\"] [--storage-anti-affinity-volumes \"VOLUME1 [VOLUMEn]\"]<!-- [--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] --> [--pin-policy POLICY] [--placement-group GROUP_ID] [--shared-processor-pool SHARED_PROCESSOR_POOL] [--json]`
-
-- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
-
-**Options**
-
-- `--image value`: Operating system image identifier or name.
-- `--capacity value`: Amount of licensed repository capacity (in TB).
-- `--memory value`: Amount of memory (in GB) to allocate to the virtual tape library. Memory needs to be at least 16 GB + (2 GB x the licensed repository capacity value)
-- `--network value`: Space separated identifier/name of the network and optional IP address to associate with the virtual tape library.
-- `--processors value`: Amount of processors to allocate to the virtual tape library. 1-12 TB of licensed repository capacity needs at least 2 processors. 13 - 72 TB of licensed repository capacity needs at least 4 processors. Greater than 72 TB of licensed repository capacity needs at least 8 processors.
-- `--processor-type value`: Type of processors: 'shared' or 'dedicated' or 'capped'.
-- `--volumes value`: Space separated list of identifiers or names of the volumes to associate with the virtual tape library. A minimum of 3 volumes is required.
-- `--key-name value`: Name of SSH key
-- `--sys-type value`: Name of System Type ("s922", "s1022", "e880", "e980"). Default is "s922".
-- `--storage-type value`: Storage type for virtual tape library deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
-- `--storage-pool value`: Storage pool for virtual tape library deployment. Only valid when you deploy one of the IBM supplied stock images.
-- `--storage-affinity value`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
-- `--storage-affinity-instance value`: PVM instance or VTL identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-- `--storage-affinity-volume value`: Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
-- `--storage-anti-affinity-instances value`: Space separated list of PVM instance or VTL identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-- `--storage-anti-affinity-volumes value`: Space separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided
-- `--pin-policy value`: Pin policy ("none", "soft", "hard"). Default is "none".
-- `--placement-group value`: The placement group ID of the group that the virtual tape library will be added to.
-- `--shared-processor-pool value`: The shared processor pool ID of the pool that the virtual tape library will be in.
-- `--json`: Format output in JSON.
-  
----
-
-### ibmcloud pi virtual-tape-library-delete
-{: #virtual-tape-library-delete}
-
-#### Delete a virtual tape library
-{: #delete-a-vtl}
-
-`ibmcloud pi virtual-tape-library-delete TAPE_LIBRARY_ID [--delete-data-volumes]`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
-**Options**
-
-- `--delete-data-volumes`: Indicates whether all data volumes attached to the virtual tape library must be deleted. Shared data volumes will be deleted if no other virtual tape libraries are attached.
-
----
-
-### ibmcloud pi virtual-tape-library-update
-{: #virtual-tape-library-update}
-
-#### Update a virtual tape library.
-{: #update-a-vtl}
-
-`ibmcloud pi virtual-tape-library-update TAPE_LIBRARY_ID [--capacity LICENSED_CAPACITY] [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--storage-pool-affinity=True|False] [--json]`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
-**Options**
-
-- `--capacity value`: New amount of licensed repository capacity (in TB). This value can only be increased.
-- `--memory value`: New amount of memory for the virtual tape library. Memory needs to be at least 16 GB + (2 GB x the licensed repository capacity value).
-- `--name value`: New name of the virtual tape library.
-- `--pin-policy value`: New pin policy for the virtual tape library ("none", "soft", "hard").
-- `--processors value`: New amount of processors for the virtual tape library. 1-12 TB of licensed repository capacity needs at least 2 processor. 13 - 72 TB of licensed repository capacity needs at least 4 processors. Greater than 72 TB of licensed repository capacity needs at least 8 processors.
-- `--processor-type value`: New processor type for the virtual tape library.
-- `--storage-pool-affinity`:  Indicates if all volumes attached to the virtual tape library must reside in the same storage pool. If set to false then volumes from any storage type and pool can be attached to the virtual tape library. Once set to false, cannot be set back to true unless all volumes attached reside in the same storage type and pool.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi virtual-tape-library-attach-network
-{: #virtual-tape-library-attach}
-
-#### Attach a network to the virtual tape library.
-{: #attac-nw-vtl}
-
-`ibmcloud pi virtual-tape-library-attach-network TAPE_LIBRARY_NAME --network "NETWORK_ID" [--ip-address "IP_ADDRESS"] [--json]`
-
-- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
-
-**Options**
-
-- `--network value`: The network ID.
-- `--ip-address value`: The requested ip address of this network interface.
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi virtual-tape-library-detach-network
-{: #virtual-tape-library-detach}
-
-#### Detach all or a specific network from the virtual tape library.
-{: #detach-nw-vtl}
-
-`ibmcloud pi virtual-tape-library-detach-network TAPE_LIBRARY_NAME --network "NETWORK_ID" [--mac-address "MAC_ADDRESS"]`
-
-- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
-
-**Options**
-
-- `--network value`: The network ID.
-- `--mac-address value`: The mac address of the network interface to be removed. The default is all mac addresses.
-
----
-
-### ibmcloud pi virtual-tape-library-get-console
-{: #virtual-tape-library-get-console}
-
-#### Get the console of a virtual tape library.
-{: #get-console-vtl}
-
-`ibmcloud pi virtual-tape-library-get-console TAPE_LIBRARY_ID [--json]`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi virtual-tape-library-networks
-{: #virtual-tape-library-networks}
-
-#### List all the attached networks.
-{: #get-console-vtl}
-
-`ibmcloud pi virtual-tape-library-networks TAPE_LIBRARY_NAME [--json]`
-
-- `TAPE_LIBRARY_NAME`: The name of the virtual tape library.
-
-**Options**
-
-- `--json`: Format output in JSON.
-
----
-
-### ibmcloud pi virtual-tape-library-hard-reboot
-{: #virtual-tape-library-reboot}
-
-#### Hard restart the operating system of a virtual tape library.
-{: #hard-reboot-vtl}
-
-`ibmcloud pi virtual-tape-library-hard-reboot TAPE_LIBRARY_ID`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
----
-
-### ibmcloud pi virtual-tape-library-immediate-shutdown
-{: #virtual-tape-library-shutdown}
-
-#### Immediately shutdown a virtual tape library
-{: #immediate-shutdown-vtl}
-
-`ibmcloud pi virtual-tape-library-immediate-shutdown TAPE_LIBRARY_ID`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
----
-
-### ibmcloud pi virtual-tape-library-reset-state
-{: #virtual-tape-library-reset}
-
-#### Immediately shutdown a virtual tape library
-{: #reset-vtl}
-
-`ibmcloud pi virtual-tape-library-reset-state TAPE_LIBRARY_ID`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
----
-
-### ibmcloud pi virtual-tape-library-soft-reboot
-{: #virtual-tape-library-softreboot}
-
-#### Soft restart the operating system of a virtual tape library.
-{: #soft-reboot-vtl}
-
-`ibmcloud pi virtual-tape-library-soft-reboot TAPE_LIBRARY_ID`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
----
-
-### ibmcloud pi virtual-tape-library-start
-{: #virtual-tape-library-start}
-
-#### Start a virtual tape library
-{: #start-vtl}
-
-`ibmcloud pi virtual-tape-library-start TAPE_LIBRARY_ID`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
----
-
-### ibmcloud pi virtual-tape-library-stop
-{: #virtual-tape-library-stop}
-
-#### Stop a virtual tape library.
-{: #stop-vtl}
-
-`ibmcloud pi virtual-tape-library-stop TAPE_LIBRARY_ID`
-
-- `TAPE_LIBRARY_ID`: The unique identifier or name of the virtual tape library.
-
----
-
-### ibmcloud pi vpn-connections
-{: #vpn-connections}
-
-#### List all VPN connections
-{: #list-vpn}
-
-`ibmcloud pi vpn-connections [--json]`
-
-
-**Options**
-
-- `--json`: Format output in JSON
-  
----
-
-### ibmcloud pi vpn-connection
-{: #vpn-connection}
-
-#### View details of a VPN connection
-{: #view-details-vpn-conn}
+#### View details of a VPN connection.
 
 `ibmcloud pi vpn-connection VPN_CONNECTION_ID [--json]`
 
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
 **Options**
 
-- `--json`: Format output in JSON
-  
+- `--json`: Format output in JSON.
+
 ---
 
-### ibmcloud pi vpn-connection-create
-{: #vpn-connection-create}
+### `ibmcloud pi vpn-connection-create`
+{: #ibmcloud-pi-vpn-connection-create}
 
-#### Create a VPN connection
-{: #create-vpn-conn}
+#### Create a VPN connection.
 
 `ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode MODE --peer-gateway-address PEER_GATEWAY --peer-subnet-cidrs "CIDR1 [CIDRn]" --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
 
-- `VPN_CONNECTION_NAME`: A unique name of the VPN connection.
+**Options**
+
+- `--mode`: Mode to be used by the VPN connection and cannot be updated later. Valid values are 'route' and 'policy'.
+- `--peer-gateway-address`: IP address of the peer gateway attached to this VPN connection.
+- `--peer-subnet-cidrs`: Space separated list of peer subnet CIDRs.
+- `--ike-policy-id`: Unique ID of IKE policy selected for this VPN connection.
+- `--ipsec-policy-id`: Unique ID of IPSec policy selected for this VPN connection.
+- `--network-ids`: Space separated list of network IDs attached to this VPN connection.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi vpn-connection-delete`
+{: #ibmcloud-pi-vpn-connection-delete}
+
+#### Delete a VPN connection.
+
+`ibmcloud pi vpn-connection-delete VPN_CONNECTION_ID [--json]`
 
 **Options**
 
-- `--mode value`: Mode to be used by the VPN connection and cannot be updated later. Valid values are 'policy' and 'route'.
-- `--peer-gateway-address value`: IP address of the peer gateway attached to this VPN connection
-- `--peer-subnet-cidrs value`: Space separated list of peer subnet CIDRs
-- `--ike-policy-id value`: Unique ID of IKE policy selected for this VPN connection
-- `--ipsec-policy-id value`: Unique ID of IPSec policy selected for this VPN connection
-- `--network-ids value`: Space separated list of network IDs attached to this VPN connection
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-connection-update
-{: #vpn-connection-update}
-
-#### Update a VPN connection
-{: #update-vpn-conn}
-
-`ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
-
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
-**Options**
-
-- `--name value`: New unique name of this VPN connection
-- `--peer-gateway-address value`: New IP address of the peer gateway attached to this VPN connection
-- `--ike-policy-id value`: New ID of IKE policy selected for this VPN connection
-- `--ipsec-policy-id value`: New ID of IPSec policy selected for this VPN connection
-- `--json`: Format output in JSON
-  
----
-
-### ibmcloud pi vpn-connection-delete
-{: #vpn-connection-delete}
-
-#### Delete a VPN connection
-{: #del-vpn-conn}
-
-`ibmcloud pi vpn-connection-delete VPN_CONNECTION_ID`
-
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-
----
-
-### ibmcloud pi vpn-connection-networks
-{: #vpn-connection-netowkrs}
-
-#### Get a list of networks attached to a specific VPN connection
-{: #get-list-net-vpn}
-
-`ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
-
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
-**Options**
-
-- `--json`: Format output in JSON
-  
----
-
-### ibmcloud pi vpn-connection-network-attach
-{: #vpn-connection-network-attach}
+### `ibmcloud pi vpn-connection-network-attach`
+{: #ibmcloud-pi-vpn-connection-network-attach}
 
 #### Attach a network to a specific VPN connection
-{: #attach-net-vpn}
 
 `ibmcloud pi vpn-connection-network-attach VPN_CONNECTION_ID --network-id ID [--json]`
 
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
 **Options**
 
-- `--network-id value`: Network ID to attach to the VPN connection
-- `--json`: Format output in JSON
-  
+- `--network-id`: Network ID to attach to the VPN connection.
+- `--json`: Format output in JSON.
+
 ---
 
-### ibmcloud pi vpn-connection-network-detach
-{: #vpn-connection-network-detach}
+### `ibmcloud pi vpn-connection-network-detach`
+{: #ibmcloud-pi-vpn-connection-network-detach}
 
-#### Detach a network from a specific VPN connection
-{: #detach-network-vpn}
+#### Detach a network from a specific VPN connection.
 
 `ibmcloud pi vpn-connection-network-detach VPN_CONNECTION_ID --network-id ID`
 
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
 **Options**
 
-- `--network-id value`: Network ID to detach from the VPN connection
-  
+- `--network-id`: Network ID to detach from the VPN connection.
+
 ---
 
-### ibmcloud pi vpn-connection-peer-subnets
-{: #vpn-connection-peer-subnets}
+### `ibmcloud pi vpn-connection-networks`
+{: #ibmcloud-pi-vpn-connection-networks}
 
-#### Get a list of peer subnets attached to a specific VPN connection
-{: #get-list-peer-subnet-vpn}
+#### Get a list of networks attached to a specific VPN connection.
 
-`ibmcloud pi vpn-connection-peer-subnets VPN_CONNECTION_ID [--json]`
+`ibmcloud pi vpn-connection-networks VPN_CONNECTION_ID [--json]`
 
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
 **Options**
 
-- `--json`: Format output in JSON
-  
+- `--json`: Format output in JSON.
+
 ---
 
-### ibmcloud pi vpn-connection-peer-subnet-attach
-{: #vpn-connection-peer-subnet-attach}
+### `ibmcloud pi vpn-connection-peer-subnet-attach`
+{: #ibmcloud-pi-vpn-connection-peer-subnet-attach}
 
-#### Attach a peer subnet to a specific VPN connection
-{: #attach-peer-subnet-vpn}
+#### Attach a peer subnet to a specific VPN connection.
 
 `ibmcloud pi vpn-connection-peer-subnet-attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR [--json]`
 
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
 **Options**
 
-- `--peer-subnet-cidr value`: Peer subnet CIDR to attach to the VPN connection
-- `--json`: Format output in JSON
-  
+- `--peer-subnet-cidr`: Peer subnet CIDR to attach to the VPN connection.
+- `--json`: Format output in JSON.
+
 ---
 
-### ibmcloud pi vpn-connection-peer-subnet-detach
-{: #vpn-connection-peer-subnet-detach}
+### `ibmcloud pi vpn-connection-peer-subnet-detach`
+{: #ibmcloud-pi-vpn-connection-peer-subnet-detach}
 
-#### Detach a peer subnet from a specific VPN connection
-{: #detach-peer-subnet-vpn}
+#### Detach a peer subnet from a specific VPN connection.
 
 `ibmcloud pi vpn-connection-peer-subnet-detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR`
 
-- `VPN_CONNECTION_ID`: The unique identifier of the VPN connection
-  
 **Options**
 
-- `--peer-subnet-cidr value`: Peer subnet CIDR to attach to the VPN connection
- 
+- `--peer-subnet-cidr`: Peer subnet CIDR to detach from this VPN connection.
+
 ---
 
-### ibmcloud pi vpn-ike-policies
-{: #vpn-ike-policies}
+### `ibmcloud pi vpn-connection-peer-subnets`
+{: #ibmcloud-pi-vpn-connection-peer-subnets}
 
-#### List all VPN IKE policies
-{: #list-vpn-ike}
+#### Get a list of peer subnets attached to a specific VPN connection.
+
+`ibmcloud pi vpn-connection-peer-subnets VPN_CONNECTION_ID [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi vpn-connection-update`
+{: #ibmcloud-pi-vpn-connection-update}
+
+#### Update a VPN connection.
+
+`ibmcloud pi vpn-connection-update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID] [--json]`
+
+**Options**
+
+- `--name`: New unique name of this VPN connection.
+- `--peer-gateway-address`: New IP address of the peer gateway attached to this VPN connection.
+- `--ike-policy-id`: New ID of IKE policy selected for this VPN connection.
+- `--ipsec-policy-id`: New ID of IPSec policy selected for this VPN connection.
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi vpn-connections`
+{: #ibmcloud-pi-vpn-connections}
+
+#### List all VPN connections.
+
+`ibmcloud pi vpn-connections [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi vpn-ike-policies`
+{: #ibmcloud-pi-vpn-ike-policies}
+
+#### List all VPN IKE policies.
 
 `ibmcloud pi vpn-ike-policies [--json]`
-  
+
 **Options**
 
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ike-policy
-{: #vpn-ike-policy}
+### `ibmcloud pi vpn-ike-policy`
+{: #ibmcloud-pi-vpn-ike-policy}
 
-#### View details of a VPN IKE policy
-{: #view-detail-vpn-ike}
+#### View details of a VPN IKE policy.
 
 `ibmcloud pi vpn-ike-policy IKE_POLICY_ID [--json]`
 
-- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
-
 **Options**
 
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ike-policy-add
-{: #vpn-ike-policy-add}
+### `ibmcloud pi vpn-ike-policy-add`
+{: #ibmcloud-pi-vpn-ike-policy-add}
 
-#### Add a VPN IKE policy
-{: #vpn-ike-policy}
+#### Add a VPN IKE policy.
 
 `ibmcloud pi vpn-ike-policy-add IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --preshared-key KEY --key-lifetime SECONDS [--json]`
 
-- `IKE_POLICY_NAME`: The name of the VPN IKE policy. The maximum name length is 47 characters.
-
 **Options**
 
-- `--version value`: Version number of the IKE policy. Valid values are '2', '1'.
-- `--authentication value`: Authentication algorithm of the IKE policy. Valid values are 'sha-256', 'sha-384', 'sha1', 'none'.
-- `--encryption value`: Encryption algorithm of the IKE policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
-- `--dhgroup value`: DH group number of the IKE policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
-- `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
-- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
-- `--json`: Format output in JSON
+- `--version`: Version number of the IKE policy. Valid values are '2', '1'.
+- `--authentication`: Authentication algorithm of the IKE policy. Valid values are 'sha-256', 'sha-384', 'sha1', 'none'.
+- `--encryption`: Encryption algorithm of the IKE policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dh-group`: DH group number of the IKE policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
+- `--preshared-key`: Preshared key used in this VPN connection. The key length must be even.
+- `--key-lifetime`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ike-policy-update
-{: #vpn-ike-policy-update}
+### `ibmcloud pi vpn-ike-policy-delete`
+{: #ibmcloud-pi-vpn-ike-policy-delete}
 
-#### Update a VPN IKE policy
-{: #update-vpn-ike}
-
-`ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--preshared-key KEY] [--key-lifetime SECONDS] [--json]`
-
-- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
-  
-**Options**
-
-- `--name value`: New unique name of the IKE Policy. The maximum name length is 47 characters.
-- `--version value`: Version number of the IKE Policy. Valid values are '2', '1'.
-- `--authentication value`: Authentication algorithm of the IKE Policy. Valid values are 'sha-256', 'sha-384', 'sha1', 'none'.
-- `--encryption value`: Encryption algorithm of the IKE Policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
-- `--dhgroup value`: DH group number of the IKE Policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
-- `--presharedkey value`: Preshared key used in this VPN connection. The key length must be even.
-- `--key-lifetime value`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
-- `--json`: Format output in JSON
-
----
-
-### ibmcloud pi vpn-ike-policy-delete
-{: #vpn-ike-policy-delete}
-
-#### Delete a VPN IKE policy
-{: #delete-vpn-ike}
+#### Delete a VPN IKE policy.
 
 `ibmcloud pi vpn-ike-policy-delete IKE_POLICY_ID`
 
-- `IKE_POLICY_ID`: The unique identifier of the VPN IKE policy
- 
+
 ---
 
-### ibmcloud pi vpn-ipsec-policies
-{: #vpn-ipsec-policies}
+### `ibmcloud pi vpn-ike-policy-update`
+{: #ibmcloud-pi-vpn-ike-policy-update}
 
-#### List all IPSec policies
-{: #list-ipsec}
+#### Update a VPN IKE policy.
 
-`ibmcloud pi vpn-ipsec-policies [--json]`
-  
+`ibmcloud pi vpn-ike-policy-update IKE_POLICY_ID  [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--preshared-key KEY] [--key-lifetime SECONDS] [--json]`
+
 **Options**
 
-- `--json`: Format output in JSON
+- `--name`: New unique name of the IKE Policy. The maximum name length is 47 characters.
+- `--version`: Version number of the IKE Policy. Valid values are '2', '1'.
+- `--authentication`: Authentication algorithm of the IKE Policy. Valid values are 'sha-256', 'sha-384', 'sha1', 'none'.
+- `--encryption`: Encryption algorithm of the IKE Policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dh-group`: DH group number of the IKE Policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
+- `--preshared-key`: Preshared key used in this VPN connection. The key length must be even.
+- `--key-lifetime`: Key lifetime of the IKE policy in seconds. Valid range is 180 to 86400 seconds.
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ipsec-policy
-{: #vpn-ipsec-policy}
+### `ibmcloud pi vpn-ipsec-policies`
+{: #ibmcloud-pi-vpn-ipsec-policies}
 
-#### View details of a VPN IPSec policy
-{: #view-detail-vpn-ipsec}
+#### List all IPSec policies.
+
+`ibmcloud pi vpn-ipsec-policies [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi vpn-ipsec-policy`
+{: #ibmcloud-pi-vpn-ipsec-policy}
+
+#### View details of a VPN IPSec policy.
 
 `ibmcloud pi vpn-ipsec-policy IPSEC_POLICY_ID [--json]`
 
-- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSEC policy
-  
 **Options**
 
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ipsec-policy-add
-{: #vpn-ipsec-policy-add}
+### `ibmcloud pi vpn-ipsec-policy-add`
+{: #ibmcloud-pi-vpn-ipsec-policy-add}
 
-#### Add a VPN IPSec policy
-{: #add-vpn-ipsec}
+#### Add a VPN IPSec policy.
 
 `ibmcloud pi vpn-ipsec-policy-add IPSEC_POLICY_NAME --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --key-lifetime SECONDS [--pfs] [--json]`
 
-- `IPSEC_POLICY_NAME`: The name of the VPN IPSEC policy. The maximum name length is 47 characters
-  
 **Options**
 
-- `--authentication value`: Authentication encryption type of the IPSec policy. Valid values are 'hmac-sha-256-128', 'hmac-sha1-96', 'none'.
-- `--encryption value`: Connection encryption policy of the IPSec policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-192-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm', 'aes-192-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
-- `--dhgroup value`: DH group number of the IPSec policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
-- `--key-lifetime value`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
+- `--authentication`: Authentication encryption type of the IPSec policy. Valid values are 'hmac-sha-256-128', 'hmac-sha1-96', 'none'.
+- `--encryption`: Connection encryption policy of the IPSec policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-192-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm', 'aes-192-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dh-group`: DH group number of the IPSec policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
+- `--key-lifetime`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
 - `--pfs`: Enable perfect forward secrecy. Disabled if not specified.
-- `--json`: Format output in JSON
+- `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ipsec-policy-update
-{: #vpn-ipsec-policy-update}
+### `ibmcloud pi vpn-ipsec-policy-delete`
+{: #ibmcloud-pi-vpn-ipsec-policy-delete}
 
-#### Update a VPN IPSec policy
-{: #update-vpn-ipsec}
+#### Delete a VPN IPSec policy.
+
+`ibmcloud pi vpn-ipsec-policy-delete IPSEC_POLICY_ID`
+
+
+---
+
+### `ibmcloud pi vpn-ipsec-policy-update`
+{: #ibmcloud-pi-vpn-ipsec-policy-update}
+
+#### Update a VPN IPSec policy.
 
 `ibmcloud pi vpn-ipsec-policy-update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--key-lifetime SECONDS] [--pfs=True|False] [--json]`
 
-- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
-  
 **Options**
 
-- `--name value`: New unique name of the IPSec policy. The maximum name length is 47 characters.
-- `--authentication value`: Authentication algorithm of the IPSec policy. Valid values are 'hmac-sha-256-128', 'hmac-sha1-96', 'none'.
-- `--encryption value`: Encryption algorithm of the IPSec policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-192-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm', 'aes-192-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
-- `--dhgroup value`: DH group number of the IPSec policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
-- `--key-lifetime value`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
+- `--name`: New unique name of the IPSec policy. The maximum name length is 47 characters.
+- `--authentication`: Authentication algorithm of the IPSec policy. Valid values are 'hmac-sha-256-128', 'hmac-sha1-96', 'none'.
+- `--encryption`: Encryption algorithm of the IPSec policy. Valid values are 'aes-256-cbc', 'aes-192-cbc', 'aes-128-cbc', 'aes-256-gcm', 'aes-192-gcm', 'aes-128-gcm', '3des-cbc'. When using 'aes-128-gcm', 'aes-192-gcm' or 'aes-256-gcm' authentication should be set to 'none'.
+- `--dh-group`: DH group number of the IPSec policy. Valid values are '2', '14', '19', '20', '24', '5', '1'.
+- `--key-lifetime`: Key lifetime of the IPSec policy in seconds. Valid range is 180 to 86400 seconds.
 - `--pfs`: Enable or disable perfect forward secrecy.
 - `--json`: Format output in JSON.
 
 ---
 
-### ibmcloud pi vpn-ipsec-policy-delete
-{: #vpn-ipsec-policy-delete}
+### `ibmcloud pi workspace`
+{: #ibmcloud-pi-workspace}
 
-#### Delete a VPN IPSec policy
-{: #delete-vpn-ipsec}
+#### View details of a workspace
 
-`ibmcloud pi vpn-ipsec-policy-delete IPSEC_POLICY_ID`
+`ibmcloud pi workspace WORKSPACE_ID`
 
-- `IPSEC_POLICY_ID`: The unique identifier of the VPN IPSec policy
-  
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi workspaces`
+{: #ibmcloud-pi-workspaces}
+
+#### List workspaces for this account
+
+`ibmcloud pi wss`
+
+**Options**
+
+- `--long`: Retrieve all workspace details.
+- `--json`: Format output in JSON.
+
 ---
