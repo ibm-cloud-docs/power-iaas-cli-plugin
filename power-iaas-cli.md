@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 20223
-lastupdated: "2023-11-13"
+lastupdated: "2023-11-21"
 
 ---
 
@@ -88,8 +88,11 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ### November 2023
 {: nov-2023}
 
-New CLI version `0.5.0` available. 
-Here are the new changes for the new CLI version:
+New CLI version `0.6.0` available. Here are the new changes for the new CLI version:
+   * New commands - [Create a workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace-create) and [Delete a workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace-delete) added.
+  
+
+New CLI version `0.5.0` available. Here are the new changes for the new CLI version:
    * New `--user-data` flag added in [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
    <!-- * New `--mtu` flag added in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
    * Deprecate `--jumbo` flag in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands. -->
@@ -2353,6 +2356,31 @@ Here are the new changes for the new CLI version:
 **Options**
 
 - `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi workspace-create`
+{: #ibmcloud-pi-workspace-create}
+
+#### Create a workspace
+
+`ibmcloud pi workspace-create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN [--json]`
+
+**Options**
+
+- `--datacenter`: The datacenter location where the instance should be hosted. Use the "datacenters" command to see possible values.
+- `--group`: The ID of the resource group.
+- `--plan`: Plan associated with the offering. Valid values are "public" or "private".
+- `--json`: Format output in JSON.
+
+---
+
+### `ibmcloud pi workspace-delete`
+{: #ibmcloud-pi-workspace-delete}
+
+#### Delete a workspace
+
+`ibmcloud pi workspace-delete WORKSPACE_ID`
 
 ---
 
