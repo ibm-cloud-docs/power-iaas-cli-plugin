@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 20223
-lastupdated: "2023-11-17"
+lastupdated: "2023-11-21"
 
 ---
 
@@ -2365,7 +2365,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create a workspace
 
-`ibmcloud pi workspace-create create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN [--json]`
+`ibmcloud pi workspace-create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN [--json]`
 
 **Options**
 
