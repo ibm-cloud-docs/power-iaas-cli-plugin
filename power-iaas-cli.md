@@ -92,21 +92,21 @@ New CLI version `0.7.0` available. Here are the changes for the new CLI version:
 
 **New command**
 
-- `storage-tiers`: List all storage tiers for the targeted region.
+- [List all storage tiers for the targeted region](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-storage-tiers): List all storage tiers for the targeted region.
 
 **New flags**
 
-- `instance-update` command: `--virtual-optical-device` flag - Attach or Detach a Virtual Optical Device to this instance. Valid values are "attach" and "detach".
-- `network-create-private` command : `--mtu` flag - Maximum Transmission Unit. The default value is 1450.
-- `network-create-public` command: `--mtu` flag - Maximum Transmission Unit. The default value is 1450.
-- `volume-action` command: `--target-tier` flag - Change the storage tier of the volume (use `ibmcloud pi storage-tiers` to see available storage tiers in the targeted region). `Tier5k` volumes cannot exceed 200 GB.
+- A `--virtual-optical-device` flag is added in [Update a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update) command: Use this to attach or detach a virtual optical device to this instance. Valid values are "attach" and "detach".
+- A `--mtu` flag is added in [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) command : Use this is to define the Maximum Transmission Unit. Maximum Transmission Unit. The default value is 1450.
+- A `--mtu` flag is added in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) command: Use this is to define the Maximum Transmission Unit. The default value is 1450.
+- A `--target-tier` flag is added in [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-action) command:  Use this to change the storage tier of the volume (use [List all storage tiers for the targeted region](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-storage-tiers) to see available storage tiers in the targeted region). `Tier5k` volumes cannot exceed 200 GB.
  
 
 **What's Changed**
 
-- New custom deployment type for `instance-create` command `VMNoStorage`.
-- Deprecate `--jumbo` flag in `network-create-private` and `network-create-public` commands.
-- Disable VPN connection creation command `vpn-connection-create`. Operation no longer supported.
+- New custom deployment type - `VMNoStorage` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
+- Deprecate `--jumbo` flag in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
+- Disable [Create a VPN connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-vpn-connection-create) command. Operation is no longer supported.
 - New Power Edge Router (PER) details field when using the `workspace` command.
 
 ### November 2023
