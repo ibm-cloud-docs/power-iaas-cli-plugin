@@ -106,7 +106,6 @@ New CLI version `0.7.0` available. Here are the changes for the new CLI version:
 
 - New custom deployment type - `VMNoStorage` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
 - Deprecate `--jumbo` flag in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
-- Disable [Create a VPN connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-vpn-connection-create) command. Operation is no longer supported.
 - New Power Edge Router (PER) details field when using the `workspace` command.
 
 ### November 2023
@@ -2103,10 +2102,19 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 ### `ibmcloud pi vpn-connection-create`
 {: #ibmcloud-pi-vpn-connection-create}
 
-#### Create a VPN connection. Create VPN Connection is no longer supported.
+#### Create a VPN connection.
 
-`Create VPN Connection is no longer supported.`
+`ibmcloud pi vpn-connection-create VPN_CONNECTION_NAME --mode MODE --peer-gateway-address PEER_GATEWAY --peer-subnet-cidrs "CIDR1 [CIDRn]" --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --network-ids "ID1 [IDn]" [--json]`
 
+**Options**
+
+- `--mode`: Mode to be used by the VPN connection and cannot be updated later. Valid values are 'route' and 'policy'.
+- `--peer-gateway-address`: IP address of the peer gateway attached to this VPN connection.
+- `--peer-subnet-cidrs`: Space separated list of peer subnet CIDRs.
+- `--ike-policy-id`: Unique ID of IKE policy selected for this VPN connection.
+- `--ipsec-policy-id`: Unique ID of IPSec policy selected for this VPN connection.
+- `--network-ids`: Space separated list of network IDs attached to this VPN connection.
+- `--json`: Format output in JSON.
 
 ---
 
