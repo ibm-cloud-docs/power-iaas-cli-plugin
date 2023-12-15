@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 20223
-lastupdated: "2023-11-21"
+  years: 2019, 2023
+lastupdated: "2023-12-07"
 
 ---
 
@@ -84,6 +84,29 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
+
+### December 2023
+{: dec-2023}
+
+New CLI version `0.7.0` available. Here are the changes for the new CLI version:
+
+**New command**
+
+- [List all storage tiers for the targeted region](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-storage-tiers): List all storage tiers for the targeted region.
+
+**New flags**
+
+- A `--virtual-optical-device` flag is added in [Update a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update) command: Use this to attach a virtual optical device to this instance. Valid values is "attach".
+- A `--mtu` flag is added in [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) command: Use this is to define the Maximum Transmission Unit. The default value is 1450.
+- A `--mtu` flag is added in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) command: Use this is to define the Maximum Transmission Unit. The default value is 1450.
+- A `--target-tier` flag is added in [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-action) command:  Use this to change the storage tier of the volume (use [List all storage tiers for the targeted region](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-storage-tiers) to see available storage tiers in the targeted region). `Tier5k` volumes cannot exceed 200 GB.
+ 
+
+**What's Changed**
+
+- New custom deployment type - `VMNoStorage` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
+- Deprecate `--jumbo` flag in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
+- New Power Edge Router (PER) details field when using the `workspace` command.
 
 ### November 2023
 {: nov-2023}
@@ -442,15 +465,15 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Import an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --disk-type DISKTYPE [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] [--disk-type STORAGE_TIER] [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
 
 **Options**
 
 - `--image-path`: [DEPRECATED] Replaced by image-file-name, region and bucket. Path to image starting with service endpoint and ending with image file name.
 - `--os-type`: Operating system contained in the image (rhel, sles, aix, ibmi). Required when importing a raw image.
 - `--bucket-access`: Indicates the bucket access type (private or public). Private access requires access and secret keys. Public access requires the --job option. Default is private.
-- `--disk-type`: Type of the disk storage (use "ibmcloud pi storage-types" to see available types in the targeted region); required if --affinity-policy and --storage-pool are not provided.
-- `--storage-pool`: Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If  is provided then --disk-type and --affinity-policy values cannot be specified.
+- `--disk-type`: Tier of the disk storage (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region); Default to tier3 if not provided.
+- `--storage-pool`: Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If  is provided then --affinity-policy values cannot be specified.
 - `--affinity-policy`: Affinity policy for image. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
 - `--affinity-instance`: PVM instance identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
 - `--affinity-volume`: Volume identifier or name to base image affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
@@ -601,7 +624,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
 - `--key-name`: Name of SSH key.
 - `--sys-type`: Name of System Type ("s922", "e880", "e980"). Default is "s922".
-- `--storage-type`: Storage type for server deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. When IBM supplied stock images are deployed either  or --storage-pool or --storage-affinity must be specfied. This is not valid when using a custom image (an imported image or an image that is created from a PVMInstance capture) since storage type and pool defaults to the storage type and pool the image was created in.
+- `--storage-type`: Storage tier for server deployment when deploying a stock image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
 - `--storage-connection`: The storage connection type. Valid value is "vSCSI".
 - `--storage-pool`: Storage pool for server deployment (use "ibmcloud pi storage-pools" to see available storage pools). Only valid when you deploy one of the IBM supplied stock images. Storage type and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage type and pool the image was created in.
 - `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
@@ -619,7 +642,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--placement-group`: The placement group ID of the group that the server will be added to.
 - `--shared-processor-pool`: The shared processor pool ID of the pool that the server will be in.
-- `--deployment-type`: The custom deployment type ("EPIC").
+- `--deployment-type`: The custom deployment type ("EPIC" or "VMNoStorage").
 - `--user-data`: The user data passed into the instance.
 - `--json`: Format output in JSON.
 
@@ -810,6 +833,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - `--processor-type`: New processor type for the server instance.
 - `--profile-id`: SAP profile ID.
 - `--storage-pool-affinity`: Indicates if all volumes attached to the server must reside in the same storage pool. If set to false then volumes from any storage type and pool can be attached to the PVM instance; This impacts PVM instance snapshot,capture,and clone. For capture and clone only data volumes that are of the same storage type and in the same storage pool of the PVM instance's boot volume can be included. For snapshot all data volumes to be included in the snapshot must reside in the same storage type and pool. Once set to false,cannot be set back to true unless all volumes attached reside in the same storage type and pool.
+- `--virtual-optical-device`: Attach or Detach a Virtual Optical Device to this instance. Valid values are "attach" and "detach".
 - `--json`: Format output in JSON.
 
 ---
@@ -963,7 +987,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create a private network
 
-`ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--jumbo] [--json]`
+`ibmcloud pi network-create-private NETWORK_NAME --cidr-block CIDR --ip-range "startIP-endIP[,startIP-endIP]" [--dns-servers "DNS1 DNS2"] [--gateway GATEWAY] [--jumbo] [--mtu] [--json]`
 
 **Options**
 
@@ -972,7 +996,8 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - `--gateway`: Gateway to use for this network.
 - `--ip-range`: IP Addresses range(s) for this network, format: startIP-endIP[,startIP-endIP].
 - `--json`: Format output in JSON.
-- `--jumbo`: Enable MTU Jumbo Network.
+- `--jumbo`: (deprecated - replaced by "mtu") Enable MTU Jumbo Network.
+- `--mtu`: Maximum Transmission Unit. The default value is 1450.
 
 ---
 
@@ -981,12 +1006,13 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create a public network
 
-`ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--jumbo] [--json]`
+`ibmcloud pi network-create-public NETWORK_NAME [--dns-servers "DNS1 DNS2"] [--jumbo] [--mtu] [--json]`
 
 **Options**
 
 - `--dns-servers`: Space separated list of DNS Servers to use for this network. 9.9.9.9 by default if DNS server is not specified.
-- `--jumbo`: Enable MTU Jumbo Network.
+- `--jumbo`: (deprecated - replaced by "mtu") Enable MTU Jumbo Network.
+- `--mtu`: Maximum Transmission Unit. The default value is 1450.
 - `--json`: Format output in JSON.
 
 ---
@@ -1124,7 +1150,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - `--networks`: Space separated identifier/name of the network and optional IP address to associate with the instance.
 - `--pin-policy`: Pin policy ("none", "soft", "hard"). Default is "none".
 - `--volumes`: Space separated list of identifiers or names of the volume(s) to associate with the instance.
-- `--storage-type`: Storage type for SAP PVM instance deployment when deploying a stock image (use "ibmcloud pi storage-types" to see available storage types in the targeted region).  If --storage-pool or --storage-affinity is provided then this it cannot be specified. Only valid when one of the IBM supplied stock images is deployed.
+- `--storage-type`: Storage tier for server deployment when deploying a stock image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
 - `--storage-pool`: Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
 - `--storage-affinity`: Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this it cannot be specified.
 - `--storage-affinity-instance`: PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
@@ -1167,7 +1193,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 ### `ibmcloud pi service-list`
 {: #ibmcloud-pi-service-list}
 
-#### [DEPRECATED] Replaced by "ibmcloud pi workspaces" command. List all services for this account and region
+#### [DEPRECATED] Replaced by "ibmcloud pi workspaces" command. List all services for this account
 
 `ibmcloud pi service-list [--json]`
 
@@ -1414,10 +1440,23 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 ---
 
+### `ibmcloud pi storage-tiers`
+{: #ibmcloud-pi-storage-tiers}
+
+#### List all storage tiers for the targeted region
+
+`ibmcloud pi storage-tiers [--json]`
+
+**Options**
+
+- `--json`: Format output in JSON.
+
+---
+
 ### `ibmcloud pi storage-types`
 {: #ibmcloud-pi-storage-types}
 
-#### List all storage types for the targeted region
+#### [DEPRECATED] Replaced by "ibmcloud pi storage-tiers" command. List all storage types for the targeted region.
 
 `ibmcloud pi storage-types [--json]`
 
@@ -1690,11 +1729,12 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Perform an action on a volume.
 
-`ibmcloud pi volume-action VOLUME_ID [--replication-enabled=True|False]`
+`ibmcloud pi volume-action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]`
 
 **Options**
 
 - `--replication-enabled`: Enables or disables storage replication on the volume.
+- `--target-tier`: Change the storage tier of the volume (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). "Tier5k" volumes cannot exceed 200GB.
 
 ---
 
@@ -1730,12 +1770,12 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create a volume
 
-`ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--replication-enabled] [--json]`
+`ibmcloud pi volume-create VOLUME_NAME --size SIZE [--type STORAGE_TIER] [--shareable] [--replication-enabled] [--json]`
 
 **Options**
 
-- `--type`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region).
-- `--size`: Size of the volume (in GB).
+- `--type`: Tier of the volume (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region); Default to tier3 if not provided.
+- `--size`: Size of the volume (in GB). "Tier5k" volumes cannot exceed 200GB.
 - `--shareable`: Whether volume can be attached to multiple VMs.
 - `--storage-pool`: Volume pool where the volume will be created (use "ibmcloud pi storage-pools" to see available storage pools). If  is provided then --type and --affinity-policy values cannot be specified.
 - `--affinity-policy`: Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
@@ -1753,10 +1793,12 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create a volume clone for specific volumes.
 
-`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--json]`
+`ibmcloud pi volume-create-clone CLONE_NAME --volumes "VOLUME1 ..VOLUMEn" [--replication-enabled=True|False] [--target-tier STORAGE_TIER] [--json]`
 
 **Options**
 
+- `--replication-enabled`: Enables replication for the cloned volume. If no value is provided, it will default to the replication status of the source volume.
+- `--target-tier`: Target storage tier for the cloned volumes (use "ibmcloud storage-tiers" to see available tiers in the targeted region). Default to the storage tier of the original volume(s) if not specified.
 - `--volumes`: Space separated list of identifiers the volume(s) to be cloned.
 - `--json`: Format output in JSON.
 
@@ -1937,15 +1979,15 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create multiple volume.
 
-`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --type TYPE --volume-count COUNT --size SIZE [--shareable] [--replication-enabled] [--json]`
+`ibmcloud pi volume-multi-create VOLUME_BASE_NAME --volume-count COUNT --size SIZE [--type STORAGE_TIER] [--shareable] [--replication-enabled] [--json]`
 
 **Options**
 
-- `--type`: Type of the volume (use "ibmcloud pi storage-types" to see available storage types in the targeted region); required if --affinity-policy and --storage-pool are not provided.
+- `--type`: Tier of the volume (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region); Default to tier3 if not provided.
 - `--volume-count`: Number of volumes to create.
-- `--size`: Size of the volume (in GB).
+- `--size`: Size of the volume (in GB). "Tier5k" volumes cannot exceed 200GB.
 - `--shareable`: Whether the volumes can be attached to multiple VMs.
-- `--storage-pool`: Volume pool where the volume will be created. If  is provided then --type and --affinity-policy values cannot be specified.
+- `--storage-pool`: Volume pool where the volume will be created. If  is provided then --affinity-policy values cannot be specified.
 - `--affinity-policy`: Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
 - `--affinity-instance`: PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
 - `--affinity-volume`: Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
@@ -2022,7 +2064,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 - `--bootable`: New  for whether the volume can be booted.
 - `--name`: New name of the volume.
-- `--size`: New size of the volume.
+- `--size`: New size of the volume. "Tier5k" volumes cannot exceed 200GB.
 - `--shareable`: New  for whether the volume can be attached to multiple VMs.
 - `--json`: Format output in JSON.
 
@@ -2382,12 +2424,13 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 `ibmcloud pi workspace-delete WORKSPACE_ID`
 
+
 ---
 
 ### `ibmcloud pi workspaces`
 {: #ibmcloud-pi-workspaces}
 
-#### List workspaces for this account
+#### List all workspaces for this account
 
 `ibmcloud pi wss`
 
