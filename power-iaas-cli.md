@@ -2369,7 +2369,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 **Options**
 
 - `--datacenter`: The datacenter location where the instance should be hosted. Use the "datacenters" command to see possible values.
-- `--group`: The ID of the resource group.
+- `--group`: The ID of the resource group. Use the "ibmcloud resource groups" command to see possible values.
 - `--plan`: Plan associated with the offering. Valid values are "public" or "private".
 - `--json`: Format output in JSON.
 
