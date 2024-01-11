@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-01-10"
+lastupdated: "2024-01-11"
 
 ---
 
@@ -93,8 +93,8 @@ New CLI version `0.7.1` available. Here are the changes for the new CLI version:
 
 **New flags**
 
-* "list-catalog": `--sap` Include SAP images.
-* "list-catalog": `--vtl` Include VTL images.
+* "image-list-catalog": `--sap` Include SAP images.
+* "image-list-catalog": `--vtl` Include VTL images.
 
 **What's Changed**
 
