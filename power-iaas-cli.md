@@ -94,7 +94,7 @@ New CLI version `0.7.1` available. Here are the changes for the new CLI version:
 **New flags**
 
 * A new flag `--sap` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
-* A new flag `--vtl` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
+* A new flag `--vtl` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include VTL images.
 
 **What's Changed**
 
