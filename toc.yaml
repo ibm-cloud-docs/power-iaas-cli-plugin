@@ -15,5 +15,5 @@ toc:
       topics:
       - release-notes.md
       - power-iaas-cli.md
-      - v1-pi-help.md
+      # - v1-pi-help.md
       - upgrade-v1.md
