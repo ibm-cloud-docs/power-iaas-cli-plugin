@@ -2466,6 +2466,8 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 ## Commands V1.0.0
 {: ##power-iaas-cli-commands-v1}
 
+Following are the V1.0.0 commands. For more information on what have changed, see [What’s new in IBM Power Virtual Server CLI V 1.0.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
+
 ## `ibmcloud pi`
 {: #ibmcloud-pi}
 **Alias**: `pi`

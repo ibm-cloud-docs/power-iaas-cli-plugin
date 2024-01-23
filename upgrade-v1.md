@@ -23,7 +23,7 @@ lastupdated: "2024-01-23"
 
 In this Upgrade Guide, you will find a concise overview of the changes and improvements made in the {{site.data.keyword.powerSysFull}} command-line interface (CLI) as we transition from version 0.7.1 to 1.0.0. This topic highlight any modifications that may affect your usage and is tailored to facilitate a smooth transition to the latest release, enabling you to seamlessly leverage the enhanced capabilities of our CLI.
 
-The following tables in the section below shows what’s changed in the new V 1.0.0 comparing with the V 0.7 version.
+The following tables in the section below shows what’s changed in the new [V1.0.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference##power-iaas-cli-commands-v1) comparing with the [V0.7.1](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#commands-v071) version.
 
 ## ibmcloud pi cloud-connection
 {: connection}
