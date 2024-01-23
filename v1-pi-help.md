@@ -23,8 +23,8 @@ lastupdated: "2024-01-23"
 This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
 {: shortdesc}
 
-
-{: #power-iaas-cli-before}
+## Before you begin
+{: #pvs-cli-before}
 
 1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window}{: external}.
 
@@ -79,7 +79,7 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 ---
 ## Release notes
-{: #release-notes}
+{: #release-notes-v1}
 
 Use the [Release notes](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#release-notes) to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
