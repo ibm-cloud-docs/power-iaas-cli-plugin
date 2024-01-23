@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2023
-lastupdated: "2023-12-07"
+  years: 2019, 2024
+lastupdated: "2024-01-23"
 
 ---
 
@@ -85,6 +85,25 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
 
+### January 2024
+{: #jan-2024}
+
+
+New CLI version `0.7.1` available. Here are the changes for the new CLI version:
+
+**New flags**
+
+* A new flag `--sap` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
+* A new flag `--vtl` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
+
+**What's Changed**
+
+Removed `--IBMiDBQ-license` flag from [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
+
+**Bug Fixes**
+
+Fixed issue in [instance-update](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update) command when `--virtual-optical-device` flag is not used.
+
 ### December 2023
 {: dec-2023}
 
@@ -109,7 +128,7 @@ New CLI version `0.7.0` available. Here are the changes for the new CLI version:
 - New Power Edge Router (PER) details field when using the `workspace` command.
 
 ### November 2023
-{: nov-2023}
+{: #nov-2023}
 
 New CLI version `0.6.0` available. Here are the new changes for the new CLI version:
    * New commands - [Create a workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace-create) and [Delete a workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace-delete) added.
@@ -123,16 +142,16 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
    * Deprecated `service-list` command in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
 
 ### September 2023
-{: sep-2023}
+{: #sep-2023}
 
 - Added s1022 in `sys-type value` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) and [Create a virtual tape library](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-a-vtl) commands.
 
 ### December 2022
-{: dec-2022}
+{: #dec-2022}
 
 - You can now get new error messages for undefined response codes for new service endpoint response codes.
 ### September 2022
-{: sept-2022}
+{: #sept-2022}
 
 - You can now use shared processor pool using CLI. The following are new commands for shared processor pools:
     - [View details of a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
@@ -176,12 +195,12 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
     
 
 ### July 2022
-{: Jul-2022}
+{: #Jul-2022}
 
 - You can now use [Transit Gateway](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to interconnect your {{site.data.keyword.powerSys_notm}} to the {{site.data.keyword.cloud_notm}} classic and Virtual Private Cloud (VPC).
 
 ### April 2022
-{: apr-2022}
+{: #apr-2022}
 
 - Provisioning VTL instances is temporarily disabled.
 
@@ -508,10 +527,12 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### List images available in the regional image catalog
 
-`ibmcloud pi image-list-catalog [--long] [--json]`
+`ibmcloud pi image-list-catalog [--sap] [--vtl] [--long] [--json]`
 
 **Options**
 
+- `--sap`: Include SAP images.
+- `--vtl`: Include VTL images.
 - `--long`: Retrieve all image details.
 - `--json`: Format output in JSON.
 
@@ -637,7 +658,6 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - `--replicant-scheme`: Naming scheme to use for duplicate VMs ("suffix", "prefix").
 - `--replicant-affinity-policy`: Affinity policy to use when multicreate is used ("affinity", "anti-affinity").
 - `--IBMiCSS-license`: IBMi CSS software license associated with the instance.
-- `--IBMiDBQ-license`: IBMi DBQ software license associated with the instance.
 - `--IBMiPHA-license`: IBMi PHA software license associated with the instance.
 - `--IBMiRDS-users`: Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
 - `--placement-group`: The placement group ID of the group that the server will be added to.
