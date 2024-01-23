@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2023
-lastupdated: "2023-12-11"
+  years: 2024
+lastupdated: "2024-01-23"
 
 ---
 
@@ -21,14 +21,9 @@ lastupdated: "2023-12-11"
 #  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0 
 {: #whats-new-v1}
 
-This upgrade guide for {{site.data.keyword.powerSysFull}} ........(cont.) 
+In this Upgrade Guide, you will find a concise overview of the changes and improvements made in the {{site.data.keyword.powerSysFull}} command-line interface (CLI) as we transition from version 0.7.1 to 1.0.0. This topic highlight any modifications that may affect your usage and is tailored to facilitate a smooth transition to the latest release, enabling you to seamlessly leverage the enhanced capabilities of our CLI.
 
-.
-.
-.
-.
-
-The following tables in the section below shows what’s changed in the new V 1.0 comparing with the V 0.7 version.
+The following tables in the section below shows what’s changed in the new V 1.0.0 comparing with the V 0.7 version.
 
 ## ibmcloud pi cloud-connection
 {: connection}
