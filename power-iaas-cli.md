@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-01-11"
+lastupdated: "2024-01-23"
 
 ---
 
@@ -93,16 +93,16 @@ New CLI version `0.7.1` available. Here are the changes for the new CLI version:
 
 **New flags**
 
-* "image-list-catalog": `--sap` Include SAP images.
-* "image-list-catalog": `--vtl` Include VTL images.
+* A new flag `--sap` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
+* A new flag `--vtl` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
 
 **What's Changed**
 
-Removed `--IBMiDBQ-license` flag from `instance-create` command.
+Removed `--IBMiDBQ-license` flag from [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
 
 **Bug Fixes**
 
-Fixed issue in `instance-update` command when `--virtual-optical-device` flag is not used.
+Fixed issue in [instance-update](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update) command when `--virtual-optical-device` flag is not used.
 
 ### December 2023
 {: dec-2023}
