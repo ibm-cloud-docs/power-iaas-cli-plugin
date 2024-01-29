@@ -19,20 +19,21 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 {: #jan-2024}
 
 
-New CLI version `0.7.1` available. Here are the changes for the new CLI version:
+- New CLI version `1.0.0` available. To learn more about whats new in `1.0.0`, see [What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
+- New CLI version `0.7.1` available. Here are the changes for the new CLI version:
 
-**New flags**
+    **New flags**
 
-* "list-catalog": `--sap` Include SAP images.
-* "list-catalog": `--vtl` Include VTL images.
+    * "list-catalog": `--sap` Include SAP images.
+    * "list-catalog": `--vtl` Include VTL images.
 
-**What's Changed**
+    **What's Changed**
 
-Removed `--IBMiDBQ-license` flag from `instance-create` command.
+    Removed `--IBMiDBQ-license` flag from `instance-create` command.
 
-**Bug Fixes**
+    **Bug Fixes**
 
-Fixed issue in `instance-update` command when `--virtual-optical-device` flag is not used.
+    Fixed issue in `instance-update` command when `--virtual-optical-device` flag is not used.
 
 ### December 2023
 {: dec-2023}
