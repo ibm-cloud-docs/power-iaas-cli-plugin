@@ -9,13 +9,13 @@ lastupdated: "2024-01-10"
 {{site.data.keyword.attribute-definition-list}}
 
 
-## Release notes
+# Release notes
 {: #release-notes}
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
 {: shortdesc}
 
-### January 2024
+## January 2024
 {: #jan-2024}
 
 
@@ -57,7 +57,7 @@ New CLI version `0.7.0` available. Here are the changes for the new CLI version:
 - Deprecate `--jumbo` flag in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
 - New Power Edge Router (PER) details field when using the `workspace` command.
 
-### November 2023
+## November 2023
 {: #nov-2023}
 
 New CLI version `0.6.0` available. Here are the new changes for the new CLI version:
@@ -71,16 +71,16 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
    * New command [datacenter](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenter) and [datacenters](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenters) added.
    * Deprecated `service-list` command in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
 
-### September 2023
+## September 2023
 {: #sep-2023}
 
 - Added s1022 in `sys-type value` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) and [Create a virtual tape library](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-a-vtl) commands.
 
-### December 2022
+## December 2022
 {: #dec-2022}
 
 - You can now get new error messages for undefined response codes for new service endpoint response codes.
-### September 2022
+## September 2022
 {: #sept-2022}
 
 - You can now use shared processor pool using CLI. The following are new commands for shared processor pools:
@@ -124,17 +124,17 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - The description of [Create a new SAP PVM Instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-sap-instance) is changed for HANA images. 
     
 
-### July 2022
+## July 2022
 {: #Jul-2022}
 
 - You can now use [Transit Gateway](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to interconnect your {{site.data.keyword.powerSys_notm}} to the {{site.data.keyword.cloud_notm}} classic and Virtual Private Cloud (VPC).
 
-### April 2022
+## April 2022
 {: #apr-2022}
 
 - Provisioning VTL instances is temporarily disabled.
 
-### December 2021
+## December 2021
 {: #dec-2021}
 
 - You can now use [Storage pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) to set affinity policies by using CLI.
@@ -142,7 +142,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - You can now use [Placement Groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ipsec-policies) to create placement groups and add VMs to set policies by using CLI.
 
 
-### October 2021
+## October 2021
 {: #oct-2021}
 
 - You can now use [VPN](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-connections) to create VPN connection by using CLI.
@@ -150,19 +150,19 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 - You can now use [VPN IKE policies](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ipsec-policies) to create an IPsec policy for the VPN connection by using CLI.
 
 
-### September 2021
+## September 2021
 {: #sep-2021}
 
 - You can now use [Import Image](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-import) to Import an image from IBM Cloud Object Storage by using CLI.
 - You can now use [Jobs](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-job) to View details of a job by using CLI.
 - You can now use [Console language](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update-console-language) to update Language to Japanese.
 
-### May 2021
+## May 2021
 {: #may-2021}
 
 - You can now use [Cloud connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to automate the way you connect your Power Systems Virtual Server instances to the IBM Cloud resources by using CLI.
 
-### March 2021
+## March 2021
 {: #mar-2021}
 
 - You can now manage [snapshots](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#snapshot-id) of a cloud instance by using the CLI.
