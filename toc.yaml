@@ -13,5 +13,7 @@ toc:
   - navgroup: 
       id: learn
       topics:
-      - release-notes.md
+      - cli-release-notes.md
       - power-iaas-cli.md
+      - power-iaas-cli-v1.md
+      - upgrade-v1.md
