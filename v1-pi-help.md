@@ -55,6 +55,7 @@ This document provides a reference of the command-line interface (CLI) commands 
 - `list`:    List all Cloud Connections.
 - `subnet`:    IBM Cloud Power Virtual Server Virtual Cloud Connection Subnets.
 - `update`:    Update the cloud connection.
+- `vpcs`:    List all virtual private clouds.
 
 ---
 
@@ -67,7 +68,6 @@ This document provides a reference of the command-line interface (CLI) commands 
 create CONNECTION_NAME --speed SPEED
 		([--classic [--subnets "SUBNET_ID1..SUBNET_IDn" --gre-tunnel "CIDR DEST-IP"]] | [--subnets "SUBNET_ID1..SUBNET_IDn"])
 		[--global-routing] [--metered] [--vpc --vpcIDs "VPC-ID"]
-
   CONNECTION_NAME: The unique name of the cloud connection.
 ```
 **Available Flags**:
@@ -92,7 +92,6 @@ create CONNECTION_NAME --speed SPEED
 **Usage**: 
 ```
 delete CONNECTION_ID
-
   CONNECTION_ID: The unique identifier of the cloud connection.
 ```
 
@@ -105,7 +104,6 @@ delete CONNECTION_ID
 **Usage**: 
 ```
 get CONNECTION_ID
-
   CONNECTION_ID: The unique identifier of the cloud connection.
 ```
 
@@ -137,7 +135,6 @@ get CONNECTION_ID
 **Usage**: 
 ```
 attach CONNECTION_ID --subnet SUBNET_ID
-
   CONNECTION_ID: The unique identifier of the cloud connection.
 ```
 **Available Flags**:
@@ -154,7 +151,6 @@ attach CONNECTION_ID --subnet SUBNET_ID
 **Usage**: 
 ```
 detach CONNECTION_ID --subnet ID
-
   CONNECTION_ID: The unique identifier of the cloud connection.
 ```
 **Available Flags**:
@@ -172,7 +168,6 @@ detach CONNECTION_ID --subnet ID
 ```
 update CONNECTION_ID [--classic [--gre-tunnel "CIDR DEST-IP"]] [--global-routing]
 		[--metered] [--name NAME] [--speed SPEED] [--vpc [<--vpcIDs "VPC-ID">]]
-
   CONNECTION_ID: The unique identifier of the cloud connection.
 ```
 **Available Flags**:
@@ -186,6 +181,14 @@ update CONNECTION_ID [--classic [--gre-tunnel "CIDR DEST-IP"]] [--global-routing
   -v, --vpc                 Enable "VPC" cloud connection endpoint.
   -p, --vpcIDs strings      VPC ID (i.e. crn:v1:..) to add to cloud connection. Use with "--vpc" option.
 ```
+
+---
+
+#### `ibmcloud pi cloud-connection vpcs`
+{: #ibmcloud-pi-cloud-connection-vpcs}
+**Alias**: `vpcs`
+**Description**: List all virtual private clouds.
+**Usage**: `vpcs`
 
 ---
 
@@ -207,7 +210,6 @@ update CONNECTION_ID [--classic [--gre-tunnel "CIDR DEST-IP"]] [--global-routing
 **Usage**: 
 ```
 get DATACENTER
-
   DATACENTER: The name of the datacenter
 ```
 
@@ -258,7 +260,6 @@ get DATACENTER
 **Usage**: 
 ```
 create IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encryption ENCRYPTION --dh-group DH_GROUP --preshared-key KEY --key-lifetime SECONDS
-
   IKE_POLICY_NAME: A unique name of the VPN IKE policy. The maximum name length is 47 characters.
 ```
 **Available Flags**:
@@ -280,7 +281,6 @@ create IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encry
 **Usage**: 
 ```
 delete IKE_POLICY_ID
-
   IKE_POLICY_ID: The unique identifier of the VPN IKE policy.
 ```
 
@@ -293,7 +293,6 @@ delete IKE_POLICY_ID
 **Usage**: 
 ```
 get IKE_POLICY_ID
-
   IKE_POLICY_ID: The unique identifier of the VPN IKE policy.
 ```
 
@@ -314,7 +313,6 @@ get IKE_POLICY_ID
 **Usage**: 
 ```
 update IKE_POLICY_ID [--name NEW_NAME] [--version VERSION] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--preshared-key KEY] [--key-lifetime SECONDS]
-
   IKE_POLICY_ID: The unique identifier of the VPN IKE policy.
 ```
 **Available Flags**:
@@ -355,7 +353,6 @@ update IKE_POLICY_ID [--name NEW_NAME] [--version VERSION] [--authentication AUT
 **Usage**: 
 ```
 create IMAGE_ID
-
   IMAGE_ID: The unique identifier or name of the image
 ```
 
@@ -368,7 +365,6 @@ create IMAGE_ID
 **Usage**: 
 ```
 delete IMAGE_ID
-
   IMAGE_ID: The unique identifier or name of the image
 ```
 
@@ -381,7 +377,6 @@ delete IMAGE_ID
 **Usage**: 
 ```
 export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY
-
   IMAGE_ID: The unique identifier or name of the image
 ```
 **Available Flags**:
@@ -401,7 +396,6 @@ export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --sec
 **Usage**: 
 ```
 export-show IMAGE_ID
-
   IMAGE_ID: The unique identifier or name of the image
 ```
 
@@ -414,7 +408,6 @@ export-show IMAGE_ID
 **Usage**: 
 ```
 get IMAGE_ID
-
   IMAGE_ID: The unique identifier or name of the image
 ```
 
@@ -434,7 +427,6 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
   pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --storage-pool POOL [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
   pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
   pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-
   IMAGE_NAME: The desired name of the image
 ```
 **Available Flags**:
@@ -446,7 +438,7 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
   -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
   -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
   -b, --bucket string                     Cloud Object Storage bucket name.
-  -u, --bucket-access string              Indicates the bucket access type (private or public). Private access requires access and secret keys. Public access requires the --job option. Default is private. (default "private")
+  -u, --bucket-access string              Indicates the bucket access type (private or public). Private access requires access and secret keys. Public access requires the --job option. Default is private.
   -n, --image-file-name string            The image file name.
   -o, --os-type string                    Operating system contained in the image (rhel, sles, aix, ibmi). Required when importing a raw image.
   -r, --region string                     Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-gb, jp-osa, jp-tok, us-east, us-south).
@@ -477,11 +469,10 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 {: #ibmcloud-pi-image-list-catalog}
 **Alias**: `list-catalog, lc`
 **Description**: List images available in the regional image catalog.
-**Usage**: `list-catalog [--sap] [--vtl]`
+**Usage**: `list-catalog [--sap]`
 **Available Flags**:
 ```
   -s, --sap   Include SAP images.
-  -v, --vtl   Include VTL images.
 ```
 
 ---
@@ -515,7 +506,6 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 **Usage**: 
 ```
 action INSTANCE_ID --operation op
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -543,7 +533,6 @@ action INSTANCE_ID --operation op
 **Usage**: 
 ```
 create INSTANCE_ID --destination DEST --name NAME [--volumes VOLUME1,VOLUMEn] [--access-key KEY] [--image-path PATH] [--region REGION] [--secret-key KEY]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -566,7 +555,6 @@ create INSTANCE_ID --destination DEST --name NAME [--volumes VOLUME1,VOLUMEn] [-
 **Usage**: 
 ```
 show INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -591,7 +579,6 @@ show INSTANCE_ID
 **Usage**: 
 ```
 get INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -604,7 +591,6 @@ get INSTANCE_ID
 **Usage**: 
 ```
 list INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -617,7 +603,6 @@ list INSTANCE_ID
 **Usage**: 
 ```
 update INSTANCE_ID --code CODE
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -641,7 +626,6 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
 		[--replicants NUMBER] [--replicant-scheme SCHEME] [--replicant-affinity-policy AFFINITY_POLICY] [--pin-policy POLICY]
 		[--IBMiCSS-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--placement-group GROUP_ID]
 		[--shared-processor-pool SHARED_PROCESSOR_POOL] [--deployment-type TYPE] [--storage-tier STORAGE_TIER] [--user-data USER_DATA]
-
   INSTANCE_NAME: The name of the instance.
 ```
 **Available Flags**:
@@ -652,11 +636,11 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
       --deployment-type string                    The custom deployment type ("EPIC" or "VMNoStorage").
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
-  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB. (default 2)
+  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
       --placement-group string                    The placement group ID of the group that the server will be added to.
-  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated". (default "dedicated")
-  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core. (default 1)
+  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated".
+  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core.
       --replicant-affinity-policy string          Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
       --replicant-scheme string                   Naming scheme to use for duplicate VMs ("suffix", "prefix").
       --replicants float                          Number of duplicate instances to create in this request.
@@ -670,7 +654,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
       --storage-pool string                       Storage pool for server deployment (use "ibmcloud pi storage-pools" to see available storage pools). Only valid when you deploy one of the IBM supplied stock images. Storage tier and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage tier and pool the image was created in.
   -t, --storage-tier string                       Storage tier for server deployment when deploying a stock or custom image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080'). Default is "s922". (default "s922")
+  -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080'). Default is "s922".
       --user-data string                          The user data passed into the instance.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
@@ -684,7 +668,6 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
 **Usage**: 
 ```
 delete INSTANCE_ID [--delete-data-volumes]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -701,7 +684,6 @@ delete INSTANCE_ID [--delete-data-volumes]
 **Usage**: 
 ```
 get INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -722,7 +704,6 @@ get INSTANCE_ID
 **Usage**: 
 ```
 operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [--boot-operating-mode MODE] [--job-task TASK]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -758,7 +739,6 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 		[--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
 		[--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]] [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]]
 		[--key-name KEY-NAME] [--sys-type TYPE] [--placement-group PLACEMENT_GROUP_ID]
-
   SAP_INSTANCE_NAME: The name of the SAP instance.
 ```
 **Available Flags**:
@@ -776,7 +756,7 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
       --storage-pool string                       Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
   -t, --storage-tier string                       Storage tiers for SAP PVM instance deployment when deploying a stock or custom image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080'). Default is "e980". (default "e980")
+  -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080'). Default is "e980".
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
 
@@ -797,8 +777,7 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 **Usage**: 
 ```
 profile SAP_PROFILE_ID
-
-  SAP_INSTANCE_NAME: The name of the SAP instance.
+  SAP_PROFILE_ID: The unique identifier or name of the SAP profile.
 ```
 
 ---
@@ -820,7 +799,6 @@ profile SAP_PROFILE_ID
 **Usage**: 
 ```
 list INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -845,7 +823,6 @@ list INSTANCE_ID
 **Usage**: 
 ```
 attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -863,7 +840,6 @@ attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
 **Usage**: 
 ```
 detach INSTANCE_ID --subnet "SUBNET_ID" [--mac-address "MAC_ADDRESS"]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -881,7 +857,6 @@ detach INSTANCE_ID --subnet "SUBNET_ID" [--mac-address "MAC_ADDRESS"]
 **Usage**: 
 ```
 list INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -893,12 +868,14 @@ list INSTANCE_ID
 **Description**: Update a server instance.
 **Usage**: 
 ```
-update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--profile-id SAP_PROFILE_ID] [--storage-pool-affinity=True|False]
-
+update INSTANCE_ID [--IBMiCSS-license] [--IBMiPHA-license] [--IBMiRDS-users NUMBER-USERS] [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--processors NUMBER] [--processor-type TYPE] [--profile-id SAP_PROFILE_ID] [--storage-pool-affinity=True|False]
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
 ```
+      --IBMiCSS-license                 New IBMi CSS software license associated with the instance.
+      --IBMiPHA-license                 New IBMi PHA software license associated with the instance.
+      --IBMiRDS-users int               New number of IBMi RDS users software license associated with the instance.
   -m, --memory float                    New amount of memory for the server instance.
   -n, --name string                     New name of the server instance.
       --pin-policy string               New pin policy for the server instance ("none", "soft", "hard").
@@ -930,7 +907,6 @@ update INSTANCE_ID [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY] [--
 **Usage**: 
 ```
 attach INSTANCE_ID --volumes VOLUME1[,VOLUMEn]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -947,7 +923,6 @@ attach INSTANCE_ID --volumes VOLUME1[,VOLUMEn]
 **Usage**: 
 ```
 detach INSTANCE_ID --volume VOLUME_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -964,7 +939,6 @@ detach INSTANCE_ID --volume VOLUME_ID
 **Usage**: 
 ```
 list INSTANCE_ID
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 
@@ -991,7 +965,6 @@ list INSTANCE_ID
 **Usage**: 
 ```
 create IPSEC_POLICY_NAME --authentication AUTHENTICATION --dh-group DH_GROUP --encryption ENCRYPTION --key-lifetime SECONDS [--pfs]
-
   IPSEC_POLICY_NAME: A unique name of the VPN IPSec policy. The maximum name length is 47 characters.
 ```
 **Available Flags**:
@@ -1012,7 +985,6 @@ create IPSEC_POLICY_NAME --authentication AUTHENTICATION --dh-group DH_GROUP --e
 **Usage**: 
 ```
 delete IPSEC_POLICY_ID
-
   IPSEC_POLICY_ID: The unique identifier of the VPN IPSec policy.
 ```
 
@@ -1025,7 +997,6 @@ delete IPSEC_POLICY_ID
 **Usage**: 
 ```
 get IPSEC_POLICY_ID
-
   IPSEC_POLICY_ID: The unique identifier of the VPN IPSec policy.
 ```
 
@@ -1046,7 +1017,6 @@ get IPSEC_POLICY_ID
 **Usage**: 
 ```
 update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--encryption ENCRYPTION] [--dh-group DH_GROUP] [--key-lifetime SECONDS] [--pfs=True|False]]
-
   IPSEC_POLICY_ID: The unique identifier of the VPN IPSec policy.
 ```
 **Available Flags**:
@@ -1080,7 +1050,6 @@ update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--e
 **Usage**: 
 ```
 delete JOB_ID
-
   JOB_ID: The unique identifier of the job.
 ```
 
@@ -1093,7 +1062,6 @@ delete JOB_ID
 **Usage**: 
 ```
 get JOB_ID
-
   JOB_ID: The unique identifier of the job.
 ```
 
@@ -1135,7 +1103,6 @@ get JOB_ID
 **Usage**: 
 ```
 create PLACEMENT_GROUP_NAME --policy POLICY
-
   PLACEMENT_GROUP_NAME: A unique name of the placement group.
 ```
 **Available Flags**:
@@ -1152,7 +1119,6 @@ create PLACEMENT_GROUP_NAME --policy POLICY
 **Usage**: 
 ```
 delete PLACEMENT_GROUP_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 
@@ -1165,7 +1131,6 @@ delete PLACEMENT_GROUP_ID
 **Usage**: 
 ```
 get PLACEMENT_GROUP_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 
@@ -1186,7 +1151,6 @@ get PLACEMENT_GROUP_ID
 **Usage**: 
 ```
 server-add PLACEMENT_GROUP_ID --server INSTANCE_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 **Available Flags**:
@@ -1203,7 +1167,6 @@ server-add PLACEMENT_GROUP_ID --server INSTANCE_ID
 **Usage**: 
 ```
 server-remove PLACEMENT_GROUP_ID --server INSTANCE_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 **Available Flags**:
@@ -1235,7 +1198,6 @@ server-remove PLACEMENT_GROUP_ID --server INSTANCE_ID
 **Usage**: 
 ```
 create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--placement-group-id PLACEMENT_GROUP_ID]
-
   SHARED_PROCESSOR_POOL_NAME: A unique name of the shared processor pool. A minimum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'.
 ```
 **Available Flags**:
@@ -1254,7 +1216,6 @@ create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBE
 **Usage**: 
 ```
 delete SHARED_PROCESSOR_POOL_ID
-
   SHARED_PROCESSOR_POOL_ID: The unique identifier or name of the shared processor pool.
 ```
 
@@ -1267,7 +1228,6 @@ delete SHARED_PROCESSOR_POOL_ID
 **Usage**: 
 ```
 get SHARED_PROCESSOR_POOL_ID
-
   SHARED_PROCESSOR_POOL_ID: The unique identifier or name of the shared processor pool.
 ```
 
@@ -1303,7 +1263,6 @@ get SHARED_PROCESSOR_POOL_ID
 **Usage**: 
 ```
 create PLACEMENT_GROUP_NAME --policy POLICY
-
   PLACEMENT_GROUP_NAME: A unique name of the placement group.
 ```
 **Available Flags**:
@@ -1320,7 +1279,6 @@ create PLACEMENT_GROUP_NAME --policy POLICY
 **Usage**: 
 ```
 delete PLACEMENT_GROUP_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 
@@ -1333,7 +1291,6 @@ delete PLACEMENT_GROUP_ID
 **Usage**: 
 ```
 get PLACEMENT_GROUP_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 
@@ -1354,7 +1311,6 @@ get PLACEMENT_GROUP_ID
 **Usage**: 
 ```
 member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 **Available Flags**:
@@ -1371,7 +1327,6 @@ member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
 **Usage**: 
 ```
 member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
-
   PLACEMENT_GROUP_ID: The unique identifier of the placement group.
 ```
 **Available Flags**:
@@ -1388,7 +1343,6 @@ member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
 **Usage**: 
 ```
 update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] 
-
   SHARED_PROCESSOR_POOL_ID: The unique identifier or name of the shared processor pool.
 ```
 **Available Flags**:
@@ -1420,7 +1374,6 @@ update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-
 **Usage**: 
 ```
 create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes VOLUME1[,VOLUMEn]]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -1442,7 +1395,6 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes V
 **Usage**: 
 ```
 delete SNAPSHOT_ID
-
   SNAPSHOT_ID: The unique identifier of the snapshot.
 ```
 
@@ -1455,7 +1407,6 @@ delete SNAPSHOT_ID
 **Usage**: 
 ```
 get SNAPSHOT_ID
-
   SNAPSHOT_ID: The unique identifier of the snapshot.
 ```
 
@@ -1476,7 +1427,6 @@ get SNAPSHOT_ID
 **Usage**: 
 ```
 restore INSTANCE_ID --snapshot SNAPSHOT_ID [--force] [--restore VALUE]
-
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
 **Available Flags**:
@@ -1509,7 +1459,6 @@ restore INSTANCE_ID --snapshot SNAPSHOT_ID [--force] [--restore VALUE]
 **Usage**: 
 ```
 create KEY_NAME --key KEY
-
   KEY_NAME: The name of the key.
 ```
 **Available Flags**:
@@ -1526,7 +1475,6 @@ create KEY_NAME --key KEY
 **Usage**: 
 ```
 delete KEY_NAME
-
   KEY_NAME: The name of the key.
 ```
 
@@ -1539,7 +1487,6 @@ delete KEY_NAME
 **Usage**: 
 ```
 get KEY_NAME
-
   KEY_NAME: The name of the key.
 ```
 
@@ -1560,7 +1507,6 @@ get KEY_NAME
 **Usage**: 
 ```
 update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY
-
   KEY_NAME: The name of the key.
 ```
 **Available Flags**:
@@ -1609,7 +1555,6 @@ update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY
 ```
 create SUBNET_NAME --cidr-block CIDR --net-type private [--dns-servers "DNS1,[DNSn]]"] [--gateway GATEWAY] [--ip-range "startIP-endIP[,startIP-endIP]"] [--jumbo]
   pi subnet create SUBNET_NAME --net-type public [--dns-servers "DNS1 DNS2"] [--jumbo]
-
   SUBNET_NAME: The name of the subnet.
 ```
 **Available Flags**:
@@ -1631,7 +1576,6 @@ create SUBNET_NAME --cidr-block CIDR --net-type private [--dns-servers "DNS1,[DN
 **Usage**: 
 ```
 delete SUBNET_ID
-
   SUBNET_ID: The unique identifier or name of the subnet.
 ```
 
@@ -1644,7 +1588,6 @@ delete SUBNET_ID
 **Usage**: 
 ```
 get SUBNET_ID
-
   SUBNET_ID: The unique identifier or name of the subnet.
 ```
 
@@ -1665,7 +1608,6 @@ get SUBNET_ID
 **Usage**: 
 ```
 update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]"] [--dns-servers "DNS1,[DNSn]"] [--gateway GATEWAY]
-
   SUBNET_ID: The unique identifier or name of the subnet.
 ```
 **Available Flags**:
@@ -1712,7 +1654,6 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 **Usage**: 
 ```
 action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
-
   VOLUME_ID: The unique identifier or name of the volume.
 ```
 **Available Flags**:
@@ -1729,8 +1670,28 @@ action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
 **Description**: IBM Cloud Power Virtual Server Volume Clones.
 **Usage**: `clone`
 **Available Commands**:
+- `cancel`:    Cancel a volume clone request.
 - `create`:    Create a volume clone for specific volumes.
+- `execute`:    Creates the cloned volumes using the volume snapshots.
 - `get`:    Get the status of a clone request for the specified clone task ID.
+- `list`:    List all volume clone requests in a workspace.
+- `start`:    Starts the consistency group to initiate the flash copy.
+
+---
+
+##### `ibmcloud pi volume clone cancel`
+{: #ibmcloud-pi-volume-clone-cancel}
+**Alias**: `cancel, ca`
+**Description**: Cancel a volume clone request.
+**Usage**: 
+```
+cancel VOLUME_CLONE_ID [--force=True|False]
+  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+```
+**Available Flags**:
+```
+  -f, --force   Force the cancellation of a volume clone request. If false, cancel will only be allowed if the status is 'prepared', or 'available'. If true, cancel will be allowed when the status is NOT completed, cancelling, cancelled, or failed. Default false.
+```
 
 ---
 
@@ -1741,7 +1702,6 @@ action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
 **Usage**: 
 ```
 create CLONE_NAME --volumes VOLUME1[,VOLUMEn] [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
-
   CLONE_NAME: The name of a clone.
 ```
 **Available Flags**:
@@ -1753,6 +1713,25 @@ create CLONE_NAME --volumes VOLUME1[,VOLUMEn] [--replication-enabled=True|False]
 
 ---
 
+##### `ibmcloud pi volume clone execute`
+{: #ibmcloud-pi-volume-clone-execute}
+**Alias**: `execute, ex`
+**Description**: Creates the cloned volumes using the volume snapshots.
+**Usage**: 
+```
+execute VOLUME_CLONE_ID --name BASE_NAME [--replication-enabled=True|False] [--rollback-prepare=True|False] [--target-tier STORAGE_TIER]
+  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+```
+**Available Flags**:
+```
+  -n, --name string           Base name of the new cloned volume(s).
+      --replication-enabled   Cloned volume will be non replication enabled if it is set to false. By default, the replication property of the source volume will be used to determine the replication property of the cloned target volume.
+      --rollback-prepare      Determines rollback behavior. If false, execute failure rolls back clone activity but leaves prepared snapshot. If true, Execute failure rolls back clone activity and removes the prepared snapshot. Default false.
+  -t, --target-tier string    Target storage tier for the cloned volumes (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region). Default to the storage tier of the original volume(s) if not specified.
+```
+
+---
+
 ##### `ibmcloud pi volume clone get`
 {: #ibmcloud-pi-volume-clone-get}
 **Alias**: `get`
@@ -1760,8 +1739,39 @@ create CLONE_NAME --volumes VOLUME1[,VOLUMEn] [--replication-enabled=True|False]
 **Usage**: 
 ```
 get CLONE_TASK_ID
-
   CLONE_TASK_ID: The unique identifier of a clone task.
+```
+
+---
+
+##### `ibmcloud pi volume clone list`
+{: #ibmcloud-pi-volume-clone-list}
+**Alias**: `list, ls`
+**Description**: List all volume clone requests in a workspace.
+**Usage**: `list [--filter FILTER]`
+**Available Flags**:
+```
+  -f, --filter string   Volume clone filter to limit list items.
+                        cancel - includes status values (cancelling)
+                        cancelled - includes status values (cancelled)
+                        completed - includes status values (completed)
+                        execute - includes status values (executing, available-rollback)
+                        failed - includes status values (failed)
+                        finalized - included status values (completed, failed, cancelled)
+                        prepare - includes status values (preparing, prepared)
+                        start - includes status values (starting, available)
+```
+
+---
+
+##### `ibmcloud pi volume clone start`
+{: #ibmcloud-pi-volume-clone-start}
+**Alias**: `start, st`
+**Description**: Starts the consistency group to initiate the flash copy.
+**Usage**: 
+```
+start VOLUME_CLONE_ID
+  VOLUME_CLONE_ID: The unique identifier of a volume clone.
 ```
 
 ---
@@ -1776,7 +1786,6 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled] [--sharea
   pi volume create VOLUME_NAME --size SIZE --storage-pool POOL [--count COUNT] [--replication-enabled] [--shareable] [--storage-tier STORAGE_TIER]
   pi volume create VOLUME_NAME --affinity-policy affinity (--affinity-volume VOLUME | --affinity-instance INSTANCE) --size SIZE [--count COUNT] [--replication-enabled] [--shareable] [--storage-tier STORAGE_TIER]
   pi volume create VOLUME_NAME --affinity-policy anti-affinity (--anti-affinity-volumes "VOLUME1,[VOLUMEn]" | --anti-affinity-instances "INSTANCE1,[INSTANCEn]") --size SIZE [--count COUNT] [--replication-enabled] [--shareable] [--storage-tier STORAGE_TIER]
-
   VOLUME_NAME: The name of the volume.
 ```
 **Available Flags**:
@@ -1786,7 +1795,7 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled] [--sharea
   -v, --affinity-volume string            Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
   -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
   -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
-  -c, --count int                         Number of volumes to create. 1 by default. (default 1)
+  -c, --count int                         Number of volumes to create. 1 by default.
   -r, --replication-enabled               Enables storage replication on the volume. False by default.
   -e, --shareable                         Whether the volumes can be attached to multiple VMs. False by default.
   -s, --size int                          Size of the volume (in GB). Size cannot exceed 200GB for storage tier "Tier5k".
@@ -1803,7 +1812,6 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled] [--sharea
 **Usage**: 
 ```
 delete VOLUME_ID
-
   VOLUME_ID: The unique identifier or name of the volume.
 ```
 
@@ -1816,7 +1824,6 @@ delete VOLUME_ID
 **Usage**: 
 ```
 flash-copy-mapping VOLUME_ID
-
   VOLUME_ID: The unique identifier or name of the volume.
 ```
 
@@ -1829,7 +1836,6 @@ flash-copy-mapping VOLUME_ID
 **Usage**: 
 ```
 get VOLUME_ID
-
   VOLUME_ID: The unique identifier or name of the volume.
 ```
 
@@ -1842,9 +1848,9 @@ get VOLUME_ID
 **Usage**: `list [--auxiliary=True|False] [--long] [--replication-enabled=True|False]`
 **Available Flags**:
 ```
-  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default. (default true)
+  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default.
   -l, --long                  Retrieve all volume details.
-  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default. (default true)
+  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default.
 ```
 
 ---
@@ -1882,7 +1888,6 @@ get VOLUME_ID
 **Usage**: 
 ```
 get VOLUME_ONBOARDING_ID
-
   VOLUME_ONBOARDING_ID: The unique identifier of the onboarding operation.
 ```
 
@@ -1903,7 +1908,6 @@ get VOLUME_ONBOARDING_ID
 **Usage**: 
 ```
 remote-copy-relationship VOLUME_ID
-
   VOLUME_ID: The unique identifier or name of the volume.
 ```
 
@@ -1916,7 +1920,6 @@ remote-copy-relationship VOLUME_ID
 **Usage**: 
 ```
 update VOLUME_ID [--bootable=True|False] [--name NEW_NAME] [--size NEW_SIZE] [--shareable=True|False]
-
   VOLUME_ID: The unique identifier or name of the volume.
 ```
 **Available Flags**:
@@ -1955,14 +1958,13 @@ update VOLUME_ID [--bootable=True|False] [--name NEW_NAME] [--size NEW_SIZE] [--
 action VOLUME_GROUP_ID --operation reset [--status STATUS]
   pi volume-group action VOLUME_GROUP_ID --operation start [--source SOURCE]
   pi volume-group action VOLUME_GROUP_ID --operation stop [--allow-read-access=True|False]
-
 ```
 **Available Flags**:
 ```
   -a, --allow-read-access   Allow the auxiliary volume to be accessible after stopping the volume group. Default is false.
   -o, --operation string    Operation to be done in a volume group. Valid values are "start", "stop", and "reset".
-      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master". (default "master")
-      --status string       New status to be set for a volume group. Default is "available". (default "available")
+      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master".
+      --status string       New status to be set for a volume group. Default is "available".
 ```
 
 ---
@@ -1988,7 +1990,6 @@ action VOLUME_GROUP_ID --operation reset [--status STATUS]
 **Usage**: 
 ```
 delete VOLUME_GROUP_ID
-
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
 
@@ -2001,7 +2002,6 @@ delete VOLUME_GROUP_ID
 **Usage**: 
 ```
 get VOLUME_GROUP_ID [--long] 
-
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
 **Available Flags**:
@@ -2030,7 +2030,6 @@ get VOLUME_GROUP_ID [--long]
 **Usage**: 
 ```
 remote-copy-relationships VOLUME_GROUP_ID
-
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
 
@@ -2043,7 +2042,6 @@ remote-copy-relationships VOLUME_GROUP_ID
 **Usage**: 
 ```
 storage-details VOLUME_GROUP_ID
-
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
 
@@ -2056,7 +2054,6 @@ storage-details VOLUME_GROUP_ID
 **Usage**: 
 ```
 update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"] [--remove-member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"]
-
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
 **Available Flags**:
@@ -2073,7 +2070,6 @@ update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"] [--
 **Description**: IBM Cloud Power Virtual Server Virtual Private Networking.
 **Usage**: `vpn`
 **Available Commands**:
-- `create`:    Create a VPN connection.
 - `delete`:    Delete a VPN connection.
 - `get`:    View details of a VPN connection.
 - `list`:    List all VPN connections.
@@ -2104,7 +2100,6 @@ create VPN_CONNECTION_NAME --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC
 ```
 
 ---
-
 #### `ibmcloud pi vpn delete`
 {: #ibmcloud-pi-vpn-delete}
 **Alias**: `delete, del`
@@ -2112,7 +2107,6 @@ create VPN_CONNECTION_NAME --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC
 **Usage**: 
 ```
 delete VPN_CONNECTION_ID
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 
@@ -2125,7 +2119,6 @@ delete VPN_CONNECTION_ID
 **Usage**: 
 ```
 get VPN_CONNECTION_ID
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 
@@ -2158,7 +2151,6 @@ get VPN_CONNECTION_ID
 **Usage**: 
 ```
 attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 **Available Flags**:
@@ -2175,7 +2167,6 @@ attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
 **Usage**: 
 ```
 detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 **Available Flags**:
@@ -2212,7 +2203,6 @@ detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
 **Usage**: 
 ```
 attach VPN_CONNECTION_ID --subnet ID
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 **Available Flags**:
@@ -2229,7 +2219,6 @@ attach VPN_CONNECTION_ID --subnet ID
 **Usage**: 
 ```
 detach VPN_CONNECTION_ID --subnet ID
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 **Available Flags**:
@@ -2254,7 +2243,6 @@ detach VPN_CONNECTION_ID --subnet ID
 **Usage**: 
 ```
 update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PEER_GATEWAY] [--ike-policy-id IKE_POLICY_ID] [--ipsec-policy-id IPSEC_POLICY_ID]
-
   VPN_CONNECTION_ID: The unique identifier of the VPN connection.
 ```
 **Available Flags**:
@@ -2288,7 +2276,6 @@ update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PE
 **Usage**: 
 ```
 create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
-
   WORKSPACE_NAME: The desired name of the workspace
 ```
 **Available Flags**:
@@ -2307,7 +2294,6 @@ create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
 **Usage**: 
 ```
 delete WORKSPACE_ID
-
   WORKSPACE_ID: The unique identifier of the workspace
 ```
 
@@ -2320,7 +2306,6 @@ delete WORKSPACE_ID
 **Usage**: 
 ```
 get WORKSPACE_ID
-
   WORKSPACE_ID: The unique identifier of the workspace
 ```
 
@@ -2346,7 +2331,6 @@ get WORKSPACE_ID
 **Usage**: 
 ```
 target WORKSPACE_CRN
-
   WORKSPACE_CRN: The unique identifier of the workspace.
 ```
 **Available Flags**:
