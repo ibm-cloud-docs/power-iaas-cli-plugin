@@ -64,12 +64,13 @@ The following tables in the section below shows what’s changed in the new [V1.
 | ibmcloud pi image-delete          | ibmcloud pi image delete          |
 | ibmcloud pi image                 | ibmcloud pi image get             |
 | ibmcloud pi image-export          | ibmcloud pi image export          |
-| ibmcloud pi image-export-show     | ibmcloud pi image export-show <br/> Note: The 'image export-show' now displays information about the latest image export job without requiring a 'job_id' parameter. |
+| ibmcloud pi image-export-show     | ibmcloud pi image export-show [^footnote1] |
 | ibmcloud pi image-import          | ibmcloud pi image import          |
 | ibmcloud pi image-import-show     | ibmcloud pi image import-show     |
 | ibmcloud pi image-list-catalog    | ibmcloud pi image list-catalog    |
 | ibmcloud pi images                | ibmcloud pi image list            |
 
+[^footnote1]: The 'image export-show' now displays information about the latest image export job without requiring a 'job_id' parameter.
 ## ibmcloud pi instance
 {: instance}
 
@@ -229,12 +230,13 @@ The following tables in the section below shows what’s changed in the new [V1.
 
 | V 0.7  | V 1.0 |
 | ------------- |:-------------:|
-| ibmcloud pi network-create-private <br/> ibmcloud pi network-create-public <br/> Note: The commands that have changed in ppc-aas.    | ibmcloud pi subnet create |
+| ibmcloud pi network-create-private <br/> ibmcloud pi network-create-public [^footnote2]    | ibmcloud pi subnet create |
 | ibmcloud pi network-delete    | ibmcloud pi subnet delete   |
 | ibmcloud pi network           | ibmcloud pi subnet get      |
 | ibmcloud pi networks          | ibmcloud pi subnet list     |
 | ibmcloud pi network-update    | ibmcloud pi subnet update   |
 
+[^footnote2]: These commands have changed in Power Virtual Server Private Cloud. 
 ## ibmcloud pi system-pools
 {: sys-pool}
 
