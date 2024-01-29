@@ -2295,7 +2295,7 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 ---
 
 ## Commands V1.0.0
-{: #pvs-cli-commands-v1}
+{: #pvs-cli-commands-v1} [New]{: tag-new}
 
 Following are the V1.0.0 commands. For more information on what have changed, see [What’s new in IBM Power Virtual Server CLI V 1.0.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
 
