@@ -6,16 +6,6 @@ lastupdated: "2024-01-23"
 
 ---
 
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
-{:note: .note}
-{:preview: .preview}
-{:important: .important}
-{:deprecated: .deprecated}
-{:external: target="_blank" .external}
 {{site.data.keyword.attribute-definition-list}}
 
 #  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0 
