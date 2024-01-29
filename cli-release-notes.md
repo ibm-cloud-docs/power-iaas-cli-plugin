@@ -35,7 +35,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 
     Fixed issue in `instance-update` command when `--virtual-optical-device` flag is not used.
 
-### December 2023
+## December 2023
 {: dec-2023}
 
 New CLI version `0.7.0` available. Here are the changes for the new CLI version:
