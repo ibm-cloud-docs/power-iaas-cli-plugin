@@ -4,7 +4,7 @@
 {: .toc subcollection="power-iaas-cli-plugin" audience="compute" href="/docs/services/power-iaas-cli-plugin/power-iaas-cli-reference" path="power-iaas-cli-plugin"}
 IBM Power Systems Virtual Servers CLI plug-in
 
-    release-notes.md
-    v1-pi-help.md
+    cli-release-notes.md
     power-iaas-cli.md
+    v1-pi-help.md
     upgrade-v1.md
