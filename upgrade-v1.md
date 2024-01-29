@@ -279,14 +279,18 @@ The following tables in the section below shows what’s changed in the new [V1.
 | ibmcloud pi volume-group-storage-details              | ibmcloud pi volume-group storage-details            |
 | ibmcloud pi volume-group-update                       | ibmcloud pi volume-group update                     |
 
-## ibmcloud pi volume-group action
-{: vol-group-action}
+## ibmcloud pi instance action
+{: vol-inst-action}
 
 | V 0.7  | V 1.0 |
 | ------------- |:-------------:|
-| ibmcloud pi volume-group-reset        | ibmcloud pi volume-group action reset |
-| ibmcloud pi volume-group-start        | ibmcloud pi volume-group action start |
-| ibmcloud pi volume-group-stop         | ibmcloud pi volume-group action stop  |
+| ibmcloud pi volume-group-reset        | ibmcloud pi volume-group action [footnote3]|
+| ibmcloud pi volume-group-start        | ibmcloud pi volume-group action [footnote4]|
+| ibmcloud pi volume-group-stop         | ibmcloud pi volume-group action [footnote5]|
+
+[footnote3]: You get a reset as a command option
+[footnote4]: You get a start as a command option
+[footnote5]: You get a stop as a command option
 
 ## ibmcloud pi volume-onboarding
 {: vol-onboard}
@@ -335,13 +339,13 @@ The following tables in the section below shows what’s changed in the new [V1.
 | ibmcloud pi service-target    | ibmcloud pi workspace target  |
 
 
-## Removed Commands
+## Removed Commands in V1.0.0
 {: removedcmd}
 
 ibmcloud pi task <br/>
 ibmcloud pi task-delete
 
-## New Commands
+## New Commands in V1.0.0
 {: newcmd}
 
 ibmcloud pi instance volume-list
