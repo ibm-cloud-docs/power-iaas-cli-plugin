@@ -8,7 +8,7 @@ lastupdated: "2024-01-23"
 
 {{site.data.keyword.attribute-definition-list}}
 
-#  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0 
+#  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI Version 1.0.0 
 {: #whats-new-v1}
 
 In this Upgrade Guide, you will find a concise overview of the changes and improvements made in the {{site.data.keyword.powerSysFull}} command-line interface (CLI) as we transition from version `0.7.1` to `1.0.0`. This topic highlight any modifications that may affect your usage and is tailored to facilitate a smooth transition to the latest release, enabling you to seamlessly leverage the enhanced capabilities of our CLI.
@@ -20,7 +20,7 @@ The following tables in the section below shows what has changed in the new vers
 
 <!-- Insert table here -->
 
-| V 0.7.1  | V 1.0 |
+| V 0.7.1  | V 1.0.0 |
 | ------------- |:-------------:|
 | ibmcloud pi connection-create      | ibmcloud pi cloud-connection create     |
 | ibmcloud pi connection-delete      | ibmcloud pi cloud-connection delete     |
@@ -346,4 +346,6 @@ The following tables in the section below shows what has changed in the new vers
 ## New Commands in Version 1.0.0
 {: newcmd}
 
-1. ibmcloud pi instance volume-list
+1. ibmcloud pi cloud datacenter
+2. ibmcloud pi instance volume-list
+3. ibmcloud pi volume clone list
