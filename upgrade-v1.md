@@ -97,7 +97,10 @@ The following tables in the section below shows what has changed in the new vers
 
 | V 0.7.1  | V 1.0.0 |
 | ------------- |:-------------:|
-|ibmcloud pi instance-hard-reboot <br/> ibmcloud pi instance-reset-state <br/> ibmcloud pi instance-soft-reboot <br/> ibmcloud pi instance-start <br/> ibmcloud pi instance-stop <br/> ibmcloud pi instance-immediate-shutdown | ibmcloud pi instance action |
+|ibmcloud pi instance-hard-reboot <br/> ibmcloud pi instance-reset-state <br/> ibmcloud pi instance-soft-reboot <br/> ibmcloud pi instance-start <br/> ibmcloud pi instance-stop <br/> ibmcloud pi instance-immediate-shutdown | ibmcloud pi instance action [^footnote3] | 
+
+[^footnote3]: You get "hard-reboot", "immediate-shutdown", "reset-state", "soft-reboot", "start", and "stop" as command options.
+
 
 ## ibmcloud pi instance capture
 {: inst-capture}
@@ -284,14 +287,9 @@ The following tables in the section below shows what has changed in the new vers
 
 | V 0.7.1  | V 1.0.0 |
 | ------------- |:-------------:|
-| ibmcloud pi volume-group-reset        | ibmcloud pi volume-group action [^footnote3]|
-| ibmcloud pi volume-group-start        | ibmcloud pi volume-group action [^footnote4]|
-| ibmcloud pi volume-group-stop         | ibmcloud pi volume-group action [^footnote5]|
+| ibmcloud pi volume-group-reset  <br/> ibmcloud pi volume-group-start <br/>  ibmcloud pi volume-group-stop    | ibmcloud pi volume-group action [^footnote4]|
 
-[^footnote3]: You get a reset as a command option
-[^footnote4]: You get a start as a command option
-[^footnote5]: You get a stop as a command option
-
+[^footnote4]: You get reset, start, and stop as command options.
 ## ibmcloud pi volume-onboarding
 {: vol-onboard}
 
