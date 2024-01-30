@@ -282,7 +282,7 @@ The following tables in the section below shows what has changed in the new vers
 | ibmcloud pi volume-group-storage-details              | ibmcloud pi volume-group storage-details            |
 | ibmcloud pi volume-group-update                       | ibmcloud pi volume-group update                     |
 
-## ibmcloud pi instance action
+## ibmcloud pi volume-group action
 {: vol-inst-action}
 
 | V 0.7.1  | V 1.0.0 |
@@ -304,7 +304,7 @@ The following tables in the section below shows what has changed in the new vers
 
 | V 0.7.1  | V 1.0.0 |
 | ------------- |:-------------:|
-|       | ibmcloud pi vpn create    |
+| ibmcloud pi vpn-connection-create      | ibmcloud pi vpn create    |
 | ibmcloud pi vpn-connection-delete      | ibmcloud pi vpn delete    |
 | ibmcloud pi vpn-connection             | ibmcloud pi vpn get       |
 | ibmcloud pi vpn-connections            | ibmcloud pi vpn list      |
