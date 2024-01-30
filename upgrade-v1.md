@@ -83,15 +83,6 @@ The following tables in the section below shows what has changed in the new vers
 |ibmcloud pi instance-operation | ibmcloud pi instance operation|
 |ibmcloud pi instance-update    | ibmcloud pi instance update   |
 
-## ibmcloud pi instance sap
-{: inst-sap}
-
-| V 0.7.1  | V 1.0.0 |
-| ------------- |:-------------:|
-|ibmcloud pi sap-create-instance    | ibmcloud pi instance sap create |
-|ibmcloud pi sap-profile            | ibmcloud pi instance sap profile|
-|ibmcloud pi sap-list               | ibmcloud pi instance sap list   |
-
 ## ibmcloud pi instance action
 {: inst-action}
 
@@ -118,6 +109,15 @@ The following tables in the section below shows what has changed in the new vers
 | ibmcloud pi instance-get-console              | ibmcloud pi instance console get     |
 | ibmcloud pi instance-list-console-languages   | ibmcloud pi instance console list    |
 | ibmcloud pi instance-update-console-language  | ibmcloud pi instance console update  |
+
+## ibmcloud pi instance sap
+{: inst-sap}
+
+| V 0.7.1  | V 1.0.0 |
+| ------------- |:-------------:|
+|ibmcloud pi sap-create-instance    | ibmcloud pi instance sap create |
+|ibmcloud pi sap-profile            | ibmcloud pi instance sap profile|
+|ibmcloud pi sap-list               | ibmcloud pi instance sap list   |
 
 ## ibmcloud pi instance snapshot
 {: inst-snap}
