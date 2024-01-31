@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-01-23"
+lastupdated: "2024-01-31"
 
 ---
 
@@ -346,6 +346,12 @@ The following tables in the section below shows what has changed in the new vers
 ## New Commands in Version 1.0.0
 {: newcmd}
 
-1. ibmcloud pi cloud datacenter
-2. ibmcloud pi instance volume-list
-3. ibmcloud pi volume clone list
+1. ibmcloud pi datacenter get
+2. ibmcloud pi datacenter list
+3. ibmcloud pi instance volume list
+4. ibmcloud pi volume clone cancel
+5. ibmcloud pi volume clone execute
+6. ibmcloud pi volume clone list
+7. ibmcloud pi volume clone start
+8. ibmcloud pi workspace create
+9. ibmcloud pi workspace delete
