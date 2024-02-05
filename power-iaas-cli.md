@@ -2,247 +2,25 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-01-23"
+lastupdated: "2024-01-29"
 
 ---
 
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
-{:note: .note}
-{:preview: .preview}
-{:important: .important}
-{:deprecated: .deprecated}
-{:external: target="_blank" .external}
+{{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI Reference
+# IBM {{site.data.keyword.powerSys_notm}} CLI Reference v 0.7.1
 {: #power-iaas-cli-reference}
+
+[Deprecated]{: tag-deprecated}
 
 This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
 {: shortdesc}
 
-## Before you begin
-{: #power-iaas-cli-before}
+The IBM {{site.data.keyword.powerSys_notm}} CLI Reference `0.7.1` is deprecated. Use the latest IBM {{site.data.keyword.powerSys_notm}} CLI Reference `1.0.0`. To know more about what has changed in `1.0.0`, see [What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
+{: deprecated}
 
-1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window}{: external}.
+## Commands V0.7.1
 
-2. Install or update the `power-iaas` plug-in.
-
-    **To install:**
-
-    ```
-    ibmcloud plugin install power-iaas
-    ```
-    {: codeblock}
-
-    **To update:**
-
-    ```
-    ibmcloud plugin update
-    ```
-    {: codeblock}
-
-    **To view your installed plug-ins and versions:**
-
-    ```
-    ibmcloud plugin list
-    ```
-    {: codeblock}
-
-3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
-
-    The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
-
-    ```
-    ibmcloud login -a https://cloud.ibm.com -sso
-    ```
-    {: codeblock}
-
-4. Run the `ibmcloud pi service-list` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
-
-    ```
-    crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
-    ```
-    {: screen}
-
-5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`.
-
-```
-ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
-```
-{: codeblock}
-
-Power Systems Virtual Server CLI requires a valid IAM token authorization before each use. Use the ibmcloud login command to renew authorization if your token expires.
-{: note}
-
----
-
-## Release notes
-{: #release-notes}
-
-Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
-{: shortdesc}
-
-### January 2024
-{: #jan-2024}
-
-
-New CLI version `0.7.1` available. Here are the changes for the new CLI version:
-
-**New flags**
-
-* A new flag `--sap` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include SAP images.
-* A new flag `--vtl` is added in [image-list-catalog](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-list-catalog) command to include VTL images.
-
-**What's Changed**
-
-Removed `--IBMiDBQ-license` flag from [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
-
-**Bug Fixes**
-
-Fixed issue in [instance-update](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update) command when `--virtual-optical-device` flag is not used.
-
-### December 2023
-{: dec-2023}
-
-New CLI version `0.7.0` available. Here are the changes for the new CLI version:
-
-**New command**
-
-- [List all storage tiers for the targeted region](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-storage-tiers): List all storage tiers for the targeted region.
-
-**New flags**
-
-- A `--virtual-optical-device` flag is added in [Update a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update) command: Use this to attach a virtual optical device to this instance. Valid values is "attach".
-- A `--mtu` flag is added in [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) command: Use this is to define the Maximum Transmission Unit. The default value is 1450.
-- A `--mtu` flag is added in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) command: Use this is to define the Maximum Transmission Unit. The default value is 1450.
-- A `--target-tier` flag is added in [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-action) command:  Use this to change the storage tier of the volume (use [List all storage tiers for the targeted region](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-storage-tiers) to see available storage tiers in the targeted region). `Tier5k` volumes cannot exceed 200 GB.
- 
-
-**What's Changed**
-
-- New custom deployment type - `VMNoStorage` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
-- Deprecate `--jumbo` flag in [Create a public network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [Create a private network](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
-- New Power Edge Router (PER) details field when using the `workspace` command.
-
-### November 2023
-{: #nov-2023}
-
-New CLI version `0.6.0` available. Here are the new changes for the new CLI version:
-   * New commands - [Create a workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace-create) and [Delete a workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace-delete) added.
-  
-
-New CLI version `0.5.0` available. Here are the new changes for the new CLI version:
-   * New `--user-data` flag added in [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
-   <!-- * New `--mtu` flag added in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
-   * Deprecate `--jumbo` flag in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands. -->
-   * New command [datacenter](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenter) and [datacenters](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenters) added.
-   * Deprecated `service-list` command in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
-
-### September 2023
-{: #sep-2023}
-
-- Added s1022 in `sys-type value` for [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) and [Create a virtual tape library](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-a-vtl) commands.
-
-### December 2022
-{: #dec-2022}
-
-- You can now get new error messages for undefined response codes for new service endpoint response codes.
-### September 2022
-{: #sept-2022}
-
-- You can now use shared processor pool using CLI. The following are new commands for shared processor pools:
-    - [View details of a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool)
-    - [Create a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-create)
-    - [Delete a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-delete)
-    - [Update a shared processor pool](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-update)
-    - [List all shared processor pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pools)
-    - [View details of a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group)
-    - [Create a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-create)
-    - [Delete a shared processor pool placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-delete)
-    - [Add a shared processor pool to the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-group-member-add)
-    - [Remove a shared processor pool from the placement group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#remove-from-shared-processor-pool-placement-group)
-    - [List all shared processor pool placement groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-shared-processor-pool-placement-groups)
-
-- The command [Create a server instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) is updated to include following new options for SPP and Epic:
-    - *shared-processor-pool value*
-    - *deployment-type value*
-
-- You can now use global replication service using CLI. The following commands are added new for global replication service:
-    - [List disaster recovery locations for the current region or all regions](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-disaster-recovery-loc)
-    - [Perform an action on a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-action)
-    - [Get a list of flash copy mappings of a volume directly from primary storage host.](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-flash-copy-map)
-    - [View details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-details)
-    - [Create a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-create)
-    - [Delete a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-delete)
-    - [Get all remote copy relationships for each volume in a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-remote-copy-rel)
-    - [Reset a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-reset)
-    - [List all volume groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-groups)
-    - [Start a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-start)
-    - [Stop a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-stop)
-    - [View storage details of a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-storage-details)
-    - [Update a volume group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-group-update)
-    - [Get the information of volume onboarding operation](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-info)
-    - [Create a volume onboarding operation](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-create)
-    - [List all volume onboarding operations](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-onboarding-list)
-    - [Get the remote copy relationship information of a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-volume-remote-copy-rel)
-
-- The command [Create a volume](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud) is updated to include a new option *replication-enabled*.
-
-- The description of [Create a new SAP PVM Instance](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-sap-instance) is changed for HANA images. 
-    
-
-### July 2022
-{: #Jul-2022}
-
-- You can now use [Transit Gateway](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to interconnect your {{site.data.keyword.powerSys_notm}} to the {{site.data.keyword.cloud_notm}} classic and Virtual Private Cloud (VPC).
-
-### April 2022
-{: #apr-2022}
-
-- Provisioning VTL instances is temporarily disabled.
-
-### December 2021
-{: #dec-2021}
-
-- You can now use [Storage pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) to set affinity policies by using CLI.
-- You can now use [Create connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to set 10 Gbps speed for your Cloud connection by using CLI.
-- You can now use [Placement Groups](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ipsec-policies) to create placement groups and add VMs to set policies by using CLI.
-
-
-### October 2021
-{: #oct-2021}
-
-- You can now use [VPN](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-connections) to create VPN connection by using CLI.
-- You can now use [VPN IKE policies](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ike-policies) to create an IKE policy for the VPN connection by using CLI.
-- You can now use [VPN IKE policies](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#vpn-ipsec-policies) to create an IPsec policy for the VPN connection by using CLI.
-
-
-### September 2021
-{: #sep-2021}
-
-- You can now use [Import Image](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-image-import) to Import an image from IBM Cloud Object Storage by using CLI.
-- You can now use [Jobs](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-job) to View details of a job by using CLI.
-- You can now use [Console language](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-update-console-language) to update Language to Japanese.
-
-### May 2021
-{: #may-2021}
-
-- You can now use [Cloud connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#create-connection) to automate the way you connect your Power Systems Virtual Server instances to the IBM Cloud resources by using CLI.
-
-### March 2021
-{: #mar-2021}
-
-- You can now manage [snapshots](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#snapshot-id) of a cloud instance by using the CLI.
-- You can create and list [SAP profiles](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#sapprofile-info) by using CLI.
-- You can [list of available system pools](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#system-pools-support) within a particular data center by using CLI.
-- You can [attach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#attach-network), [detach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#detach-network), or [list all the attached networks](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#list-networks) to an instance.
-- Added image-import progress (task) monitoring.
-
-
-## Commands
 {: #power-iaas-cli-commands}
 
 
@@ -279,6 +57,8 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 #### Create a cloud connection.
 
 `ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
+ 
+`ibmcloud pi connection-create CONNECTION_NAME --speed SPEED --transit-enabled [--networks "NETWORK_ID1..NETWORK_IDn"] [--global-routing] [--metered] [--json]`
 
 **Options**
 
@@ -484,7 +264,23 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Import an image from IBM Cloud Object Storage
 
-`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] [--disk-type STORAGE_TIER] [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --disk-type DISKTYPE [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --storage-pool POOL [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME [--bucket-access private] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --disk-type DISKTYPE [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --storage-pool POOL [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+`ibmcloud pi image-import IMAGE_NAME --bucket-access public --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME  --job [--json]`
+
+DEPRECATED: `ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OSTYPE] [--disk-type DISKTYPE] --access-key KEY --secret-key KEY [--task] [--json]`
 
 **Options**
 
@@ -1790,7 +1586,13 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 
 #### Create a volume
 
-`ibmcloud pi volume-create VOLUME_NAME --size SIZE [--type STORAGE_TIER] [--shareable] [--replication-enabled] [--json]`
+`ibmcloud pi volume-create VOLUME_NAME --type TYPE --size SIZE [--shareable] [--replication-enabled] [--json]`
+
+`ibmcloud pi volume-create VOLUME_NAME --storage-pool POOL --size SIZE [--shareable] [--replication-enabled] [--json]`
+
+`ibmcloud pi volume-create VOLUME_NAME --affinity-policy affinity --size SIZE [--shareable] [--replication-enabled] (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--json]`
+
+`ibmcloud pi volume-create VOLUME_NAME --affinity-policy anti-affinity --size SIZE [--shareable] [--replication-enabled] (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--json]`
 
 **Options**
 
