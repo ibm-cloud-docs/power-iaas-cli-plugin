@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-02-05"
+lastupdated: "2024-03-26"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2024-02-05"
 # Release notes
 {: #release-notes}
 
-Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysShort}}.
+Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}}.
 {: shortdesc}
 
 ## February 2024
@@ -23,6 +23,17 @@ Use these release notes to learn about the latest changes to the {{site.data.key
     **Bug Fixes**
 
     Fixed issue in [ibmcloud pi volume clone](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone) commands using old API.
+
+## January 2024
+{: #mar-2024}
+
+`v1.1.0` {{site.data.keyword.powerSys_notm}} CLI plugin is avaialable with the following features:
+
+ - Added virtual core support. You can now use `--virtual-cores` option in the [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) command.
+ - Added mtu support added. You can now use `--mtu` in the [ibmcloud pi subnet create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-subnet-create) command. Jumbo flag has been deprecated.
+ - Update [ibmcloud pi volume clone](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone) commands now uses the latest API. 
+ - Reworks [ibmcloud pi volume clone cancel](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone-cancel) and [ibmcloud pi volume clone create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone-create) commands. 
+ - Added a new [ibmcloud pi volume clone delete](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone-delete) command.
 
 ## January 2024
 {: #jan-2024}
