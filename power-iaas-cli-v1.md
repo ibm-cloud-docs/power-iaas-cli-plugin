@@ -11,8 +11,6 @@ lastupdated: "2024-03-26"
 # IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.0.0
 {: #power-iaas-cli-reference-v1}
 
-[New]{: tag-new}
-
 This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
 {: shortdesc}
 
@@ -53,17 +51,17 @@ This document provides a reference of the command-line interface (CLI) commands 
     ```
     {: codeblock}
 
-4. Run the `ibmcloud pi service-list` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
+4. Run the `ibmcloud pi ws ls` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
 
     ```
     crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
     {: screen}
 
-5. Target your service by entering the following command, `ibmcloud pi service-target <crn>`.
+5. Target your service by entering the following command, `ibmcloud pi ws tg <CRN>`.
 
 ```
-ibmcloud pi service-target crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
+ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
 ```
 {: codeblock}
 
