@@ -15,16 +15,7 @@ lastupdated: "2024-03-26"
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}}.
 {: shortdesc}
 
-## February 2024
-{: #feb-2024}
-
-- New CLI version `1.0.0` available. To learn more about whats new in `1.0.0`, see [What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
-  
-    **Bug Fixes**
-
-    Fixed issue in [ibmcloud pi volume clone](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone) commands using old API.
-
-## January 2024
+## March 2024
 {: #mar-2024}
 
 `v1.1.0` {{site.data.keyword.powerSys_notm}} CLI plugin is avaialable with the following features:
