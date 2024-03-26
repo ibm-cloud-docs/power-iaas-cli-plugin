@@ -8,7 +8,7 @@ lastupdated: "2024-03-26"
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.0.0
+# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.1.0
 {: #power-iaas-cli-reference-v1}
 
 This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
