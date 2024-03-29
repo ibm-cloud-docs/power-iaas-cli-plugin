@@ -1836,9 +1836,9 @@ cancel VOLUME_CLONE_ID [--force=True|False]
 **Description**: Create a volume clone request using the specified volumes.
 **Usage**: 
 ```
-pi volume clone create --name VOLUME_CLONE_NAME --volumes VOLUME1[,VOLUMEn]
+create --name NAME --volumes VOLUME1[,VOLUMEn]
 
-  VOLUME_CLONE_NAME: The name of a volume clone request.
+  VOLUME_NAME: The name of a clone.
 ```
 **Available Flags**:
 ```
@@ -2489,3 +2489,6 @@ target WORKSPACE_CRN
 ```
 **Available Flags**:
 ```
+```
+
+---
