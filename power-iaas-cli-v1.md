@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-03-26"
+lastupdated: "2024-03-29"
 
 ---
 
@@ -1836,9 +1836,9 @@ cancel VOLUME_CLONE_ID [--force=True|False]
 **Description**: Create a volume clone request using the specified volumes.
 **Usage**: 
 ```
-create --name NAME --volumes VOLUME1[,VOLUMEn]
+pi volume clone create --name VOLUME_CLONE_NAME --volumes VOLUME1[,VOLUMEn]
 
-  VOLUME_NAME: The name of a clone.
+  VOLUME_CLONE_NAME: The name of a volume clone request.
 ```
 **Available Flags**:
 ```
