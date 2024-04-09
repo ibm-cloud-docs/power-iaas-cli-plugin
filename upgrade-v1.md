@@ -8,7 +8,7 @@ lastupdated: "2024-01-31"
 
 {{site.data.keyword.attribute-definition-list}}
 
-#  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI Version 1.0.0 
+#  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI Version 1.0.0 or later 
 {: #whats-new-v1}
 
 In this Upgrade Guide, you will find a concise overview of the changes and improvements made in the {{site.data.keyword.powerSysFull}} command-line interface (CLI) as we transition from version `0.7.1` to `1.0.0`. This topic highlight any modifications that may affect your usage and is tailored to facilitate a smooth transition to the latest release, enabling you to seamlessly leverage the enhanced capabilities of our CLI.
@@ -20,7 +20,7 @@ The following tables in the section below shows what has changed in the new vers
 
 <!-- Insert table here -->
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi connection-create      | ibmcloud pi cloud-connection create     |
 | ibmcloud pi connection-delete      | ibmcloud pi cloud-connection delete     |
@@ -32,7 +32,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi cloud-connection subnet
 {: connect-subnet}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi connection-attach-network      | ibmcloud pi cloud-connection subnet attach      |
 | ibmcloud pi connection-detach-network      | ibmcloud pi cloud-connection subnet detach      |
@@ -40,14 +40,14 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi disaster-recovery
 {: dr}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi disaster-recovery-locations     | ibmcloud pi disaster-recovery      |
 
 ## ibmcloud pi ike-policy
 {: ike}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi vpn-ike-policy-add     | ibmcloud pi ike-policy create      |
 | ibmcloud pi vpn-ike-policy-delete  | ibmcloud pi ike-policy delete      |
@@ -58,7 +58,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi image
 {: image}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi image-create          | ibmcloud pi image create          |
 | ibmcloud pi image-delete          | ibmcloud pi image delete          |
@@ -74,7 +74,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance
 {: instance}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 |ibmcloud pi instance-create    | ibmcloud pi instance create   |
 |ibmcloud pi instance-delete    | ibmcloud pi instance delete   |
@@ -86,7 +86,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance action
 {: inst-action}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 |ibmcloud pi instance-hard-reboot <br/> ibmcloud pi instance-reset-state <br/> ibmcloud pi instance-soft-reboot <br/> ibmcloud pi instance-start <br/> ibmcloud pi instance-stop <br/> ibmcloud pi instance-immediate-shutdown | ibmcloud pi instance action [^footnote3] | 
 
@@ -96,7 +96,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance capture
 {: inst-capture}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 |ibmcloud pi instance-capture       | ibmcloud pi instance capture create   |
 |ibmcloud pi instance-capture-show  | ibmcloud pi instance capture show     |
@@ -104,7 +104,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance console
 {: inst-console}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi instance-get-console              | ibmcloud pi instance console get     |
 | ibmcloud pi instance-list-console-languages   | ibmcloud pi instance console list    |
@@ -113,7 +113,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance sap
 {: inst-sap}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 |ibmcloud pi sap-create-instance    | ibmcloud pi instance sap create |
 |ibmcloud pi sap-profile            | ibmcloud pi instance sap profile|
@@ -122,14 +122,14 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance snapshot
 {: inst-snap}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi instance-list-snapshots   | ibmcloud pi instance snapshot list    |
 
 ## ibmcloud pi instance subnet
 {: inst-subnet}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi instance-attach-network       | ibmcloud pi instance subnet attach  |
 | ibmcloud pi instance-detach-network       | ibmcloud pi instance subnet detach  |
@@ -138,7 +138,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi instance volume
 {: inst-vol}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi volume-attach | ibmcloud pi instance volume attach    |
 | ibmcloud pi volume-detach | ibmcloud pi instance volume detach    |
@@ -146,7 +146,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi ipsec-policy
 {: ipsec}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi vpn-ipsec-policy-add      | ibmcloud pi ipsec-policy create   |
 | ibmcloud pi vpn-ipsec-policy-delete   | ibmcloud pi ipsec-policy delete   |
@@ -157,7 +157,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi job
 {: job}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi job-delete    | ibmcloud pi job delete  |
 | ibmcloud pi job           | ibmcloud pi job get     |
@@ -166,7 +166,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi placement-group
 {: pg}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi placement-group-create        | ibmcloud pi placement-group create        |
 | ibmcloud pi placement-group-delete        | ibmcloud pi placement-group delete        |
@@ -178,7 +178,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi shared-processor-pool
 {: spp}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi shared-processor-pool-create |ibmcloud pi shared-processor-pool create  |
 | ibmcloud pi shared-processor-pool-delete |ibmcloud pi shared-processor-pool delete  |
@@ -190,7 +190,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi shared-processor-pool placement-group
 {: spp-pg}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi spp-placement-group-create        | ibmcloud pi shared-processor-pool placement-group create        |
 | ibmcloud pi spp-placement-group-delete        | ibmcloud pi shared-processor-pool placement-group delete        |
@@ -202,7 +202,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi snapshot
 {: snap}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi snapshot-create       | ibmcloud pi snapshot create   |
 | ibmcloud pi snapshot-delete       | ibmcloud pi snapshot delete   |
@@ -213,7 +213,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi ssh-key
 {: ssh-key}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi key           | ibmcloud pi ssh-key get       |
 | ibmcloud pi key-create    | ibmcloud pi ssh-key create    |
@@ -224,14 +224,14 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi storage-pools
 {: storage-pool}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:
 |ibmcloud pi storage-pools  | ibmcloud pi storage-pools <br/> (Unchanged) |
 
 ## ibmcloud pi subnet
 {: subnet}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi network-create-private <br/> ibmcloud pi network-create-public [^footnote2]    | ibmcloud pi subnet create |
 | ibmcloud pi network-delete    | ibmcloud pi subnet delete   |
@@ -243,14 +243,14 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi system-pools
 {: sys-pool}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi system-pool   | ibmcloud pi system-pools  |
 
 ## ibmcloud pi volume
 {: vol}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi volume-action                     | ibmcloud pi volume action                     |
 | ibmcloud pi volume-create                     | ibmcloud pi volume create                     |
@@ -264,7 +264,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi volume-clone
 {: vol-cone}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi volume-clone          | ibmcloud pi volume clone get      |
 | ibmcloud pi volume-create-clone   | ibmcloud pi volume clone create   |
@@ -272,7 +272,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi volume-group
 {: vol-group}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi volume-group-create                       | ibmcloud pi volume-group create                     |
 | ibmcloud pi volume-group-delete                       | ibmcloud pi volume-group delete                     |
@@ -285,7 +285,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi volume-group action
 {: vol-inst-action}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi volume-group-reset  <br/> ibmcloud pi volume-group-start <br/>  ibmcloud pi volume-group-stop    | ibmcloud pi volume-group action [^footnote4]|
 
@@ -293,7 +293,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi volume-onboarding
 {: vol-onboard}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi volume-onboarding-create      | ibmcloud pi volume onboarding create  |
 | ibmcloud pi volume-onboarding             | ibmcloud pi volume onboarding get     |
@@ -302,7 +302,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi vpn
 {: vpn}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi vpn-connection-create      | ibmcloud pi vpn create    |
 | ibmcloud pi vpn-connection-delete      | ibmcloud pi vpn delete    |
@@ -313,7 +313,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi vpn peer-subnet
 {: vpn-peer-subnet}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi vpn-connection-peer-subnet-attach     | ibmcloud pi vpn peer-subnet attach  |
 | ibmcloud pi vpn-connection-peer-subnet-detach     | ibmcloud pi vpn peer-subnet detach  |
@@ -322,7 +322,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi vpn subnet
 {:vpn-subnet}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi vpn-connection-network-attach | ibmcloud pi vpn subnet attach |
 | ibmcloud pi vpn-connection-network-detach | ibmcloud pi vpn subnet detach |
@@ -331,19 +331,19 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi workspace
 {: workspace}
 
-| V 0.7.1  | V 1.0.0 |
+| V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
 | ibmcloud pi service-list      | ibmcloud pi workspace list    |
 | ibmcloud pi service-target    | ibmcloud pi workspace target  |
 
 
-## Removed Commands in Version 1.0.0
+## Removed Commands in Version 1.0.0 or later
 {: removedcmd}
 
 1. ibmcloud pi task
 2. ibmcloud pi task-delete
 
-## New Commands in Version 1.0.0
+## New Commands in Version 1.0.0 or later
 {: newcmd}
 
 1. ibmcloud pi datacenter get
