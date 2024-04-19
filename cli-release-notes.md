@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-03-29"
+lastupdated: "2024-04-19"
 
 ---
 
@@ -14,6 +14,14 @@ lastupdated: "2024-03-29"
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}}.
 {: shortdesc}
+
+## April 2024
+{: #apr-2024}
+
+New CLI version `v1.1.1` available. The {{site.data.keyword.powerSys_notm}} CLI plugin is avaialable with the following features:
+
+ - Added virtual core support. You can now use `--virtual-cores` option in the [instance update](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-update) command.
+ - Added the "eu-es" region to the [image export](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-image-export), [image-import](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-image-import), and [instance-capture](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-capture) commands. 
 
 ## March 2024
 {: #mar-2024}
@@ -45,7 +53,7 @@ New CLI version `v1.1.0` available. The {{site.data.keyword.powerSys_notm}} CLI 
     Fixed issue in `instance-update` command when `--virtual-optical-device` flag is not used.
 
 ## December 2023
-{: dec-2023}
+{: #dec-2023}
 
 New CLI version `0.7.0` available. Here are the changes for the new CLI version:
 
@@ -76,8 +84,6 @@ New CLI version `0.6.0` available. Here are the new changes for the new CLI vers
 
 New CLI version `0.5.0` available. Here are the new changes for the new CLI version:
    * New `--user-data` flag added in [instance-create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-instance-create) command.
-   <!-- * New `--mtu` flag added in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands.
-   * Deprecate `--jumbo` flag in [network-create-public](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-public) and [network-create-private](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-network-create-private) commands. -->
    * New command [datacenter](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenter) and [datacenters](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-datacenters) added.
    * Deprecated `service-list` command in favour of new [workspace](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspace) and [workspaces](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference#ibmcloud-pi-workspaces) commands.
 
@@ -90,6 +96,7 @@ New CLI version `0.5.0` available. Here are the new changes for the new CLI vers
 {: #dec-2022}
 
 - You can now get new error messages for undefined response codes for new service endpoint response codes.
+
 ## September 2022
 {: #sept-2022}
 
