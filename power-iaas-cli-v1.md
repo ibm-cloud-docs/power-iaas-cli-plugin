@@ -2,68 +2,62 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-03-29"
+lastupdated: "2024-04-22"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.1.0
+# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.1.1
 {: #power-iaas-cli-reference-v1}
 
-This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
+This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: external}.
 {: shortdesc}
 
 ## Before you begin
 {: #power-iaas-cli-before}
 
-1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window}{: external}.
+1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: external}.
 
 2. Install or update the `power-iaas` plug-in.
 
     **To install:**
 
-    ```
+    ```bash
     ibmcloud plugin install power-iaas
     ```
-    {: codeblock}
 
     **To update:**
 
-    ```
+    ```bash
     ibmcloud plugin update
     ```
-    {: codeblock}
 
     **To view your installed plug-ins and versions:**
 
-    ```
+    ```bash
     ibmcloud plugin list
     ```
-    {: codeblock}
 
-3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
+3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: external}.
 
     The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
 
-    ```
+    ```bash
     ibmcloud login -a https://cloud.ibm.com -sso
     ```
-    {: codeblock}
 
 4. Run the `ibmcloud pi ws ls` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
 
-    ```
+    ```screen
     crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
-    {: screen}
 
 5. Target your service by entering the following command, `ibmcloud pi ws tg <CRN>`.
 
-```
-ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
-```
-{: codeblock}
+    ```bash
+    ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
+    ```
 
 Power Systems Virtual Server CLI requires a valid IAM token authorization before each use. Use the ibmcloud login command to renew authorization if your token expires.
 {: note}
@@ -447,7 +441,7 @@ delete IMAGE_ID
 **Description**: Export an image to IBM Cloud Object Storage.
 **Usage**: 
 ```
-export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --secret-key KEY
+export IMAGE_ID --access-key KEY --bucket BUCKET_NAME --region REGION_NAME --secret-key KEY
 
   IMAGE_ID: The unique identifier or name of the image
 ```
@@ -455,7 +449,7 @@ export IMAGE_ID --bucket BUCKET_NAME --region REGION_NAME --access-key KEY --sec
 ```
   -a, --access-key string   Cloud Object Storage HMAC access key.
   -b, --bucket string       Cloud Object Storage bucket name.
-  -r, --region string       Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-gb, jp-osa, jp-tok, us-east, us-south).
+  -r, --region string       Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-es, eu-gb, jp-osa, jp-tok, us-east, us-south).
   -s, --secret-key string   Cloud Object Storage HMAC secret key.
 ```
 
@@ -507,19 +501,27 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 **Available Flags**:
 ```
   -k, --access-key string                 Cloud Object Storage HMAC access key.
-  -i, --affinity-instance string          PVM instance identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
-  -a, --affinity-policy string            Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided then this cannot be specified.
-  -v, --affinity-volume string            Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
-  -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
-  -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
+  -i, --affinity-instance string          PVM instance identifier or name to base volume affinity policy against;
+                                          required if "--affinity-policy affinity" is specified and --affinity-volume is not provided.
+  -a, --affinity-policy string            Affinity policy for data volume being created. Valid values are "affinity" and "anti-affinity".
+                                          If --storage-pool is provided then this cannot be specified.
+  -v, --affinity-volume string            Volume identifier or name to base volume affinity policy against;
+                                          required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
+  -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against;
+                                          required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
+  -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against;
+                                          required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
   -b, --bucket string                     Cloud Object Storage bucket name.
-  -u, --bucket-access string              Indicates the bucket access type (private or public). Private access requires access and secret keys. Public access requires the --job option. Default is private. (default "private")
+  -u, --bucket-access string              Indicates the bucket access type (private or public). Private access requires access and secret keys.
+                                          Public access requires the --job option. Default is private.
   -n, --image-file-name string            The image file name.
   -o, --os-type string                    Operating system contained in the image (rhel, sles, aix, ibmi). Required when importing a raw image.
-  -r, --region string                     Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-gb, jp-osa, jp-tok, us-east, us-south).
+  -r, --region string                     Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-es, eu-gb, jp-osa, jp-tok, us-east, us-south).
   -s, --secret-key string                 Cloud Object Storage HMAC secret key.
-  -p, --storage-pool string               Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools). If --storage-pool is provided then --affinity-policy cannot be specified.
-  -t, --storage-tier string               Tier of the disk storage (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region). Default to tier3 if not provided.
+  -p, --storage-pool string               Storage pool where the image will be imported to (use "ibmcloud pi storage-pools" to see available storage pools).
+                                          If --storage-pool is provided then --affinity-policy cannot be specified.
+  -t, --storage-tier string               Tier of the disk storage (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region).
+                                          Default to tier3 if not provided.
 ```
 
 ---
@@ -580,7 +582,7 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 **Description**: Perform an operation in a PVM server instance.
 **Usage**: 
 ```
-action INSTANCE_ID --operation op
+action INSTANCE_ID --operation OPERATION
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -608,7 +610,7 @@ action INSTANCE_ID --operation op
 **Description**: Create a capture of a server instance.
 **Usage**: 
 ```
-create INSTANCE_ID --destination DEST --name NAME [--volumes VOLUME1,VOLUMEn] [--access-key KEY] [--image-path PATH] [--region REGION] [--secret-key KEY]
+create INSTANCE_ID --destination DEST --name NAME [--access-key KEY] [--image-path PATH] [--region REGION] [--secret-key KEY] [--volumes VOLUME1,VOLUMEn]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -618,7 +620,7 @@ create INSTANCE_ID --destination DEST --name NAME [--volumes VOLUME1,VOLUMEn] [-
   -d, --destination string   Destination for the deployable image (image-catalog, cloud-storage, both).
   -i, --image-path string    Cloud Object Storage image path. Required if destination is cloud-storage. E.g. bucket-name[/optional/folder].
   -n, --name string          Name of the deployable image created for the captured instance.
-  -r, --region string        Cloud Object Storage region (us-south, us-east, eu-gb, eu-de, au-syd, jp-tok, jp-osa, ca-tor, br-sao). Required if destination is cloud-storage.
+  -r, --region string        Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-es, eu-gb, jp-osa, jp-tok, us-east, us-south). Required if destination is cloud-storage.
   -s, --secret-key string    Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
   -v, --volumes strings      Comma separated list of volume identifiers or names to associate with the instance.
 ```
@@ -718,14 +720,14 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
   -d, --deployment-type string                    The custom deployment type ("EPIC" or "VMNoStorage").
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
-  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB. (default 2)
+  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
       --placement-group string                    The placement group ID of the group that the server will be added to.
-  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated". (default "dedicated")
-  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core. (default 1)
+  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated".
+  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core.
       --replicant-affinity-policy string          Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
       --replicant-scheme string                   Naming scheme to use for duplicate VMs ("suffix", "prefix").
-      --replicants float                          Number of duplicate instances to create in this request.
+      --replicants int                            Number of duplicate instances to create in this request.
       --shared-processor-pool string              The shared processor pool ID of the pool that the server will be in.
       --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided, then this it cannot be specified.
       --storage-affinity-instance string          PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
@@ -735,7 +737,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
       --storage-pool string                       Storage pool for server deployment (use "ibmcloud pi storage-pools" to see available storage pools). Only valid when you deploy one of the IBM supplied stock images. Storage tier and pool for a custom image (an imported image or an image that is created from a PVMInstance capture) defaults to the storage tier and pool the image was created in.
   -t, --storage-tier string                       Storage tier for server deployment when deploying a stock or custom image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080'). Default is "s922". (default "s922")
+  -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080'). Default is "s922".
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
       --virtual-cores int                         The number of virtual cores assigned.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
@@ -843,7 +845,7 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
       --storage-pool string                       Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
   -t, --storage-tier string                       Storage tiers for SAP PVM instance deployment when deploying a stock or custom image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080'). Default is "e980". (default "e980")
+  -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080'). Default is "e980".
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
@@ -964,6 +966,7 @@ list INSTANCE_ID
 update INSTANCE_ID [--IBMiCSS-license=True|False] [--IBMiPHA-license=True|False]
 		[--IBMiRDS-users NUMBER-USERS] [--memory AMOUNT] [--name NEW_NAME] [--pin-policy POLICY]
 		[--processor-type TYPE] [--processors NUMBER] [--profile-id SAP_PROFILE_ID] [--storage-pool-affinity=True|False]
+		[--virtual-cores ASSIGNED_CORES]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -979,6 +982,7 @@ update INSTANCE_ID [--IBMiCSS-license=True|False] [--IBMiPHA-license=True|False]
   -p, --processors float                New amount of processors for the server instance.
       --profile-id string               SAP profile ID.
   -s, --storage-pool-affinity           Indicates if all volumes attached to the server must reside in the same storage pool. If set to false, then volumes from any storage tier and pool can be attached to the PVM instance; This impacts PVM instance snapshot, capture, and clone. For capture and clone only data volumes that are of the same storage tier and in the same storage pool of the PVM instance's boot volume can be included. For snapshot all data volumes to be included in the snapshot must reside in the same storage tier and pool. Once set to false, cannot be set back to true unless all volumes attached reside in the same storage tier and pool.
+      --virtual-cores int               New number of virtual cores assigned.
   -v, --virtual-optical-device string   Attach or Detach a Virtual Optical Device to this instance. Valid values are "attach" and "detach".
 ```
 
@@ -1821,7 +1825,7 @@ action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
 ```
 cancel VOLUME_CLONE_ID [--force=True|False]
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
 ```
 **Available Flags**:
 ```
@@ -1836,9 +1840,9 @@ cancel VOLUME_CLONE_ID [--force=True|False]
 **Description**: Create a volume clone request using the specified volumes.
 **Usage**: 
 ```
-create --name NAME --volumes VOLUME1[,VOLUMEn]
+create --name VOLUME_CLONE_NAME --volumes VOLUME1[,VOLUMEn]
 
-  VOLUME_NAME: The name of a clone.
+  VOLUME_CLONE_NAME: The name of a volume clone request.
 ```
 **Available Flags**:
 ```
@@ -1856,7 +1860,7 @@ create --name NAME --volumes VOLUME1[,VOLUMEn]
 ```
 delete VOLUME_CLONE_ID
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
 ```
 
 ---
@@ -1869,7 +1873,7 @@ delete VOLUME_CLONE_ID
 ```
 execute VOLUME_CLONE_ID --name BASE_NAME [--replication-enabled=True|False] [--rollback-prepare=True|False] [--target-tier STORAGE_TIER]
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
 ```
 **Available Flags**:
 ```
@@ -1889,7 +1893,7 @@ execute VOLUME_CLONE_ID --name BASE_NAME [--replication-enabled=True|False] [--r
 ```
 get VOLUME_CLONE_ID
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
 ```
 
 ---
@@ -1922,7 +1926,7 @@ get VOLUME_CLONE_ID
 ```
 start VOLUME_CLONE_ID
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone.
+  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
 ```
 
 ---
@@ -1947,7 +1951,7 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False
   -v, --affinity-volume string            Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
   -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
   -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
-  -c, --count int                         Number of volumes to create. 1 by default. (default 1)
+  -c, --count int                         Number of volumes to create. 1 by default.
   -r, --replication-enabled               Enables storage replication on the volume. False by default.
   -e, --shareable                         Whether the volumes can be attached to multiple VMs. False by default.
   -s, --size int                          Size of the volume (in GB). Size cannot exceed 200GB for storage tier "Tier5k".
@@ -2003,9 +2007,9 @@ get VOLUME_ID
 **Usage**: `list [--auxiliary=True|False] [--long=True|False] [--replication-enabled=True|False]`
 **Available Flags**:
 ```
-  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default. (default true)
+  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default.
   -l, --long                  Retrieve all volume details.
-  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default. (default true)
+  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default.
 ```
 
 ---
@@ -2117,13 +2121,15 @@ action VOLUME_GROUP_ID --operation reset [--status STATUS]
   pi volume-group action VOLUME_GROUP_ID --operation start [--source SOURCE]
   pi volume-group action VOLUME_GROUP_ID --operation stop [--allow-read-access=True|False]
 
+
+  VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
 **Available Flags**:
 ```
   -a, --allow-read-access   Allow the auxiliary volume to be accessible after stopping the volume group. Default is false.
   -o, --operation string    Operation to be done in a volume group. Valid values are "start", "stop", and "reset".
-      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master". (default "master")
-      --status string       New status to be set for a volume group. Default is "available". (default "available")
+      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master".
+      --status string       New status to be set for a volume group. Default is "available".
 ```
 
 ---
@@ -2132,7 +2138,12 @@ action VOLUME_GROUP_ID --operation reset [--status STATUS]
 {: #ibmcloud-pi-volume-group-create}
 **Alias**: `create, cr`
 **Description**: Create a volume group.
-**Usage**: `create (--volume-group-name VOLUME_GROUP_NAME | --consistency-group-name CONSISTENCY_GROUP_NAME) --member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"`
+**Usage**: 
+```
+create (--volume-group-name VOLUME_GROUP_NAME | --consistency-group-name CONSISTENCY_GROUP_NAME) --member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"
+
+  VOLUME_GROUP_ID: The unique identifier or name of the volume group.
+```
 **Available Flags**:
 ```
   -c, --consistency-group-name string   Storage volume group name. This is required to onboard existing volume group on the target site for DR set up.
@@ -2421,7 +2432,7 @@ update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PE
 
 #### `ibmcloud pi workspace create`
 {: #ibmcloud-pi-workspace-create}
-**Alias**: `create`
+**Alias**: `create, cr`
 **Description**: Create a workspace.
 **Usage**: 
 ```
@@ -2440,7 +2451,7 @@ create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
 
 #### `ibmcloud pi workspace delete`
 {: #ibmcloud-pi-workspace-delete}
-**Alias**: `delete`
+**Alias**: `delete, del`
 **Description**: Delete a workspace.
 **Usage**: 
 ```
@@ -2486,9 +2497,6 @@ get WORKSPACE_ID
 target WORKSPACE_CRN
 
   WORKSPACE_CRN: The unique identifier of the workspace.
-```
-**Available Flags**:
-```
 ```
 
 ---
