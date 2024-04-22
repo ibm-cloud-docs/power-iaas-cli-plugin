@@ -2,68 +2,62 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-03-29"
+lastupdated: "2024-04-22"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.1.0
+# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.1.1
 {: #power-iaas-cli-reference-v1}
 
-This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
+This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: external}.
 {: shortdesc}
 
 ## Before you begin
 {: #power-iaas-cli-before}
 
-1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: new_window}{: external}.
+1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: external}.
 
 2. Install or update the `power-iaas` plug-in.
 
     **To install:**
 
-    ```
+    ```bash
     ibmcloud plugin install power-iaas
     ```
-    {: codeblock}
 
     **To update:**
 
-    ```
+    ```bash
     ibmcloud plugin update
     ```
-    {: codeblock}
 
     **To view your installed plug-ins and versions:**
 
-    ```
+    ```bash
     ibmcloud plugin list
     ```
-    {: codeblock}
 
-3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: new_window}{: external}.
+3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: external}.
 
     The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
 
-    ```
+    ```bash
     ibmcloud login -a https://cloud.ibm.com -sso
     ```
-    {: codeblock}
 
 4. Run the `ibmcloud pi ws ls` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
 
-    ```
+    ```screen
     crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
-    {: screen}
 
 5. Target your service by entering the following command, `ibmcloud pi ws tg <CRN>`.
 
-```
-ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
-```
-{: codeblock}
+    ```bash
+    ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
+    ```
 
 Power Systems Virtual Server CLI requires a valid IAM token authorization before each use. Use the ibmcloud login command to renew authorization if your token expires.
 {: note}
