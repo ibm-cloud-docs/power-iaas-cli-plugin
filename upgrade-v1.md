@@ -18,7 +18,7 @@ The following tables in the section below shows what has changed in the new vers
 ## ibmcloud pi cloud-connection
 {: connection}
 
-<!-- Insert table here -->
+
 
 | V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|

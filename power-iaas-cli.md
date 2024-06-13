@@ -1901,6 +1901,7 @@ DEPRECATED: `ibmcloud pi image-import IMAGE_NAME --image-path PATH [--os-type OS
 
 **Options**
 
+- `--long`: Retrieve all volume details.
 - `--json`: Format output in JSON.
 - `--replication-enabled`: Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default.
 - `--auxiliary`: Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default.
