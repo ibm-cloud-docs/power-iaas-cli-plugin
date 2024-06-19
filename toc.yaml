@@ -8,7 +8,6 @@ toc:
     product-page: https://www.ibm.com/cloud/power-virtual-server
     path: power-iaas-cli-plugin
     label: IBM Power Systems Virtual Servers CLI plug-in
-
   entries: 
   - navgroup: 
       id: learn
