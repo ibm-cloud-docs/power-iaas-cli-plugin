@@ -11,4 +11,4 @@ IBM Power Systems Virtual Servers on IBM Cloud integrates your IBM AIX® and IBM
 
 You can quickly deploy IBM® Power Systems™ Virtual Server on IBM Cloud to meet your specific business needs. With IBM® Power Systems™ Virtual Server on IBM Cloud you can create a hybrid cloud environment that allows you to easily control workload demands.
 
-For more information, see IBM Power Systems Virtual Servers. You can also contact Soumya Menon (soumenon@in.ibm.com) for all documentation related issues.
+For more information, see IBM Power Systems Virtual Servers. You can also contact Mukesh Biswas (mukesh.biswas@ibm.com) for all documentation related issues.
