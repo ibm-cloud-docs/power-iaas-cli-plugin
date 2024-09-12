@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-06-18"
+lastupdated: "2024-09-12"
 
 ---
 
@@ -14,6 +14,33 @@ lastupdated: "2024-06-18"
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}}.
 {: shortdesc}
+
+# September 2024
+{: #sep-2024}
+
+New CLI version `v1.3.0` available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
+
+**New commands**
+* Added ibmcloud pi instance volume bulk-detach command to detach multiple volumes from an instance at once.
+* Added ibmcloud pi instance snapshot update command to update name and description of a snapshot.
+* Added ibmcloud pi volume bulk-delete command to delete multiple volumes at once.
+* Added ibmcloud pi volume clone-async create and get commands to asynchronously create clone tasks and query their status.
+* Added ibmcloud pi volume snapshot get and list to retrieve information about snapshots in a workspace.
+* Added ibmcloud pi workspace action command to perform an action in a workspace.
+       
+**New flags**
+* Added --user-tags flag to ibmcloud pi host reserve, ibmcloud pi image create, ibmcloud pi image import, ibmcloud pi instance capture create, ibmcloud pi instance create, ibmcloud pi shared-processor-pool create, ibmcloud pi instance snapshot create, ibmcloud pi subnet create, ibmcloud pi volume clone execute, ibmcloud pi volume create, and ibmcloud pi workspace create commands. Use this flag to add a comma separated list of user tags to be attached to the created resource.
+* Added user tag option to --hosts flag in ibmcloud pi host create command. Flag is now also repeatable.
+* Added --boot-volume-replication-enabled flag to ibmcloud pi instance create, and ibmcloud pi instance sap create command. Use this to enable storage replication on the boot volume.
+* Added --replication-sites flag to ibmcloud pi instance create, and ibmcloud pi instance sap create command. Use this to indicate the replication site of the boot volume.
+* Added --replication-sites flag to ibmcloud pi volume create. Use this to indicate the replication site of the volume.
+* Added "maxVolumeSupport" valid value to --storage-connection flag in ibmcloud pi instance create command.
+* Added --boot-volume flag to ibmcloud pi volume attach command. Use this to attach a boot volume to an instance.
+
+**What's changed**
+* ibmcloud pi snapshot command and subcommands have been deprecated. Please use ibmcloud pi instance snapshot command family instead.
+* Clarified usage of ibmcloud pi instance console list, ibmcloud pi instance capture create and ibmcloud pi job list commands.	
+* Minor wording improvements to several command and flags.
 
 ## June 2024
 {: #jun-2024}
