@@ -15,7 +15,7 @@ lastupdated: "2024-09-16"
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}}.
 {: shortdesc}
 
-# September 2024
+## September 2024
 {: #sep-2024}
 
 New CLI version `v1.3.0` available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
