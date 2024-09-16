@@ -35,7 +35,7 @@ New CLI version `v1.3.0` available. The {{site.data.keyword.powerSys_notm}} CLI 
 * Added --replication-sites flag to [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create), and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create) command. Use this to indicate the replication site of the boot volume.
 * Added `--replication-sites` flag to [ibmcloud pi volume create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-create). Use this to indicate the replication site of the volume.
 * Added "maxVolumeSupport" valid value to `--storage-connection` flag in [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) command.
-* Added `--boot-volume` flag to [ibmcloud pi volume attach] command. Use this to attach a boot volume to an instance. [Do you mean ibmcloud pi instance volume attach command here?]{: tag-green}
+* Added `--boot-volume` flag to [ibmcloud pi volume attach] command. Use this to attach a boot volume to an instance. [Do you mean instance vol attach?]{: tag-green}
 
 **What's changed**
 * [ibmcloud pi snapshot](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-snapshot) command and subcommands have been deprecated. Please use [ibmcloud pi instance snapshot](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-snapshot) command family instead.
