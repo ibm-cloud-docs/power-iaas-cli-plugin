@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-09-12"
+lastupdated: "2024-09-16"
 
 ---
 
@@ -64,7 +64,8 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 ---
 
-# `ibmcloud pi` 
+
+# `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`
@@ -780,8 +781,8 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
                                           Public access requires the --job option. Default is private. (default "private")
   -n, --image-file-name string            The image file name.
   -d, --import-details strings            Import details for SAP image. Must include a license, product and vendor.
-                                          Valid license values: byol. 
-                                          Valid product values: Hana, Netweaver. 
+                                          Valid license values: byol.
+                                          Valid product values: Hana, Netweaver.
                                           Valid vendor values: SAP.
   -o, --os-type string                    Operating system contained in the image (rhel, sles, aix, ibmi). Required when importing a raw image.
   -r, --region string                     Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-es, eu-gb, jp-osa, jp-tok, us-east, us-south).
@@ -1014,7 +1015,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
     [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]]
     [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-connection STORAGE_CONNECTION]
     [--storage-pool STORAGE_POOL] [--storage-pool-affinity] [--storage-tier STORAGE_TIER]
-    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]] 
+    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]]
     [--virtual-cores ASSIGNED_CORES] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_NAME: The name of the instance.
@@ -1169,11 +1170,11 @@ operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [--boot-operating
 
 ```bash
 create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
-    [--key-name KEY-NAME] [--pin-policy POLICY] [--placement-group PLACEMENT_GROUP_ID] [--replication-sites SITE1[,SITEn]]
-    [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
-    [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]] [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]]
-    [--storage-pool STORAGE_POOL] [--storage-tier STORAGE_TIER] [--sys-type TYPE] [--user-data USER_DATA]
-    [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
+    [--boot-volume-replication-enabled=True|False] [--key-name KEY-NAME] [--pin-policy POLICY] [--placement-group PLACEMENT_GROUP_ID]
+    [--replication-sites SITE1[,SITEn]] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE]
+    [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]]
+    [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-pool STORAGE_POOL] [--storage-tier STORAGE_TIER]
+    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
 
   SAP_INSTANCE_NAME: The name of the SAP instance.
 ```
@@ -1181,6 +1182,7 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 **Available Flags**:
 
 ```bash
+  -b, --boot-volume-replication-enabled           Enables storage replication on the boot volume. False by default.
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
@@ -1252,7 +1254,7 @@ profile SAP_PROFILE_ID
 **Usage**:
 
 ```bash
-create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes VOLUME1[,VOLUMEn]]
+create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -1262,6 +1264,7 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes V
 ```bash
   -d, --description string   Snapshot description.
   -n, --name string          Name of the snapshot.
+  -u, --user-tags strings    Comma separated list of user tags to be attached to the snapshot.
   -v, --volumes strings      Comma separated list of volume identifiers or names to include in the snapshot.
                              If you do not specify this parameter or if the volumes list is empty,
                              all the volumes that are attached to the instance are included in the snapshot.
@@ -2063,7 +2066,7 @@ member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
 **Usage**:
 
 ```bash
-update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] 
+update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES]
 
   SHARED_PROCESSOR_POOL_ID: The unique identifier or name of the shared processor pool.
 ```
@@ -2113,10 +2116,9 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--user-tags
   -d, --description string   Snapshot description.
   -n, --name string          Name of the snapshot.
   -u, --user-tags strings    Comma separated list of user tags to be attached to the snapshot.
-  -v, --volumes strings      Comma separated list
-                             of volume identifiers or names to include in the snapshot. This parameter is optional. If
-                             you do not specify this parameter or if the volumes list is empty, all the volumes that are attached
-                             to the are included in the snapshot.
+  -v, --volumes strings      Comma separated list of volume identifiers or names to include in the snapshot.
+                             If you do not specify this parameter or if the volumes list is empty,
+                             all the volumes that are attached to the instance are included in the snapshot.
 ```
 
 ---
@@ -3027,7 +3029,7 @@ delete VOLUME_GROUP_ID
 **Usage**:
 
 ```bash
-get VOLUME_GROUP_ID [--long=True|False] 
+get VOLUME_GROUP_ID [--long=True|False]
 
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```
