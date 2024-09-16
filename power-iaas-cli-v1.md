@@ -65,7 +65,7 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 ---
 
 
-# `ibmcloud pi`
+## `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`
