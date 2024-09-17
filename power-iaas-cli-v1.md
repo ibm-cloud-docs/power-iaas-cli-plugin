@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-09-16"
+lastupdated: "2024-09-17"
 
 ---
 
@@ -84,6 +84,7 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 - `instance`:    IBM Cloud Power Virtual Server Instances.
 - `ipsec-policy`:    IBM Cloud Power Virtual Server Internet Protocol Security policies.
 - `job`:    IBM Cloud Power Virtual Server Jobs.
+- `network-interface`:    IBM Cloud Power Virtual Network Interfaces.
 - `placement-group`:    IBM Cloud Power Virtual Server Placement Groups.
 - `shared-processor-pool`:    IBM Cloud Power Virtual Shared Processor Pools.
 - `snapshot`:    [DEPRECATED] IBM Cloud Power Virtual Server Snapshots.
@@ -781,8 +782,8 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
                                           Public access requires the --job option. Default is private. (default "private")
   -n, --image-file-name string            The image file name.
   -d, --import-details strings            Import details for SAP image. Must include a license, product and vendor.
-                                          Valid license values: byol.
-                                          Valid product values: Hana, Netweaver.
+                                          Valid license values: byol. 
+                                          Valid product values: Hana, Netweaver. 
                                           Valid vendor values: SAP.
   -o, --os-type string                    Operating system contained in the image (rhel, sles, aix, ibmi). Required when importing a raw image.
   -r, --region string                     Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-es, eu-gb, jp-osa, jp-tok, us-east, us-south).
@@ -1015,7 +1016,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
     [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]]
     [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-connection STORAGE_CONNECTION]
     [--storage-pool STORAGE_POOL] [--storage-pool-affinity] [--storage-tier STORAGE_TIER]
-    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]]
+    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]] 
     [--virtual-cores ASSIGNED_CORES] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_NAME: The name of the instance.
@@ -1738,6 +1739,126 @@ get JOB_ID
 
 ---
 
+## `ibmcloud pi network-interface`
+{: #ibmcloud-pi-network-interface}
+
+**Alias**: `network-interface, ni`
+**Description**: IBM Cloud Power Virtual Network Interfaces.
+**Usage**: `network-interface`
+**Available Commands**:
+
+- `create`:    Create a network interface for a network.
+- `delete`:    Delete a network interface from a network.
+- `get`:    View details of a network interface for a network.
+- `list`:    List all network interfaces for a network (use "ibmcloud pi subnet list" to see available networks).
+- `update`:    Update a network interface for a network.
+
+---
+
+### `ibmcloud pi network-interface create`
+{: #ibmcloud-pi-network-interface-create}
+
+**Alias**: `create, cr`
+**Description**: Create a network interface for a network.
+**Usage**:
+
+```bash
+create NETWORK_INTERFACE_NAME --network-id NETWORK_ID [--ip-address IP_ADDRESS] [--user-tags USER_TAG1[,USER_TAGn]]
+
+  NETWORK_INTERFACE_NAME: The desired name of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -i, --ip-address string   The requested ip address of this network interface (192.168.1.0).
+  -n, --network-id string   Network ID that is associated with the network interface.
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface delete`
+{: #ibmcloud-pi-network-interface-delete}
+
+**Alias**: `delete, del`
+**Description**: Delete a network interface from a network.
+**Usage**:
+
+```bash
+delete NETWORK_INTERFACE_ID --network-id NETWORK_ID
+
+  NETWORK_INTERFACE_ID: The unique identifier of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --network-id string   Network ID that is associated with the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface get`
+{: #ibmcloud-pi-network-interface-get}
+
+**Alias**: `get`
+**Description**: View details of a network interface for a network.
+**Usage**:
+
+```bash
+get NETWORK_INTERFACE_ID --network-id NETWORK_ID
+
+  NETWORK_INTERFACE_ID: The unique identifier of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --network-id string   Network ID that is associated with the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface list`
+{: #ibmcloud-pi-network-interface-list}
+
+**Alias**: `list, ls`
+**Description**: List all network interfaces for a network (use "ibmcloud pi subnet list" to see available networks).
+**Usage**: `list --network-id NETWORK_ID`
+
+**Available Flags**:
+
+```bash
+  -n, --network-id string   Network ID that is associated with the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface update`
+{: #ibmcloud-pi-network-interface-update}
+
+**Alias**: `update, upd`
+**Description**: Update a network interface for a network.
+**Usage**:
+
+```bash
+update NETWORK_INTERFACE_ID --network-id NETWORK_ID [--instance-id INSTANCE_ID] [--name NEW_NAME]
+
+  NETWORK_INTERFACE_ID: The unique identifier of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -i, --instance-id string   The ID of the instance that will be added to the network interface.
+                             If this value is set to '', the network interface detaches from the instance.
+      --name string          New name of network interface.
+  -n, --network-id string    Network ID that is associated with the network interface.
+```
+
+---
+
 ## `ibmcloud pi placement-group`
 {: #ibmcloud-pi-placement-group}
 
@@ -2066,7 +2187,7 @@ member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
 **Usage**:
 
 ```bash
-update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES]
+update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-cores NUMBER_OF_CORES] 
 
   SHARED_PROCESSOR_POOL_ID: The unique identifier or name of the shared processor pool.
 ```
@@ -3029,7 +3150,7 @@ delete VOLUME_GROUP_ID
 **Usage**:
 
 ```bash
-get VOLUME_GROUP_ID [--long=True|False]
+get VOLUME_GROUP_ID [--long=True|False] 
 
   VOLUME_GROUP_ID: The unique identifier or name of the volume group.
 ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-09-16"
+lastupdated: "2024-09-17"
 
 ---
 
@@ -21,8 +21,9 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 New CLI version `v1.3.0` available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
 
 **New commands**
-* Added ibmcloud [pi instance volume bulk-detach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-volume-bulk-detach) command to detach multiple volumes from an instance at once.
+* Added  [ibmcloud pi instance volume bulk-detach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-volume-bulk-detach) command to detach multiple volumes from an instance at once.
 * Added [ibmcloud pi instance snapshot update](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-snapshot-update) command to update name and description of a snapshot.
+* Added [ibmcloud pi network-interface](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-network-interface) family of commands (create, delete, get, list, update).
 * Added [ibmcloud pi volume bulk-delete](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-bulk-delete) command to delete multiple volumes at once.
 * Added [ibmcloud pi volume clone-async](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone-async) _create_ and _get_ commands to asynchronously create clone tasks and query their status.
 * Added [ibmcloud pi volume snapshot](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-snapshot) _get_ and _list_ to retrieve information about snapshots in a workspace.
@@ -30,12 +31,12 @@ New CLI version `v1.3.0` available. The {{site.data.keyword.powerSys_notm}} CLI 
 
 **New flags**
 * Added `--user-tags` flag to [ibmcloud pi host reserve](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-host-reserve), [ibmcloud pi image create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-image-create), [ibmcloud pi image import](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-image-import), [ibmcloud pi instance capture create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-capture-create), [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create), [ibmcloud pi shared-processor-pool create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-shared-processor-pool-create), [ibmcloud pi instance snapshot create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-snapshot-create), [ibmcloud pi subnet create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-subnet-create), [ibmcloud pi volume clone execute](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-clone-execute), [ibmcloud pi volume create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-create), and [ibmcloud pi workspace create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-workspace-create) commands. Use this flag to add a comma separated list of user tags to be attached to the created resource.
-* Added user tag option to `--hosts` flag in [ibmcloud pi host create] command. Flag is now also repeatable. [Which command is this?]{: tag-green}
+* Added user tag option to `--hosts` flag in [ibmcloud pi host-group create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-host-group-create) command. Flag is now also repeatable.
 * Added `--boot-volume-replication-enabled` flag to [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create), and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create) command. Use this to enable storage replication on the boot volume.
-* Added --replication-sites flag to [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create), and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create) command. Use this to indicate the replication site of the boot volume.
+* Added `--replication-sites` flag to [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create) command. Use this to indicate the replication site of the boot volume.
 * Added `--replication-sites` flag to [ibmcloud pi volume create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-create). Use this to indicate the replication site of the volume.
 * Added "maxVolumeSupport" valid value to `--storage-connection` flag in [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) command.
-* Added `--boot-volume` flag to [ibmcloud pi volume attach] command. Use this to attach a boot volume to an instance. [Do you mean instance vol attach?]{: tag-green}
+* Added `--boot-volume` flag to [ibmcloud pi instance volume attach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-volume-attach) command. Use this to attach a boot volume to an instance.
 
 **What's changed**
 * [ibmcloud pi snapshot](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-snapshot) command and subcommands have been deprecated. Please use [ibmcloud pi instance snapshot](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-snapshot) command family instead.
