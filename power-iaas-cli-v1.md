@@ -2,13 +2,13 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-06-18"
+lastupdated: "2024-09-18"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.2.0
+# IBM {{site.data.keyword.powerSys_notm}} CLI Reference V 1.3.0
 {: #power-iaas-cli-reference-v1}
 
 This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: external}.
@@ -64,12 +64,16 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 
 ---
 
-# `ibmcloud pi`
+
+## `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`
+
 **Description**: Manage IBM Cloud Power Virtual Server service.
+
 **Usage**: `pi`
+
 **Available Commands**:
 
 - `available-hosts`:    List of hosts available for reservation.
@@ -83,9 +87,10 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 - `instance`:    IBM Cloud Power Virtual Server Instances.
 - `ipsec-policy`:    IBM Cloud Power Virtual Server Internet Protocol Security policies.
 - `job`:    IBM Cloud Power Virtual Server Jobs.
+- `network-interface`:    IBM Cloud Power Virtual Network Interfaces.
 - `placement-group`:    IBM Cloud Power Virtual Server Placement Groups.
 - `shared-processor-pool`:    IBM Cloud Power Virtual Shared Processor Pools.
-- `snapshot`:    IBM Cloud Power Virtual Server Snapshots.
+- `snapshot`:    [DEPRECATED] IBM Cloud Power Virtual Server Snapshots.
 - `ssh-key`:    IBM Cloud Power Virtual Server SSH-Keys.
 - `storage-pools`:    List all storage pools for the targeted region.
 - `storage-tiers`:    List all storage tiers for the targeted region.
@@ -102,7 +107,9 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 {: #ibmcloud-pi-available-hosts}
 
 **Alias**: `available-hosts, ahost`
+
 **Description**: List of hosts available for reservation.
+
 **Usage**: `available-hosts`
 
 ---
@@ -111,16 +118,19 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 {: #ibmcloud-pi-cloud-connection}
 
 **Alias**: `cloud-connection, cc`
+
 **Description**: IBM Cloud Power Virtual Server Cloud Connections.
+
 **Usage**: `cloud-connection`
+
 **Available Commands**:
 
 - `create`:    Create a cloud connection.
-- `delete`:    Delete a cloud Connection.
-- `get`:    View details of a cloud Connection.
-- `list`:    List all Cloud Connections.
+- `delete`:    Delete a cloud connection.
+- `get`:    View details of a cloud connection.
+- `list`:    List all cloud connections.
 - `subnet`:    IBM Cloud Power Virtual Server Virtual Cloud Connection Subnets.
-- `update`:    Update the cloud connection.
+- `update`:    Update a cloud connection.
 - `vpcs`:    List all virtual private clouds.
 
 ---
@@ -129,7 +139,9 @@ Power Systems Virtual Server CLI requires a valid IAM token authorization before
 {: #ibmcloud-pi-cloud-connection-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a cloud connection.
+
 **Usage**:
 
 ```bash
@@ -162,7 +174,9 @@ create CONNECTION_NAME --speed SPEED
 {: #ibmcloud-pi-cloud-connection-delete}
 
 **Alias**: `delete, del`
-**Description**: Delete a cloud Connection.
+
+**Description**: Delete a cloud connection.
+
 **Usage**:
 
 ```bash
@@ -177,7 +191,9 @@ delete CONNECTION_ID
 {: #ibmcloud-pi-cloud-connection-get}
 
 **Alias**: `get`
-**Description**: View details of a cloud Connection.
+
+**Description**: View details of a cloud connection.
+
 **Usage**:
 
 ```bash
@@ -192,7 +208,9 @@ get CONNECTION_ID
 {: #ibmcloud-pi-cloud-connection-list}
 
 **Alias**: `list, ls`
-**Description**: List all Cloud Connections.
+
+**Description**: List all cloud connections.
+
 **Usage**: `list`
 
 ---
@@ -201,12 +219,15 @@ get CONNECTION_ID
 {: #ibmcloud-pi-cloud-connection-subnet}
 
 **Alias**: `subnet, snet`
+
 **Description**: IBM Cloud Power Virtual Server Virtual Cloud Connection Subnets.
+
 **Usage**: `subnet`
+
 **Available Commands**:
 
-- `attach`:    Attach a network to the cloud connection.
-- `detach`:    Detach a subnet from the cloud connection.
+- `attach`:    Attach a subnet to a cloud connection.
+- `detach`:    Detach a subnet from a cloud connection.
 
 ---
 
@@ -214,7 +235,9 @@ get CONNECTION_ID
 {: #ibmcloud-pi-cloud-connection-subnet-attach}
 
 **Alias**: `attach, att`
-**Description**: Attach a network to the cloud connection.
+
+**Description**: Attach a subnet to a cloud connection.
+
 **Usage**:
 
 ```bash
@@ -235,7 +258,9 @@ attach CONNECTION_ID --subnet SUBNET_ID
 {: #ibmcloud-pi-cloud-connection-subnet-detach}
 
 **Alias**: `detach, det`
-**Description**: Detach a subnet from the cloud connection.
+
+**Description**: Detach a subnet from a cloud connection.
+
 **Usage**:
 
 ```bash
@@ -256,7 +281,9 @@ detach CONNECTION_ID --subnet ID
 {: #ibmcloud-pi-cloud-connection-update}
 
 **Alias**: `update, upd`
-**Description**: Update the cloud connection.
+
+**Description**: Update a cloud connection.
+
 **Usage**:
 
 ```bash
@@ -285,7 +312,9 @@ update CONNECTION_ID [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] [--glo
 {: #ibmcloud-pi-cloud-connection-vpcs}
 
 **Alias**: `vpcs`
+
 **Description**: List all virtual private clouds.
+
 **Usage**: `vpcs`
 
 ---
@@ -294,8 +323,11 @@ update CONNECTION_ID [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] [--glo
 {: #ibmcloud-pi-datacenter}
 
 **Alias**: `datacenter, dat`
+
 **Description**: IBM Cloud Power Virtual Server Datacenters.
+
 **Usage**: `datacenter`
+
 **Available Commands**:
 
 - `get`:    View details of a datacenter.
@@ -307,7 +339,9 @@ update CONNECTION_ID [--classic=True|False [--gre-tunnel "CIDR DEST-IP"]] [--glo
 {: #ibmcloud-pi-datacenter-get}
 
 **Alias**: `get`
+
 **Description**: View details of a datacenter.
+
 **Usage**:
 
 ```bash
@@ -322,7 +356,9 @@ get DATACENTER
 {: #ibmcloud-pi-datacenter-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all datacenter details.
+
 **Usage**: `list [--long=True|False]`
 
 **Available Flags**:
@@ -337,7 +373,9 @@ get DATACENTER
 {: #ibmcloud-pi-disaster-recovery}
 
 **Alias**: `disaster-recovery, drl`
+
 **Description**: List disaster recovery locations for the current region or all regions.
+
 **Usage**: `disaster-recovery [--all-regions=True|False]`
 
 **Available Flags**:
@@ -352,8 +390,11 @@ get DATACENTER
 {: #ibmcloud-pi-host}
 
 **Alias**: `host, hs`
+
 **Description**: IBM Cloud Power Virtual Server Host.
+
 **Usage**: `host`
+
 **Available Commands**:
 
 - `get`:    View details of a host.
@@ -368,7 +409,9 @@ get DATACENTER
 {: #ibmcloud-pi-host-get}
 
 **Alias**: `get`
+
 **Description**: View details of a host.
+
 **Usage**:
 
 ```bash
@@ -383,7 +426,9 @@ get HOST_ID
 {: #ibmcloud-pi-host-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all hosts.
+
 **Usage**: `list`
 
 ---
@@ -392,7 +437,9 @@ get HOST_ID
 {: #ibmcloud-pi-host-release}
 
 **Alias**: `release, rel`
+
 **Description**: Release a host from a host group.
+
 **Usage**:
 
 ```bash
@@ -407,13 +454,16 @@ release HOST_ID
 {: #ibmcloud-pi-host-reserve}
 
 **Alias**: `reserve, res`
+
 **Description**: Reserve a host.
-**Usage**: `reserve "DISPLAYNAME1 SYSTYPE1"[,"DISPLAYNAMEn SYSTYPEn"] --host-group HOST_GROUP_ID`
+
+**Usage**: `reserve "DISPLAYNAME1 SYSTYPE1"[,"DISPLAYNAMEn SYSTYPEn"] --host-group HOST_GROUP_ID [--user-tags USER_TAG1[,USER_TAGn]]`
 
 **Available Flags**:
 
 ```bash
   -g, --host-group string   Host group to remove host from.
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the host.
 ```
 
 ---
@@ -422,7 +472,9 @@ release HOST_ID
 {: #ibmcloud-pi-host-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a host.
+
 **Usage**:
 
 ```bash
@@ -443,8 +495,11 @@ update HOST_ID --display-name NEW_NAME
 {: #ibmcloud-pi-host-group}
 
 **Alias**: `host-group, hg`
+
 **Description**: IBM Cloud Power Virtual Server Host Group.
+
 **Usage**: `host-group`
+
 **Available Commands**:
 
 - `create`:    Create a host group.
@@ -458,11 +513,13 @@ update HOST_ID --display-name NEW_NAME
 {: #ibmcloud-pi-host-group-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a host group.
+
 **Usage**:
 
 ```bash
-create HOST_GROUP_NAME --hosts "DISPLAYNAME1 SYSTYPE1"[,"DISPLAYNAMEn SYSTYPEn"] [--secondaries "WORKSPACE_ID1 [HOST_GROUP_NAME1]"[,"WORKSPACE_IDn [HOST_GROUP_NAMEn]]
+create HOST_GROUP_NAME <--hosts "DISPLAYNAME SYSTYPE [USER_TAG1,[USER_TAGn]]">  [--secondaries "WORKSPACE_ID1 [HOST_GROUP_NAME1]"[,"WORKSPACE_IDn [HOST_GROUP_NAMEn]]
 
   HOST_GROUP_NAME: The desired name of the host group
 ```
@@ -470,7 +527,7 @@ create HOST_GROUP_NAME --hosts "DISPLAYNAME1 SYSTYPE1"[,"DISPLAYNAMEn SYSTYPEn"]
 **Available Flags**:
 
 ```bash
-      --hosts strings         List of hosts to be included in the host group. Hosts must include a display name and system type.
+      --hosts stringArray     List of hosts to be included in the host group. Hosts must include a display name and system type.
   -s, --secondaries strings   List of secondaries to be included in the host group. Secondaries must include a workspace ID and optionally a name for the host group.
 ```
 
@@ -480,7 +537,9 @@ create HOST_GROUP_NAME --hosts "DISPLAYNAME1 SYSTYPE1"[,"DISPLAYNAMEn SYSTYPEn"]
 {: #ibmcloud-pi-host-group-get}
 
 **Alias**: `get`
+
 **Description**: View details of a host group.
+
 **Usage**:
 
 ```bash
@@ -495,7 +554,9 @@ get HOST_GROUP_ID
 {: #ibmcloud-pi-host-group-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all host groups.
+
 **Usage**: `list`
 
 ---
@@ -504,7 +565,9 @@ get HOST_GROUP_ID
 {: #ibmcloud-pi-host-group-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a host group.
+
 **Usage**:
 
 ```bash
@@ -526,8 +589,11 @@ update HOST_GROUP_ID ([--add-workspaces "WORKSPACE_ID1 [HOST_GROUP_NAME1]"[,"WOR
 {: #ibmcloud-pi-ike-policy}
 
 **Alias**: `ike-policy, ike`
+
 **Description**: IBM Cloud Power Virtual Server Internet Key Exchange policies.
+
 **Usage**: `ike-policy`
+
 **Available Commands**:
 
 - `create`:    Create a VPN IKE policy.
@@ -542,7 +608,9 @@ update HOST_GROUP_ID ([--add-workspaces "WORKSPACE_ID1 [HOST_GROUP_NAME1]"[,"WOR
 {: #ibmcloud-pi-ike-policy-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a VPN IKE policy.
+
 **Usage**:
 
 ```bash
@@ -568,7 +636,9 @@ create IKE_POLICY_NAME --version VERSION --authentication AUTHENTICATION --encry
 {: #ibmcloud-pi-ike-policy-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a VPN IKE policy.
+
 **Usage**:
 
 ```bash
@@ -583,7 +653,9 @@ delete IKE_POLICY_ID
 {: #ibmcloud-pi-ike-policy-get}
 
 **Alias**: `get`
+
 **Description**: View details of a VPN IKE policy.
+
 **Usage**:
 
 ```bash
@@ -598,7 +670,9 @@ get IKE_POLICY_ID
 {: #ibmcloud-pi-ike-policy-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all VPN IKE policies.
+
 **Usage**: `list`
 
 ---
@@ -607,7 +681,9 @@ get IKE_POLICY_ID
 {: #ibmcloud-pi-ike-policy-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a VPN IKE policy.
+
 **Usage**:
 
 ```bash
@@ -634,8 +710,11 @@ update IKE_POLICY_ID [--name NEW_NAME] [--version VERSION] [--authentication AUT
 {: #ibmcloud-pi-image}
 
 **Alias**: `image, img`
+
 **Description**: IBM Cloud Power Virtual Server Images.
+
 **Usage**: `image`
+
 **Available Commands**:
 
 - `create`:    Create a copy of an available stock image into this account; stock image names cannot be changed.
@@ -654,13 +733,21 @@ update IKE_POLICY_ID [--name NEW_NAME] [--version VERSION] [--authentication AUT
 {: #ibmcloud-pi-image-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a copy of an available stock image into this account; stock image names cannot be changed.
+
 **Usage**:
 
 ```bash
-create IMAGE_ID
+create IMAGE_ID [--user-tags USER_TAG1[,USER_TAGn]]
 
   IMAGE_ID: The unique identifier or name of the image
+```
+
+**Available Flags**:
+
+```bash
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the created image.
 ```
 
 ---
@@ -669,7 +756,9 @@ create IMAGE_ID
 {: #ibmcloud-pi-image-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete an image.
+
 **Usage**:
 
 ```bash
@@ -684,7 +773,9 @@ delete IMAGE_ID
 {: #ibmcloud-pi-image-export}
 
 **Alias**: `export, ex`
+
 **Description**: Export an image to IBM Cloud Object Storage.
+
 **Usage**:
 
 ```bash
@@ -708,7 +799,9 @@ export IMAGE_ID --access-key KEY --bucket BUCKET_NAME --region REGION_NAME --sec
 {: #ibmcloud-pi-image-export-show}
 
 **Alias**: `export-show, exs`
+
 **Description**: View details of the last image export job.
+
 **Usage**:
 
 ```bash
@@ -723,7 +816,9 @@ export-show IMAGE_ID
 {: #ibmcloud-pi-image-get}
 
 **Alias**: `get`
+
 **Description**: View details of an image.
+
 **Usage**:
 
 ```bash
@@ -738,18 +833,20 @@ get IMAGE_ID
 {: #ibmcloud-pi-image-import}
 
 **Alias**: `import, im`
+
 **Description**: Import an image to IBM Cloud Object Storage.
+
 **Usage**:
 
 ```bash
-import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] --storage-pool POOL [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --storage-pool POOL [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
-  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] --storage-pool POOL [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --access-key KEY --secret-key KEY --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --storage-pool POOL [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --affinity-policy affinity (--affinity-instance INSTANCE | --affinity-volume VOLUME) [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
+  pi image import IMAGE_NAME --bucket-access public [--storage-tier STORAGE_TIER] --affinity-policy anti-affinity (--anti-affinity-instances "INSTANCE1 [INSTANCEn]" | --anti-affinity-volumes "VOLUME1 [VOLUMEn]") [--os-type OSTYPE] [--import-details "LICENSE,PRODUCT,VENDOR"] [--user-tags USER_TAG1[,USER_TAGn]] --image-file-name IMAGE_FILE_NAME --bucket BUCKET_NAME --region REGION_NAME
 
   IMAGE_NAME: The desired name of the image
 ```
@@ -783,6 +880,7 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
                                           If --storage-pool is provided then --affinity-policy cannot be specified.
   -t, --storage-tier string               Tier of the disk storage (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region).
                                           Default to tier3 if not provided.
+      --user-tags strings                 Comma separated list of user tags to be attached to the imported image.
 ```
 
 ---
@@ -791,7 +889,9 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 {: #ibmcloud-pi-image-import-show}
 
 **Alias**: `import-show, ims`
+
 **Description**: View details of the last image import job.
+
 **Usage**: `import-show`
 
 ---
@@ -800,7 +900,9 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 {: #ibmcloud-pi-image-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all images in a workspace.
+
 **Usage**: `list`
 
 ---
@@ -809,7 +911,9 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 {: #ibmcloud-pi-image-list-catalog}
 
 **Alias**: `list-catalog, lc`
+
 **Description**: List images available in the regional image catalog.
+
 **Usage**: `list-catalog [--sap=True|False]`
 
 **Available Flags**:
@@ -824,8 +928,11 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 {: #ibmcloud-pi-instance}
 
 **Alias**: `instance, ins`
+
 **Description**: IBM Cloud Power Virtual Server Instances.
+
 **Usage**: `instance`
+
 **Available Commands**:
 
 - `action`:    Perform an operation in a PVM server instance.
@@ -848,7 +955,9 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 {: #ibmcloud-pi-instance-action}
 
 **Alias**: `action, act`
+
 **Description**: Perform an operation in a PVM server instance.
+
 **Usage**:
 
 ```bash
@@ -869,8 +978,11 @@ action INSTANCE_ID --operation OPERATION
 {: #ibmcloud-pi-instance-capture}
 
 **Alias**: `capture, cap`
+
 **Description**: IBM Cloud Power Virtual Server Instance Capture.
+
 **Usage**: `capture`
+
 **Available Commands**:
 
 - `create`:    Create a capture of a server instance.
@@ -882,11 +994,13 @@ action INSTANCE_ID --operation OPERATION
 {: #ibmcloud-pi-instance-capture-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a capture of a server instance.
+
 **Usage**:
 
 ```bash
-create INSTANCE_ID --destination DEST --name NAME [--access-key KEY] [--image-path PATH] [--region REGION] [--secret-key KEY] [--volumes VOLUME1,VOLUMEn]
+create INSTANCE_ID --destination DEST --name NAME [--access-key KEY] [--image-path PATH] [--region REGION] [--secret-key KEY] [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -900,7 +1014,8 @@ create INSTANCE_ID --destination DEST --name NAME [--access-key KEY] [--image-pa
   -n, --name string          Name of the deployable image created for the captured instance.
   -r, --region string        Cloud Object Storage region (au-syd, br-sao, ca-tor, eu-de, eu-es, eu-gb, jp-osa, jp-tok, us-east, us-south). Required if destination is cloud-storage.
   -s, --secret-key string    Cloud Object Storage HMAC secret key. Required if destination is cloud-storage.
-  -v, --volumes strings      Comma separated list of volume identifiers or names to associate with the instance.
+  -u, --user-tags strings    Comma separated list of user tags to be attached to the instance capture.
+  -v, --volumes strings      Comma separated list of volume identifiers or names to include in the captured instance.
 ```
 
 ---
@@ -909,7 +1024,9 @@ create INSTANCE_ID --destination DEST --name NAME [--access-key KEY] [--image-pa
 {: #ibmcloud-pi-instance-capture-show}
 
 **Alias**: `show, sh`
+
 **Description**: View the job details of the last server instance capture.
+
 **Usage**:
 
 ```bash
@@ -924,12 +1041,15 @@ show INSTANCE_ID
 {: #ibmcloud-pi-instance-console}
 
 **Alias**: `console, con`
+
 **Description**: IBM Cloud Power Virtual Server Instance Console.
+
 **Usage**: `console`
+
 **Available Commands**:
 
 - `get`:    Get the console of an instance.
-- `list`:    List the available console languages for an instance.
+- `list`:    List the available console languages for an IBMi instance.
 - `update`:    Update the console language of an instance. This update may take some time to take affect.
 
 ---
@@ -938,7 +1058,9 @@ show INSTANCE_ID
 {: #ibmcloud-pi-instance-console-get}
 
 **Alias**: `get`
+
 **Description**: Get the console of an instance.
+
 **Usage**:
 
 ```bash
@@ -953,7 +1075,9 @@ get INSTANCE_ID
 {: #ibmcloud-pi-instance-console-list}
 
 **Alias**: `list, ls`
-**Description**: List the available console languages for an instance.
+
+**Description**: List the available console languages for an IBMi instance.
+
 **Usage**:
 
 ```bash
@@ -968,7 +1092,9 @@ list INSTANCE_ID
 {: #ibmcloud-pi-instance-console-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update the console language of an instance. This update may take some time to take affect.
+
 **Usage**:
 
 ```bash
@@ -989,21 +1115,26 @@ update INSTANCE_ID --code CODE
 {: #ibmcloud-pi-instance-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a server instance.
+
 **Usage**:
 
 ```bash
 create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
+    [--boot-volume-replication-enabled=True|False]
     [--deployment-target ("HOST_GROUP_ID,hostGroup" | "HOST_ID,host") ] [--deployment-type DEPLOYMENT_TYPE]
     [--IBMiCSS-license=True|False] [--IBMiPHA-license=True|False] [--IBMiRDS-users NUMBER-USERS]
     [--key-name NAME] [--memory MEMORY] [--pin-policy POLICY] [--placement-group GROUP_ID]
     [--processor-type PROC_TYPE] [--processors PROCESSORS] [--replicant-affinity-policy AFFINITY_POLICY]
-    [--replicant-scheme SCHEME] [--replicants NUMBER] [--shared-processor-pool SHARED_PROCESSOR_POOL]
-    [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
-    [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]] [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]]
-    [--storage-connection STORAGE_CONNECTION] [--storage-pool STORAGE_POOL] [--storage-pool-affinity]
-    [--storage-tier STORAGE_TIER] [--sys-type TYPE] [--user-data USER_DATA] [--virtual-cores ASSIGNED_CORES]
-    [--volumes VOLUME1[,VOLUMEn]]
+    [--replicant-scheme SCHEME] [--replicants NUMBER] [--replication-sites SITE1[,SITEn]]
+    [--shared-processor-pool SHARED_PROCESSOR_POOL] [--storage-affinity STORAGE_AFFINITY_POLICY]
+    [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
+    [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]]
+    [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-connection STORAGE_CONNECTION]
+    [--storage-pool STORAGE_POOL] [--storage-pool-affinity] [--storage-tier STORAGE_TIER]
+    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]] 
+    [--virtual-cores ASSIGNED_CORES] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_NAME: The name of the instance.
 ```
@@ -1014,6 +1145,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
       --IBMiCSS-license                           IBMi CSS software license associated with the instance.
       --IBMiPHA-license                           IBMi PHA software license associated with the instance.
       --IBMiRDS-users int                         Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
+  -b, --boot-volume-replication-enabled           Enables storage replication on the boot volume. False by default.
       --deployment-target string                  The deployment of the dedicated host. Deployment must include either a host group id and hostGroup,
                                                   or a host id and host.
   -d, --deployment-type string                    The custom deployment type ("EPIC" or "VMNoStorage"). If --deployment-type "VMNoStorage" is set,
@@ -1028,6 +1160,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
       --replicant-affinity-policy string          Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
       --replicant-scheme string                   Naming scheme to use for duplicate VMs ("suffix", "prefix").
       --replicants int                            Number of duplicate instances to create in this request.
+      --replication-sites strings                 Indicates the replication sites of the boot volume. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
       --shared-processor-pool string              The shared processor pool ID of the pool that the server will be in.
       --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity".
                                                   If --storage-pool is provided, then this it cannot be specified.
@@ -1039,7 +1172,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
                                                   required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
       --storage-anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base storage affinity policy against;
                                                   required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
-      --storage-connection string                 The storage connection type. Valid values are "vSCSI".
+      --storage-connection string                 The storage connection type. Valid values are "vSCSI" and "maxVolumeSupport".
       --storage-pool string                       Storage pool for server deployment (use "ibmcloud pi storage-pools" to see available storage pools).
                                                   Only valid when you deploy one of the IBM supplied stock images.
                                                   Storage tier and pool for a custom image (an imported image or an image that is created from a PVMInstance capture)
@@ -1056,6 +1189,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
   -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080'). Default is "s922". (default "s922")
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
+      --user-tags strings                         Comma separated list of user tags to be attached to the instance.
       --virtual-cores int                         The number of virtual cores assigned.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
@@ -1066,7 +1200,9 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
 {: #ibmcloud-pi-instance-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a server instance.
+
 **Usage**:
 
 ```bash
@@ -1087,7 +1223,9 @@ delete INSTANCE_ID [--delete-data-volumes=True|False]
 {: #ibmcloud-pi-instance-get}
 
 **Alias**: `get`
+
 **Description**: View details of a server instance.
+
 **Usage**:
 
 ```bash
@@ -1102,7 +1240,9 @@ get INSTANCE_ID
 {: #ibmcloud-pi-instance-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all server instances.
+
 **Usage**: `list`
 
 ---
@@ -1111,7 +1251,9 @@ get INSTANCE_ID
 {: #ibmcloud-pi-instance-operation}
 
 **Alias**: `operation, op`
+
 **Description**: Perform an operation on an IBMi server instance.
+
 **Usage**:
 
 ```bash
@@ -1135,8 +1277,11 @@ operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [--boot-operating
 {: #ibmcloud-pi-instance-sap}
 
 **Alias**: `sap`
+
 **Description**: IBM Cloud Power Virtual Server Instance SAP.
+
 **Usage**: `sap`
+
 **Available Commands**:
 
 - `create`:    Create a new SAP PVM Instance. This command is for use with Linux for SAP (HANA) images.
@@ -1149,16 +1294,18 @@ operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [--boot-operating
 {: #ibmcloud-pi-instance-sap-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a new SAP PVM Instance. This command is for use with Linux for SAP (HANA) images.
+
 **Usage**:
 
 ```bash
 create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
-    [--key-name KEY-NAME] [--pin-policy POLICY] [--placement-group PLACEMENT_GROUP_ID]
-    [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE] [--storage-affinity-volume VOLUME]
-    [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]] [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]]
-    [--storage-pool STORAGE_POOL] [--storage-tier STORAGE_TIER] [--sys-type TYPE] [--user-data USER_DATA]
-    [--volumes VOLUME1[,VOLUMEn]]
+    [--boot-volume-replication-enabled=True|False] [--key-name KEY-NAME] [--pin-policy POLICY] [--placement-group PLACEMENT_GROUP_ID]
+    [--replication-sites SITE1[,SITEn]] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE]
+    [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]]
+    [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-pool STORAGE_POOL] [--storage-tier STORAGE_TIER]
+    [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
 
   SAP_INSTANCE_NAME: The name of the SAP instance.
 ```
@@ -1166,11 +1313,13 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 **Available Flags**:
 
 ```bash
+  -b, --boot-volume-replication-enabled           Enables storage replication on the boot volume. False by default.
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
       --placement-group string                    The placement group ID of the group that the server will be added to.
   -p, --profile-id string                         The unique identifier of the SAP profile.
+      --replication-sites strings                 Indicates the replication sites of the boot volume. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
       --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided, then this it cannot be specified.
       --storage-affinity-instance string          PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
       --storage-affinity-volume string            Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
@@ -1181,6 +1330,7 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
   -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080'). Default is "e980". (default "e980")
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
+      --user-tags strings                         Comma separated list of user tags to be attached to the instance.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
 
@@ -1190,7 +1340,9 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 {: #ibmcloud-pi-instance-sap-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all SAP profiles for the targeted region.
+
 **Usage**: `list`
 
 ---
@@ -1199,7 +1351,9 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 {: #ibmcloud-pi-instance-sap-profile}
 
 **Alias**: `profile, prof`
+
 **Description**: Get the information on a SAP profile.
+
 **Usage**:
 
 ```bash
@@ -1214,12 +1368,15 @@ profile SAP_PROFILE_ID
 {: #ibmcloud-pi-instance-snapshot}
 
 **Alias**: `snapshot, snap`
+
 **Description**: IBM Cloud Power Virtual Server Instance Snapshots.
+
 **Usage**: `snapshot`
+
 **Available Commands**:
 
 - `create`:    Create a snapshot for an instance.
-- `delete`:    Delete a snapshot for an instance.
+- `delete`:    Delete a snapshot from an instance.
 - `get`:    Get a snapshot for an instance
 - `list`:    List all snapshots for an instance or all snapshots in the workspace.
 - `restore`:    Restore a snapshot for an instance.
@@ -1231,11 +1388,13 @@ profile SAP_PROFILE_ID
 {: #ibmcloud-pi-instance-snapshot-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a snapshot for an instance.
+
 **Usage**:
 
 ```bash
-create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes VOLUME1[,VOLUMEn]]
+create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -1245,10 +1404,10 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes V
 ```bash
   -d, --description string   Snapshot description.
   -n, --name string          Name of the snapshot.
-  -v, --volumes strings      Comma separated list
-                             of volume identifiers or names to include in the snapshot. This parameter is optional. If
-                             you do not specify this parameter or if the volumes list is empty, all the volumes that are attached
-                             to the are included in the snapshot.
+  -u, --user-tags strings    Comma separated list of user tags to be attached to the snapshot.
+  -v, --volumes strings      Comma separated list of volume identifiers or names to include in the snapshot.
+                             If you do not specify this parameter or if the volumes list is empty,
+                             all the volumes that are attached to the instance are included in the snapshot.
 ```
 
 ---
@@ -1257,7 +1416,9 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes V
 {: #ibmcloud-pi-instance-snapshot-delete}
 
 **Alias**: `delete, del`
-**Description**: Delete a snapshot for an instance.
+
+**Description**: Delete a snapshot from an instance.
+
 **Usage**:
 
 ```bash
@@ -1272,7 +1433,9 @@ delete SNAPSHOT_ID
 {: #ibmcloud-pi-instance-snapshot-get}
 
 **Alias**: `get`
+
 **Description**: Get a snapshot for an instance
+
 **Usage**:
 
 ```bash
@@ -1287,7 +1450,9 @@ get SNAPSHOT_ID
 {: #ibmcloud-pi-instance-snapshot-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all snapshots for an instance or all snapshots in the workspace.
+
 **Usage**:
 
 ```bash
@@ -1302,7 +1467,9 @@ list [INSTANCE_ID]
 {: #ibmcloud-pi-instance-snapshot-restore}
 
 **Alias**: `restore, res`
+
 **Description**: Restore a snapshot for an instance.
+
 **Usage**:
 
 ```bash
@@ -1325,7 +1492,9 @@ restore INSTANCE_ID --snapshot SNAPSHOT_ID [--force] [--restore VALUE]
 {: #ibmcloud-pi-instance-snapshot-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a snapshot for an instance.
+
 **Usage**:
 
 ```bash
@@ -1347,12 +1516,15 @@ update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
 {: #ibmcloud-pi-instance-subnet}
 
 **Alias**: `subnet, snet`
+
 **Description**: IBM Cloud Power Virtual Server Instance Subnets.
+
 **Usage**: `subnet`
+
 **Available Commands**:
 
-- `attach`:    Attach a subnet to the server instance.
-- `detach`:    Detach a specific subnet or mac address from the server instance.
+- `attach`:    Attach a subnet to a server instance.
+- `detach`:    Detach a specific subnet or mac address from a server instance.
 - `list`:    List all the attached subnets.
 
 ---
@@ -1361,7 +1533,9 @@ update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
 {: #ibmcloud-pi-instance-subnet-attach}
 
 **Alias**: `attach, att`
-**Description**: Attach a subnet to the server instance.
+
+**Description**: Attach a subnet to a server instance.
+
 **Usage**:
 
 ```bash
@@ -1373,7 +1547,7 @@ attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
 **Available Flags**:
 
 ```bash
-  -i, --ip-address string   The requested ip address of this subnet interface.
+  -i, --ip-address string   The requested ip address of this subnet interface (192.168.1.0).
   -n, --subnet string       The subnet ID.
 ```
 
@@ -1383,7 +1557,9 @@ attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
 {: #ibmcloud-pi-instance-subnet-detach}
 
 **Alias**: `detach, det`
-**Description**: Detach a specific subnet or mac address from the server instance.
+
+**Description**: Detach a specific subnet or mac address from a server instance.
+
 **Usage**:
 
 ```bash
@@ -1405,7 +1581,9 @@ detach INSTANCE_ID --subnet "SUBNET_ID" [--mac-address "MAC_ADDRESS"]
 {: #ibmcloud-pi-instance-subnet-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all the attached subnets.
+
 **Usage**:
 
 ```bash
@@ -1420,7 +1598,9 @@ list INSTANCE_ID
 {: #ibmcloud-pi-instance-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a server instance.
+
 **Usage**:
 
 ```bash
@@ -1460,11 +1640,15 @@ update INSTANCE_ID [--IBMiCSS-license=True|False] [--IBMiPHA-license=True|False]
 {: #ibmcloud-pi-instance-volume}
 
 **Alias**: `volume, vol`
+
 **Description**: IBM Cloud Power Virtual Server Instance Volumes.
+
 **Usage**: `volume`
+
 **Available Commands**:
 
 - `attach`:    Attach one or more volumes to an instance.
+- `bulk-detach`:    Detach multiple volumes from an instance.
 - `detach`:    Detach a volume from an instance.
 - `list`:    List all the attached volumes.
 
@@ -1474,11 +1658,13 @@ update INSTANCE_ID [--IBMiCSS-license=True|False] [--IBMiPHA-license=True|False]
 {: #ibmcloud-pi-instance-volume-attach}
 
 **Alias**: `attach, att`
+
 **Description**: Attach one or more volumes to an instance.
+
 **Usage**:
 
 ```bash
-attach INSTANCE_ID --volumes VOLUME1[,VOLUMEn]
+attach INSTANCE_ID --volumes VOLUME1[,VOLUMEn] [--boot-volume BOOT_VOLUME]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -1486,7 +1672,33 @@ attach INSTANCE_ID --volumes VOLUME1[,VOLUMEn]
 **Available Flags**:
 
 ```bash
-  -v, --volumes strings   Comma separated list of volume identifiers or names to associate with the instance.
+  -b, --boot-volume string   Boot volume to be attached to an instance.
+  -v, --volumes strings      Comma separated list of volume identifiers or names to associate with the instance.
+```
+
+---
+
+#### `ibmcloud pi instance volume bulk-detach`
+{: #ibmcloud-pi-instance-volume-bulk-detach}
+
+**Alias**: `bulk-detach, bdet`
+
+**Description**: Detach multiple volumes from an instance.
+
+**Usage**:
+
+```bash
+bulk-detach INSTANCE_ID (--detach-all=True|False | --volumes VOLUME1[,VOLUMEn]) [--detach-primary=True|False]
+
+  INSTANCE_ID: The unique identifier or name of the instance.
+```
+
+**Available Flags**:
+
+```bash
+  -a, --detach-all        Indicates if all volumes, except primary boot volume, attached to the instance should be detached. Required if --volumes is not provided.
+  -p, --detach-primary    Indicates if primary boot volume attached to the instance should be detached.
+  -v, --volumes strings   List of volumes to be detached from an instance. Required if --detach-all is not provided.
 ```
 
 ---
@@ -1495,7 +1707,9 @@ attach INSTANCE_ID --volumes VOLUME1[,VOLUMEn]
 {: #ibmcloud-pi-instance-volume-detach}
 
 **Alias**: `detach, det`
+
 **Description**: Detach a volume from an instance.
+
 **Usage**:
 
 ```bash
@@ -1516,7 +1730,9 @@ detach INSTANCE_ID --volume VOLUME_ID
 {: #ibmcloud-pi-instance-volume-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all the attached volumes.
+
 **Usage**:
 
 ```bash
@@ -1531,8 +1747,11 @@ list INSTANCE_ID
 {: #ibmcloud-pi-ipsec-policy}
 
 **Alias**: `ipsec-policy, ips`
+
 **Description**: IBM Cloud Power Virtual Server Internet Protocol Security policies.
+
 **Usage**: `ipsec-policy`
+
 **Available Commands**:
 
 - `create`:    Create a VPN IPSec policy.
@@ -1547,7 +1766,9 @@ list INSTANCE_ID
 {: #ibmcloud-pi-ipsec-policy-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a VPN IPSec policy.
+
 **Usage**:
 
 ```bash
@@ -1572,7 +1793,9 @@ create IPSEC_POLICY_NAME --authentication AUTHENTICATION --dh-group DH_GROUP --e
 {: #ibmcloud-pi-ipsec-policy-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a VPN IPSec policy.
+
 **Usage**:
 
 ```bash
@@ -1587,7 +1810,9 @@ delete IPSEC_POLICY_ID
 {: #ibmcloud-pi-ipsec-policy-get}
 
 **Alias**: `get`
+
 **Description**: View details of a VPN IPSec policy.
+
 **Usage**:
 
 ```bash
@@ -1602,7 +1827,9 @@ get IPSEC_POLICY_ID
 {: #ibmcloud-pi-ipsec-policy-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all IPSec policies.
+
 **Usage**: `list`
 
 ---
@@ -1611,7 +1838,9 @@ get IPSEC_POLICY_ID
 {: #ibmcloud-pi-ipsec-policy-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a VPN IPSec policy.
+
 **Usage**:
 
 ```bash
@@ -1637,13 +1866,16 @@ update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--e
 {: #ibmcloud-pi-job}
 
 **Alias**: `job`
+
 **Description**: IBM Cloud Power Virtual Server Jobs.
+
 **Usage**: `job`
+
 **Available Commands**:
 
 - `delete`:    Delete a job.
 - `get`:    View details of a job.
-- `list`:    List all jobs in a workspace.
+- `list`:    List up to the last 5 jobs in a workspace.
 
 ---
 
@@ -1651,7 +1883,9 @@ update IPSEC_POLICY_ID  [--name NEW_NAME] [--authentication AUTHENTICATION] [--e
 {: #ibmcloud-pi-job-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a job.
+
 **Usage**:
 
 ```bash
@@ -1666,7 +1900,9 @@ delete JOB_ID
 {: #ibmcloud-pi-job-get}
 
 **Alias**: `get`
+
 **Description**: View details of a job.
+
 **Usage**:
 
 ```bash
@@ -1681,7 +1917,9 @@ get JOB_ID
 {: #ibmcloud-pi-job-list}
 
 **Alias**: `list, ls`
-**Description**: List all jobs in a workspace.
+
+**Description**: List up to the last 5 jobs in a workspace.
+
 **Usage**: `list [--operation-action ACTION] [--operation-id ID] [--operation-target TARGET]`
 
 **Available Flags**:
@@ -1694,19 +1932,155 @@ get JOB_ID
 
 ---
 
+## `ibmcloud pi network-interface`
+{: #ibmcloud-pi-network-interface}
+
+**Alias**: `network-interface, ni`
+
+**Description**: IBM Cloud Power Virtual Network Interfaces.
+
+**Usage**: `network-interface`
+
+**Available Commands**:
+
+- `create`:    Create a network interface for a network.
+- `delete`:    Delete a network interface from a network.
+- `get`:    View details of a network interface for a network.
+- `list`:    List all network interfaces for a network (use "ibmcloud pi subnet list" to see available networks).
+- `update`:    Update a network interface for a network.
+
+---
+
+### `ibmcloud pi network-interface create`
+{: #ibmcloud-pi-network-interface-create}
+
+**Alias**: `create, cr`
+
+**Description**: Create a network interface for a network.
+
+**Usage**:
+
+```bash
+create NETWORK_INTERFACE_NAME --network-id NETWORK_ID [--ip-address IP_ADDRESS] [--user-tags USER_TAG1[,USER_TAGn]]
+
+  NETWORK_INTERFACE_NAME: The desired name of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -i, --ip-address string   The requested ip address of this network interface (192.168.1.0).
+  -n, --network-id string   Network ID that is associated with the network interface.
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface delete`
+{: #ibmcloud-pi-network-interface-delete}
+
+**Alias**: `delete, del`
+
+**Description**: Delete a network interface from a network.
+
+**Usage**:
+
+```bash
+delete NETWORK_INTERFACE_ID --network-id NETWORK_ID
+
+  NETWORK_INTERFACE_ID: The unique identifier of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --network-id string   Network ID that is associated with the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface get`
+{: #ibmcloud-pi-network-interface-get}
+
+**Alias**: `get`
+
+**Description**: View details of a network interface for a network.
+
+**Usage**:
+
+```bash
+get NETWORK_INTERFACE_ID --network-id NETWORK_ID
+
+  NETWORK_INTERFACE_ID: The unique identifier of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --network-id string   Network ID that is associated with the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface list`
+{: #ibmcloud-pi-network-interface-list}
+
+**Alias**: `list, ls`
+
+**Description**: List all network interfaces for a network (use "ibmcloud pi subnet list" to see available networks).
+
+**Usage**: `list --network-id NETWORK_ID`
+
+**Available Flags**:
+
+```bash
+  -n, --network-id string   Network ID that is associated with the network interface.
+```
+
+---
+
+### `ibmcloud pi network-interface update`
+{: #ibmcloud-pi-network-interface-update}
+
+**Alias**: `update, upd`
+
+**Description**: Update a network interface for a network.
+
+**Usage**:
+
+```bash
+update NETWORK_INTERFACE_ID --network-id NETWORK_ID [--instance-id INSTANCE_ID] [--name NEW_NAME]
+
+  NETWORK_INTERFACE_ID: The unique identifier of the network interface.
+```
+
+**Available Flags**:
+
+```bash
+  -i, --instance-id string   The ID of the instance that will be added to the network interface.
+                             If this value is set to '', the network interface detaches from the instance.
+      --name string          New name of network interface.
+  -n, --network-id string    Network ID that is associated with the network interface.
+```
+
+---
+
 ## `ibmcloud pi placement-group`
 {: #ibmcloud-pi-placement-group}
 
 **Alias**: `placement-group, pg`
+
 **Description**: IBM Cloud Power Virtual Server Placement Groups.
+
 **Usage**: `placement-group`
+
 **Available Commands**:
 
 - `create`:    Create a server placement group.
 - `delete`:    Delete a server placement group.
 - `get`:    View details of a server placement group.
 - `list`:    List all server placement groups.
-- `server-add`:    Add a server to the server placement group.
+- `server-add`:    Add a server to a server placement group.
 - `server-remove`:    Remove a server from a server placement group.
 
 ---
@@ -1715,7 +2089,9 @@ get JOB_ID
 {: #ibmcloud-pi-placement-group-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a server placement group.
+
 **Usage**:
 
 ```bash
@@ -1736,7 +2112,9 @@ create PLACEMENT_GROUP_NAME --policy POLICY
 {: #ibmcloud-pi-placement-group-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a server placement group.
+
 **Usage**:
 
 ```bash
@@ -1751,7 +2129,9 @@ delete PLACEMENT_GROUP_ID
 {: #ibmcloud-pi-placement-group-get}
 
 **Alias**: `get`
+
 **Description**: View details of a server placement group.
+
 **Usage**:
 
 ```bash
@@ -1766,7 +2146,9 @@ get PLACEMENT_GROUP_ID
 {: #ibmcloud-pi-placement-group-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all server placement groups.
+
 **Usage**: `list`
 
 ---
@@ -1775,7 +2157,9 @@ get PLACEMENT_GROUP_ID
 {: #ibmcloud-pi-placement-group-server-add}
 
 **Alias**: `server-add, sa`
-**Description**: Add a server to the server placement group.
+
+**Description**: Add a server to a server placement group.
+
 **Usage**:
 
 ```bash
@@ -1796,7 +2180,9 @@ server-add PLACEMENT_GROUP_ID --server INSTANCE_ID
 {: #ibmcloud-pi-placement-group-server-remove}
 
 **Alias**: `server-remove, sr`
+
 **Description**: Remove a server from a server placement group.
+
 **Usage**:
 
 ```bash
@@ -1817,8 +2203,11 @@ server-remove PLACEMENT_GROUP_ID --server INSTANCE_ID
 {: #ibmcloud-pi-shared-processor-pool}
 
 **Alias**: `shared-processor-pool, spp`
+
 **Description**: IBM Cloud Power Virtual Shared Processor Pools.
+
 **Usage**: `shared-processor-pool`
+
 **Available Commands**:
 
 - `create`:    Create a shared processor pool.
@@ -1834,11 +2223,13 @@ server-remove PLACEMENT_GROUP_ID --server INSTANCE_ID
 {: #ibmcloud-pi-shared-processor-pool-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a shared processor pool.
+
 **Usage**:
 
 ```bash
-create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--host-id HOST_ID] [--placement-group-id PLACEMENT_GROUP_ID]
+create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBER_OF_CORES [--host-id HOST_ID] [--placement-group-id PLACEMENT_GROUP_ID] [--user-tags USER_TAG1[,USER_TAGn]]
 
   SHARED_PROCESSOR_POOL_NAME: A unique name of the shared processor pool. A minimum of 2 characters and a maximum of 12 are allowed. The only special character allowed is the underscore '_'.
 ```
@@ -1851,6 +2242,7 @@ create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBE
   -i, --host-id string              The identifier of a host in a host group. This flag is only available for dedicated hosts.
   -p, --placement-group-id string   The identifier of the shared processor pool placement group the pool will be added to.
   -r, --reserved-cores int          The integer amount of reserved processor cores for the shared processor pool.
+  -u, --user-tags strings           Comma separated list of user tags to be attached to the placement-group.
 ```
 
 ---
@@ -1859,7 +2251,9 @@ create SHARED_PROCESSOR_POOL_NAME --host-group HOST_GROUP --reserved-cores NUMBE
 {: #ibmcloud-pi-shared-processor-pool-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a shared processor pool.
+
 **Usage**:
 
 ```bash
@@ -1874,7 +2268,9 @@ delete SHARED_PROCESSOR_POOL_ID
 {: #ibmcloud-pi-shared-processor-pool-get}
 
 **Alias**: `get`
+
 **Description**: View details of a shared processor pool.
+
 **Usage**:
 
 ```bash
@@ -1889,7 +2285,9 @@ get SHARED_PROCESSOR_POOL_ID
 {: #ibmcloud-pi-shared-processor-pool-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all shared processor pools.
+
 **Usage**: `list`
 
 ---
@@ -1898,16 +2296,19 @@ get SHARED_PROCESSOR_POOL_ID
 {: #ibmcloud-pi-shared-processor-pool-placement-group}
 
 **Alias**: `placement-group, pg`
+
 **Description**: IBM Cloud Power Virtual Server Placement Groups.
+
 **Usage**: `placement-group`
+
 **Available Commands**:
 
 - `create`:    Create a shared processor pool placement group.
 - `delete`:    Delete a shared processor pool placement group.
 - `get`:    View details of a shared processor pool placement group.
 - `list`:    List all shared processor pool placement groups.
-- `member-add`:    Add a shared processor pool to the placement group.
-- `member-remove`:    Remove a shared processor pool to the placement group.
+- `member-add`:    Add a shared processor pool to a placement group.
+- `member-remove`:    Remove a shared processor pool from a placement group.
 
 ---
 
@@ -1915,7 +2316,9 @@ get SHARED_PROCESSOR_POOL_ID
 {: #ibmcloud-pi-shared-processor-pool-placement-group-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a shared processor pool placement group.
+
 **Usage**:
 
 ```bash
@@ -1936,7 +2339,9 @@ create PLACEMENT_GROUP_NAME --policy POLICY
 {: #ibmcloud-pi-shared-processor-pool-placement-group-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a shared processor pool placement group.
+
 **Usage**:
 
 ```bash
@@ -1951,7 +2356,9 @@ delete PLACEMENT_GROUP_ID
 {: #ibmcloud-pi-shared-processor-pool-placement-group-get}
 
 **Alias**: `get`
+
 **Description**: View details of a shared processor pool placement group.
+
 **Usage**:
 
 ```bash
@@ -1966,7 +2373,9 @@ get PLACEMENT_GROUP_ID
 {: #ibmcloud-pi-shared-processor-pool-placement-group-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all shared processor pool placement groups.
+
 **Usage**: `list`
 
 ---
@@ -1975,7 +2384,9 @@ get PLACEMENT_GROUP_ID
 {: #ibmcloud-pi-shared-processor-pool-placement-group-member-add}
 
 **Alias**: `member-add, ma`
-**Description**: Add a shared processor pool to the placement group.
+
+**Description**: Add a shared processor pool to a placement group.
+
 **Usage**:
 
 ```bash
@@ -1996,7 +2407,9 @@ member-add PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
 {: #ibmcloud-pi-shared-processor-pool-placement-group-member-remove}
 
 **Alias**: `member-remove, mr`
-**Description**: Remove a shared processor pool to the placement group.
+
+**Description**: Remove a shared processor pool from a placement group.
+
 **Usage**:
 
 ```bash
@@ -2017,7 +2430,9 @@ member-remove PLACEMENT_GROUP_ID --shared-processor-pool POOL_ID
 {: #ibmcloud-pi-shared-processor-pool-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a shared processor pool.
+
 **Usage**:
 
 ```bash
@@ -2039,38 +2454,19 @@ update SHARED_PROCESSOR_POOL_ID [--name SHARED_PROCESSOR_POOL_NAME] [--reserved-
 {: #ibmcloud-pi-snapshot}
 
 **Alias**: `snapshot, snap`
-**Description**: IBM Cloud Power Virtual Server Snapshots.
+
+**Description**: [DEPRECATED] IBM Cloud Power Virtual Server Snapshots.
+
 **Usage**: `snapshot`
+
 **Available Commands**:
 
-- `Update`:    Update a snapshot.
-- `create`:    Create a snapshot.
-- `delete`:    Delete a snapshot.
-- `get`:    View details of a snapshot.
-- `list`:    List all snapshots.
-- `restore`:    Restore a snapshot.
-
----
-
-### `ibmcloud pi snapshot Update`
-{: #ibmcloud-pi-snapshot-Update}
-
-**Alias**: `Update, upd`
-**Description**: Update a snapshot.
-**Usage**:
-
-```bash
-Update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
-
-  SNAPSHOT_ID: The unique identifier of the snapshot.
-```
-
-**Available Flags**:
-
-```bash
-  -d, --description string   New snapshot description.
-  -n, --name string          New name of the snapshot.
-```
+- `create`:    [DEPRECATED] Create a snapshot.
+- `delete`:    [DEPRECATED] Delete a snapshot.
+- `get`:    [DEPRECATED] View details of a snapshot.
+- `list`:    [DEPRECATED] List all snapshots.
+- `restore`:    [DEPRECATED] Restore a snapshot.
+- `update`:    [DEPRECATED] Update a snapshot.
 
 ---
 
@@ -2078,11 +2474,13 @@ Update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
 {: #ibmcloud-pi-snapshot-create}
 
 **Alias**: `create, cr`
-**Description**: Create a snapshot.
+
+**Description**: [DEPRECATED] Create a snapshot.
+
 **Usage**:
 
 ```bash
-create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes VOLUME1[,VOLUMEn]]
+create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--user-tags USER_TAG1[,USER_TAGn]] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -2092,10 +2490,10 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes V
 ```bash
   -d, --description string   Snapshot description.
   -n, --name string          Name of the snapshot.
-  -v, --volumes strings      Comma separated list
-                             of volume identifiers or names to include in the snapshot. This parameter is optional. If
-                             you do not specify this parameter or if the volumes list is empty, all the volumes that are attached
-                             to the are included in the snapshot.
+  -u, --user-tags strings    Comma separated list of user tags to be attached to the snapshot.
+  -v, --volumes strings      Comma separated list of volume identifiers or names to include in the snapshot.
+                             If you do not specify this parameter or if the volumes list is empty,
+                             all the volumes that are attached to the instance are included in the snapshot.
 ```
 
 ---
@@ -2104,7 +2502,9 @@ create INSTANCE_ID --name SNAPSHOT_NAME [--description DESCRIPTION] [--volumes V
 {: #ibmcloud-pi-snapshot-delete}
 
 **Alias**: `delete, del`
-**Description**: Delete a snapshot.
+
+**Description**: [DEPRECATED] Delete a snapshot.
+
 **Usage**:
 
 ```bash
@@ -2119,7 +2519,9 @@ delete SNAPSHOT_ID
 {: #ibmcloud-pi-snapshot-get}
 
 **Alias**: `get`
-**Description**: View details of a snapshot.
+
+**Description**: [DEPRECATED] View details of a snapshot.
+
 **Usage**:
 
 ```bash
@@ -2134,7 +2536,9 @@ get SNAPSHOT_ID
 {: #ibmcloud-pi-snapshot-list}
 
 **Alias**: `list, ls`
-**Description**: List all snapshots.
+
+**Description**: [DEPRECATED] List all snapshots.
+
 **Usage**: `list`
 
 ---
@@ -2143,7 +2547,9 @@ get SNAPSHOT_ID
 {: #ibmcloud-pi-snapshot-restore}
 
 **Alias**: `restore, res`
-**Description**: Restore a snapshot.
+
+**Description**: [DEPRECATED] Restore a snapshot.
+
 **Usage**:
 
 ```bash
@@ -2162,19 +2568,46 @@ restore INSTANCE_ID --snapshot SNAPSHOT_ID [--force] [--restore VALUE]
 
 ---
 
+### `ibmcloud pi snapshot update`
+{: #ibmcloud-pi-snapshot-update}
+
+**Alias**: `update, upd`
+
+**Description**: [DEPRECATED] Update a snapshot.
+
+**Usage**:
+
+```bash
+update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
+
+  SNAPSHOT_ID: The unique identifier of the snapshot.
+```
+
+**Available Flags**:
+
+```bash
+  -d, --description string   New snapshot description.
+  -n, --name string          New name of the snapshot.
+```
+
+---
+
 ## `ibmcloud pi ssh-key`
 {: #ibmcloud-pi-ssh-key}
 
 **Alias**: `ssh-key, ssh`
+
 **Description**: IBM Cloud Power Virtual Server SSH-Keys.
+
 **Usage**: `ssh-key`
+
 **Available Commands**:
 
 - `create`:    Create an SSH-Key with an imported RSA public key.
 - `delete`:    Delete an SSH-Key.
 - `get`:    View details of an SSH-Key.
 - `list`:    List all SSH-Keys.
-- `update`:    Update the name and the value of an SSH-Key.
+- `update`:    Update an SSH-Key.
 
 ---
 
@@ -2182,7 +2615,9 @@ restore INSTANCE_ID --snapshot SNAPSHOT_ID [--force] [--restore VALUE]
 {: #ibmcloud-pi-ssh-key-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create an SSH-Key with an imported RSA public key.
+
 **Usage**:
 
 ```bash
@@ -2203,7 +2638,9 @@ create KEY_NAME --key KEY
 {: #ibmcloud-pi-ssh-key-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete an SSH-Key.
+
 **Usage**:
 
 ```bash
@@ -2218,7 +2655,9 @@ delete KEY_NAME
 {: #ibmcloud-pi-ssh-key-get}
 
 **Alias**: `get`
+
 **Description**: View details of an SSH-Key.
+
 **Usage**:
 
 ```bash
@@ -2233,7 +2672,9 @@ get KEY_NAME
 {: #ibmcloud-pi-ssh-key-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all SSH-Keys.
+
 **Usage**: `list`
 
 ---
@@ -2242,7 +2683,9 @@ get KEY_NAME
 {: #ibmcloud-pi-ssh-key-update}
 
 **Alias**: `update, upd`
-**Description**: Update the name and the value of an SSH-Key.
+
+**Description**: Update an SSH-Key.
+
 **Usage**:
 
 ```bash
@@ -2264,7 +2707,9 @@ update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY
 {: #ibmcloud-pi-storage-pools}
 
 **Alias**: `storage-pools, spools`
+
 **Description**: List all storage pools for the targeted region.
+
 **Usage**: `storage-pools`
 
 ---
@@ -2273,7 +2718,9 @@ update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY
 {: #ibmcloud-pi-storage-tiers}
 
 **Alias**: `storage-tiers, stiers`
+
 **Description**: List all storage tiers for the targeted region.
+
 **Usage**: `storage-tiers`
 
 ---
@@ -2282,8 +2729,11 @@ update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY
 {: #ibmcloud-pi-subnet}
 
 **Alias**: `subnet, snet`
+
 **Description**: IBM Cloud Power Virtual Server Subnets.
+
 **Usage**: `subnet`
+
 **Available Commands**:
 
 - `create`:    Create a subnet.
@@ -2298,12 +2748,14 @@ update KEY_NAME --new-name NEW_NAME --new-key NEW_KEY
 {: #ibmcloud-pi-subnet-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a subnet.
+
 **Usage**:
 
 ```bash
-create SUBNET_NAME --cidr-block CIDR --net-type private [--dns-servers "DNS1,[DNSn]]"] [--gateway GATEWAY] [--ip-range "startIP-endIP[,startIP-endIP]"] [--jumbo=True|False] [--mtu MTU]
-  pi subnet create SUBNET_NAME --net-type public [--dns-servers "DNS1 DNS2"] [--jumbo=True|False] [--mtu MTU]
+create SUBNET_NAME --cidr-block CIDR --net-type private [--dns-servers "DNS1,[DNSn]]"] [--gateway GATEWAY] [--ip-range "startIP-endIP[,startIP-endIP]"] [--jumbo=True|False] [--mtu MTU] --user-tags "USER_TAG1[,USER_TAGn]"
+  pi subnet create SUBNET_NAME --net-type public [--dns-servers "DNS1 DNS2"] [--jumbo=True|False] [--mtu MTU] [--user-tags USER_TAG1[,USER_TAGn]]
 
   SUBNET_NAME: The name of the subnet.
 ```
@@ -2311,13 +2763,14 @@ create SUBNET_NAME --cidr-block CIDR --net-type private [--dns-servers "DNS1,[DN
 **Available Flags**:
 
 ```bash
-  -c, --cidr-block string     Subnet in CIDR notation (192.168.0.0/24).
+  -c, --cidr-block string     Subnet in CIDR notation (192.168.1.0/22).
   -d, --dns-servers strings   Comma separated list of DNS Servers to use for this subnet. 127.0.0.1 by default if DNS server is not specified for private subnet types. 9.9.9.9 by default for public subnet types.
   -g, --gateway string        Gateway to use for this subnet.
   -i, --ip-range string       IP Addresses range(s) for this subnet, format: startIP-endIP[,startIP-endIP].
   -j, --jumbo                 [DEPRECATED] replaced by "mtu". Enable MTU Jumbo Subnet. The default value is false.
   -m, --mtu int               Maximum Transmission Unit. MTU be between 1450 and 9000.
   -n, --net-type string       Subnet type. Either "public" or "private".
+  -u, --user-tags strings     Comma separated list of user tags to be attached to the subnet.
 ```
 
 ---
@@ -2326,7 +2779,9 @@ create SUBNET_NAME --cidr-block CIDR --net-type private [--dns-servers "DNS1,[DN
 {: #ibmcloud-pi-subnet-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a subnet.
+
 **Usage**:
 
 ```bash
@@ -2341,7 +2796,9 @@ delete SUBNET_ID
 {: #ibmcloud-pi-subnet-get}
 
 **Alias**: `get`
+
 **Description**: View details of a subnet.
+
 **Usage**:
 
 ```bash
@@ -2356,7 +2813,9 @@ get SUBNET_ID
 {: #ibmcloud-pi-subnet-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all subnets in a workspace.
+
 **Usage**: `list`
 
 ---
@@ -2365,7 +2824,9 @@ get SUBNET_ID
 {: #ibmcloud-pi-subnet-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a subnet.
+
 **Usage**:
 
 ```bash
@@ -2389,7 +2850,9 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 {: #ibmcloud-pi-system-pools}
 
 **Alias**: `system-pools, sysp`
+
 **Description**: List of available system pools within a particular data center.
+
 **Usage**: `system-pools`
 
 ---
@@ -2398,12 +2861,17 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 {: #ibmcloud-pi-volume}
 
 **Alias**: `volume, vol`
+
 **Description**: IBM Cloud Power Virtual Server Volumes.
+
 **Usage**: `volume`
+
 **Available Commands**:
 
 - `action`:    Perform an action on a volume.
-- `clone`:    IBM Cloud Power Virtual Server Volume Clones.
+- `bulk-delete`:    Delete multiple volumes.
+- `clone`:    IBM Cloud Power Virtual Server Volume Clone Requests. This command can be used to create clone requests whose lifecycle must be managed. It cannot be used to clone single volumes.
+- `clone-async`:    IBM Cloud Power Virtual Server Volume Clones. This command asynchronously creates clone tasks whose status can be queried. It can be used to clone one or more volumes.
 - `create`:    Create a volume.
 - `delete`:    Delete a volume.
 - `flash-copy-mapping`:    Get a list of flash copy mappings of a volume directly from primary storage host.
@@ -2411,6 +2879,7 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 - `list`:    List all storage volumes in a workspace.
 - `onboarding`:    IBM Cloud Power Virtual Server Volume Onboarding.
 - `remote-copy-relationship`:    Get the remote copy relationship information of a volume.
+- `snapshot`:    IBM Cloud Power Virtual Server Volume Snapshot.
 - `update`:    Update a volume.
 
 ---
@@ -2419,7 +2888,9 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 {: #ibmcloud-pi-volume-action}
 
 **Alias**: `action, act`
+
 **Description**: Perform an action on a volume.
+
 **Usage**:
 
 ```bash
@@ -2437,12 +2908,32 @@ action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
 
 ---
 
+### `ibmcloud pi volume bulk-delete`
+{: #ibmcloud-pi-volume-bulk-delete}
+
+**Alias**: `bulk-delete, bdel`
+
+**Description**: Delete multiple volumes.
+
+**Usage**: `bulk-delete --volumes VOLUME1[,VOLUMEn]`
+
+**Available Flags**:
+
+```bash
+  -v, --volumes strings   List of volumes to be deleted.
+```
+
+---
+
 ### `ibmcloud pi volume clone`
 {: #ibmcloud-pi-volume-clone}
 
 **Alias**: `clone, cl`
-**Description**: IBM Cloud Power Virtual Server Volume Clones.
+
+**Description**: IBM Cloud Power Virtual Server Volume Clone Requests. This command can be used to create clone requests whose lifecycle must be managed. It cannot be used to clone single volumes.
+
 **Usage**: `clone`
+
 **Available Commands**:
 
 - `cancel`:    Cancel a volume clone request.
@@ -2459,13 +2950,15 @@ action VOLUME_ID [--replication-enabled=True|False] [--target-tier STORAGE_TIER]
 {: #ibmcloud-pi-volume-clone-cancel}
 
 **Alias**: `cancel, ca`
+
 **Description**: Cancel a volume clone request.
+
 **Usage**:
 
 ```bash
-cancel VOLUME_CLONE_ID [--force=True|False]
+cancel VOLUME_CLONE_REQUEST_ID [--force=True|False]
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
+  VOLUME_CLONE_REQUEST_ID: The unique identifier of a volume clone request.
 ```
 
 **Available Flags**:
@@ -2480,13 +2973,15 @@ cancel VOLUME_CLONE_ID [--force=True|False]
 {: #ibmcloud-pi-volume-clone-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a volume clone request using the specified volumes.
+
 **Usage**:
 
 ```bash
-create --name VOLUME_CLONE_NAME --volumes VOLUME1[,VOLUMEn]
+create --name VOLUME_CLONE_REQUEST_NAME --volumes VOLUME1[,VOLUMEn]
 
-  VOLUME_CLONE_NAME: The name of a volume clone request.
+  VOLUME_CLONE_REQUEST_NAME: The name of a volume clone request.
 ```
 
 **Available Flags**:
@@ -2494,6 +2989,7 @@ create --name VOLUME_CLONE_NAME --volumes VOLUME1[,VOLUMEn]
 ```bash
   -n, --name string       Name to assign to volume clones request.
   -v, --volumes strings   Comma separated list of volume identifiers or names to be cloned.
+                          A minimum of 2 Volume IDs are required and at least one of them must be in the in-use state.
 ```
 
 ---
@@ -2502,13 +2998,15 @@ create --name VOLUME_CLONE_NAME --volumes VOLUME1[,VOLUMEn]
 {: #ibmcloud-pi-volume-clone-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a volume clone request.
+
 **Usage**:
 
 ```bash
-delete VOLUME_CLONE_ID
+delete VOLUME_CLONE_REQUEST_ID
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
+  VOLUME_CLONE_REQUEST_ID: The unique identifier of a volume clone request.
 ```
 
 ---
@@ -2517,13 +3015,15 @@ delete VOLUME_CLONE_ID
 {: #ibmcloud-pi-volume-clone-execute}
 
 **Alias**: `execute, ex`
+
 **Description**: Execute a volume clone request using the specified options.
+
 **Usage**:
 
 ```bash
-execute VOLUME_CLONE_ID --name BASE_NAME [--replication-enabled=True|False] [--rollback-prepare=True|False] [--target-tier STORAGE_TIER]
+execute VOLUME_CLONE_REQUEST_ID --name BASE_NAME [--replication-enabled=True|False] [--rollback-prepare=True|False] [--target-tier STORAGE_TIER] [--user-tags USER_TAG1[,USER_TAGn]]
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
+  VOLUME_CLONE_REQUEST_ID: The unique identifier of a volume clone request.
 ```
 
 **Available Flags**:
@@ -2533,6 +3033,7 @@ execute VOLUME_CLONE_ID --name BASE_NAME [--replication-enabled=True|False] [--r
       --replication-enabled   Enables replication for the cloned volume. By default, the replication property of the source volume will be used to determine the replication property of the cloned target volume.
       --rollback-prepare      Determines rollback behavior. If false, execute failure rolls back clone activity but leaves prepared snapshot. If true, Execute failure rolls back clone activity and removes the prepared snapshot. Default false.
   -t, --target-tier string    Target storage tier for the cloned volumes (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region). Default to the storage tier of the original volume(s) if not specified.
+  -u, --user-tags strings     Comma separated list of user tags to be attached to the cloned volume.
 ```
 
 ---
@@ -2541,13 +3042,15 @@ execute VOLUME_CLONE_ID --name BASE_NAME [--replication-enabled=True|False] [--r
 {: #ibmcloud-pi-volume-clone-get}
 
 **Alias**: `get`
+
 **Description**: View details of a volume clone request.
+
 **Usage**:
 
 ```bash
-get VOLUME_CLONE_ID
+get VOLUME_CLONE_REQUEST_ID
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
+  VOLUME_CLONE_REQUEST_ID: The unique identifier of a volume clone request.
 ```
 
 ---
@@ -2556,7 +3059,9 @@ get VOLUME_CLONE_ID
 {: #ibmcloud-pi-volume-clone-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all volume clone requests in a workspace.
+
 **Usage**: `list [--filter FILTER]`
 
 **Available Flags**:
@@ -2579,13 +3084,74 @@ get VOLUME_CLONE_ID
 {: #ibmcloud-pi-volume-clone-start}
 
 **Alias**: `start, st`
+
 **Description**: Starts a volume clone request.
+
 **Usage**:
 
 ```bash
-start VOLUME_CLONE_ID
+start VOLUME_CLONE_REQUEST_ID
 
-  VOLUME_CLONE_ID: The unique identifier of a volume clone request.
+  VOLUME_CLONE_REQUEST_ID: The unique identifier of a volume clone request.
+```
+
+---
+
+### `ibmcloud pi volume clone-async`
+{: #ibmcloud-pi-volume-clone-async}
+
+**Alias**: `clone-async, cla`
+
+**Description**: IBM Cloud Power Virtual Server Volume Clones. This command asynchronously creates clone tasks whose status can be queried. It can be used to clone one or more volumes.
+
+**Usage**: `clone-async`
+
+**Available Commands**:
+
+- `create`:    Create a volume clone for specific volumes.
+- `get`:    Get the status of a clone request for the specified clone task ID.
+
+---
+
+#### `ibmcloud pi volume clone-async create`
+{: #ibmcloud-pi-volume-clone-async-create}
+
+**Alias**: `create, cr`
+
+**Description**: Create a volume clone for specific volumes.
+
+**Usage**:
+
+```bash
+create CLONE_NAME --volumes VOLUME1[,VOLUMEn] [--replication-enabled=True|False] [--target-tier STORAGE_TIER] [--user-tags USER_TAG1[,USER_TAGn]]
+
+  CLONE_NAME:The name of a clone.
+```
+
+**Available Flags**:
+
+```bash
+  -r, --replication-enabled   Enables replication for the cloned volume. If no value is provided, it will default to the replication status of the source volume.
+  -t, --target-tier string    Target storage tier for the cloned volumes (use "ibmcloud pi storage-tiers" to see available tiers in the targeted region). Default to the storage tier of the original volume(s) if not specified.
+  -u, --user-tags strings     Comma separated list of user tags to be attached to the cloned volume.
+  -v, --volumes strings       Comma separated list of volume identifiers or names to be cloned.
+```
+
+---
+
+#### `ibmcloud pi volume clone-async get`
+{: #ibmcloud-pi-volume-clone-async-get}
+
+**Alias**: `get`
+
+**Description**: Get the status of a clone request for the specified clone task ID.
+
+**Usage**:
+
+```bash
+get CLONE_TASK_ID
+
+  CLONE_TASK_ID:The unique identifier of a clone task.
 ```
 
 ---
@@ -2594,14 +3160,16 @@ start VOLUME_CLONE_ID
 {: #ibmcloud-pi-volume-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a volume.
+
 **Usage**:
 
 ```bash
-create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False] [--shareable=True|False] [--storage-tier STORAGE_TIER]
-  pi volume create VOLUME_NAME --size SIZE --storage-pool POOL [--count COUNT] [--replication-enabled=True|False] [--shareable=True|False] [--storage-tier STORAGE_TIER]
-  pi volume create VOLUME_NAME --affinity-policy affinity (--affinity-volume VOLUME | --affinity-instance INSTANCE) --size SIZE [--count COUNT] [--replication-enabled=True|False] [--shareable=True|False] [--storage-tier STORAGE_TIER]
-  pi volume create VOLUME_NAME --affinity-policy anti-affinity (--anti-affinity-volumes "VOLUME1,[VOLUMEn]" | --anti-affinity-instances "INSTANCE1,[INSTANCEn]") --size SIZE [--count COUNT] [--replication-enabled=True|False] [--shareable=True|False] [--storage-tier STORAGE_TIER]
+create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False] [--replication-sites SITE1[,SITEn]] [--shareable=True|False] [--storage-tier STORAGE_TIER] [--user-tags USER_TAG1[,USER_TAGn]]
+  pi volume create VOLUME_NAME --size SIZE --storage-pool POOL [--count COUNT] [--replication-enabled=True|False] [--replication-sites SITE1[,SITEn]] [--shareable=True|False] [--storage-tier STORAGE_TIER] [--user-tags USER_TAG1[,USER_TAGn]]
+  pi volume create VOLUME_NAME --affinity-policy affinity (--affinity-volume VOLUME | --affinity-instance INSTANCE) --size SIZE [--count COUNT] [--replication-enabled=True|False] [--replication-sites SITE1[,SITEn]] [--shareable=True|False] [--storage-tier STORAGE_TIER] [--user-tags USER_TAG1[,USER_TAGn]]
+  pi volume create VOLUME_NAME --affinity-policy anti-affinity (--anti-affinity-volumes "VOLUME1,[VOLUMEn]" | --anti-affinity-instances "INSTANCE1,[INSTANCEn]") --size SIZE [--count COUNT] [--replication-enabled=True|False] [--replication-sites SITE1[,SITEn]] [--shareable=True|False] [--storage-tier STORAGE_TIER] [--user-tags USER_TAG1[,USER_TAGn]]
 
   VOLUME_NAME: The name of the volume.
 ```
@@ -2616,10 +3184,12 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False
   -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
   -c, --count int                         Number of volumes to create. 1 by default. (default 1)
   -r, --replication-enabled               Enables storage replication on the volume. False by default.
+      --replication-sites strings         List of replication sites for volume replication. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
   -e, --shareable                         Whether the volumes can be attached to multiple VMs. False by default.
   -s, --size int                          Size of the volume (in GB). Size cannot exceed 200GB for storage tier "Tier5k".
   -p, --storage-pool string               Volume pool where the volume will be created. If --storage-pool is provided then --affinity-policy values cannot be specified.
   -t, --storage-tier string               Tier of the volume (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
+  -u, --user-tags strings                 Comma separated list of user tags to be attached to the volume.
 ```
 
 ---
@@ -2628,7 +3198,9 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False
 {: #ibmcloud-pi-volume-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a volume.
+
 **Usage**:
 
 ```bash
@@ -2643,7 +3215,9 @@ delete VOLUME_ID
 {: #ibmcloud-pi-volume-flash-copy-mapping}
 
 **Alias**: `flash-copy-mapping, fcm`
+
 **Description**: Get a list of flash copy mappings of a volume directly from primary storage host.
+
 **Usage**:
 
 ```bash
@@ -2658,7 +3232,9 @@ flash-copy-mapping VOLUME_ID
 {: #ibmcloud-pi-volume-get}
 
 **Alias**: `get`
+
 **Description**: View details of a volume.
+
 **Usage**:
 
 ```bash
@@ -2673,7 +3249,9 @@ get VOLUME_ID
 {: #ibmcloud-pi-volume-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all storage volumes in a workspace.
+
 **Usage**: `list [--auxiliary=True|False] [--long=True|False] [--replication-enabled=True|False]`
 
 **Available Flags**:
@@ -2690,8 +3268,11 @@ get VOLUME_ID
 {: #ibmcloud-pi-volume-onboarding}
 
 **Alias**: `onboarding, on`
+
 **Description**: IBM Cloud Power Virtual Server Volume Onboarding.
+
 **Usage**: `onboarding`
+
 **Available Commands**:
 
 - `create`:    Create a volume onboarding operation.
@@ -2704,7 +3285,9 @@ get VOLUME_ID
 {: #ibmcloud-pi-volume-onboarding-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a volume onboarding operation.
+
 **Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION]`
 
 **Available Flags**:
@@ -2721,7 +3304,9 @@ get VOLUME_ID
 {: #ibmcloud-pi-volume-onboarding-get}
 
 **Alias**: `get`
+
 **Description**: Get the information of volume onboarding operation.
+
 **Usage**:
 
 ```bash
@@ -2736,7 +3321,9 @@ get VOLUME_ONBOARDING_ID
 {: #ibmcloud-pi-volume-onboarding-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all volume onboarding operations.
+
 **Usage**: `list`
 
 ---
@@ -2745,7 +3332,9 @@ get VOLUME_ONBOARDING_ID
 {: #ibmcloud-pi-volume-remote-copy-relationship}
 
 **Alias**: `remote-copy-relationship, rcr`
+
 **Description**: Get the remote copy relationship information of a volume.
+
 **Usage**:
 
 ```bash
@@ -2756,11 +3345,57 @@ remote-copy-relationship VOLUME_ID
 
 ---
 
+### `ibmcloud pi volume snapshot`
+{: #ibmcloud-pi-volume-snapshot}
+
+**Alias**: `snapshot, snap`
+
+**Description**: IBM Cloud Power Virtual Server Volume Snapshot.
+
+**Usage**: `snapshot`
+
+**Available Commands**:
+
+- `get`:    Get a snapshot for a volume.
+- `list`:    List all snapshots in the workspace.
+
+---
+
+#### `ibmcloud pi volume snapshot get`
+{: #ibmcloud-pi-volume-snapshot-get}
+
+**Alias**: `get`
+
+**Description**: Get a snapshot for a volume.
+
+**Usage**:
+
+```bash
+get SNAPSHOT_ID
+
+  SNAPSHOT_ID: The unique identifier of the snapshot.
+```
+
+---
+
+#### `ibmcloud pi volume snapshot list`
+{: #ibmcloud-pi-volume-snapshot-list}
+
+**Alias**: `list, ls`
+
+**Description**: List all snapshots in the workspace.
+
+**Usage**: `list`
+
+---
+
 ### `ibmcloud pi volume update`
 {: #ibmcloud-pi-volume-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a volume.
+
 **Usage**:
 
 ```bash
@@ -2784,8 +3419,11 @@ update VOLUME_ID [--bootable=True|False] [--name NEW_NAME] [--size NEW_SIZE] [--
 {: #ibmcloud-pi-volume-group}
 
 **Alias**: `volume-group, vg`
+
 **Description**: IBM Cloud Power Virtual Server Volume Groups.
+
 **Usage**: `volume-group`
+
 **Available Commands**:
 
 - `action`:    Perform an action on a volume group.
@@ -2803,7 +3441,9 @@ update VOLUME_ID [--bootable=True|False] [--name NEW_NAME] [--size NEW_SIZE] [--
 {: #ibmcloud-pi-volume-group-action}
 
 **Alias**: `action, act`
+
 **Description**: Perform an action on a volume group.
+
 **Usage**:
 
 ```bash
@@ -2830,7 +3470,9 @@ action VOLUME_GROUP_ID --operation reset [--status STATUS]
 {: #ibmcloud-pi-volume-group-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a volume group.
+
 **Usage**:
 
 ```bash
@@ -2853,7 +3495,9 @@ create (--volume-group-name VOLUME_GROUP_NAME | --consistency-group-name CONSIST
 {: #ibmcloud-pi-volume-group-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a volume group.
+
 **Usage**:
 
 ```bash
@@ -2868,7 +3512,9 @@ delete VOLUME_GROUP_ID
 {: #ibmcloud-pi-volume-group-get}
 
 **Alias**: `get`
+
 **Description**: View details of a volume group.
+
 **Usage**:
 
 ```bash
@@ -2889,7 +3535,9 @@ get VOLUME_GROUP_ID [--long=True|False]
 {: #ibmcloud-pi-volume-group-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all storage volume groups in a workspace.
+
 **Usage**: `list [--long=True|False]`
 
 **Available Flags**:
@@ -2904,7 +3552,9 @@ get VOLUME_GROUP_ID [--long=True|False]
 {: #ibmcloud-pi-volume-group-remote-copy-relationships}
 
 **Alias**: `remote-copy-relationships, rcr`
+
 **Description**: Get the remote copy relationship information of a volume group.
+
 **Usage**:
 
 ```bash
@@ -2919,7 +3569,9 @@ remote-copy-relationships VOLUME_GROUP_ID
 {: #ibmcloud-pi-volume-group-storage-details}
 
 **Alias**: `storage-details, sd`
+
 **Description**: Get storage details for a volume group.
+
 **Usage**:
 
 ```bash
@@ -2934,7 +3586,9 @@ storage-details VOLUME_GROUP_ID
 {: #ibmcloud-pi-volume-group-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a volume group.
+
 **Usage**:
 
 ```bash
@@ -2956,8 +3610,11 @@ update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"] [--
 {: #ibmcloud-pi-vpn}
 
 **Alias**: `vpn`
+
 **Description**: IBM Cloud Power Virtual Server Virtual Private Networking.
+
 **Usage**: `vpn`
+
 **Available Commands**:
 
 - `delete`:    Delete a VPN connection.
@@ -2973,7 +3630,9 @@ update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"] [--
 {: #ibmcloud-pi-vpn-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a VPN connection.
+
 **Usage**:
 
 ```bash
@@ -2988,7 +3647,9 @@ delete VPN_CONNECTION_ID
 {: #ibmcloud-pi-vpn-get}
 
 **Alias**: `get`
+
 **Description**: View details of a VPN connection.
+
 **Usage**:
 
 ```bash
@@ -3003,7 +3664,9 @@ get VPN_CONNECTION_ID
 {: #ibmcloud-pi-vpn-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all VPN connections.
+
 **Usage**: `list`
 
 ---
@@ -3012,8 +3675,11 @@ get VPN_CONNECTION_ID
 {: #ibmcloud-pi-vpn-peer-subnet}
 
 **Alias**: `peer-subnet, pnet`
+
 **Description**: IBM Cloud Power Virtual Server Virtual Private Networking Peer-Subnets.
+
 **Usage**: `peer-subnet`
+
 **Available Commands**:
 
 - `attach`:    Attach a peer subnet to a specific VPN connection.
@@ -3026,7 +3692,9 @@ get VPN_CONNECTION_ID
 {: #ibmcloud-pi-vpn-peer-subnet-attach}
 
 **Alias**: `attach, att`
+
 **Description**: Attach a peer subnet to a specific VPN connection.
+
 **Usage**:
 
 ```bash
@@ -3047,7 +3715,9 @@ attach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
 {: #ibmcloud-pi-vpn-peer-subnet-detach}
 
 **Alias**: `detach, det`
+
 **Description**: Detach a peer subnet from a specific VPN connection.
+
 **Usage**:
 
 ```bash
@@ -3068,7 +3738,9 @@ detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
 {: #ibmcloud-pi-vpn-peer-subnet-list}
 
 **Alias**: `list, ls`
+
 **Description**: Get a list of peer subnets attached to a specific VPN connection.
+
 **Usage**: `list VPN_CONNECTION_ID`
 
 ---
@@ -3077,8 +3749,11 @@ detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
 {: #ibmcloud-pi-vpn-subnet}
 
 **Alias**: `subnet, snet`
+
 **Description**: IBM Cloud Power Virtual Server Virtual Private Networking Subnets.
+
 **Usage**: `subnet`
+
 **Available Commands**:
 
 - `attach`:    Attach a subnet to a specific VPN connection.
@@ -3091,7 +3766,9 @@ detach VPN_CONNECTION_ID --peer-subnet-cidr CIDR
 {: #ibmcloud-pi-vpn-subnet-attach}
 
 **Alias**: `attach, att`
+
 **Description**: Attach a subnet to a specific VPN connection.
+
 **Usage**:
 
 ```bash
@@ -3112,7 +3789,9 @@ attach VPN_CONNECTION_ID --subnet ID
 {: #ibmcloud-pi-vpn-subnet-detach}
 
 **Alias**: `detach, det`
+
 **Description**: Detach a subnet to a specific VPN connection.
+
 **Usage**:
 
 ```bash
@@ -3133,7 +3812,9 @@ detach VPN_CONNECTION_ID --subnet ID
 {: #ibmcloud-pi-vpn-subnet-list}
 
 **Alias**: `list, ls`
+
 **Description**: Get a list of subnets attached to a specific VPN connection.
+
 **Usage**: `list VPN_CONNECTION_ID`
 
 ---
@@ -3142,7 +3823,9 @@ detach VPN_CONNECTION_ID --subnet ID
 {: #ibmcloud-pi-vpn-update}
 
 **Alias**: `update, upd`
+
 **Description**: Update a VPN connection.
+
 **Usage**:
 
 ```bash
@@ -3166,10 +3849,14 @@ update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PE
 {: #ibmcloud-pi-workspace}
 
 **Alias**: `workspace, ws`
+
 **Description**: IBM Cloud Power Virtual Server Workspaces.
+
 **Usage**: `workspace`
+
 **Available Commands**:
 
+- `action`:    Perform an action on a workspace.
 - `context`:    Display the CRN of the currently targeted workspace.
 - `create`:    Create a workspace.
 - `delete`:    Delete a workspace.
@@ -3179,11 +3866,36 @@ update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PE
 
 ---
 
+### `ibmcloud pi workspace action`
+{: #ibmcloud-pi-workspace-action}
+
+**Alias**: `action, act`
+
+**Description**: Perform an action on a workspace.
+
+**Usage**:
+
+```bash
+action WORKSPACE_ID --operation OPERATION
+
+  WORKSPACE_ID: The unique identifier of the workspace
+```
+
+**Available Flags**:
+
+```bash
+  -o, --operation string   Operation to be done in a workspace. Valid values are per-migrate-start, per-migrate-status, per-migrate-validate.
+```
+
+---
+
 ### `ibmcloud pi workspace context`
 {: #ibmcloud-pi-workspace-context}
 
 **Alias**: `context, con`
+
 **Description**: Display the CRN of the currently targeted workspace.
+
 **Usage**: `context`
 
 ---
@@ -3192,11 +3904,13 @@ update VPN_CONNECTION_ID [--name VPN_CONNECTION_NAME] [--peer-gateway-address PE
 {: #ibmcloud-pi-workspace-create}
 
 **Alias**: `create, cr`
+
 **Description**: Create a workspace.
+
 **Usage**:
 
 ```bash
-create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
+create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN [--user-tags USER_TAG1[,USER_TAGn]]
 
   WORKSPACE_NAME: The desired name of the workspace
 ```
@@ -3206,7 +3920,8 @@ create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
 ```bash
   -d, --datacenter string   The datacenter location where the instance should be hosted. Use the "datacenter list" command to see possible values.
   -g, --group string        The ID of the resource group. Use the "ibmcloud resource groups" command to see possible values.
-  -p, --plan string         Plan associated with the offering. Valid values are "public" or "private".
+  -p, --plan string         Plan associated with the offering. Valid values are "public"/"off-prem" or "private"/"on-prem".
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the workspace.
 ```
 
 ---
@@ -3215,7 +3930,9 @@ create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
 {: #ibmcloud-pi-workspace-delete}
 
 **Alias**: `delete, del`
+
 **Description**: Delete a workspace.
+
 **Usage**:
 
 ```bash
@@ -3230,7 +3947,9 @@ delete WORKSPACE_ID
 {: #ibmcloud-pi-workspace-get}
 
 **Alias**: `get`
+
 **Description**: View details of a workspace.
+
 **Usage**:
 
 ```bash
@@ -3245,7 +3964,9 @@ get WORKSPACE_ID
 {: #ibmcloud-pi-workspace-list}
 
 **Alias**: `list, ls`
+
 **Description**: List all workspaces for this account.
+
 **Usage**: `list ([--long=True|False | --private=True|False])`
 
 **Available Flags**:
@@ -3261,7 +3982,9 @@ get WORKSPACE_ID
 {: #ibmcloud-pi-workspace-target}
 
 **Alias**: `target, tg`
+
 **Description**: Target a workspace.
+
 **Usage**:
 
 ```bash
