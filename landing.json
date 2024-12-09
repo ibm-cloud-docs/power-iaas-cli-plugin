@@ -33,7 +33,7 @@
     "tiles": [
       {
         "date": "12 December 2024",
-        "title": "The {{site.data.keyword.powerSys_notm}} CLI plug-in version `v1.4.0` is available."
+        "title": "The Power Virtual Server CLI plug-in version `v1.4.0` is available."
       }
     ]
   }

@@ -43,13 +43,22 @@ To install, update, or view the {{site.data.keyword.powerSys_notm}} CLI plug-in,
     ibmcloud login -a https://cloud.ibm.com -sso
     ```
 
-4. Run the `ibmcloud pi ws ls` command to list all of the services under your account. The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
+4. Run one of the following commands to list all the services under your account:
+
+   * For IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}, run the `ibmcloud pi ws ls` command.
+     The **Cloud Resource Name** (CRN) under **ID** contains your **Tenant ID** and **Cloud Instance ID**. The following example shows a typical CRN:
 
     ```screen
     crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
 
-5. Target your service by entering the following command, `ibmcloud pi ws tg <CRN>`.
+   * For {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}, run the `ibmcloud pi ws ls -p` command.
+
+5. Target your service by entering one of the following commands:
+   * For IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}, enter `ibmcloud pi ws tg <CRN>` command.
+   * For {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}, enter `ibmcloud pi ws tg satloc_*`
+
+    The following is an example of the output when you enter `ibmcloud pi ws tg <CRN>` command:
 
     ```bash
     ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::

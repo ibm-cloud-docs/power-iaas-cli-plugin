@@ -21,6 +21,6 @@ toc:
   - navgroup:
       id: reference
       topics:
-      - power-iaas-cli-v1.md
       - upgrade-v1.md
       - power-iaas-cli.md
+      - power-iaas-cli-v1.md

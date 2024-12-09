@@ -8,7 +8,7 @@ lastupdated: "2024-01-31"
 
 {{site.data.keyword.attribute-definition-list}}
 
-#  What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI Version 1.0.0 or later 
+# Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI Version 0.7.1 and 1.x.x
 {: #whats-new-v1}
 
 In this Upgrade Guide, you will find a concise overview of the changes and improvements made in the {{site.data.keyword.powerSysFull}} command-line interface (CLI) as we transition from version `0.7.1` to `1.0.0` or later. This topic highlight any modifications that may affect your usage and is tailored to facilitate a smooth transition to the latest release, enabling you to seamlessly leverage the enhanced capabilities of our CLI.
@@ -88,7 +88,7 @@ The following tables in the section below shows what has changed in the new vers
 
 | V 0.7.1  | V 1.x.x |
 | ------------- |:-------------:|
-|ibmcloud pi instance-hard-reboot <br/> ibmcloud pi instance-reset-state <br/> ibmcloud pi instance-soft-reboot <br/> ibmcloud pi instance-start <br/> ibmcloud pi instance-stop <br/> ibmcloud pi instance-immediate-shutdown | ibmcloud pi instance action [^footnote3] | 
+|ibmcloud pi instance-hard-reboot <br/> ibmcloud pi instance-reset-state <br/> ibmcloud pi instance-soft-reboot <br/> ibmcloud pi instance-start <br/> ibmcloud pi instance-stop <br/> ibmcloud pi instance-immediate-shutdown | ibmcloud pi instance action [^footnote3] |
 
 [^footnote3]: You get "hard-reboot", "immediate-shutdown", "reset-state", "soft-reboot", "start", and "stop" as command options.
 
@@ -239,7 +239,7 @@ The following tables in the section below shows what has changed in the new vers
 | ibmcloud pi networks          | ibmcloud pi subnet list     |
 | ibmcloud pi network-update    | ibmcloud pi subnet update   |
 
-[^footnote2]: These commands have changed in Power Virtual Server Private Cloud. 
+[^footnote2]: These commands have changed in {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}.
 ## ibmcloud pi system-pools
 {: sys-pool}
 
