@@ -8,7 +8,7 @@ lastupdated: "2024-12-09"
 
 {{site.data.keyword.attribute-definition-list}}
 
-## Installing the {{site.data.keyword.powerSys_notm}} CLI plug-in
+# Installing the {{site.data.keyword.powerSys_notm}} CLI plug-in
 {: #power-iaas-cli-byb}
 
 To install, update, or view the {{site.data.keyword.powerSys_notm}} CLI plug-in, complete the following steps:
