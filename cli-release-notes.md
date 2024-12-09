@@ -21,7 +21,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ## September 2024
 {: #sep-2024}
 
-New CLI version `v1.3.0` available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
+New CLI version `v1.3.0` is available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
 
 **New commands**
 * Added  [ibmcloud pi instance volume bulk-detach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-volume-bulk-detach) command to detach multiple volumes from an instance at once.

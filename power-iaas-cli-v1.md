@@ -13,9 +13,9 @@ lastupdated: "2024-12-09"
 
 This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}.
 
+---
 
-
-# `ibmcloud pi`
+## `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`

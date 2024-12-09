@@ -8,15 +8,15 @@
     "links": [
       {
         "title": "Getting started with IBM® Power® Virtual Servers CLI plug-in",
-        "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference"
+        "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-get-start"
       },
       {
-        "title": "Creating a Power Virtual Server",
-        "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference"
+        "title": "Installing the Power Virtual Server CLI plug-in",
+        "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-byb"
       },
       {
-        "title": "About IBM Power Virtual Server in IBM data center architecture, key features, and hardware specifications",
-        "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference"
+        "title": "IBM Power Virtual Server CLI Reference V 1.4.0",
+        "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1"
       }
     ]
   },
@@ -26,13 +26,6 @@
       "description": "Expand hybrid cloud and AI adoption with IBM Power Virtual Server to boost competitive advantage",
       "href": "https://newsroom.ibm.com/Blog-Expand-hybrid-cloud-and-AI-adoption-with-IBM-Power-Virtual-Server-to-boost-competitive-advantage",
       "type": "blog"
-    },
-    {
-      "title": "Connecting Power Virtual Server to Microsoft Azure",
-      "description": "This topic provides a detailed guide on how to connect IBM Power Virtual Server to Microsoft Azure with Megaport.",
-      "href": "https://www.redbooks.ibm.com/abstracts/sg248531.html",
-      "type": "redbook",
-      "recommended": true
     }
   ],
   "section_updates": {
@@ -40,7 +33,7 @@
     "tiles": [
       {
         "date": "12 December 2024",
-        "title": "December 2024"
+        "title": "The {{site.data.keyword.powerSys_notm}} CLI plug-in version `v1.4.0` is available."
       }
     ]
   }
