@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-10-04"
+lastupdated: "2024-12-09"
 
 ---
 
@@ -14,6 +14,9 @@ lastupdated: "2024-10-04"
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}}.
 {: shortdesc}
+
+
+
 
 ## September 2024
 {: #sep-2024}

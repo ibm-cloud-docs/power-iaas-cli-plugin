@@ -8,11 +8,19 @@ toc:
     product-page: https://www.ibm.com/cloud/power-virtual-server
     path: power-iaas-cli-plugin
     label: IBM Power Systems Virtual Servers CLI plug-in
-  entries: 
-  - navgroup: 
+  entries:
+  - navgroup:
       id: learn
       topics:
+      - getting-started.md
       - cli-release-notes.md
+  - navgroup:
+      id: howto
+      topics:
+      - before-you-begin.md
+  - navgroup:
+      id: reference
+      topics:
       - power-iaas-cli.md
       - power-iaas-cli-v1.md
       - upgrade-v1.md
