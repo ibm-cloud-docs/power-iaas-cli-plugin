@@ -13,6 +13,15 @@ lastupdated: "2024-01-31"
 
 
 
+---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+{{site.data.keyword.on-prem-fname}} in [{{site.data.keyword.on-prem}}]{: tag-red}
+
+---
+
+
 The tables in the following sections provide the comparison between the CLI version `1.0.0` or later (referred as V 1.x.x) with the version `0.7.1` (referred as V 0.7.1).
 
 ## ibmcloud pi cloud-connection

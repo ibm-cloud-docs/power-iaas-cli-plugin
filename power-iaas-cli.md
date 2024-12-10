@@ -11,6 +11,17 @@ lastupdated: "2024-01-29"
 # IBM {{site.data.keyword.powerSys_notm}} CLI version 0.7.1
 {: #power-iaas-cli-reference}
 
+
+---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+{{site.data.keyword.on-prem-fname}} in [{{site.data.keyword.on-prem}}]{: tag-red}
+
+---
+
+
+
 [Deprecated]{: tag-deprecated}
 
 The IBM {{site.data.keyword.powerSys_notm}} CLI version `0.7.1` is deprecated. Use the IBM {{site.data.keyword.powerSys_notm}} CLI version `1.0.0`. For more information about what has changed in `1.0.0`, see [Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI Version 0.7.1 and 1.x.x](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
