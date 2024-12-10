@@ -12,7 +12,7 @@ lastupdated: "2024-12-10"
 # Release notes
 {: #release-notes}
 
-Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}} CLI plug-in.
+Use these release notes to learn about the latest changes to the IBM {{site.data.keyword.powerSysFull}} CLI plug-in.
 {: shortdesc}
 
 

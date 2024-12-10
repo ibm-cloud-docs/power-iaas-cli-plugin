@@ -8,7 +8,7 @@ lastupdated: "2024-12-10"
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Installing the {{site.data.keyword.powerSys_notm}} CLI plug-in
+# Installing the IBM {{site.data.keyword.powerSys_notm}} CLI plug-in
 {: #power-iaas-cli-byb}
 
 ---
@@ -21,7 +21,7 @@ lastupdated: "2024-12-10"
 
 
 
-To install, update, or view the {{site.data.keyword.powerSys_notm}} CLI plug-in, complete the following steps:
+To install, update, or view the IBM {{site.data.keyword.powerSys_notm}} CLI plug-in, complete the following steps:
 
 1. Install the [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started){: external}.
 
@@ -47,7 +47,7 @@ To install, update, or view the {{site.data.keyword.powerSys_notm}} CLI plug-in,
 
 3. Log in to the [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/login){: external}.
 
-    The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
+    The power-iaas command-line plug-in uses the region that `ibmcloud login` targets to determine the IBM {{site.data.keyword.powerSys_notm}} endpoint. For example, to use the IBM {{site.data.keyword.powerSys_notm}} endpoint `https://cloud.ibm.com` you must use the `ibmcloud login -a https://cloud.ibm.com` command to target the `us-east` region. If you have a federated account, use the following command:
 
     ```bash
     ibmcloud login -a https://cloud.ibm.com -sso
@@ -74,5 +74,5 @@ To install, update, or view the {{site.data.keyword.powerSys_notm}} CLI plug-in,
     ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
 
-Power Systems Virtual Server CLI requires a valid IAM token authorization before each use. Use the ibmcloud login command to renew authorization if your token expires.
+The IBM {{site.data.keyword.powerSys_notm}} CLI plug-in requires a valid IAM token authorization before each use. Use the `ibmcloud login` command to renew authorization if your token expires.
 {: note}
