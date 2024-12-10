@@ -8,12 +8,12 @@ lastupdated: "2024-01-31"
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI Version 0.7.1 and 1.x.x
+# Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI versions 0.7.1 and 1.x.x
 {: #whats-new-v1}
 
-In this Upgrade Guide, you will find a concise overview of the changes and improvements made in the {{site.data.keyword.powerSysFull}} command-line interface (CLI) as we transition from version `0.7.1` to `1.0.0` or later. This topic highlight any modifications that may affect your usage and is tailored to facilitate a smooth transition to the latest release, enabling you to seamlessly leverage the enhanced capabilities of our CLI.
 
-The following tables in the section below shows what has changed in the new version 1.0.0 or later (Referred as V 1.x.x) comparing with the version 0.7.1.
+
+The tables in the following sections has the comparison between the CLI version 1.0.0 or later (referred as V 1.x.x) with the version 0.7.1.
 
 ## ibmcloud pi cloud-connection
 {: connection}

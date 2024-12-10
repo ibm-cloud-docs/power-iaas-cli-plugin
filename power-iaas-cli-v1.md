@@ -2,16 +2,23 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-09"
+lastupdated: "2024-12-10"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.0
+# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.0 for {{site.data.keyword.off-prem}}
 {: #power-iaas-cli-reference-v1}
 
-This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}.
+
+---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+--
+
+The following list of commands are available with command-line interface (CLI) for {{site.data.keyword.powerSysFull}} in {{site.data.keyword.off-prem}}.
 
 ---
 
