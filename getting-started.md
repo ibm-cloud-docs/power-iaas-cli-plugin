@@ -17,4 +17,18 @@ The {{site.data.keyword.powerSysFull}} Command Line Interface (CLI) provides a s
 * [IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.0 for {{site.data.keyword.on-prem}}](docs-draft/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-on-prem)
 
 You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: external}.
-{: shortdesc}
+{: shortdesc}---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+{{site.data.keyword.on-prem-fname}} in [{{site.data.keyword.on-prem}}]{: tag-red}
+
+---
+
+---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+{{site.data.keyword.on-prem-fname}} in [{{site.data.keyword.on-prem}}]{: tag-red}
+
+---

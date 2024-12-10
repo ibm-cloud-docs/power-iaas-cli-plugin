@@ -13,10 +13,7 @@ lastupdated: "2024-01-29"
 
 [Deprecated]{: tag-deprecated}
 
-This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
-{: shortdesc}
-
-The IBM {{site.data.keyword.powerSys_notm}} CLI Reference `0.7.1` is deprecated. Use the latest IBM {{site.data.keyword.powerSys_notm}} CLI Reference `1.0.0`. To know more about what has changed in `1.0.0`, see [Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI Version 0.7.1 and 1.x.x](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
+The IBM {{site.data.keyword.powerSys_notm}} CLI version `0.7.1` is deprecated. Use the IBM {{site.data.keyword.powerSys_notm}} CLI version `1.0.0`. For more information about what has changed in `1.0.0`, see [Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI Version 0.7.1 and 1.x.x](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
 
 
 ## Commands V0.7.1

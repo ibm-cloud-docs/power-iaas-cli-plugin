@@ -13,7 +13,7 @@ lastupdated: "2024-01-31"
 
 
 
-The tables in the following sections has the comparison between the CLI version 1.0.0 or later (referred as V 1.x.x) with the version 0.7.1.
+The tables in the following sections provide the comparison between the CLI version `1.0.0` or later (referred as V 1.x.x) with the version `0.7.1` (referred as V 0.7.1).
 
 ## ibmcloud pi cloud-connection
 {: connection}
@@ -28,6 +28,7 @@ The tables in the following sections has the comparison between the CLI version 
 | ibmcloud pi connection-update      | ibmcloud pi cloud-connection update     |
 | ibmcloud pi connections            | ibmcloud pi cloud-connection list       |
 | ibmcloud pi connection-vpcs        | ibmcloud pi connection-vpcs             |
+
 
 ## ibmcloud pi cloud-connection subnet
 {: connect-subnet}

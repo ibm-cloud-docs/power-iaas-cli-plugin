@@ -16,7 +16,10 @@ lastupdated: "2024-12-10"
 
 {{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
 
---
+---
+
+
+
 
 The following list of commands are available with command-line interface (CLI) for {{site.data.keyword.powerSysFull}} in {{site.data.keyword.off-prem}}.
 
