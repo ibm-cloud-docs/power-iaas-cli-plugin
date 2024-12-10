@@ -20,10 +20,7 @@ lastupdated: "2024-12-10"
 
 The following list of commands are available with command-line interface (CLI) for {{site.data.keyword.powerSysFull}} in {{site.data.keyword.off-prem}}.
 
----
-
-
-# `ibmcloud pi`
+## `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`

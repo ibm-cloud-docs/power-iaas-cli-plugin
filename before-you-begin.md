@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-09"
+lastupdated: "2024-12-10"
 
 ---
 
@@ -10,6 +10,16 @@ lastupdated: "2024-12-09"
 
 # Installing the {{site.data.keyword.powerSys_notm}} CLI plug-in
 {: #power-iaas-cli-byb}
+
+---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+{{site.data.keyword.on-prem-fname}} in [{{site.data.keyword.on-prem}}]{: tag-red}
+
+---
+
+
 
 To install, update, or view the {{site.data.keyword.powerSys_notm}} CLI plug-in, complete the following steps:
 
