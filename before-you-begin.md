@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-10"
+lastupdated: "2024-12-11"
 
 ---
 
@@ -64,14 +64,17 @@ To install, update, or view the IBM {{site.data.keyword.powerSys_notm}} CLI plug
 
    * For {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}, run the `ibmcloud pi ws ls -p` command.
 
-5. Target your service by entering one of the following commands:
-   * For IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}, enter `ibmcloud pi ws tg <CRN>` command.
-   * For {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}, enter `ibmcloud pi ws tg satloc_*`
-
-    The following is an example of the output when you enter `ibmcloud pi ws tg <CRN>` command:
+5. Target your service by entering `ibmcloud pi ws tg <CRN>` command:
+   * Following is an example of the output for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}:
 
     ```bash
     ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
+    ```
+
+   * Following is an example of the output for IBM {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}:
+
+    ```bash
+    ibmcloud pi ws tg crn:v1:staging:public:power-iaas:satloc_dal_clp3foc20dd82387pe83:a/c7e6bd2517ad44eabbd61fcc25cf68d5:dc815dc0-e0ba-4576-b286-a3aeedaa9e60::
     ```
 
 The IBM {{site.data.keyword.powerSys_notm}} CLI plug-in requires a valid IAM token authorization before each use. Use the `ibmcloud login` command to renew authorization if your token expires.
