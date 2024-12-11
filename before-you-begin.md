@@ -71,7 +71,7 @@ To install, update, or view the IBM {{site.data.keyword.powerSys_notm}} CLI plug
     ibmcloud pi ws tg crn:v1:staging:public:power-iaas:us-east:a/abcdefghijklmnopqrstuvwxyzabcdef:121d5ee5-b87d-4a0e-86b8-aaff422135478::
     ```
 
-   * Following is an example of the output for IBM {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}:
+   * Following is an example of the output for {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}:
 
     ```bash
     ibmcloud pi ws tg crn:v1:staging:public:power-iaas:satloc_dal_clp3foc20dd82387pe83:a/c7e6bd2517ad44eabbd61fcc25cf68d5:dc815dc0-e0ba-4576-b286-a3aeedaa9e60::
