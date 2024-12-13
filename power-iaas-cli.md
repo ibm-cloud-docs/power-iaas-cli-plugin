@@ -8,19 +8,26 @@ lastupdated: "2024-01-29"
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI Reference v 0.7.1
+# IBM {{site.data.keyword.powerSys_notm}} CLI version 0.7.1
 {: #power-iaas-cli-reference}
+
+
+---
+
+{{site.data.keyword.off-prem-fname}} in [{{site.data.keyword.off-prem}}]{: tag-blue}
+
+{{site.data.keyword.on-prem-fname}} in [{{site.data.keyword.on-prem}}]{: tag-red}
+
+---
+
+
 
 [Deprecated]{: tag-deprecated}
 
-This document provides a reference of the command-line interface (CLI) commands that are available for the {{site.data.keyword.powerSysFull}}. You can also use application programming interfaces (APIs) to interact with the {{site.data.keyword.powerSys_notm}}. For more information, see [API references](https://cloud.ibm.com/apidocs/power-cloud){: new_window}{: external}.
-{: shortdesc}
+The IBM {{site.data.keyword.powerSys_notm}} CLI version `0.7.1` is deprecated. Use the IBM {{site.data.keyword.powerSys_notm}} CLI version `1.0.0`. For more information about what has changed in `1.0.0`, see [Comparison between IBM {{site.data.keyword.powerSys_notm}} CLI Version 0.7.1 and 1.x.x](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
 
-The IBM {{site.data.keyword.powerSys_notm}} CLI Reference `0.7.1` is deprecated. Use the latest IBM {{site.data.keyword.powerSys_notm}} CLI Reference `1.0.0`. To know more about what has changed in `1.0.0`, see [What’s new in IBM {{site.data.keyword.powerSys_notm}} CLI V 1.0](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-whats-new-v1).
-{: deprecated}
 
 ## Commands V0.7.1
-
 {: #power-iaas-cli-commands}
 
 
@@ -28,6 +35,7 @@ The IBM {{site.data.keyword.powerSys_notm}} CLI Reference `0.7.1` is deprecated.
 {: #ibmcloud-pi-connection}
 
 #### View details of a cloud Connection.
+
 
 `ibmcloud pi connection CONNECTION_ID [--json]`
 
@@ -57,7 +65,7 @@ The IBM {{site.data.keyword.powerSys_notm}} CLI Reference `0.7.1` is deprecated.
 #### Create a cloud connection.
 
 `ibmcloud pi connection-create CONNECTION_NAME --speed SPEED [--vpc --vpcID "VPC-ID"] ([--classic [--networks "NETWORK_ID1..NETWORK_IDn" [--gre-tunnel "CIDR DEST-IP"]]] | [--networks "NETWORK_ID1..NETWORK_IDn"]) [--global-routing] [--metered] [--json]`
- 
+
 `ibmcloud pi connection-create CONNECTION_NAME --speed SPEED --transit-enabled [--networks "NETWORK_ID1..NETWORK_IDn"] [--global-routing] [--metered] [--json]`
 
 **Options**
