@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-12-10"
+lastupdated: "2024-12-13"
 
 ---
 
@@ -16,6 +16,33 @@ Use these release notes to learn about the latest changes to the IBM {{site.data
 {: shortdesc}
 
 
+
+## December 2024
+{: #dec-2024}
+
+New CLI version `v1.4.0` is available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
+
+**New commands**
+
+* Added ibmcloud pi instance virtual-serial-number family of commands (assign, unassigned, get, and update).
+* Added ibmcloud pi network-peer family of commands (list) for {{site.data.keyword.on-prem}} workspaces.
+* Added ibmcloud pi  virtual-serial-number family of commands (delete, get, list, and update).
+
+**New flags**
+
+* Added `--private` flag to [ibmcloud pi datacenter get and list commands](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-datacenter). Use this flag to retrieve additional details about a private datacenter that you own.
+* Added `--virtual-serial-number` flag to [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) command. Use this flag to add virtual serial number information to an IBM i instance.
+* Added `--retainVSN` flag to [ibmcloud pi instance delete](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-delete) command. Use this flag to determine whether the virtual serial number is retained after it is removed from the instance.
+
+**What's changed**
+
+* In the [ibmcloud pi subnet create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-subnet-create) command `--access-config` flag is deprecated for {{site.data.keyword.on-prem}} workspaces. Alternatively, you can use `--peer-id`, `--peer-type`, and `--source-id` flags.
+* The `che01` region is supported in the following commads:
+    * [ibmcloud pi image export](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-image-export)
+    * [ibmcloud pi image import](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-image-import)
+    * [ibmcloud pi instance capture](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-capture)
+* The `per-migrate-status` option is removed from the [ibmcloud pi workspace action](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-workspace-action) command.
+* Commands and flags are updated with wording improvements.
 
 
 ## September 2024
