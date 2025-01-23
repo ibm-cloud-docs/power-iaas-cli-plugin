@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-12-13"
+lastupdated: "2025-01-23"
 
 ---
 
@@ -12,8 +12,22 @@ lastupdated: "2024-12-13"
 # Release notes
 {: #release-notes}
 
-Use these release notes to learn about the latest changes to the IBM {{site.data.keyword.powerSysFull}} CLI plug-in.
+Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}} CLI plug-in.
 {: shortdesc}
+
+
+
+## January 2025
+{: #jan-2025}
+
+New CLI version `v1.4.1` available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
+
+**What's changed**
+
+* Security update with CLI plugin dependencies.
+
+* Fixed the [ibmcloud pi workspace action](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-workspace-action) command to use local context.
+
 
 
 
