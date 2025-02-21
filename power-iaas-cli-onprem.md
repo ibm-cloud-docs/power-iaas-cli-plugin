@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-01-22"
+lastupdated: "2025-02-21"
 
 ---
 
@@ -22,7 +22,8 @@ lastupdated: "2025-01-22"
 The following list of commands are available with command-line interface (CLI) for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.on-prem}}.
 
 
-## `ibmcloud pi`
+
+# `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`
@@ -47,6 +48,7 @@ The following list of commands are available with command-line interface (CLI) f
 - `storage-tiers`:    List all storage tiers for the targeted region.
 - `subnet`:    IBM Cloud Power Virtual Server Subnets.
 - `system-pools`:    List of available system pools within a particular data center.
+- `virtual-serial-number`:    IBM Cloud Power Virtual Server Virtual Serial Number.
 - `volume`:    IBM Cloud Power Virtual Server Volumes.
 - `volume-group`:    IBM Cloud Power Virtual Server Volume Groups.
 - `workspace`:    IBM Cloud Power Virtual Server Workspaces.
@@ -87,7 +89,8 @@ get DATACENTER [--private=True|False]
 **Available Flags**:
 
 ```bash
-  -p, --private   Retrieve additional details about a private datacenter that you own. Required if getting information from a private datacenter.
+  -p, --private   Retrieve additional details about a private datacenter that you own.
+                  Required if getting information from a private/on-prem datacenter.
 ```
 
 ---
@@ -301,7 +304,7 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
                                           required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
   -b, --bucket string                     Cloud Object Storage bucket name.
   -u, --bucket-access string              Indicates the bucket access type (private or public). Private access requires access and secret keys.
-                                          Public access requires the --job option. Default is private. (default "private")
+                                          Public access requires the --job option. Default is private.
   -c, --checksum                          Checks the checksum file from the COS bucket against the one computed on the downloaded image.
   -n, --image-file-name string            The image file name.
   -d, --import-details strings            Import details for SAP image. Must include a license, product and vendor.
@@ -393,6 +396,7 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 - `snapshot`:    IBM Cloud Power Virtual Server Instance Snapshots.
 - `subnet`:    IBM Cloud Power Virtual Server Instance Subnets.
 - `update`:    Update a server instance.
+- `virtual-serial-number`:    IBM Cloud Power Virtual Server Instance Virtual Serial Number.
 - `volume`:    IBM Cloud Power Virtual Server Instance Volumes.
 
 ---
@@ -550,6 +554,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
     [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-connection STORAGE_CONNECTION]
     [--storage-pool STORAGE_POOL] [--storage-pool-affinity] [--storage-tier STORAGE_TIER]
     [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]]
+    [--virtual-serial-number "(SERIAL | 'auto-assign')[,DESCRIPTION]"]
     [--virtual-cores ASSIGNED_CORES] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_NAME: The name of the instance.
@@ -564,18 +569,19 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
   -b, --boot-volume-replication-enabled           Enables storage replication on the boot volume. False by default.
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
-  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB. (default 2)
+  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
       --placement-group string                    The placement group ID of the group that the server will be added to.
-  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated". (default "dedicated")
-  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core. (default 1)
-      --replicant-affinity-policy string          Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
-      --replicant-scheme string                   Naming scheme to use for duplicate VMs ("suffix", "prefix").
-      --replicants int                            Number of duplicate instances to create in this request.
+  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated".
+  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core.
+      --replicant-affinity-policy string          Affinity policy to use when multicreate is used. Valid values are: affinity, anti-affinity, none.
+      --replicant-scheme string                   Naming scheme to use for duplicate VMs. Valid values are: prefix, suffix.
+      --replicants int                            The number of replicant instances to be created with this request.
+                                                  Values greater than 1 will result in the creation of multiple instances.
       --replication-sites strings                 Indicates the replication sites of the boot volume. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
       --shared-processor-pool string              The shared processor pool ID of the pool that the server will be in.
       --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity".
-                                                  If --storage-pool is provided, then this it cannot be specified.
+                                                  If --storage-pool is provided, then this flag cannot be specified.
       --storage-affinity-instance string          PVM instance identifier or name to base storage affinity policy against;
                                                   required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
       --storage-affinity-volume string            Volume identifier or name to base storage affinity policy against;
@@ -599,10 +605,12 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
                                                   (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region).
                                                   Default to tier3 if not provided.
   -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of System Type ('s1022', 'e1050', 'e1080'). Default is "s1022". (default "s1022")
+  -s, --sys-type string                           Name of System Type ('s1022', 'e1050', 'e1080')
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
       --user-tags strings                         Comma separated list of user tags to be attached to the instance.
       --virtual-cores int                         The number of virtual cores assigned.
+      --virtual-serial-number string              IBMi Virtual serial number information added with the instance.
+                                                  Must include an existing virtual serial number or 'auto-assign' and optionally a description.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
 
@@ -627,7 +635,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
 **Usage**:
 
 ```bash
-delete INSTANCE_ID [--delete-data-volumes=True|False]
+delete INSTANCE_ID [--delete-data-volumes=True|False] [--retainVSN=True|False]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -637,6 +645,7 @@ delete INSTANCE_ID [--delete-data-volumes=True|False]
 ```bash
   -d, --delete-data-volumes   Indicates whether all data volumes attached to the instance must be deleted.
                               Shared data volumes will be deleted if no other instances are attached.
+  -r, --retainVSN             Determines if the virtual serial number will be retained after being removed from the instance. Default is false.
 ```
 
 ---
@@ -857,7 +866,7 @@ update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
 **Usage**:
 
 ```bash
-attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
+attach INSTANCE_ID --subnet SUBNET_ID [--ip-address IP_ADDRESS]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -887,7 +896,7 @@ attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
 **Usage**:
 
 ```bash
-detach INSTANCE_ID --subnet "SUBNET_ID" [--mac-address "MAC_ADDRESS"]
+detach INSTANCE_ID --subnet SUBNET_ID [--mac-address MAC_ADDRESS]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -967,6 +976,123 @@ update INSTANCE_ID [--IBMiCSS-license=True|False]  [--IBMiPHA-license=True|False
 
 ```bash
     ibmcloud pi instance update 43064761-948f-469d-ac8e-b8e5f0d6056f --memory 2 --name new-instance-name --pin-policy hard --processors 2 --processor-type shared --storage-pool-affinity
+```
+
+---
+
+### `ibmcloud pi instance virtual-serial-number`
+{: #ibmcloud-pi-instance-virtual-serial-number}
+
+**Alias**: `virtual-serial-number, vsn`
+
+**Description**: IBM Cloud Power Virtual Server Instance Virtual Serial Number.
+
+**Usage**: `virtual-serial-number`
+
+**Available Commands**:
+
+- `assign`:    Assign a virtual serial number to a virtual server instance.
+- `get`:    Get a virtual serial number assigned to a virtual server instance.
+- `unassign`:    Unassign a virtual serial number from a virtual server instance.
+- `update`:    Update a virtual serial number assigned to a virtual server instance.
+
+---
+
+#### `ibmcloud pi instance virtual-serial-number assign`
+{: #ibmcloud-pi-instance-virtual-serial-number-assign}
+
+**Alias**: `assign, asn`
+
+**Description**: Assign a virtual serial number to a virtual server instance.
+
+**Usage**:
+
+```bash
+assign INSTANCE_ID [--description DESCRIPTION] [--serial SERIAL]
+
+  INSTANCE_ID: The unique identifier or name of the instance.
+```
+
+**Available Flags**:
+
+```bash
+  -d, --description string   Description for the virtual serial number.
+  -s, --serial string        Virtual serial number to attach. If no serial is specified or 'auto-assign' is set, a virtual serial number will be automatically generated.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi instance virtual-serial-number assign 43064761-948f-469d-ac8e-b8e5f0d6056f --description "new-virtual-serial-number-description"
+```
+
+---
+
+#### `ibmcloud pi instance virtual-serial-number get`
+{: #ibmcloud-pi-instance-virtual-serial-number-get}
+
+**Alias**: `get`
+
+**Description**: Get a virtual serial number assigned to a virtual server instance.
+
+**Usage**:
+
+```bash
+get INSTANCE_ID
+
+  INSTANCE_ID: The unique identifier or name of the instance.
+```
+
+---
+
+#### `ibmcloud pi instance virtual-serial-number unassign`
+{: #ibmcloud-pi-instance-virtual-serial-number-unassign}
+
+**Alias**: `unassign, uasn`
+
+**Description**: Unassign a virtual serial number from a virtual server instance.
+
+**Usage**:
+
+```bash
+unassign INSTANCE_ID [--retainVSN=True|False]
+
+  INSTANCE_ID: The unique identifier or name of the instance.
+```
+
+**Available Flags**:
+
+```bash
+  -r, --retainVSN   Determines if virtual serial number will be retained after being unassigned from the instance. Default is false.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi instance virtual-serial-number unassign 43064761-948f-469d-ac8e-b8e5f0d6056f --retainVSN
+```
+
+---
+
+#### `ibmcloud pi instance virtual-serial-number update`
+{: #ibmcloud-pi-instance-virtual-serial-number-update}
+
+**Alias**: `update, upd`
+
+**Description**: Update a virtual serial number assigned to a virtual server instance.
+
+**Usage**:
+
+```bash
+update INSTANCE_ID [--description DESCRIPTION]
+
+  INSTANCE_ID: The unique identifier or name of the instance.
+```
+
+**Available Flags**:
+
+```bash
+  -d, --description string   New virtual serial number description.
 ```
 
 ---
@@ -1957,7 +2083,7 @@ create SUBNET_NAME --cidr-block CIDR --net-type private|dhcp ([--access-config C
                                9.9.9.9 by default for public subnet types.
   -g, --gateway string         Gateway to use for this subnet.
   -i, --ip-range string        IP Addresses range(s) for this subnet, format: startIP-endIP[,startIP-endIP].
-  -m, --mtu int                Maximum Transmission Unit. MTU be between 1450 and 9000. The default value is 1450. (default 1450)
+  -m, --mtu int                Maximum Transmission Unit. MTU be between 1450 and 9000. The default value is 1450.
   -n, --net-type string        Subnet type. Either "dhcp" or "private".
       --peer-id string         ID of the network peer.
       --peer-type string       Network peer type. Valid values are: L2, L3BGP, L3STATIC.
@@ -2053,6 +2179,104 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 **Description**: List of available system pools within a particular data center.
 
 **Usage**: `system-pools`
+
+---
+
+## `ibmcloud pi virtual-serial-number`
+{: #ibmcloud-pi-virtual-serial-number}
+
+**Alias**: `virtual-serial-number, vsn`
+
+**Description**: IBM Cloud Power Virtual Server Virtual Serial Number.
+
+**Usage**: `virtual-serial-number`
+
+**Available Commands**:
+
+- `delete`:    Delete a virtual serial number.
+- `get`:    View details of a virtual serial number.
+- `list`:    List all virtual serial number assigned to an instance or all virtual serial numbers in the workspace.
+- `update`:    Update a retained virtual serial number.
+
+---
+
+### `ibmcloud pi virtual-serial-number delete`
+{: #ibmcloud-pi-virtual-serial-number-delete}
+
+**Alias**: `delete, del`
+
+**Description**: Delete a virtual serial number.
+
+**Usage**:
+
+```bash
+delete VIRTUAL_SERIAL_NUMBER
+
+  VIRTUAL_SERIAL_NUMBER: The virtual serial number.
+```
+
+---
+
+### `ibmcloud pi virtual-serial-number get`
+{: #ibmcloud-pi-virtual-serial-number-get}
+
+**Alias**: `get`
+
+**Description**: View details of a virtual serial number.
+
+**Usage**:
+
+```bash
+get VIRTUAL_SERIAL_NUMBER
+
+  VIRTUAL_SERIAL_NUMBER: The virtual serial number.
+```
+
+---
+
+### `ibmcloud pi virtual-serial-number list`
+{: #ibmcloud-pi-virtual-serial-number-list}
+
+**Alias**: `list, ls`
+
+**Description**: List all virtual serial number assigned to an instance or all virtual serial numbers in the workspace.
+
+**Usage**:
+
+```bash
+list ([PVM_INSTANCE_ID] | [--retainVSN=True|False])
+
+  PVM_INSTANCE_ID: The unique identifier or name of the PVM instance.
+```
+
+**Available Flags**:
+
+```bash
+  -r, --retainVSN   Lists only retained virtual serial numbers. Default is false.
+```
+
+---
+
+### `ibmcloud pi virtual-serial-number update`
+{: #ibmcloud-pi-virtual-serial-number-update}
+
+**Alias**: `update, upd`
+
+**Description**: Update a retained virtual serial number.
+
+**Usage**:
+
+```bash
+update VIRTUAL_SERIAL_NUMBER [--description DESCRIPTION]
+
+  VIRTUAL_SERIAL_NUMBER: The virtual serial number.
+```
+
+**Available Flags**:
+
+```bash
+  -d, --description string   New virtual serial number description.
+```
 
 ---
 
@@ -2424,7 +2648,7 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False
   -v, --affinity-volume string            Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
   -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
   -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
-  -c, --count int                         Number of volumes to create. 1 by default. (default 1)
+  -c, --count int                         Number of volumes to create. 1 by default.
   -r, --replication-enabled               Enables storage replication on the volume. False by default.
       --replication-sites strings         List of replication sites for volume replication. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
   -e, --shareable                         Whether the volumes can be attached to multiple VMs. False by default.
@@ -2508,9 +2732,9 @@ get VOLUME_ID
 **Available Flags**:
 
 ```bash
-  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default. (default true)
+  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default.
   -l, --long                  Retrieve all volume details.
-  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default. (default true)
+  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default.
 ```
 
 ---
@@ -2539,7 +2763,7 @@ get VOLUME_ID
 
 **Description**: Create a volume onboarding operation.
 
-**Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION]`
+**Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION] [--user-tags USER_TAG1[,USER_TAGn]]`
 
 **Available Flags**:
 
@@ -2547,6 +2771,7 @@ get VOLUME_ID
   -a, --auxiliary-volumes strings   Comma separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
   -d, --description string          Volume onboarding description.
   -s, --source-crn string           CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
+  -u, --user-tags strings           Comma separated list of user tags to be attached to the volume onboarding.
 ```
 
 **Examples**:
@@ -2717,8 +2942,8 @@ action VOLUME_GROUP_ID --operation reset [--status STATUS]
 ```bash
   -a, --allow-read-access   Allow the auxiliary volume to be accessible after stopping the volume group. Default is false.
   -o, --operation string    Operation to be done in a volume group. Valid values are "start", "stop", and "reset".
-      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master". (default "master")
-      --status string       New status to be set for a volume group. Default is "available". (default "available")
+      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master".
+      --status string       New status to be set for a volume group. Default is "available".
 ```
 
 **Examples**:
@@ -2950,7 +3175,7 @@ create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
 ```bash
 delete (WORKSPACE_CRN | WORKSPACE_ID)
 
-  WORKSPACE_CRN: The cloud resource name that uniquely identifies IBM Cloud resources.
+  WORKSPACE_CRN:  The cloud resource name that uniquely identifies IBM Cloud resources.
 
   WORKSPACE_ID: The unique identifier of the workspace.
 ```
@@ -2987,7 +3212,7 @@ delete (WORKSPACE_CRN | WORKSPACE_ID)
 ```bash
 target WORKSPACE_CRN
 
-  WORKSPACE_CRN: The cloud resource name that uniquely identifies IBM Cloud resources.
+  WORKSPACE_CRN:  The cloud resource name that uniquely identifies IBM Cloud resources.
 ```
 
 ---

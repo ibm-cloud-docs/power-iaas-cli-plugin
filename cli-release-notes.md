@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2025-01-23"
+lastupdated: "2025-02-21"
 
 ---
 
@@ -15,6 +15,27 @@ lastupdated: "2025-01-23"
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}} CLI plug-in.
 {: shortdesc}
 
+
+
+## February 2025
+{: #feb-2025}
+
+New CLI version v1.4.2 available. The Power Virtual Server CLI plug-in is available with the following features:
+
+**New commands**
+	Added ibmcloud pi network-address-group of commands (create, delete, get, list, member-add, member-remove, and update) for off prem workspaces.
+	Added ibmcloud pi network-security-group of commands (clone, create, delete, get, list, member-add, member-move, member-remove, rule-add, rule-remove, and update) for off prem workspaces.
+
+**New flags**
+	Added --network-security-group-id to ibmcloud pi instance subnet attach for off prem workspaces. Use this flag to specify the network security group that the network interface is a member of.
+	Added --deployment-target to ibmcloud pi instance sap create command for on prem workspaces. Use this flag to specify the deployment of the dedicated host.
+	Added --user-tags to ibmcloud pi volume onboarding create command. Use this flag to add a list of user tags to be attached to the volume onboarding.
+
+**What's changed**
+	Deprecated ibmcloud pi cloud-connection create command.
+	ibmcloud pi instance create --subnets flag has been updated to allow users to specify a network-security-group for off prem workspaces.
+	Removed --sys-type default for ibmcloud pi instance create and ibmcloud pi instance sap create. This should not impact existing scripts.
+	Minor wording improvements to several command and flags.
 
 
 ## January 2025
