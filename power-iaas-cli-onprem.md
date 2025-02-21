@@ -23,7 +23,7 @@ The following list of commands are available with command-line interface (CLI) f
 
 
 
-# `ibmcloud pi`
+## `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`

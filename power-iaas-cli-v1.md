@@ -24,7 +24,7 @@ lastupdated: "2025-02-21"
 The following list of commands are available with command-line interface (CLI) for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}.
 
 
-# `ibmcloud pi`
+## `ibmcloud pi`
 {: #ibmcloud-pi}
 
 **Alias**: `pi`
