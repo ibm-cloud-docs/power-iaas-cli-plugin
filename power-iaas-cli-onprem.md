@@ -2,14 +2,14 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-02-21"
+lastupdated: "2025-02-24"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.1 for {{site.data.keyword.on-prem}}
+# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.2 for {{site.data.keyword.on-prem}}
 {: #power-iaas-cli-on-prem}
 
 ---
@@ -20,6 +20,7 @@ lastupdated: "2025-02-21"
 
 
 The following list of commands are available with command-line interface (CLI) for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.on-prem}}.
+
 
 
 
@@ -48,7 +49,6 @@ The following list of commands are available with command-line interface (CLI) f
 - `storage-tiers`:    List all storage tiers for the targeted region.
 - `subnet`:    IBM Cloud Power Virtual Server Subnets.
 - `system-pools`:    List of available system pools within a particular data center.
-- `virtual-serial-number`:    IBM Cloud Power Virtual Server Virtual Serial Number.
 - `volume`:    IBM Cloud Power Virtual Server Volumes.
 - `volume-group`:    IBM Cloud Power Virtual Server Volume Groups.
 - `workspace`:    IBM Cloud Power Virtual Server Workspaces.
@@ -396,7 +396,6 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
 - `snapshot`:    IBM Cloud Power Virtual Server Instance Snapshots.
 - `subnet`:    IBM Cloud Power Virtual Server Instance Subnets.
 - `update`:    Update a server instance.
-- `virtual-serial-number`:    IBM Cloud Power Virtual Server Instance Virtual Serial Number.
 - `volume`:    IBM Cloud Power Virtual Server Instance Volumes.
 
 ---
@@ -554,7 +553,6 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
     [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-connection STORAGE_CONNECTION]
     [--storage-pool STORAGE_POOL] [--storage-pool-affinity] [--storage-tier STORAGE_TIER]
     [--sys-type TYPE] [--user-data USER_DATA] [--user-tags USER_TAG1[,USER_TAGn]]
-    [--virtual-serial-number "(SERIAL | 'auto-assign')[,DESCRIPTION]"]
     [--virtual-cores ASSIGNED_CORES] [--volumes VOLUME1[,VOLUMEn]]
 
   INSTANCE_NAME: The name of the instance.
@@ -609,8 +607,6 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
       --user-tags strings                         Comma separated list of user tags to be attached to the instance.
       --virtual-cores int                         The number of virtual cores assigned.
-      --virtual-serial-number string              IBMi Virtual serial number information added with the instance.
-                                                  Must include an existing virtual serial number or 'auto-assign' and optionally a description.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
 ```
 
@@ -635,7 +631,7 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
 **Usage**:
 
 ```bash
-delete INSTANCE_ID [--delete-data-volumes=True|False] [--retainVSN=True|False]
+delete INSTANCE_ID [--delete-data-volumes=True|False]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -645,7 +641,6 @@ delete INSTANCE_ID [--delete-data-volumes=True|False] [--retainVSN=True|False]
 ```bash
   -d, --delete-data-volumes   Indicates whether all data volumes attached to the instance must be deleted.
                               Shared data volumes will be deleted if no other instances are attached.
-  -r, --retainVSN             Determines if the virtual serial number will be retained after being removed from the instance. Default is false.
 ```
 
 ---
@@ -976,123 +971,6 @@ update INSTANCE_ID [--IBMiCSS-license=True|False]  [--IBMiPHA-license=True|False
 
 ```bash
     ibmcloud pi instance update 43064761-948f-469d-ac8e-b8e5f0d6056f --memory 2 --name new-instance-name --pin-policy hard --processors 2 --processor-type shared --storage-pool-affinity
-```
-
----
-
-### `ibmcloud pi instance virtual-serial-number`
-{: #ibmcloud-pi-instance-virtual-serial-number}
-
-**Alias**: `virtual-serial-number, vsn`
-
-**Description**: IBM Cloud Power Virtual Server Instance Virtual Serial Number.
-
-**Usage**: `virtual-serial-number`
-
-**Available Commands**:
-
-- `assign`:    Assign a virtual serial number to a virtual server instance.
-- `get`:    Get a virtual serial number assigned to a virtual server instance.
-- `unassign`:    Unassign a virtual serial number from a virtual server instance.
-- `update`:    Update a virtual serial number assigned to a virtual server instance.
-
----
-
-#### `ibmcloud pi instance virtual-serial-number assign`
-{: #ibmcloud-pi-instance-virtual-serial-number-assign}
-
-**Alias**: `assign, asn`
-
-**Description**: Assign a virtual serial number to a virtual server instance.
-
-**Usage**:
-
-```bash
-assign INSTANCE_ID [--description DESCRIPTION] [--serial SERIAL]
-
-  INSTANCE_ID: The unique identifier or name of the instance.
-```
-
-**Available Flags**:
-
-```bash
-  -d, --description string   Description for the virtual serial number.
-  -s, --serial string        Virtual serial number to attach. If no serial is specified or 'auto-assign' is set, a virtual serial number will be automatically generated.
-```
-
-**Examples**:
-
-```bash
-    ibmcloud pi instance virtual-serial-number assign 43064761-948f-469d-ac8e-b8e5f0d6056f --description "new-virtual-serial-number-description"
-```
-
----
-
-#### `ibmcloud pi instance virtual-serial-number get`
-{: #ibmcloud-pi-instance-virtual-serial-number-get}
-
-**Alias**: `get`
-
-**Description**: Get a virtual serial number assigned to a virtual server instance.
-
-**Usage**:
-
-```bash
-get INSTANCE_ID
-
-  INSTANCE_ID: The unique identifier or name of the instance.
-```
-
----
-
-#### `ibmcloud pi instance virtual-serial-number unassign`
-{: #ibmcloud-pi-instance-virtual-serial-number-unassign}
-
-**Alias**: `unassign, uasn`
-
-**Description**: Unassign a virtual serial number from a virtual server instance.
-
-**Usage**:
-
-```bash
-unassign INSTANCE_ID [--retainVSN=True|False]
-
-  INSTANCE_ID: The unique identifier or name of the instance.
-```
-
-**Available Flags**:
-
-```bash
-  -r, --retainVSN   Determines if virtual serial number will be retained after being unassigned from the instance. Default is false.
-```
-
-**Examples**:
-
-```bash
-    ibmcloud pi instance virtual-serial-number unassign 43064761-948f-469d-ac8e-b8e5f0d6056f --retainVSN
-```
-
----
-
-#### `ibmcloud pi instance virtual-serial-number update`
-{: #ibmcloud-pi-instance-virtual-serial-number-update}
-
-**Alias**: `update, upd`
-
-**Description**: Update a virtual serial number assigned to a virtual server instance.
-
-**Usage**:
-
-```bash
-update INSTANCE_ID [--description DESCRIPTION]
-
-  INSTANCE_ID: The unique identifier or name of the instance.
-```
-
-**Available Flags**:
-
-```bash
-  -d, --description string   New virtual serial number description.
 ```
 
 ---
@@ -2182,104 +2060,6 @@ update SUBNET_ID [--name SUBNET_NAME] [--ip-range "startIP-endIP[,startIP-endIP]
 
 ---
 
-## `ibmcloud pi virtual-serial-number`
-{: #ibmcloud-pi-virtual-serial-number}
-
-**Alias**: `virtual-serial-number, vsn`
-
-**Description**: IBM Cloud Power Virtual Server Virtual Serial Number.
-
-**Usage**: `virtual-serial-number`
-
-**Available Commands**:
-
-- `delete`:    Delete a virtual serial number.
-- `get`:    View details of a virtual serial number.
-- `list`:    List all virtual serial number assigned to an instance or all virtual serial numbers in the workspace.
-- `update`:    Update a retained virtual serial number.
-
----
-
-### `ibmcloud pi virtual-serial-number delete`
-{: #ibmcloud-pi-virtual-serial-number-delete}
-
-**Alias**: `delete, del`
-
-**Description**: Delete a virtual serial number.
-
-**Usage**:
-
-```bash
-delete VIRTUAL_SERIAL_NUMBER
-
-  VIRTUAL_SERIAL_NUMBER: The virtual serial number.
-```
-
----
-
-### `ibmcloud pi virtual-serial-number get`
-{: #ibmcloud-pi-virtual-serial-number-get}
-
-**Alias**: `get`
-
-**Description**: View details of a virtual serial number.
-
-**Usage**:
-
-```bash
-get VIRTUAL_SERIAL_NUMBER
-
-  VIRTUAL_SERIAL_NUMBER: The virtual serial number.
-```
-
----
-
-### `ibmcloud pi virtual-serial-number list`
-{: #ibmcloud-pi-virtual-serial-number-list}
-
-**Alias**: `list, ls`
-
-**Description**: List all virtual serial number assigned to an instance or all virtual serial numbers in the workspace.
-
-**Usage**:
-
-```bash
-list ([PVM_INSTANCE_ID] | [--retainVSN=True|False])
-
-  PVM_INSTANCE_ID: The unique identifier or name of the PVM instance.
-```
-
-**Available Flags**:
-
-```bash
-  -r, --retainVSN   Lists only retained virtual serial numbers. Default is false.
-```
-
----
-
-### `ibmcloud pi virtual-serial-number update`
-{: #ibmcloud-pi-virtual-serial-number-update}
-
-**Alias**: `update, upd`
-
-**Description**: Update a retained virtual serial number.
-
-**Usage**:
-
-```bash
-update VIRTUAL_SERIAL_NUMBER [--description DESCRIPTION]
-
-  VIRTUAL_SERIAL_NUMBER: The virtual serial number.
-```
-
-**Available Flags**:
-
-```bash
-  -d, --description string   New virtual serial number description.
-```
-
----
-
 ## `ibmcloud pi volume`
 {: #ibmcloud-pi-volume}
 
@@ -2763,7 +2543,7 @@ get VOLUME_ID
 
 **Description**: Create a volume onboarding operation.
 
-**Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION] [--user-tags USER_TAG1[,USER_TAGn]]`
+**Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION]`
 
 **Available Flags**:
 
@@ -2771,7 +2551,6 @@ get VOLUME_ID
   -a, --auxiliary-volumes strings   Comma separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
   -d, --description string          Volume onboarding description.
   -s, --source-crn string           CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
-  -u, --user-tags strings           Comma separated list of user tags to be attached to the volume onboarding.
 ```
 
 **Examples**:

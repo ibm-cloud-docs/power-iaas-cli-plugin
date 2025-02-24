@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2025-02-21"
+lastupdated: "2025-02-24"
 
 ---
 
@@ -37,7 +37,7 @@ New CLI version v1.4.2 available. The Power Virtual Server CLI plug-in is availa
 
 * Deprecated [ibmcloud pi cloud-connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-cloud-connection-create) create command.
 * Updated `--subnets` flag for [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) to allow users to specify a network-security-group for {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} workspaces.
-* Removed --sys-type default for [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create). This should not impact existing scripts.
+* Removed `--sys-type` default flag for [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create). This should not impact existing scripts.
 
 
 ## January 2025
