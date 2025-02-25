@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2025-01-23"
+lastupdated: "2025-02-24"
 
 ---
 
@@ -14,6 +14,29 @@ lastupdated: "2025-01-23"
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}} CLI plug-in.
 {: shortdesc}
+
+
+## February 2025
+{: #feb-2025}
+
+New CLI version v1.4.2 available. The Power Virtual Server CLI plug-in is available with the following features:
+
+**New commands**
+
+* Added [ibmcloud pi network-address-group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-network-address-group) group of commands (create, delete, get, list, member-add, member-remove, and update) for {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} workspaces.
+* Added [ibmcloud pi network-security-group](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-network-security-group) group of commands (clone, create, delete, get, list, member-add, member-move, member-remove, rule-add, rule-remove, and update) for {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} workspaces.
+
+**New flags**
+
+* Added `--network-security-group-id` flag to [ibmcloud pi instance subnet attach](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-subnet-attach) for {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} workspaces. Use this flag to specify the network security group of which the network interface is a member.
+* Added `--deployment-target` flag to [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create) command for  {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} workspaces. Use this flag to specify the deployment of the dedicated host.
+* Added `--user-tags` flag to the [ibmcloud pi volume onboarding create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-volume-onboarding-create) command for {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} and [ibmcloud pi volume onboarding create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-on-prem#ibmcloud-pi-volume-onboarding-create) command for {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}. Use this flag to add a list of user tags to be associated with the volumes when you onboard them.
+
+**What's changed**
+
+* Deprecated [ibmcloud pi cloud-connection](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-cloud-connection-create) create command.
+* Updated `--subnets` flag for [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) to allow users to specify a network-security-group for {{site.data.keyword.off-prem-fname}} in {{site.data.keyword.off-prem}} workspaces.
+* Removed `--sys-type` default flag for [ibmcloud pi instance create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-create) and [ibmcloud pi instance sap create](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1#ibmcloud-pi-instance-sap-create). This should not impact existing scripts.
 
 
 

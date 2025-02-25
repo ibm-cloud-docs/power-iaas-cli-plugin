@@ -2,13 +2,13 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-01-22"
+lastupdated: "2025-02-24"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.1 for {{site.data.keyword.off-prem}}
+# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.2 for {{site.data.keyword.off-prem}}
 {: #power-iaas-cli-reference-v1}
 
 
@@ -22,6 +22,7 @@ lastupdated: "2025-01-22"
 
 
 The following list of commands are available with command-line interface (CLI) for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}.
+
 
 ## `ibmcloud pi`
 {: #ibmcloud-pi}
@@ -45,7 +46,9 @@ The following list of commands are available with command-line interface (CLI) f
 - `instance`:    IBM Cloud Power Virtual Server Instances.
 - `ipsec-policy`:    IBM Cloud Power Virtual Server Internet Protocol Security policies.
 - `job`:    IBM Cloud Power Virtual Server Jobs.
+- `network-address-group`:    IBM Cloud Power Virtual Server Network Address Groups.
 - `network-interface`:    IBM Cloud Power Virtual Server Network Interfaces.
+- `network-security-group`:    IBM Cloud Power Virtual Server Network Security Groups.
 - `placement-group`:    IBM Cloud Power Virtual Server Placement Groups.
 - `shared-processor-pool`:    IBM Cloud Power Virtual Server Shared Processor Pools.
 - `snapshot`:    [DEPRECATED] IBM Cloud Power Virtual Server Snapshots.
@@ -84,7 +87,7 @@ The following list of commands are available with command-line interface (CLI) f
 
 **Available Commands**:
 
-- `create`:    Create a cloud connection.
+- `create`:    [DEPRECATED] Create a cloud connection.
 - `delete`:    Delete a cloud connection.
 - `get`:    View details of a cloud connection.
 - `list`:    List all cloud connections.
@@ -99,7 +102,7 @@ The following list of commands are available with command-line interface (CLI) f
 
 **Alias**: `create, cr`
 
-**Description**: Create a cloud connection.
+**Description**: [DEPRECATED] Create a cloud connection.
 
 **Usage**:
 
@@ -435,7 +438,7 @@ release HOST_ID
 **Available Flags**:
 
 ```bash
-  -g, --host-group string   Host group to remove host from.
+  -g, --host-group string   Host group to add the host to.
   -u, --user-tags strings   Comma separated list of user tags to be attached to the host.
 ```
 
@@ -870,7 +873,7 @@ import IMAGE_NAME [--bucket-access private] [--storage-tier STORAGE_TIER] [--os-
                                           required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
   -b, --bucket string                     Cloud Object Storage bucket name.
   -u, --bucket-access string              Indicates the bucket access type (private or public). Private access requires access and secret keys.
-                                          Public access requires the --job option. Default is private. (default "private")
+                                          Public access requires the --job option. Default is private.
   -n, --image-file-name string            The image file name.
   -d, --import-details strings            Import details for SAP image. Must include a license, product and vendor.
                                           Valid license values: byol.
@@ -1156,9 +1159,9 @@ update INSTANCE_ID --code CODE
 **Usage**:
 
 ```bash
-create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
+create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1] [NSG]"[,"SUBNETn [IPn] [NSGn]"]
     [--boot-volume-replication-enabled=True|False]
-    [--deployment-target ("HOST_GROUP_ID,hostGroup" | "HOST_ID,host") ] [--deployment-type DEPLOYMENT_TYPE]
+    [--deployment-target ("HOST_GROUP_ID,hostGroup" | "HOST_ID,host")] [--deployment-type DEPLOYMENT_TYPE]
     [--IBMiCSS-license=True|False] [--IBMiPHA-license=True|False] [--IBMiRDS-users NUMBER-USERS]
     [--key-name NAME] [--memory MEMORY] [--pin-policy POLICY] [--placement-group GROUP_ID]
     [--processor-type PROC_TYPE] [--processors PROCESSORS] [--replicant-affinity-policy AFFINITY_POLICY]
@@ -1182,24 +1185,25 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
       --IBMiPHA-license                           IBMi PHA software license associated with the instance.
       --IBMiRDS-users int                         Number of IBMi RDS users software license associated with the instance, default IBMiRDSUsers=0 (no license).
   -b, --boot-volume-replication-enabled           Enables storage replication on the boot volume. False by default.
-      --deployment-target string                  The deployment of the dedicated host. Deployment must include either a host group id and hostGroup,
-                                                  or a host id and host.
+      --deployment-target string                  The deployment of the dedicated host. Deployment must include either
+                                                  a host group id and "hostGroup", or a host id and "host".
   -d, --deployment-type string                    The custom deployment type ("EPIC" or "VMNoStorage"). If --deployment-type "VMNoStorage" is set,
                                                   then --image must be one of "AIX-EMPTY", "IBMI-EMPTY", "RHEL-EMPTY", or "SLES-EMPTY".
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
-  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB. (default 2)
+  -m, --memory float                              Amount of memory (in GB) to allocate to the instance. Default is 2GB.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
       --placement-group string                    The placement group ID of the group that the server will be added to.
-  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated". (default "dedicated")
-  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core. (default 1)
-      --replicant-affinity-policy string          Affinity policy to use when multicreate is used ("affinity", "anti-affinity")
-      --replicant-scheme string                   Naming scheme to use for duplicate VMs ("suffix", "prefix").
-      --replicants int                            Number of duplicate instances to create in this request.
+  -r, --processor-type string                     Type of processors: "shared" or "dedicated" or "capped". Default is "dedicated".
+  -p, --processors float                          Amount of processors to allocate to the instance. Default is 1 core.
+      --replicant-affinity-policy string          Affinity policy to use when multicreate is used. Valid values are: affinity, anti-affinity, none.
+      --replicant-scheme string                   Naming scheme to use for duplicate VMs. Valid values are: prefix, suffix.
+      --replicants int                            The number of replicant instances to be created with this request.
+                                                  Values greater than 1 will result in the creation of multiple instances.
       --replication-sites strings                 Indicates the replication sites of the boot volume. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
       --shared-processor-pool string              The shared processor pool ID of the pool that the server will be in.
       --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity".
-                                                  If --storage-pool is provided, then this it cannot be specified.
+                                                  If --storage-pool is provided, then this flag cannot be specified.
       --storage-affinity-instance string          PVM instance identifier or name to base storage affinity policy against;
                                                   required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
       --storage-affinity-volume string            Volume identifier or name to base storage affinity policy against;
@@ -1222,8 +1226,10 @@ create INSTANCE_NAME --image IMAGE --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
   -t, --storage-tier string                       Storage tier for server deployment when deploying a stock or custom image
                                                   (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region).
                                                   Default to tier3 if not provided.
-  -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080'). Default is "s922". (default "s922")
+  -n, --subnets strings                           Comma separated list of subnet identifiers or names, an optional IP address,
+                                                  and network security group id that the network interface is a member of to associate with the instance.
+                                                  If no network group security group id is specified, default one is used.
+  -s, --sys-type string                           Name of System Type ('s922', 's1022', 'e980', 'e1080')
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
       --user-tags strings                         Comma separated list of user tags to be attached to the instance.
       --virtual-cores int                         The number of virtual cores assigned.
@@ -1355,8 +1361,10 @@ operation INSTANCE_ID --operation-type TYPE [--boot-mode MODE] [--boot-operating
 **Usage**:
 
 ```bash
-create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET1 [IP1]"[,"SUBNETn [IPn]"]
-    [--boot-volume-replication-enabled=True|False] [--key-name KEY-NAME] [--pin-policy POLICY] [--placement-group PLACEMENT_GROUP_ID]
+create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET1 [IP1] [NSG]"[,"SUBNETn [IPn] [NSGn]"]
+    [--boot-volume-replication-enabled=True|False]
+    [--deployment-target ("HOST_GROUP_ID,hostGroup" | "HOST_ID,host")]
+    [--key-name KEY-NAME] [--pin-policy POLICY] [--placement-group PLACEMENT_GROUP_ID]
     [--replication-sites SITE1[,SITEn]] [--storage-affinity STORAGE_AFFINITY_POLICY] [--storage-affinity-instance INSTANCE]
     [--storage-affinity-volume VOLUME] [--storage-anti-affinity-instances INSTANCE1[,INSTANCEn]]
     [--storage-anti-affinity-volumes VOLUME1[,VOLUMEn]] [--storage-pool STORAGE_POOL] [--storage-tier STORAGE_TIER]
@@ -1369,21 +1377,32 @@ create SAP_INSTANCE_NAME --image IMAGE --profile-id PROFILE_ID --subnets "SUBNET
 
 ```bash
   -b, --boot-volume-replication-enabled           Enables storage replication on the boot volume. False by default.
+      --deployment-target string                  The deployment of the dedicated host. Deployment must include either
+                                                  a host group id and "hostGroup", or a host id and "host".
   -i, --image string                              Operating system image identifier or name.
   -k, --key-name string                           Name of SSH key.
       --pin-policy string                         Pin policy ("none", "soft", "hard"). Default is "none".
       --placement-group string                    The placement group ID of the group that the server will be added to.
   -p, --profile-id string                         The unique identifier of the SAP profile.
       --replication-sites strings                 Indicates the replication sites of the boot volume. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
-      --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity". If --storage-pool is provided, then this it cannot be specified.
-      --storage-affinity-instance string          PVM instance identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
-      --storage-affinity-volume string            Volume identifier or name to base storage affinity policy against; required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
-      --storage-anti-affinity-instances strings   Comma separated list of PVM instance identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
-      --storage-anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base storage affinity policy against; required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
+      --storage-affinity string                   Affinity policy for storage pool selection. Valid values are "affinity" and "anti-affinity".
+                                                  If --storage-pool is provided, then this flag cannot be specified.
+      --storage-affinity-instance string          PVM instance identifier or name to base storage affinity policy against;
+                                                  required if "--storage-affinity affinity" is specified and --storage-affinity-volume is not provided.
+      --storage-affinity-volume string            Volume identifier or name to base storage affinity policy against;
+                                                  required if "--storage-affinity affinity" is specified and --storage-affinity-instance is not provided.
+      --storage-anti-affinity-instances strings   Comma separated list of PVM instance identifiers or names to base storage affinity policy against;
+                                                  required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-volumes is not provided.
+      --storage-anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base storage affinity policy against;
+                                                  required if "--storage-affinity anti-affinity" is specified and --storage-anti-affinity-instances is not provided.
       --storage-pool string                       Storage pool for SAP PVM instance deployment. Only valid when you deploy one of the IBM supplied stock images.
-  -t, --storage-tier string                       Storage tiers for SAP PVM instance deployment when deploying a stock or custom image (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region). Default to tier3 if not provided.
-  -n, --subnets strings                           Comma separated list of subnet identifiers or names and optional IP address to associate with the instance.
-  -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080'). Default is "e980". (default "e980")
+  -t, --storage-tier string                       Storage tiers for SAP PVM instance deployment when deploying a stock or custom image
+                                                  (use "ibmcloud pi storage-tiers" to see available storage tiers in the targeted region).
+                                                  Default to tier3 if not provided.
+  -n, --subnets strings                           Comma separated list of subnet identifiers or names, an optional IP address,
+                                                  and network security group id that the network interface is a member of to associate with the instance.
+                                                  If no network group security group id is specified, default one is used.
+  -s, --sys-type string                           Name of system type ('e880', 'e980', 'e1080').
   -u, --user-data string                          The user data passed into the instance. Strings and file names are supported. File names must be prepended with "@".
       --user-tags strings                         Comma separated list of user tags to be attached to the instance.
   -v, --volumes strings                           Comma separated list of volume identifiers or names to associate with the instance.
@@ -1615,7 +1634,7 @@ update SNAPSHOT_ID [--description NEW_DESCRIPTION] [--name NEW_NAME]
 **Usage**:
 
 ```bash
-attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
+attach INSTANCE_ID --subnet SUBNET_ID [--ip-address IP_ADDRESS] [--network-security-group-id NETWORK_SECURITY_GROUP_ID]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -1623,8 +1642,9 @@ attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
 **Available Flags**:
 
 ```bash
-  -i, --ip-address string   The requested ip address of this subnet interface (192.168.1.0).
-  -n, --subnet string       The subnet ID.
+  -i, --ip-address string                  The requested ip address of this subnet interface (192.168.1.0).
+      --network-security-group-id string   The network security group that the network interface is a member of. If not specified, the default network security group is used.
+  -n, --subnet string                      The subnet ID.
 ```
 
 **Examples**:
@@ -1645,7 +1665,7 @@ attach INSTANCE_ID --subnet "SUBNET_ID" [--ip-address "IP_ADDRESS"]
 **Usage**:
 
 ```bash
-detach INSTANCE_ID --subnet "SUBNET_ID" [--mac-address "MAC_ADDRESS"]
+detach INSTANCE_ID --subnet SUBNET_ID [--mac-address MAC_ADDRESS]
 
   INSTANCE_ID: The unique identifier or name of the instance.
 ```
@@ -1767,7 +1787,7 @@ assign INSTANCE_ID [--description DESCRIPTION] [--serial SERIAL]
 
 ```bash
   -d, --description string   Description for the virtual serial number.
-  -s, --serial string        Virtual serial number to attach. If no serial is specified or 'auto-assign' is set, a virtual serial number will be automatically generated. (default "auto-assign")
+  -s, --serial string        Virtual serial number to attach. If no serial is specified or 'auto-assign' is set, a virtual serial number will be automatically generated.
 ```
 
 **Examples**:
@@ -2167,6 +2187,182 @@ get JOB_ID
 
 ---
 
+## `ibmcloud pi network-address-group`
+{: #ibmcloud-pi-network-address-group}
+
+**Alias**: `network-address-group, nag`
+
+**Description**: IBM Cloud Power Virtual Server Network Address Groups.
+
+**Usage**: `network-address-group`
+
+**Available Commands**:
+
+- `create`:    Create a network address group.
+- `delete`:    Delete a network address group.
+- `get`:    View details of a network address group.
+- `list`:    List all network address groups.
+- `member-add`:    Add a member to a network address group.
+- `member-remove`:    Remove a member from a network address group.
+- `update`:    Update a network address group.
+
+---
+
+### `ibmcloud pi network-address-group create`
+{: #ibmcloud-pi-network-address-group-create}
+
+**Alias**: `create, cr`
+
+**Description**: Create a network address group.
+
+**Usage**:
+
+```bash
+create NETWORK_ADDRESS_GROUP_NAME [--user-tags USER_TAG1[,USER_TAGn]]
+
+  NETWORK_ADDRESS_GROUP_NAME: The desired name of the network address group.
+```
+
+**Available Flags**:
+
+```bash
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the network address group.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-address-group create test-network-address-group --user-tags "project:customer-poc,env:dev,dataresidency:germany"
+```
+
+---
+
+### `ibmcloud pi network-address-group delete`
+{: #ibmcloud-pi-network-address-group-delete}
+
+**Alias**: `delete, del`
+
+**Description**: Delete a network address group.
+
+**Usage**:
+
+```bash
+delete NETWORK_ADDRESS_GROUP_ID
+
+  NETWORK_ADDRESS_GROUP_ID: The unique identifier of the network address group.
+```
+
+---
+
+### `ibmcloud pi network-address-group get`
+{: #ibmcloud-pi-network-address-group-get}
+
+**Alias**: `get`
+
+**Description**: View details of a network address group.
+
+**Usage**:
+
+```bash
+get NETWORK_ADDRESS_GROUP_ID
+
+  NETWORK_ADDRESS_GROUP_ID: The unique identifier of the network address group.
+```
+
+---
+
+### `ibmcloud pi network-address-group list`
+{: #ibmcloud-pi-network-address-group-list}
+
+**Alias**: `list, ls`
+
+**Description**: List all network address groups.
+
+**Usage**: `list`
+
+---
+
+### `ibmcloud pi network-address-group member-add`
+{: #ibmcloud-pi-network-address-group-member-add}
+
+**Alias**: `member-add, ma`
+
+**Description**: Add a member to a network address group.
+
+**Usage**:
+
+```bash
+member-add NETWORK_ADDRESS_GROUP_ID --cidr-block CIDR
+
+  NETWORK_ADDRESS_GROUP_ID: The unique identifier of the network address group.
+```
+
+**Available Flags**:
+
+```bash
+  -c, --cidr-block string   The member CIDR to add. Valid values are in CIDR notation (192.168.1.0/22).
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-address-group member-add 43064761-948f-469d-ac8e-b8e5f0d6056f --cidr-block "198.168.0.0/24"
+```
+
+---
+
+### `ibmcloud pi network-address-group member-remove`
+{: #ibmcloud-pi-network-address-group-member-remove}
+
+**Alias**: `member-remove, mr`
+
+**Description**: Remove a member from a network address group.
+
+**Usage**:
+
+```bash
+member-remove NETWORK_ADDRESS_GROUP_ID --member-id NETWORK_ADDRESS_GROUP_MEMBER_ID
+
+  NETWORK_ADDRESS_GROUP_ID: The unique identifier of the network address group.
+```
+
+**Available Flags**:
+
+```bash
+  -m, --member-id string   The id of the network address group member to be removed.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-address-group member-remove 43064761-948f-469d-ac8e-b8e5f0d6056 --member-id 85716e61-948f-309d-de8b-c4e5f0d3126d
+```
+
+---
+
+### `ibmcloud pi network-address-group update`
+{: #ibmcloud-pi-network-address-group-update}
+
+**Alias**: `update, upd`
+
+**Description**: Update a network address group.
+
+**Usage**:
+
+```bash
+update NETWORK_ADDRESS_GROUP_ID --name NAME
+
+  NETWORK_ADDRESS_GROUP_ID: The unique identifier of the network address group.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --name string   New name of the network address group.
+```
+
+---
+
 ## `ibmcloud pi network-interface`
 {: #ibmcloud-pi-network-interface}
 
@@ -2302,6 +2498,352 @@ update NETWORK_INTERFACE_ID --network-id NETWORK_ID [--instance-id INSTANCE_ID] 
                              If this value is set to '', the network interface detaches from the instance.
       --name string          New name of network interface.
   -n, --network-id string    Network ID that is associated with the network interface.
+```
+
+---
+
+## `ibmcloud pi network-security-group`
+{: #ibmcloud-pi-network-security-group}
+
+**Alias**: `network-security-group, nsg`
+
+**Description**: IBM Cloud Power Virtual Server Network Security Groups.
+
+**Usage**: `network-security-group`
+
+**Available Commands**:
+
+- `action`:    Perform actions on network security groups.
+- `clone`:    IBM Cloud Power Virtual Server Network Security Group Clones.
+- `create`:    Create a network security group.
+- `delete`:    Delete a network security group.
+- `get`:    View details of a network security group.
+- `list`:    List all network security groups.
+- `member-add`:    Add a member to a network security group.
+- `member-move`:    Move a member to another network security group.
+- `member-remove`:    Remove a member from a network security group.
+- `rule-add`:    Add a rule to a network security group.
+- `rule-remove`:    Remove a rule from a network security group.
+- `update`:    Update a network security group.
+
+---
+
+### `ibmcloud pi network-security-group action`
+{: #ibmcloud-pi-network-security-group-action}
+
+**Alias**: `action, act`
+
+**Description**: Perform actions on network security groups.
+
+**Usage**:
+
+```bash
+action NETWORK_SECURITY_GROUP_ACTION
+
+ NETWORK_SECURITY_GROUP_ACTION: The desired action to be performed on network security groups. Valid values are "enable" and "disable".
+         If "enable" is chosen, the currently targeted workspace will have network-security-group functionality added.
+         If "disable is chosen, the currently targeted workspace will have network-security-group functionality removed.
+         Prior to choosing the "disable" action, all network-security-groups and network-address-groups must be to be removed.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-security-group action enable
+```
+
+---
+
+### `ibmcloud pi network-security-group clone`
+{: #ibmcloud-pi-network-security-group-clone}
+
+**Alias**: `clone, cl`
+
+**Description**: IBM Cloud Power Virtual Server Network Security Group Clones.
+
+**Usage**: `clone`
+
+**Available Commands**:
+
+- `create`:    Create a network security group using an existing network security group id.
+
+---
+
+#### `ibmcloud pi network-security-group clone create`
+{: #ibmcloud-pi-network-security-group-clone-create}
+
+**Alias**: `create, cr`
+
+**Description**: Create a network security group using an existing network security group id.
+
+**Usage**:
+
+```bash
+create NETWORK_SECURITY_GROUP_ID --name CLONE_NAME
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --name string   The name of the cloned network security group.
+```
+
+---
+
+### `ibmcloud pi network-security-group create`
+{: #ibmcloud-pi-network-security-group-create}
+
+**Alias**: `create, cr`
+
+**Description**: Create a network security group.
+
+**Usage**:
+
+```bash
+create NETWORK_SECURITY_GROUP_NAME [--user-tags USER_TAG1[,USER_TAGn]]
+
+  NETWORK_SECURITY_GROUP_NAME: The desired name of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -u, --user-tags strings   Comma separated list of user tags to be attached to the network security group.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-security-group create test-network-security-group --user-tags "project:customer-poc,env:dev,dataresidency:germany"
+```
+
+---
+
+### `ibmcloud pi network-security-group delete`
+{: #ibmcloud-pi-network-security-group-delete}
+
+**Alias**: `delete, del`
+
+**Description**: Delete a network security group.
+
+**Usage**:
+
+```bash
+delete NETWORK_SECURITY_GROUP_ID
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+---
+
+### `ibmcloud pi network-security-group get`
+{: #ibmcloud-pi-network-security-group-get}
+
+**Alias**: `get`
+
+**Description**: View details of a network security group.
+
+**Usage**:
+
+```bash
+get NETWORK_SECURITY_GROUP_ID
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+---
+
+### `ibmcloud pi network-security-group list`
+{: #ibmcloud-pi-network-security-group-list}
+
+**Alias**: `list, ls`
+
+**Description**: List all network security groups.
+
+**Usage**: `list`
+
+---
+
+### `ibmcloud pi network-security-group member-add`
+{: #ibmcloud-pi-network-security-group-member-add}
+
+**Alias**: `member-add, ma`
+
+**Description**: Add a member to a network security group.
+
+**Usage**:
+
+```bash
+member-add NETWORK_SECURITY_GROUP_ID --member-type ("ipv4-address" | "network-interface") --target TARGET
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -m, --member-type string   The type of member. Valid values are 'ipv4-address', and 'network-interface'.
+  -t, --target string        The target member to add. This is an IP4 address if type is set to 'ipv4-address'. This is a network interface ID if type is set to 'network-interface'.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-security-group member-add 43064761-948f-469d-ac8e-b8e5f0d6056f --member-type "network-interface" --target 85716e61-948f-309d-de8b-c4e5f0d3126d
+```
+
+---
+
+### `ibmcloud pi network-security-group member-move`
+{: #ibmcloud-pi-network-security-group-member-move}
+
+**Alias**: `member-move, mm`
+
+**Description**: Move a member to another network security group.
+
+**Usage**:
+
+```bash
+member-move NETWORK_SECURITY_GROUP_ID --member-id NETWORK_SECURITY_GROUP_MEMBER_ID --network-security-group-id-destination NETWORK_SECURITY_GROUP_ID_DESTINATION
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -m, --member-id string                               The id of the network security group member to be move.
+  -n, --network-security-group-id-destination string   The id of the network security group the member will move to.
+```
+
+---
+
+### `ibmcloud pi network-security-group member-remove`
+{: #ibmcloud-pi-network-security-group-member-remove}
+
+**Alias**: `member-remove, mr`
+
+**Description**: Remove a member from a network security group.
+
+**Usage**:
+
+```bash
+member-remove NETWORK_SECURITY_GROUP_ID --member-id NETWORK_SECURITY_GROUP_MEMBER_ID
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -m, --member-id string   The id of the network security group member to be removed.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-security-group member-remove 43064761-948f-469d-ac8e-b8e5f0d6056 --member-id 85716e61-948f-309d-de8b-c4e5f0d3126d
+```
+
+---
+
+### `ibmcloud pi network-security-group rule-add`
+{: #ibmcloud-pi-network-security-group-rule-add}
+
+**Alias**: `rule-add, ra`
+
+**Description**: Add a rule to a network security group.
+
+**Usage**:
+
+```bash
+rule-add NETWORK_SECURITY_GROUP_ID --action ("allow" | "deny")
+    (--protocol "all" |  --protocol "icmp" [--icmp-type TYPE] |
+    --protocol "tcp" [--dest-port-min MIN] [--dest-port-max MAX] [--src-port-min MIN] [--src-port-max MAX] [--tcp-flags FLAG1[,FLAGn]] |
+    --protocol "udp" [--dest-port-min MIN] [--dest-port-max MAX] [--src-port-min MIN] [--src-port-max MAX])
+    (--remote-type "default-network-address-group" |
+    --remote-type "network-address-group" --remote-group-id REMOTE_NETWORK_ADDRESS_GROUP_ID |
+    --remote-type "network-security-group" --remote-group-id REMOTE_NETWORK_SECURITY_GROUP_ID)
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -a, --action string            The action to take if the rule matches network traffic. Valid action values are: allow, deny.
+      --dest-port-max int        The end of the destination port range. If the value is not present then the default value of 65535 will be the maximum port number.
+      --dest-port-min int        The start of the destination port range. If the value is not present then the default value of 1 will be the minimum port number.
+  -i, --icmp-type string         The ICMP packet type affected by ICMP rules. Valid values are: all, echo, echo-reply, source-quench, time-exceeded, destination-unreach.
+  -p, --protocol string          The protocol of the network traffic. Valid values are: all, icmp, tcp, udp.
+  -g, --remote-group-id string   The unique identifier of the remote network address group or network security group.
+  -r, --remote-type string       The type of remote group (MAC addresses, IP addresses, CIDRs, external CIDRs) that are the originators of rule's network traffic to match.
+                                 Valid values are: default-network-address-group, network-address-group, network-security-group.
+                                 The 'default-network-address-group' is a network address group that specifies all external network traffic.
+      --src-port-max int         The end of the source port range. If the value is not present then the default value of 65535 will be the maximum port number.
+      --src-port-min int         The start of the source port range. If the value is not present then the default value of 1 will be the minimum port number.
+  -t, --tcp-flags strings        Comma separated list of TCP flags. Valid values are: syn, ack, fin, rst.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-security-group rule-add 43064761-948f-469d-ac8e-b8e5f0d6056f --action allow --protocol all --remote-type network-address-group --remote-group-id 85716e61-948f-309d-de8b-c4e5f0d3126d
+    ibmcloud pi network-security-group rule-add 43064761-948f-469d-ac8e-b8e5f0d6056f --action allow --protocol tcp --dest-port-min 1200 --dest-port-max 37465 --src-port-min 1000 --src-port-max 20000 --tcp-flags "syn,ack,fin" --remote-type network-security-group --remote-group-id 85716e61-948f-309d-de8b-c4e5f0d3126d
+```
+
+---
+
+### `ibmcloud pi network-security-group rule-remove`
+{: #ibmcloud-pi-network-security-group-rule-remove}
+
+**Alias**: `rule-remove, rr`
+
+**Description**: Remove a rule from a network security group.
+
+**Usage**:
+
+```bash
+rule-remove NETWORK_SECURITY_GROUP_ID --rule-id RULE_ID
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -r, --rule-id string   The id of the network security group rule to be removed.
+```
+
+**Examples**:
+
+```bash
+    ibmcloud pi network-security-group rule-remove 43064761-948f-469d-ac8e-b8e5f0d6056 --rule-id 85716e61-948f-309d-de8b-c4e5f0d3126d
+```
+
+---
+
+### `ibmcloud pi network-security-group update`
+{: #ibmcloud-pi-network-security-group-update}
+
+**Alias**: `update, upd`
+
+**Description**: Update a network security group.
+
+**Usage**:
+
+```bash
+update NETWORK_SECURITY_GROUP_ID --name NAME
+
+  NETWORK_SECURITY_GROUP_ID: The unique identifier of the network security group.
+```
+
+**Available Flags**:
+
+```bash
+  -n, --name string   New name of the network security group.
 ```
 
 ---
@@ -3633,7 +4175,7 @@ create VOLUME_NAME --size SIZE [--count COUNT] [--replication-enabled=True|False
   -v, --affinity-volume string            Volume identifier or name to base volume affinity policy against; required if "--affinity-policy affinity" is specified and --affinity-instance is not provided.
   -j, --anti-affinity-instances strings   Comma separated list of instance identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified and --anti-affinity-volumes is not provided.
   -w, --anti-affinity-volumes strings     Comma separated list of volume identifiers or names to base volume anti-affinity policy against; required if "--affinity-policy anti-affinity" is specified  and --anti-affinity-instances is not provided.
-  -c, --count int                         Number of volumes to create. 1 by default. (default 1)
+  -c, --count int                         Number of volumes to create. 1 by default.
   -r, --replication-enabled               Enables storage replication on the volume. False by default.
       --replication-sites strings         List of replication sites for volume replication. See "ibmcloud pi disaster-recovery" command to get a list of replication sites.
   -e, --shareable                         Whether the volumes can be attached to multiple VMs. False by default.
@@ -3717,9 +4259,9 @@ get VOLUME_ID
 **Available Flags**:
 
 ```bash
-  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default. (default true)
+  -a, --auxiliary             Filter auxiliary volumes if set to True or non-auxiliary volumes if False. True by default.
   -l, --long                  Retrieve all volume details.
-  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default. (default true)
+  -r, --replication-enabled   Filter replication-enabled volumes if set to True or non-replication-enabled volumes if False. True by default.
 ```
 
 ---
@@ -3748,7 +4290,7 @@ get VOLUME_ID
 
 **Description**: Create a volume onboarding operation.
 
-**Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION]`
+**Usage**: `create <--auxiliary-volumes "AUXVOLUMENAME1 [NAME1]"> --source-crn SOURCE_CRN [--description DESCRIPTION] [--user-tags USER_TAG1[,USER_TAGn]]`
 
 **Available Flags**:
 
@@ -3756,6 +4298,7 @@ get VOLUME_ID
   -a, --auxiliary-volumes strings   Comma separated list of identifiers of the volume(s) at storage host level. Repeat this option to add more auxiliary volumes.
   -d, --description string          Volume onboarding description.
   -s, --source-crn string           CRN of source ServiceBroker instance from where auxiliary volumes need to be onboarded.
+  -u, --user-tags strings           Comma separated list of user tags to be attached to the volume onboarding.
 ```
 
 **Examples**:
@@ -3926,8 +4469,8 @@ action VOLUME_GROUP_ID --operation reset [--status STATUS]
 ```bash
   -a, --allow-read-access   Allow the auxiliary volume to be accessible after stopping the volume group. Default is false.
   -o, --operation string    Operation to be done in a volume group. Valid values are "start", "stop", and "reset".
-      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master". (default "master")
-      --status string       New status to be set for a volume group. Default is "available". (default "available")
+      --source string       The copying volume source. Allowed values are master or auxiliary. Default is "master".
+      --status string       New status to be set for a volume group. Default is "available".
 ```
 
 **Examples**:
@@ -4096,12 +4639,41 @@ update VOLUME_GROUP_ID [--add-member-volume-ids "VOLUME_ID_1,[VOLUME_ID_N]"] [--
 
 **Available Commands**:
 
+- `create`:    Create a VPN connection.
 - `delete`:    Delete a VPN connection.
 - `get`:    View details of a VPN connection.
 - `list`:    List all VPN connections.
 - `peer-subnet`:    IBM Cloud Power Virtual Server Virtual Private Networking Peer-Subnets.
 - `subnet`:    IBM Cloud Power Virtual Server Virtual Private Networking Subnets.
 - `update`:    Update a VPN connection.
+
+---
+
+### `ibmcloud pi vpn create`
+{: #ibmcloud-pi-vpn-create}
+
+**Alias**: `create, cr`
+
+**Description**: Create a VPN connection.
+
+**Usage**:
+
+```bash
+create VPN_CONNECTION_NAME --ike-policy-id IKE_POLICY_ID --ipsec-policy-id IPSEC_POLICY_ID --mode MODE --peer-gateway-address PEER_GATEWAY --peer-subnet-cidrs "CIDR1 [CIDRn]" --subnets "ID1 [IDn]"
+
+  VPN_CONNECTION_NAME: A unique name of the VPN connection.
+```
+
+**Available Flags**:
+
+```bash
+  -k, --ike-policy-id string          Unique ID of IKE policy selected for this VPN connection.
+  -p, --ipsec-policy-id string        Unique ID of IPSec policy selected for this VPN connection.
+  -m, --mode string                   Mode to be used by the VPN connection and cannot be updated later. Valid values are 'route' and 'policy'.
+  -g, --peer-gateway-address string   IP address of the peer gateway attached to this VPN connection.
+  -c, --peer-subnet-cidrs strings     Comma separated list of peer subnet CIDRs.
+  -s, --subnets strings               Comma separated list of subnet IDs attached to this VPN connection.
+```
 
 ---
 
@@ -4453,7 +5025,7 @@ create WORKSPACE_NAME --datacenter DATACENTER --group RESOURCE_GROUP --plan PLAN
 ```bash
 delete (WORKSPACE_CRN | WORKSPACE_ID)
 
-  WORKSPACE_CRN: The cloud resource name that uniquely identifies IBM Cloud resources.
+  WORKSPACE_CRN:  The cloud resource name that uniquely identifies IBM Cloud resources.
 
   WORKSPACE_ID: The unique identifier of the workspace.
 ```
@@ -4507,7 +5079,7 @@ get WORKSPACE_ID
 ```bash
 target WORKSPACE_CRN
 
-  WORKSPACE_CRN: The cloud resource name that uniquely identifies IBM Cloud resources.
+  WORKSPACE_CRN:  The cloud resource name that uniquely identifies IBM Cloud resources.
 ```
 
 ---
