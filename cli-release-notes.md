@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2025-02-24"
+lastupdated: "2025-02-25"
 
 ---
 
@@ -19,7 +19,7 @@ Use these release notes to learn about the latest changes to the {{site.data.key
 ## February 2025
 {: #feb-2025}
 
-New CLI version v1.4.2 available. The Power Virtual Server CLI plug-in is available with the following features:
+New CLI version v1.4.2 is available. The Power Virtual Server CLI plug-in is available with the following features:
 
 **New commands**
 
@@ -43,7 +43,7 @@ New CLI version v1.4.2 available. The Power Virtual Server CLI plug-in is availa
 ## January 2025
 {: #jan-2025}
 
-New CLI version `v1.4.1` available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
+New CLI version `v1.4.1` is available. The {{site.data.keyword.powerSys_notm}} CLI plug-in is available with the following features:
 
 **What's changed**
 
