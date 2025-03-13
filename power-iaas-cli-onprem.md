@@ -2,14 +2,14 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-03-03"
+lastupdated: "2025-03-13"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.2 for {{site.data.keyword.on-prem}}
+# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.5.0 for {{site.data.keyword.on-prem}}
 {: #power-iaas-cli-on-prem}
 
 ---
@@ -20,6 +20,7 @@ lastupdated: "2025-03-03"
 
 
 The following list of commands are available with command-line interface (CLI) for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.on-prem}}.
+
 
 
 
