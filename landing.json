@@ -15,7 +15,7 @@
         "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-byb"
       },
       {
-        "title": "IBM Power Virtual Server CLI Reference V 1.4.1",
+        "title": "IBM Power Virtual Server CLI Reference V 1.5.0",
         "href": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-reference-v1"
       }
     ]
@@ -32,8 +32,8 @@
     "view_more": "/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-release-notes",
     "tiles": [
       {
-        "date": "22 January 2025",
-        "title": "The Power Virtual Server CLI plug-in version `v1.4.1` is available."
+        "date": "24 March 2025",
+        "title": "The Power Virtual Server CLI plug-in version `v1.5.0` is available."
       }
     ]
   }
