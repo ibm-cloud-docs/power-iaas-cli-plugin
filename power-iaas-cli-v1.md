@@ -2,13 +2,13 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-02-24"
+lastupdated: "2025-03-13"
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.4.2 for {{site.data.keyword.off-prem}}
+# IBM {{site.data.keyword.powerSys_notm}} CLI version 1.5.0 for {{site.data.keyword.off-prem}}
 {: #power-iaas-cli-reference-v1}
 
 
@@ -22,6 +22,7 @@ lastupdated: "2025-02-24"
 
 
 The following list of commands are available with command-line interface (CLI) for IBM {{site.data.keyword.powerSys_notm}} in {{site.data.keyword.off-prem}}.
+
 
 
 ## `ibmcloud pi`

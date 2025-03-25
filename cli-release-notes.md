@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2025-02-25"
+lastupdated: "2025-03-25"
 
 ---
 
@@ -14,6 +14,23 @@ lastupdated: "2025-02-25"
 
 Use these release notes to learn about the latest changes to the {{site.data.keyword.powerSysFull}} CLI plug-in.
 {: shortdesc}
+
+## March 2025
+{: #mar-2025}
+
+New CLI version v1.5.0 is available. The Power Virtual Server CLI plug-in is available with the following features:
+
+**New commands**
+- Added [`ibmcloud pi instance virtual-serial-number`](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-on-prem#ibmcloud-pi-instance-virtual-serial-number) family of commands (assign, get, unassign, and update) for {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}} workspaces.
+- Added [`ibmcloud pi virtual-serial-number`](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-on-prem#ibmcloud-pi-virtual-serial-number) family of commands (delete, get, list, and update) for {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}} workspaces.
+
+**New flags**
+- Added `--virtual-serial-number` flag to [`ibmcloud pi instance create`](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-on-prem#ibmcloud-pi-instance-create) command for {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}} workspaces. Use this flag to add virtual serial number information to an IBM i instance.
+- Added `--retainVSN` flag to [`ibmcloud pi instance delete`](/docs/power-iaas-cli-plugin?topic=power-iaas-cli-plugin-power-iaas-cli-on-prem#ibmcloud-pi-instance-delete) command for {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}} workspaces. Use this flag to confirm whether the virtual serial number must be retained in your account after it is removed from the instance.
+
+**What's changed**
+- In the {{site.data.keyword.on-prem-fname}} in {{site.data.keyword.on-prem}}, if you enable the `sap-subscription-mode` option for the workspace, different options are displayed in the image list-catalog.
+- Added a default system to the instance SAP profile and the instance SAP list.
 
 
 ## February 2025
